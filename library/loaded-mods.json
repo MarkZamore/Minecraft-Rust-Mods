@@ -5,7 +5,7 @@
     "executable": "native/launch-rust-edition.exe",
     "platform": "windows-x64",
     "adapter": "portable-native",
-    "version": "nightly-2026-11-05-66f3981-mods-r1"
+    "version": "nightly-2026-11-05-66f3981-mods-r2"
   },
   "nativeFiles": {
     "native/LICENSE": "06b767be20580df3cd9ad6231aa9e775451d21bdf7f594fddb94523b7e363fb9",
@@ -102,9 +102,8 @@
     "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$World.class": "104984ef0c6ab5b42b40c661642fae7cdc45bd8224e4975856abad0b1d349d50",
     "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle.class": "280a14b3bd55f856e3c235ac755435917f6c02bfbeef1496f505f0c0760654ad",
     "native/exporters/server/dev/horizonlab/parity/VanillaStructureBlockExporter.class": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6",
-    "native/horizon-client.exe": "bc6d6378636f5737b3d3efea5802ce78d22fe30a391563f2d4c1b4e459eec068",
-    "native/horizon-mods/deepbore_quarry.hmod": "2a75f3adc59aaf273fd833545c50a63a7f829916156b74d85bebbb6273b0d8b6",
-    "native/horizon-mods/wayfarer_stones.hmod": "87bec46b6bbe05d95563a4bf7b8a3b92340ca1dd54c2d5709b6a0a41989d7176",
+    "native/horizon-client.exe": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05",
+    "native/horizon-mods/orbital.hmod": "081902bfcbf04b0c772d1157f5b6284a87688bf2383855089f5a33589230047c",
     "native/horizon-prepare.exe": "007836f4354d51241314f564d0ac184ca70fa2d39ea4c56a2a699162f9707d48",
     "native/launch-rust-edition.exe": "eb90ce18a028f8c7d18f96cb61d7de3de5b9d9ac7b542e1fdb8d4e2f44e6a04b",
     "native/mods/horizon/src/test/java/dev/horizonlab/parity/ElderCurseTranscript.java": "ed9abda5bb2015f09c763719e7114c9ce821ced4553e6d4d16e45fea4eae018b",
@@ -452,7 +451,7 @@
     "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldgenOracle.java": "b5fdf8ad8d03d14efb7ff681764d5081574cdaf4caa22a5b8948a882c9770e82",
     "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldgenRandomOracle.java": "a3a7f368b8d72ea48f5397ffbdcfcb1c7a2a3d39458ad3e40cb5272c9c7b15ec",
     "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaZombieCureSoundOracle.java": "9e79e2305ec1f420e2657a2670296dfb8457400ad844658acb41847e6ffd5da1",
-    "native/native-mods.json": "4e53094817cd794aa4688340866694e9e196dec69d3a60e4389c50efd20cdbf5",
+    "native/native-mods.json": "6395f37a9ebd8890f5f66434694664fad2ca9e0e4a79877a183bf724aee0f707",
     "native/presentation.json": "7d874a9f0a7a2bcff4aa4b4220ca8ede20af7d3ab91c515735c369a1464cefd4",
     "native/research-lock.json": "eac45913fbfef00bf8902548511593e413b097644c4c1761b74839081c83bbac",
     "native/steam_api64.dll": "eb17909a76668cf9ae0b92a618a34a50f6c73d3a6787cb4dd8ce36a8b10bfb75",
@@ -470,8 +469,6 @@
     "native/third_party/mods/connected_textures/LICENSE": "8b3833000ff1a038149614e676e29e67eb6979d37c1319b69b4653ec15678d6f",
     "native/third_party/mods/coords_hud/LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df",
     "native/third_party/mods/crosshair_indicator/LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5",
-    "native/third_party/mods/deepbore_quarry/LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9",
-    "native/third_party/mods/deepbore_quarry_native/LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9",
     "native/third_party/mods/dynamic_fps_for_rust/LICENSE": "a923ff088a8547f38b369a8d87e4c3184cc4240265d91cbd3d30110294fcb899",
     "native/third_party/mods/elytratrails/LICENSE": "73f9ddf053c8e17cc0f63de439e4cb4cfad67e957fb11a6b548ed60029d7c9de",
     "native/third_party/mods/enchantmenthints/LICENSE": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f",
@@ -491,6 +488,7 @@
     "native/third_party/mods/minimap/LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df",
     "native/third_party/mods/motion_blur/LICENSE": "c3de829dc322870a04fc4c939237dd57f5c18f130731079c95ce3d52d2a61193",
     "native/third_party/mods/mousetricks/LICENSE": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f",
+    "native/third_party/mods/orbital/LICENSE": "d70cf70db2655fb78f2204653b1a4355a4d5256ca2bf68ab55deef9904ff5998",
     "native/third_party/mods/resourcify/LICENSE": "373bf4d59c8a39187177853e7026704749b89da2b5b5a172a10faf55fe75feb4",
     "native/third_party/mods/rightharvest/LICENSE": "89b53ffa2991281fb2d19027b7074066e17db16a0f1274a99600a2b6ae4abfe8",
     "native/third_party/mods/server_browser/LICENSE": "721f224b01b0abbae798e0e01c4ad475abd705065dc409f8ee9f0c7ccadbaad9",
@@ -502,8 +500,6 @@
     "native/third_party/mods/tectonic_horizon/THIRD_PARTY_NOTICES.md": "40240b8153ef5449ff9e92be61deb746eb64a8d47305bcb715630df35af9e94a",
     "native/third_party/mods/toggle_sprint/LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5",
     "native/third_party/mods/veinminer/LICENSE": "47bd3e93c428406de289c8309f2cbcac3cb68431afdfa851e140e41cfc1fa5cc",
-    "native/third_party/mods/wayfarer_stones/LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9",
-    "native/third_party/mods/wayfarer_stones_native/LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9",
     "native/third_party/mods/waypoints/LICENSE": "73ede67570774f3529380e75734e35ce5b48fb865f150270eac65d5cbf097772",
     "native/third_party/mods/zoom/LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df",
     "native/third_party/naga/LICENSE.APACHE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
@@ -567,18 +563,6 @@
       "id": "crosshair_indicator",
       "name": "Crosshair Indicator",
       "version": "1.0.0",
-      "source": "native/horizon-client.exe"
-    },
-    {
-      "id": "deepbore_quarry",
-      "name": "Deepbore Quarry (assets)",
-      "version": "0.1.0",
-      "source": "native/horizon-mods/deepbore_quarry.hmod"
-    },
-    {
-      "id": "deepbore_quarry_native",
-      "name": "Deepbore Quarry",
-      "version": "0.1.0",
       "source": "native/horizon-client.exe"
     },
     {
@@ -690,6 +674,12 @@
       "source": "native/horizon-client.exe"
     },
     {
+      "id": "orbital",
+      "name": "Orbital Laser",
+      "version": "0.5.9",
+      "source": "native/horizon-client.exe"
+    },
+    {
       "id": "resourcify",
       "name": "ResourcifyHorizon",
       "version": "0.1.1",
@@ -750,18 +740,6 @@
       "source": "native/horizon-client.exe"
     },
     {
-      "id": "wayfarer_stones",
-      "name": "Wayfarer Stones (assets)",
-      "version": "0.6.0",
-      "source": "native/horizon-mods/wayfarer_stones.hmod"
-    },
-    {
-      "id": "wayfarer_stones_native",
-      "name": "Wayfarer Stones",
-      "version": "0.6.0",
-      "source": "native/horizon-client.exe"
-    },
-    {
       "id": "waypoints",
       "name": "Waypoints",
       "version": "1.0.0",
@@ -773,5 +751,55 @@
       "version": "2.0.0",
       "source": "native/horizon-client.exe"
     }
-  ]
+  ],
+  "verification": {
+    "mode": "startup-menu",
+    "registeredNative": [
+      "accurate_block_placement",
+      "appleskin",
+      "armor_status",
+      "armorhud",
+      "blockscope",
+      "chatheads",
+      "connected_textures",
+      "coords_hud",
+      "crosshair_indicator",
+      "elytratrails",
+      "enchantmenthints",
+      "fps_overlay",
+      "freelook",
+      "fullbright_nofog",
+      "held_item_info",
+      "horizon_physics",
+      "horizonmatica",
+      "inventory_profiles",
+      "invisible_frames",
+      "itemnew",
+      "jei",
+      "keystrokes",
+      "lookat",
+      "minimap",
+      "motion_blur",
+      "mousetricks",
+      "orbital",
+      "resourcify",
+      "rightharvest",
+      "server_browser",
+      "skins_3d",
+      "speedrun_timer",
+      "spider_man",
+      "status_effect_hud",
+      "tectonic_horizon",
+      "toggle_sprint",
+      "waypoints",
+      "zoom"
+    ],
+    "observedWithoutMenu": [
+      "dynamic_fps_for_rust"
+    ],
+    "compiledWithoutRuntimeProbe": [
+      "veinminer"
+    ],
+    "gameplay": "NOT RUN"
+  }
 }

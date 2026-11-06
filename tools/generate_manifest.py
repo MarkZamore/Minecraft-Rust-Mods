@@ -10,13 +10,17 @@ import sys
 import tempfile
 import zipfile
 
-from native_build import DECISIONS, INPUT_LOCK, RECIPE, ROOT, load, module_at, sha, write
+from inspect_mods import content_file
+from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
 from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE, presentation
 
 
 FEATURES = ["native-runtime-v1", "native-steam-v1", "minecraft-26-world-layout-v1"]
 LIBRARY_FILES = ("content.json", "mod-pages.json", "loaded-mods.json", "preview.jpg")
 FILE_SEGMENT = re.compile(r"[A-Za-z0-9_.$-]+")
+ORBITAL_CONTENT = "native/horizon-mods/orbital.hmod"
+NATIVE_WITHOUT_MODS_ROW = {"dynamic_fps_for_rust", "veinminer"}
+PACK_OVERLAY_MODS = {"horizon_physics", "orbital", "server_browser"}
 
 
 def file_info(path):
@@ -43,15 +47,42 @@ def inventory(candidate):
     return dict(sorted(files.items()))
 
 
+def accepted_build(candidate):
+    path = candidate / "build-receipt.json"
+    build = load(path)
+    approval = load(ROOT / "tools/build-lock.json")
+    if (approval["receiptSha256"] != sha(path) or build["compileCheck"] is not True or
+            build["inputLockSha256"] != sha(INPUT_LOCK) or build["conflictDecisionsSha256"] != sha(DECISIONS) or
+            build["buildRecipeSha256"] != build_recipe_sha()):
+        raise ValueError("Build receipt does not match the accepted mod inputs and build")
+    return build, approval
+
+
+def verify_release_startup(candidate, build, bootstrap_sha):
+    if not PACK_OVERLAY_MODS <= set(build["ids"]):
+        raise ValueError("The release omits a mod with a required pack compatibility overlay")
+    report = load(ROOT / "tools/qa/orbital-startup.json")
+    preset = candidate / CONTROLS_PRESET
+    if (report["clientSha256"] != build["clientSha256"] or report["bootstrapSha256"] != bootstrap_sha or
+            report["windowTitle"] != presentation()["name"] or
+            report["controlsPreset"]["sha256"] != sha(preset) or
+            report["controlsPreset"]["runtimeRoundTrip"] != "PASS" or
+            "key_orbital.wheel:key.keyboard.insert" not in preset.read_text(encoding="utf-8").splitlines()):
+        raise ValueError("Run the Windows startup and controls checks for this exact candidate")
+    mouse = report["startupMouse"]
+    narrator = mouse["onboardingNarratorButton"]
+    if (narrator["enabled"] is not False or narrator["speechBackendActive"] is not True or
+            narrator["statusAfterClick"] != "off" or
+            not {"language", "accessibility", "sound", "continue"} <= set(mouse["onboardingMouse"]) or
+            mouse["physicsQuickSetup"]["action"] != "Skip Setup" or
+            not {"language", "accessibility", "options", "controls"} <= set(mouse["titleMouse"])):
+        raise ValueError("The Windows report must verify the startup screen and Physics menu fix")
+
+
 def describe(candidate):
     runtime = load(ROOT / "portable-pack.json")
     content = load(ROOT / "library/content.json")
-    build = load(candidate / "build-receipt.json")
-    approval = load(ROOT / "tools/build-lock.json")
-    if (approval["receiptSha256"] != sha(candidate / "build-receipt.json") or
-            build["inputLockSha256"] != sha(INPUT_LOCK) or build["conflictDecisionsSha256"] != sha(DECISIONS) or
-            build["buildRecipeSha256"] != sha(RECIPE)):
-        raise ValueError("Build receipt does not match the accepted mod inputs and build")
+    build, approval = accepted_build(candidate)
     files = inventory(candidate)
     descriptor = runtime["nativeRuntime"]
     if (load(candidate / "portable-pack.json") != runtime or descriptor["executable"] not in files or
@@ -63,6 +94,7 @@ def describe(candidate):
     bootstrap = load(ROOT / "tools/bootstrap-lock.json")
     if files[descriptor["executable"]] != {"sizeBytes": bootstrap["sizeBytes"], "sha256": bootstrap["sha256"]}:
         raise ValueError("The staged bootstrap differs from the verified isolated native wrapper")
+    verify_release_startup(candidate, build, bootstrap["sha256"])
     for name in LIBRARY_FILES:
         if file_info(candidate / "library" / name) != file_info(ROOT / "library" / name):
             raise ValueError(f"The staged library file differs from source: {name}")
@@ -79,11 +111,14 @@ def describe(candidate):
         raise ValueError("Actual mod inventory does not cover the accepted build")
     for mod in loaded["mods"]:
         project = projects[mod["id"]]
-        path = "native/horizon-client.exe" if project["kind"] == "native-mod" else f"native/horizon-mods/{mod['id']}.hmod"
+        companion_path = f"native/horizon-mods/{mod['id']}.hmod"
+        path = "native/horizon-client.exe" if project["kind"] == "native-mod" else companion_path
         if mod["source"] != path or path not in files:
             raise ValueError(f"Wrong payload origin for loaded mod {mod['id']}")
-        if project["kind"] == "mod" and files[path]["sha256"] != project["file"]["sha256"]:
-            raise ValueError(f"Content mod byte mismatch: {mod['id']}")
+        if expected_content_file := content_file(project):
+            if files.get(companion_path) != {"sizeBytes": expected_content_file["size"],
+                                             "sha256": expected_content_file["sha256"]}:
+                raise ValueError(f"Content mod byte mismatch: {mod['id']}")
     for relative in (CONTROLS_PRESET, OPTIONS_TEMPLATE):
         path = candidate / relative
         if (path.parent.is_symlink() or path.parent.is_junction() or path.is_symlink() or
@@ -100,18 +135,18 @@ def describe(candidate):
 
 def propose_inventory(candidate, report_path, probe_path):
     report = load(report_path)
-    build = load(candidate / "build-receipt.json")
+    build, _ = accepted_build(candidate)
     files = inventory(candidate)
     runtime = load(candidate / "portable-pack.json")
     client = files["native/horizon-client.exe"]["sha256"]
     bootstrap = files[runtime["nativeRuntime"]["executable"]]["sha256"]
-    if (build["clientSha256"] != client or build["inputLockSha256"] != sha(INPUT_LOCK) or
+    if (build["clientSha256"] != client or
             report.get("schemaVersion") != 1 or report["clientSha256"] != client or
             report["bootstrapSha256"] != bootstrap or report["windowTitle"] != load(candidate / "native/presentation.json")["name"]):
-        raise ValueError("Inventory needs a real world smoke report from this exact client and bootstrap")
+        raise ValueError("Inventory needs a Windows smoke report from this exact client and bootstrap")
     projects = {row["id"]: row for row in load(INPUT_LOCK)["projects"]}
     selected = [projects[mod] for mod in build["ids"]]
-    expected_content = {(mod["id"], mod["version"]) for mod in selected if mod["kind"] == "mod"}
+    expected_content = {(mod["id"], mod["version"]) for mod in selected if content_file(mod) is not None}
     expected_native = {mod["id"] for mod in selected if mod["kind"] == "native-mod"}
     if set(map(tuple, report["loadedContent"])) != expected_content:
         raise ValueError("The runtime did not accept the selected content mods")
@@ -119,14 +154,19 @@ def propose_inventory(candidate, report_path, probe_path):
     missing = expected_native - observed
     if observed - expected_native or set(report["nativeNeedingDirectProbes"]) != missing:
         raise ValueError("Native runtime observations differ from the expected set")
-    if missing:
-        if probe_path is None:
-            raise ValueError(f"Add direct runtime evidence for native mods without a Mods row: {sorted(missing)}")
+    proven = set()
+    if probe_path is not None:
         probes = load(probe_path)
         proven = {probe["id"] for probe in probes["results"] if probe["status"] == "PASS" and probe["observation"].strip()}
-        if probes.get("schemaVersion") != 1 or probes["clientSha256"] != client or not missing <= proven:
-            raise ValueError(f"Direct runtime evidence is incomplete: {sorted(missing - proven)}")
-    return {
+        if probes.get("schemaVersion") != 1 or probes["clientSha256"] != client or proven - missing:
+            raise ValueError("Direct runtime evidence differs from the accepted build")
+    startup_only = report.get("mode") == "startup-menu"
+    if startup_only:
+        if missing - NATIVE_WITHOUT_MODS_ROW:
+            raise ValueError(f"Expected Mods registrations are missing: {sorted(missing - NATIVE_WITHOUT_MODS_ROW)}")
+    elif missing - proven:
+        raise ValueError(f"Add direct runtime evidence for native mods without a Mods row: {sorted(missing - proven)}")
+    inventory_document = {
         "schemaVersion": 1,
         "minecraftVersion": runtime["minecraftVersion"],
         "nativeRuntime": runtime["nativeRuntime"],
@@ -135,6 +175,13 @@ def propose_inventory(candidate, report_path, probe_path):
                   "source": "native/horizon-client.exe" if mod["kind"] == "native-mod" else f"native/horizon-mods/{mod['id']}.hmod"}
                  for mod in selected],
     }
+    if startup_only:
+        inventory_document["verification"] = {
+            "mode": "startup-menu", "registeredNative": sorted(observed),
+            "observedWithoutMenu": sorted(proven), "compiledWithoutRuntimeProbe": sorted(missing - proven),
+            "gameplay": "NOT RUN",
+        }
+    return inventory_document
 
 
 def zip_payload(output, candidate, paths, prefix):
@@ -156,9 +203,12 @@ def export(args, output, runtime, content, count, distribution):
     assets = output / "assets"
     assets.mkdir(parents=True)
     files = distribution["files"]
-    runtime_paths = [path for path in files if path != CONTROLS_PRESET]
+    runtime_paths = [path for path in files if path not in (CONTROLS_PRESET, ORBITAL_CONTENT)]
     payload = zip_payload(assets, args.candidate, runtime_paths, "minecraft-rust-mods-windows-x64")
     launcher = zip_payload(assets, args.candidate, [CONTROLS_PRESET], "minecraft-rust-mods-launcher")
+    packages = [payload, launcher]
+    if ORBITAL_CONTENT in files:
+        packages.append(zip_payload(assets, args.candidate, [ORBITAL_CONTENT], "minecraft-rust-mods-orbital-content"))
     sys.path.insert(0, str(args.library_tool.parent))
     try:
         library_tool = module_at(args.library_tool)
@@ -170,7 +220,7 @@ def export(args, output, runtime, content, count, distribution):
         "schemaVersion": 2, "revision": args.revision, "packId": content["id"], "name": content["name"],
         "relativePath": content["relativePath"], "minecraftVersion": runtime["minecraftVersion"],
         "nativeRuntime": runtime["nativeRuntime"], "requiredLauncherFeatures": FEATURES, "modCount": count,
-        "files": [{"path": name, **details} for name, details in files.items()], "assets": [payload, launcher], "library": library,
+        "files": [{"path": name, **details} for name, details in files.items()], "assets": packages, "library": library,
     })
 
 

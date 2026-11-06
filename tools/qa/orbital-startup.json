@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "clientSha256": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05",
+  "mode": "startup-menu",
+  "reusedQaDirectory": true,
+  "gameplay": "NOT RUN",
+  "previousWorldMigration": "NOT RUN",
+  "previewSha256": null,
+  "loadedContent": [
+    [
+      "orbital",
+      "0.5.9"
+    ]
+  ],
+  "registeredNative": [
+    "accurate_block_placement",
+    "appleskin",
+    "armor_status",
+    "armorhud",
+    "blockscope",
+    "chatheads",
+    "connected_textures",
+    "coords_hud",
+    "crosshair_indicator",
+    "elytratrails",
+    "enchantmenthints",
+    "fps_overlay",
+    "freelook",
+    "fullbright_nofog",
+    "held_item_info",
+    "horizon_physics",
+    "horizonmatica",
+    "inventory_profiles",
+    "invisible_frames",
+    "itemnew",
+    "jei",
+    "keystrokes",
+    "lookat",
+    "minimap",
+    "motion_blur",
+    "mousetricks",
+    "orbital",
+    "resourcify",
+    "rightharvest",
+    "server_browser",
+    "skins_3d",
+    "speedrun_timer",
+    "spider_man",
+    "status_effect_hud",
+    "tectonic_horizon",
+    "toggle_sprint",
+    "waypoints",
+    "zoom"
+  ],
+  "nativeNeedingDirectProbes": [
+    "dynamic_fps_for_rust",
+    "veinminer"
+  ],
+  "modsPage": {
+    "frame": 427,
+    "gui_size": [
+      427.0,
+      240.0
+    ],
+    "screen": "title",
+    "widgets": [
+      {
+        "bounds": [
+          58.0,
+          37.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "jei-0-1-0",
+        "kind": "button",
+        "label": "JEI 0.1.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          37.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          62.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "keystrokes-2-0-0",
+        "kind": "button",
+        "label": "Keystrokes 2.0.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          62.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-2",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          87.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "lookat-0-2-1",
+        "kind": "button",
+        "label": "LookAt 0.2.1: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          87.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-3",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          112.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "minimap-2-0-0",
+        "kind": "button",
+        "label": "Minimap 2.0.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          112.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-4",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          137.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "motion-blur-0-1-0",
+        "kind": "button",
+        "label": "Motion Blur 0.1.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          137.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-5",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          162.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "mouse-tricks-0-2-0",
+        "kind": "button",
+        "label": "Mouse Tricks 0.2.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          162.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-6",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          187.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "orbital-laser-0-5-9",
+        "kind": "button",
+        "label": "Orbital Laser 0.5.9: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          187.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-7",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          59.0,
+          213.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "open-mod-folder",
+        "kind": "button",
+        "label": "Open Mod Folder"
+      },
+      {
+        "bounds": [
+          217.0,
+          213.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "done",
+        "kind": "button",
+        "label": "Done"
+      }
+    ],
+    "orbitalRow": {
+      "bounds": [
+        58.0,
+        187.0,
+        150.0,
+        20.0
+      ],
+      "enabled": true,
+      "id": "orbital-laser-0-5-9",
+      "kind": "button",
+      "label": "Orbital Laser 0.5.9: ON"
+    }
+  },
+  "worldsOnReopen": null,
+  "firstState": null,
+  "reopenedState": null,
+  "bootstrapSha256": "eb90ce18a028f8c7d18f96cb61d7de3de5b9d9ac7b542e1fdb8d4e2f44e6a04b",
+  "windowTitle": "Minecraft Rust Mods",
+  "persistedModItems": [],
+  "tectonicInstanceConfig": "NOT RUN",
+  "pauseMenu": null,
+  "controlsPreset": {
+    "mappingCount": 63,
+    "sha256": "e17888a0954e7b357cb34101f172f7f03046c588c49c584f0a64f615955c11b7",
+    "runtimeRoundTrip": "PASS"
+  },
+  "timeToTitleSeconds": [
+    14.09,
+    10.3
+  ],
+  "startupMouse": {
+    "onboardingNarratorButton": {
+      "label": "Narrator: Not Available",
+      "enabled": false,
+      "speechBackendActive": true,
+      "statusAfterClick": "off"
+    },
+    "onboardingAccessibilityNarrator": {
+      "available": true,
+      "mouseCycle": [
+        "all",
+        "chat",
+        "system",
+        "off"
+      ]
+    },
+    "onboardingMouse": [
+      "language",
+      "accessibility",
+      "sound",
+      "continue"
+    ],
+    "physicsQuickSetup": {
+      "action": "Skip Setup",
+      "frameSha256": "583973ddcc3ffff73d95400a30348604f63d4270793d0601749f06be025d53c7"
+    },
+    "titleMouse": [
+      "language",
+      "accessibility",
+      "options",
+      "controls"
+    ],
+    "titleAccessibilityNarrator": {
+      "available": true,
+      "mouseCycle": [
+        "all",
+        "chat",
+        "system",
+        "off"
+      ]
+    },
+    "reopenedTitleAccessibilityNarrator": {
+      "available": true,
+      "mouseCycle": [
+        "all",
+        "chat",
+        "system",
+        "off"
+      ]
+    }
+  },
+  "previewSource": {
+    "revision": "580f83cc07700d3e1cd38152bcdba99cd92d5488",
+    "sha256": "aad547165b91a8c6c5f592eb5723035317059c5e764ed5013d5f06210671e3d2"
+  },
+  "nativeDirectProbes": [
+    {
+      "id": "dynamic_fps_for_rust",
+      "status": "PASS",
+      "observation": "The client created game/config/dynamic-fps-for-rust.json with focused_fps and idle_fps."
+    }
+  ],
+  "windowsDefender": {
+    "horizon-client.exe": "PASS"
+  },
+  "orbitalGameplay": "NOT RUN",
+  "veinminerGameplay": "NOT RUN",
+  "liveTwoPlayerSteam": "NOT RUN"
+}

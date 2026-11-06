@@ -10,7 +10,7 @@ import urllib.error
 import urllib.parse
 import zipfile
 
-from inspect_mods import LOCK, MOD_KINDS, ROOT, read_archive, read_https, sha256, write_json
+from inspect_mods import LOCK, MOD_KINDS, ROOT, read_archive, read_https, selected_ids, sha256, write_json
 
 
 LICENSE_LOCK = ROOT / "tools/mod-license-lock.json"
@@ -180,13 +180,21 @@ def build_lock(input_bytes, rows, cache, destination):
 
 
 def restore_cache(lock, rows, cache, destination):
-    for mod_id, names in lock["projects"].items():
+    def restore(project):
+        mod_id, names = project
         row = rows[mod_id]
         target = destination / mod_id
         target.mkdir(parents=True, exist_ok=True)
+        if target.is_symlink() or target.is_junction():
+            raise ValueError(f"Linked notice cache for {mod_id}")
         for name, digest in names.items():
             if pathlib.PureWindowsPath(name).name != name or name in (".", ".."):
                 raise ValueError(f"Unsafe notice path for {mod_id}")
+            path = target / name
+            if path.is_symlink() or path.is_junction():
+                raise ValueError(f"Linked notice in cache for {mod_id}/{name}")
+            if path.is_file() and sha256(path.read_bytes()) == digest:
+                continue
             provenance = lock["sources"][mod_id][name]
             if provenance["kind"] == "mod-archive":
                 with zipfile.ZipFile(checked_archive(row, cache)) as archive:
@@ -197,7 +205,11 @@ def restore_cache(lock, rows, cache, destination):
                 raise ValueError(f"Unknown notice source for {mod_id}")
             if sha256(data) != digest:
                 raise ValueError(f"Pinned notice bytes changed for {mod_id}/{name}")
-            (target / name).write_bytes(data)
+            path.write_bytes(data)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as workers:
+        for _ in workers.map(restore, lock["projects"].items()):
+            pass
 
 
 def main():
@@ -205,7 +217,10 @@ def main():
     parser.add_argument("--archives", type=pathlib.Path, required=True)
     parser.add_argument("--destination", type=pathlib.Path, required=True)
     parser.add_argument("--write-lock", action="store_true", help="Record the reviewed current notice inputs")
+    parser.add_argument("--selection", type=pathlib.Path, help="Restore notices only for the selected pack inputs")
     args = parser.parse_args()
+    if args.selection and args.write_lock:
+        parser.error("A partial restore must not rewrite the complete notice lock")
     inputs = LOCK.read_bytes()
     rows = [row for row in json.loads(inputs)["projects"] if row["eligibility"] in {"candidate", "compile-probe"}]
     if args.write_lock:
@@ -215,6 +230,11 @@ def main():
         lock = json.loads(LICENSE_LOCK.read_text(encoding="utf-8"))
         if lock["schemaVersion"] != 1 or lock["inputLockSha256"] != sha256(inputs):
             raise ValueError("License lock differs from the mod input lock")
+        if args.selection:
+            ids = selected_ids(args.selection, inputs)
+            if not ids <= lock["projects"].keys() or not ids <= {row["id"] for row in rows}:
+                raise ValueError("A selected project has no verified notice")
+            lock["projects"] = {mod_id: files for mod_id, files in lock["projects"].items() if mod_id in ids}
         restore_cache(lock, {row["id"]: row for row in rows}, args.archives, args.destination)
     print(f"Verified notices for {len(lock['projects'])} mods; {len(lock['unresolved'])} unresolved")
     for mod_id, reason in lock["unresolved"].items():

@@ -1,2 +1,7 @@
 * text=auto eol=lf
 *.jpg binary
+
+# The native build receipt hashes these compatibility inputs byte for byte.
+tools/orbital_compat/*.py -text whitespace=cr-at-eol
+tools/orbital_compat/*.rs -text whitespace=cr-at-eol
+tools/orbital_world_guard.py -text whitespace=cr-at-eol

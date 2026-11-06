@@ -50,6 +50,31 @@
       "diagnostic": "SHARED_RENDERER_GAMMA",
       "target": "native_frame: renderer.gamma",
       "decision": "player"
+    },
+    {
+      "kept": {"id": "orbital", "version": "0.5.9"},
+      "excluded": {"id": "deepbore_quarry_native", "version": "0.1.0"},
+      "excludedContent": [{"id": "deepbore_quarry", "version": "0.1.0"}],
+      "diagnostic": "MISSING_BLOCK_LIFECYCLE_CALLBACK",
+      "target": "Orbital Game::native_edit_blocks bypasses GameLevel::native_block_changed; quarry force tickets and owner reservation may persist",
+      "decision": "player"
+    },
+    {
+      "kept": {"id": "orbital", "version": "0.5.9"},
+      "excluded": {"id": "wayfarer_stones_native", "version": "0.6.0"},
+      "excludedContent": [{"id": "wayfarer_stones", "version": "0.6.0"}],
+      "diagnostic": "MISSING_BLOCK_LIFECYCLE_CALLBACK",
+      "target": "Orbital Game::native_edit_blocks bypasses GameLevel::native_block_changed; destroyed stones may stay linked or selectable",
+      "decision": "player"
+    }
+  ],
+  "keybindingDecisions": [
+    {
+      "mods": [{"id": "horizonmatica", "version": "0.2.0"}, {"id": "orbital", "version": "0.5.9"}],
+      "diagnostic": "SHARED_WORLD_KEY",
+      "target": "R: Horizonmatica Move Mode rotation and Orbital Laser wheel while holding the Designator",
+      "resolution": "Keep both mods and bind the Orbital Laser wheel to Insert in the pack's controls preset",
+      "decision": "player"
     }
   ]
 }

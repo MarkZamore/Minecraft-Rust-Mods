@@ -20,6 +20,7 @@ import zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 LOCK = ROOT / "tools/mod-input-lock.json"
+OFFICIAL_SOURCES = ROOT / "tools/official-mod-sources.json"
 REGISTRY = "https://horizon-rust.github.io/horizon-mods/index.json"
 HORIZON_REVISION = "66f3981f522b24c250b21523a70080965b940424"
 HORIZON_HOOKS = 411
@@ -115,7 +116,10 @@ def lock_registry(raw):
         raise ValueError("Unsupported Horizon registry schema")
     projects = []
     ids = set()
-    for project in sorted(registry["projects"], key=lambda value: value["id"]):
+    official = json.loads(OFFICIAL_SOURCES.read_bytes())
+    if official["schemaVersion"] != 1:
+        raise ValueError("Unsupported official mod source schema")
+    for project in sorted(registry["projects"] + official["projects"], key=lambda value: value["id"]):
         mod_id = project["id"]
         if not ID.fullmatch(mod_id) or mod_id in ids:
             raise ValueError(f"Invalid or duplicate registry ID {mod_id!r}")
@@ -135,7 +139,8 @@ def lock_registry(raw):
         selected = next((item for item in versions if item["eligibility"] in {"candidate", "compile-probe"}),
                         versions[0])
         projects.append({
-            **{key: project[key] for key in ("id", "kind", "name", "license", "source", "authors", "key")
+            **{key: project[key] for key in ("id", "kind", "name", "license", "source", "authors", "key",
+                                            "officialRelease", "contentCompanion")
                if key in project},
             "websiteUrl": project_page(project["source"]),
             **selected,
@@ -198,6 +203,33 @@ def validate_members(archive):
         raise ValueError("Expanded archive exceeds size bound")
 
 
+def checked_content_manifest(archive, expected):
+    data = archive.read("horizon-mod.toml")
+    manifest = tomllib.loads(data.decode("utf-8"))
+    for field in ("id", "version", "api", "side"):
+        if manifest[field] != expected[field]:
+            raise ValueError(f"Content manifest mismatch: {field}")
+    if sorted(manifest.get("capabilities", [])) != sorted(expected.get("capabilities", [])):
+        raise ValueError("Content manifest mismatch: capabilities")
+    if "manifestSha256" in expected and sha256(data) != expected["manifestSha256"]:
+        raise ValueError("Content manifest differs from the official bundled bytes")
+
+
+def content_file(row):
+    if row["kind"] == "mod":
+        return row["file"]
+    return row.get("contentCompanion", {}).get("file")
+
+
+def selected_ids(path, input_bytes):
+    selection = json.loads(path.read_bytes())
+    ids = selection["ids"]
+    if (selection.get("schemaVersion") != 1 or selection.get("inputLockSha256") != sha256(input_bytes) or
+            not ids or len(set(ids)) != len(ids)):
+        raise ValueError("Selection must name unique projects in this exact input lock")
+    return set(ids)
+
+
 def read_archive(row, path):
     with zipfile.ZipFile(path) as archive:
         validate_members(archive)
@@ -205,12 +237,7 @@ def read_archive(row, path):
         licenses = sorted(name for name in names if
                           pathlib.PurePosixPath(name).name.upper().startswith(("LICENSE", "COPYING", "NOTICE")))
         if row["kind"] == "mod":
-            manifest = tomllib.loads(archive.read("horizon-mod.toml").decode("utf-8"))
-            for field in ("id", "version", "api", "side"):
-                if manifest[field] != row[field]:
-                    raise ValueError(f"Content manifest mismatch: {field}")
-            if sorted(manifest.get("capabilities", [])) != sorted(row.get("capabilities", [])):
-                raise ValueError("Content manifest mismatch: capabilities")
+            checked_content_manifest(archive, row)
             return {"licenses": licenses, "wasm": "mod.wasm" in names,
                     "namespaces": sorted({name.split("/")[1] for name in names
                         if name.startswith(("assets/", "data/")) and name.count("/") >= 2})}
@@ -221,6 +248,10 @@ def read_archive(row, path):
                     "hooks": row.get("hooks", 0), "horizon": pins[1], "mixins": pins[2]}
         if any(manifest.get(key, 0 if key == "hooks" else None) != value for key, value in expected.items()):
             raise ValueError("Native manifest differs from registry pins")
+        if companion := row.get("contentCompanion"):
+            checked_content_manifest(archive, {**companion, "id": row["id"], "version": row["version"]})
+            if "mod.wasm" in names or not any(name.startswith(("assets/", "data/")) for name in names):
+                raise ValueError("Expected an asset-only content companion in the native archive")
         mixins = []
         for name in sorted(names):
             if pathlib.PurePosixPath(name).name != "horizon-mixin.toml":
@@ -354,6 +385,7 @@ def main():
     check.add_argument("--work", type=pathlib.Path, required=True)
     check.add_argument("--openssl", required=True)
     check.add_argument("--include-broken", action="store_true")
+    check.add_argument("--selection", type=pathlib.Path, help="Inspect only the selected pack inputs")
     plan = subcommands.add_parser("plan")
     plan.add_argument("--work", type=pathlib.Path, required=True)
     plan.add_argument("--workspace", type=pathlib.Path, required=True)
@@ -378,7 +410,8 @@ def main():
         print(dict(collections.Counter(row["eligibility"] for row in lock["projects"])))
         return
 
-    lock = json.loads(LOCK.read_text(encoding="utf-8"))
+    input_bytes = LOCK.read_bytes()
+    lock = json.loads(input_bytes)
     if lock["horizonRevision"] != HORIZON_REVISION or lock["schemaVersion"] != 1:
         raise ValueError("Wrong native game revision or lock schema")
     if args.command == "plan":
@@ -419,6 +452,11 @@ def main():
     if args.include_broken:
         statuses.update(("broken-upstream", "wasm-removed"))
     rows = [row for row in lock["projects"] if row["eligibility"] in statuses]
+    if args.selection:
+        ids = selected_ids(args.selection, input_bytes)
+        rows = [row for row in rows if row["id"] in ids]
+        if {row["id"] for row in rows} != ids:
+            raise ValueError("Selection contains an unknown or ineligible archive")
     records, failures = [], []
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as workers:
         jobs = {workers.submit(inspect, row, cache, args.openssl): row for row in rows}

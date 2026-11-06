@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "receiptSha256": "0e24bf030faa62b7a44ef3146462898884ee5773f54c1b587b7111023d12ca1f",
+  "receiptSha256": "6a27b4b5ebef4a1560e9a03c22109364e420078fc8fa3fb5fd8c210cc2f46be2",
   "files": {
     "configureddefaults/options.txt": {
       "sizeBytes": 13,
       "sha256": "0ef9efdb16b9eac1205e8169b66832702bd02cf51d5717176d83e56972f9db27"
     },
     "launcher/controls-preset.txt": {
-      "sizeBytes": 2582,
-      "sha256": "969b87fe9c5063c2e0bc5dfd5bccfe3dea24bf15c8b2114085927268caa75cb8"
+      "sizeBytes": 2686,
+      "sha256": "e17888a0954e7b357cb34101f172f7f03046c588c49c584f0a64f615955c11b7"
     },
     "native/LICENSE": {
       "sizeBytes": 1120,
@@ -387,16 +387,12 @@
       "sha256": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6"
     },
     "native/horizon-client.exe": {
-      "sizeBytes": 91897856,
-      "sha256": "bc6d6378636f5737b3d3efea5802ce78d22fe30a391563f2d4c1b4e459eec068"
+      "sizeBytes": 96317952,
+      "sha256": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05"
     },
-    "native/horizon-mods/deepbore_quarry.hmod": {
-      "sizeBytes": 11955,
-      "sha256": "2a75f3adc59aaf273fd833545c50a63a7f829916156b74d85bebbb6273b0d8b6"
-    },
-    "native/horizon-mods/wayfarer_stones.hmod": {
-      "sizeBytes": 17799,
-      "sha256": "87bec46b6bbe05d95563a4bf7b8a3b92340ca1dd54c2d5709b6a0a41989d7176"
+    "native/horizon-mods/orbital.hmod": {
+      "sizeBytes": 33396507,
+      "sha256": "081902bfcbf04b0c772d1157f5b6284a87688bf2383855089f5a33589230047c"
     },
     "native/horizon-prepare.exe": {
       "sizeBytes": 2275328,
@@ -1787,8 +1783,8 @@
       "sha256": "9e79e2305ec1f420e2657a2670296dfb8457400ad844658acb41847e6ffd5da1"
     },
     "native/native-mods.json": {
-      "sizeBytes": 6366,
-      "sha256": "4e53094817cd794aa4688340866694e9e196dec69d3a60e4389c50efd20cdbf5"
+      "sizeBytes": 6191,
+      "sha256": "6395f37a9ebd8890f5f66434694664fad2ca9e0e4a79877a183bf724aee0f707"
     },
     "native/presentation.json": {
       "sizeBytes": 125,
@@ -1857,14 +1853,6 @@
     "native/third_party/mods/crosshair_indicator/LICENSE": {
       "sizeBytes": 1063,
       "sha256": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
-    },
-    "native/third_party/mods/deepbore_quarry/LICENSE": {
-      "sizeBytes": 1066,
-      "sha256": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
-    },
-    "native/third_party/mods/deepbore_quarry_native/LICENSE": {
-      "sizeBytes": 1066,
-      "sha256": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
     },
     "native/third_party/mods/dynamic_fps_for_rust/LICENSE": {
       "sizeBytes": 1090,
@@ -1942,6 +1930,10 @@
       "sizeBytes": 1065,
       "sha256": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f"
     },
+    "native/third_party/mods/orbital/LICENSE": {
+      "sizeBytes": 1064,
+      "sha256": "d70cf70db2655fb78f2204653b1a4355a4d5256ca2bf68ab55deef9904ff5998"
+    },
     "native/third_party/mods/resourcify/LICENSE": {
       "sizeBytes": 1138,
       "sha256": "373bf4d59c8a39187177853e7026704749b89da2b5b5a172a10faf55fe75feb4"
@@ -1986,14 +1978,6 @@
       "sizeBytes": 1087,
       "sha256": "47bd3e93c428406de289c8309f2cbcac3cb68431afdfa851e140e41cfc1fa5cc"
     },
-    "native/third_party/mods/wayfarer_stones/LICENSE": {
-      "sizeBytes": 1066,
-      "sha256": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
-    },
-    "native/third_party/mods/wayfarer_stones_native/LICENSE": {
-      "sizeBytes": 1066,
-      "sha256": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
-    },
     "native/third_party/mods/waypoints/LICENSE": {
       "sizeBytes": 1227,
       "sha256": "73ede67570774f3529380e75734e35ce5b48fb865f150270eac65d5cbf097772"
@@ -2032,22 +2016,22 @@
     },
     "portable-pack.json": {
       "sizeBytes": 250,
-      "sha256": "bf6b1d380c25319aee819e430985db692108c9894c7dd5f0ec5104e3afca24f9"
+      "sha256": "bb459fee9f3904eb347837f6be7a5fcf6891a96306f173c4b31bb8b611f0cbfc"
     }
   },
   "bootstrapLockSha256": "116d31894476cf8930dc4ecbc5e1c5320418cd9f25eae570d482aaf2a376ab41",
   "library": {
     "content.json": {
-      "sizeBytes": 937,
-      "sha256": "2196d7d388c736e1a871c8fe65c6a52d091357dae84a17aea66e0bf125e89b54"
+      "sizeBytes": 882,
+      "sha256": "b07fa4cb3fba641dce226c7de545b0417d06b1daca7bcea7eb1090329aebf7ff"
     },
     "mod-pages.json": {
-      "sizeBytes": 3115,
-      "sha256": "9ff07e692f26ff7011d2ac303f8aa8473c9ceebb6ea5acf4a6f0f71af4a418ac"
+      "sizeBytes": 2882,
+      "sha256": "eb80773bf7d73cf89f36c0c331cf2c09f2c329c8e30e6dd911d5e3369fee9a3a"
     },
     "loaded-mods.json": {
-      "sizeBytes": 83923,
-      "sha256": "cb26002f001604eb3c0ba8a768fa0f1bcd13daf645d57e0ca9a8dc1d3982c6a6"
+      "sizeBytes": 83960,
+      "sha256": "213220a1fafa2543aa7bc7f94c0b5061cd97cced7445f9bb75dced8bc590ae3d"
     },
     "preview.jpg": {
       "sizeBytes": 1265673,

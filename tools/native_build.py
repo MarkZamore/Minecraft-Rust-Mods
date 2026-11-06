@@ -14,7 +14,7 @@ import textwrap
 import tomllib
 import zipfile
 
-from inspect_mods import MOD_KINDS, read_archive, validate_members
+from inspect_mods import MOD_KINDS, read_archive, selected_ids, validate_members
 
 
 TOOLS = Path(__file__).resolve().parent
@@ -47,6 +47,31 @@ def write(path, value):
 
 def run(args, env, *, capture=False):
     return subprocess.run(args, check=True, env=env, text=True, encoding="utf-8", capture_output=capture)
+
+
+def build_recipe_sha():
+    sources = [RECIPE, TOOLS / "orbital_controls.py", TOOLS / "orbital_world_guard.py", TOOLS / "physics_title_compat.py",
+               *(TOOLS / "orbital_compat").rglob("*")]
+    files = {}
+    for path in sources:
+        if path.is_symlink() or path.is_junction():
+            raise ValueError(f"Linked file in Orbital compatibility recipe: {path.name}")
+        if path.is_file() and "__pycache__" not in path.parts:
+            files[path.relative_to(ROOT).as_posix()] = sha(path)
+    return hashlib.sha256(json.dumps(files, sort_keys=True).encode("ascii")).hexdigest()
+
+
+def write_content_companion(archive, output):
+    with zipfile.ZipFile(output, "w", zipfile.ZIP_STORED) as companion:
+        for member in sorted(archive.infolist(), key=lambda entry: entry.filename):
+            name = member.filename
+            if member.is_dir() or (name != "horizon-mod.toml" and not name.startswith(("assets/", "data/"))):
+                continue
+            entry = zipfile.ZipInfo(name, (1980, 1, 1, 0, 0, 0))
+            entry.create_system = 3
+            entry.external_attr = 0o100644 << 16
+            with archive.open(member) as source, companion.open(entry, "w") as destination:
+                shutil.copyfileobj(source, destination)
 
 
 def patch_server_atlas(bundle):
@@ -126,6 +151,13 @@ def unpack_inputs(rows, archives, work, revision):
         bundle.mkdir()
         with zipfile.ZipFile(path) as archive:
             validate_members(archive)
+            if companion := row.get("contentCompanion"):
+                package = content / (row["id"] + ".hmod")
+                with package.open("xb") as output:
+                    write_content_companion(archive, output)
+                expected = companion["file"]
+                if package.stat().st_size != expected["size"] or sha(package) != expected["sha256"]:
+                    raise ValueError(f"Derived content companion differs from its lock: {row['id']}")
             for member in archive.infolist():
                 if member.is_dir() or not member.filename.startswith(prefix):
                     continue
@@ -139,6 +171,12 @@ def unpack_inputs(rows, archives, work, revision):
                     shutil.copyfileobj(source, dest)
         if row["id"] == "server_browser":
             patch_server_atlas(bundle)
+        if row["id"] == "horizon_physics":
+            from physics_title_compat import apply as apply_physics_title
+            apply_physics_title(bundle)
+        if row["id"] == "orbital":
+            from orbital_compat import apply
+            apply(bundle)
         manifest = bundle / "horizon-mixin.toml"
         text = manifest.read_text(encoding="utf-8")
         parsed = tomllib.loads(text)
@@ -265,21 +303,18 @@ def apply_mixins(source, bundles, stage, mixins, env):
 
 
 def execute(args):
-    lock = load(INPUT_LOCK)
-    selection = load(args.selection)
-    if selection.get("schemaVersion") != 1 or selection.get("inputLockSha256") != sha(INPUT_LOCK):
-        raise ValueError("Selection belongs to a different registry snapshot")
+    input_bytes = INPUT_LOCK.read_bytes()
+    lock = json.loads(input_bytes)
     rows = {row["id"]: row for row in lock["projects"]}
-    ids = sorted(selection["ids"])
-    if not ids or len(ids) != len(set(ids)):
-        raise ValueError("Provide a nonempty selection of unique project IDs")
+    ids = sorted(selected_ids(args.selection, input_bytes))
     selected = [rows[name] for name in ids]
     if any(row["eligibility"] not in ("candidate", "compile-probe") for row in selected):
         raise ValueError("The selection contains rejected or unreviewed mods")
     decisions = load(DECISIONS)
     if decisions["horizonRevision"] != lock["horizonRevision"]:
         raise ValueError("Conflict choices apply to another Horizon revision")
-    excluded = {(decision["excluded"]["id"], decision["excluded"]["version"]) for decision in decisions["decisions"]}
+    excluded = {(component["id"], component["version"]) for decision in decisions["decisions"]
+                for component in [decision["excluded"], *decision.get("excludedContent", [])]}
     if any((row["id"], row["version"]) in excluded for row in selected):
         raise ValueError("The selection contains a mod the player excluded after a confirmed conflict")
     inspection = load(args.inspection)
@@ -297,6 +332,11 @@ def execute(args):
         shutil.copytree(args.base_source, source)
         marker = source / ".horizon-revision"
         marker.write_text(lock["horizonRevision"] + "\n", encoding="ascii", newline="\n")
+        if "orbital" in ids:
+            from orbital_controls import apply as apply_orbital_controls
+            from orbital_world_guard import apply as apply_orbital_world_guard
+            apply_orbital_controls(source)
+            apply_orbital_world_guard(source)
     env = os.environ.copy()
     env.pop("HORIZON_MOD_API_INJECTIONS", None)
     env.update(CARGO_TARGET_DIR=str(args.target), RUSTFLAGS="-C target-feature=+crt-static",
@@ -315,7 +355,7 @@ def execute(args):
     stage = args.work / "stage"
     evidence = {"schemaVersion": 1, "inputLockSha256": sha(INPUT_LOCK), "horizonRevision": lock["horizonRevision"],
                 "steamOverlayRecipeSha256": recipe, "mixinsRevision": MIXINS_REVISION, "mixinsSha256": sha(mixins),
-                "conflictDecisionsSha256": sha(DECISIONS), "buildRecipeSha256": sha(RECIPE), "rust": RUST,
+                "conflictDecisionsSha256": sha(DECISIONS), "buildRecipeSha256": build_recipe_sha(), "rust": RUST,
                 "rustFlags": env["RUSTFLAGS"], "ids": ids, "package": "horizon-client"}
     if args.build_prepared:
         prepared = load(args.work / "build.json")
@@ -343,7 +383,7 @@ def execute(args):
         output = args.work / "runtime"
         build_runtime(stage, package, output, env)
         evidence["clientSha256"] = sha(output / ("horizon-client" + EXE))
-    elif not args.check:
+    else:
         evidence["stageTreeSha256"] = tree_hash(stage)
         evidence["contentTreeSha256"] = tree_hash(args.work / "content")
     pending = args.work / "build.pending.json"

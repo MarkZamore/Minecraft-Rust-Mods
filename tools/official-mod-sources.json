@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "projects": [
+    {
+      "id": "orbital",
+      "kind": "native-mod",
+      "name": "Orbital Laser",
+      "license": "MIT",
+      "source": "https://github.com/Stink-O/orbital-laser/commit/3e52c99737bc325270b09dd2ea0acbba51b5a196",
+      "authors": ["Stink-O"],
+      "officialRelease": {
+        "id": 433447371,
+        "tag": "v0.5.9",
+        "url": "https://github.com/Stink-O/orbital-laser/releases/tag/v0.5.9",
+        "assetId": 707955431,
+        "checksums": {
+          "id": 707955432,
+          "size": 171,
+          "sha256": "e1f3e0f3180afab69e157ea5429f334b97ec4eb6ab3aa97fb705ed08e7653e59"
+        }
+      },
+      "contentCompanion": {
+        "api": "0.2",
+        "side": "both",
+        "capabilities": ["registries"],
+        "manifestSha256": "c629170492ab9d7bf0e0f2474277b6dccc3e1d5ed5c4dffc62edcb9310552b72",
+        "file": {
+          "name": "orbital.hmod",
+          "size": 33396507,
+          "sha256": "081902bfcbf04b0c772d1157f5b6284a87688bf2383855089f5a33589230047c"
+        }
+      },
+      "versions": [
+        {
+          "version": "0.5.9",
+          "api": "native-1/c06a83b1caa17ba7c9a7868f02645148436b2a6e/a2af5c0dd4117d51ecd70066ba7a00b4a2c10dab",
+          "game": "26.3",
+          "file": {
+            "name": "orbital.hnmod",
+            "url": "https://github.com/Stink-O/orbital-laser/releases/download/v0.5.9/orbital.hnmod",
+            "size": 34559306,
+            "sha256": "3cfd63b72e673c4275ff5ba5018662baf3ce01ddfbd8a4d98bdf1fbfe813f684"
+          }
+        }
+      ]
+    }
+  ]
+}

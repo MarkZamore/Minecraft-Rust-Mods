@@ -3,7 +3,7 @@
   "relativePath": "Minecraft Rust Mods",
   "name": "Minecraft Rust Mods",
   "summary": "Minecraft 26.3 на движке Horizon со сборкой совместимых Rust-модов.",
-  "description": "Исследуйте и стройте в мире Minecraft 26.3 на движке Horizon. Ищите предметы и рецепты через JEI, настраивайте яркость и туман и наблюдайте эффекты PhysicsModHorizon. Точный состав и версии приведены в списке модов.",
+  "description": "Исследуйте и стройте в мире Minecraft 26.3 на движке Horizon. Ищите предметы и рецепты через JEI, наблюдайте эффекты PhysicsModHorizon и вызывайте орбитальные удары с целеуказателем Orbital Laser. Точный состав и версии приведены в списке модов.",
   "nativeProject": {
     "name": "Horizon",
     "version": "Nightly 2026-11-05",
@@ -11,8 +11,5 @@
     "websiteUrl": "https://github.com/horizon-rust/horizon"
   },
   "libraryIds": [],
-  "parents": {
-    "deepbore_quarry": "deepbore_quarry_native",
-    "wayfarer_stones": "wayfarer_stones_native"
-  }
+  "parents": {}
 }

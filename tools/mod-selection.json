@@ -9,8 +9,6 @@
     "connected_textures",
     "coords_hud",
     "crosshair_indicator",
-    "deepbore_quarry",
-    "deepbore_quarry_native",
     "dynamic_fps_for_rust",
     "elytratrails",
     "enchantmenthints",
@@ -29,6 +27,7 @@
     "minimap",
     "motion_blur",
     "mousetricks",
+    "orbital",
     "resourcify",
     "rightharvest",
     "server_browser",
@@ -39,11 +38,9 @@
     "tectonic_horizon",
     "toggle_sprint",
     "veinminer",
-    "wayfarer_stones",
-    "wayfarer_stones_native",
     "waypoints",
     "zoom"
   ],
-  "inputLockSha256": "5885cb5704ed1640c5ae59e5efff852cc406b22f2629e477f651800cd7bade6e",
+  "inputLockSha256": "47c1768972f31e1fd46cb296356244d095daacbb9761dbfffa01ed76e2145939",
   "schemaVersion": 1
 }

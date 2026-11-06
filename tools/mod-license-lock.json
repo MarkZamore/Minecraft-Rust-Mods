@@ -1,5 +1,5 @@
 {
-  "inputLockSha256": "5885cb5704ed1640c5ae59e5efff852cc406b22f2629e477f651800cd7bade6e",
+  "inputLockSha256": "47c1768972f31e1fd46cb296356244d095daacbb9761dbfffa01ed76e2145939",
   "projects": {
     "accurate_block_placement": {
       "LICENSE": "8298b370d7b46231be2d0b64afad31cba3bbea2d07d9d0cbacf524765d164435"
@@ -118,6 +118,9 @@
     },
     "mousetricks": {
       "LICENSE": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f"
+    },
+    "orbital": {
+      "LICENSE": "d70cf70db2655fb78f2204653b1a4355a4d5256ca2bf68ab55deef9904ff5998"
     },
     "recipes": {
       "LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
@@ -483,6 +486,14 @@
         "kind": "official-source",
         "revision": "99fa1d49216877506b0e5124d42a785d5ace1e09",
         "url": "https://raw.githubusercontent.com/d3grando/mousetricks/99fa1d49216877506b0e5124d42a785d5ace1e09/LICENSE"
+      }
+    },
+    "orbital": {
+      "LICENSE": {
+        "basis": "source-commit",
+        "kind": "official-source",
+        "revision": "3e52c99737bc325270b09dd2ea0acbba51b5a196",
+        "url": "https://raw.githubusercontent.com/Stink-O/orbital-laser/3e52c99737bc325270b09dd2ea0acbba51b5a196/LICENSE"
       }
     },
     "recipes": {

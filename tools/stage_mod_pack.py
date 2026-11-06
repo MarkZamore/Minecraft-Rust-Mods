@@ -7,7 +7,8 @@ import subprocess
 import sys
 import tempfile
 
-from native_build import DECISIONS, INPUT_LOCK, RECIPE, ROOT, load, module_at, sha, write
+from inspect_mods import content_file
+from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
 
 
 CONTROLS_PRESET = "launcher/controls-preset.txt"
@@ -53,7 +54,7 @@ def approved_build(work):
     lock = load(INPUT_LOCK)
     if (build.get("schemaVersion") != 1 or build["inputLockSha256"] != sha(INPUT_LOCK)
             or build["conflictDecisionsSha256"] != sha(DECISIONS)
-            or build["buildRecipeSha256"] != sha(RECIPE)
+            or build["buildRecipeSha256"] != build_recipe_sha()
             or build["compileCheck"] is not True
             or build["horizonRevision"] != lock["horizonRevision"]):
         raise ValueError("Build was made from another input lock or Horizon revision")
@@ -141,14 +142,14 @@ def stage(args):
                      for row in selected if row["kind"] == "native-mod"],
         })
         for row in selected:
-            if row["kind"] != "mod":
+            expected = content_file(row)
+            if expected is None:
                 continue
             name = row["id"] + ".hmod"
             content = native / "horizon-mods"
             content.mkdir(exist_ok=True)
             shutil.copyfile(args.build_work / "content" / name, content / name)
-            if sha(content / name) != row["file"]["sha256"]:
-                raise ValueError(f"Packaged content mod changed: {row['id']}")
+            generator.verify_file(content / name, {"sizeBytes": expected["size"], "sha256": expected["sha256"]})
         licenses = native / "third_party/mods"
         licenses.mkdir(parents=True, exist_ok=True)
         copy_licenses(selected, args.license_cache, licenses)

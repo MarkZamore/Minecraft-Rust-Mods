@@ -1,19 +1,16 @@
 # Моды Minecraft Rust Mods
 
-В сборке 43 компонента. Из них 41 нативный мод и два обязательных пакета данных для Deepbore Quarry и Wayfarer Stones.
+В сборке 40 нативных модов. Ресурсы Orbital Laser входят в состав самого мода.
 
 ## Мир и механики
 
 - **Accurate Block Placement** — При удержании ПКМ ставит блок в каждую новую позицию под прицелом. [GitHub](https://github.com/Lutziano888/horizon-accurate-block-placement)
-- **Deepbore Quarry** — Бурит карьер до бедрока на печном топливе и складывает добычу в сундук. [GitHub](https://github.com/Bioneisme/deepbore-quarry)
-- **Deepbore Quarry (assets)** — Пакет данных для карьера с текстурами, текстами и рецептами. [GitHub](https://github.com/Bioneisme/deepbore-quarry)
 - **Invisible Frames** — Скрывает и блокирует рамку с предметом по Shift+ПКМ. Повторное действие восстанавливает рамку. [GitHub](https://github.com/AltMugen/horizon-invisible-frames)
+- **Orbital Laser** — Добавляет целеуказатель, меню выбора орбитального удара, световые и звуковые эффекты и настраиваемое разрушение рельефа. [GitHub](https://github.com/Stink-O/orbital-laser)
 - **RightClickHarvest** — Собирает и пересаживает спелые культуры по ПКМ. [GitHub](https://github.com/Domanffe/rightharvest)
 - **Spider-Man** — Добавляет раскачивание и рывки на паутине, бег по стенам и паркур. [GitHub](https://github.com/wyddy7/minecraft-spider-man-rust)
 - **Tectonic-Horizon** — Добавляет горные хребты, подземные реки и настройки генерации рельефа. [GitHub](https://github.com/eltanschauung/tectonic-horizon)
 - **Veinminer** — Позволяет добывать соединённые блоки рудной жилы или дерева. [GitHub](https://github.com/levzzz5154/horizon-veinminer)
-- **Wayfarer Stones** — Позволяет перемещаться между активированными путевыми камнями. [GitHub](https://github.com/Bioneisme/wayfarer-stones)
-- **Wayfarer Stones (assets)** — Пакет данных путевых камней с текстурами, текстами, рецептами и деревнями. [GitHub](https://github.com/Bioneisme/wayfarer-stones)
 
 ## Инвентарь и строительство
 

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "inputLockSha256": "5885cb5704ed1640c5ae59e5efff852cc406b22f2629e477f651800cd7bade6e",
+  "inputLockSha256": "47c1768972f31e1fd46cb296356244d095daacbb9761dbfffa01ed76e2145939",
   "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
   "steamOverlayRecipeSha256": "eb8f86b92ac4f712bf7d980dca8ceed4d65e546c4cc7000528b447edfe896c0a",
   "mixinsRevision": "e8cd0aa38cffef49cb2e088ef716baa107148c02",
-  "mixinsSha256": "cb0487f017960cf23bcb7625026055693cf5af38e29e460e0b49ed643afc3f00",
-  "conflictDecisionsSha256": "ac1892d02003683f6041ce3a9078e3a0cc88830c168b09d8d672196cd74bd941",
-  "buildRecipeSha256": "b4dd88dcb52ba829e7a1e1d72f1d97da887d68113a540d560ced5e8990a2a973",
+  "mixinsSha256": "5a5cbb6732e1f84c0de62e900653dc041b15acab8c479b78b32728a6976c37cc",
+  "conflictDecisionsSha256": "84c0d63858e20dac0e656bfd079a608b994aee8e15542d4f37bc7de9e4b4166f",
+  "buildRecipeSha256": "2de9e5ca4beb1c8adb31108cfc1da4cdf1e9acde4f00b2a3d2ceb703a945eaa5",
   "rust": "1.98.1",
   "rustFlags": "-C target-feature=+crt-static",
   "ids": [
@@ -19,8 +19,6 @@
     "connected_textures",
     "coords_hud",
     "crosshair_indicator",
-    "deepbore_quarry",
-    "deepbore_quarry_native",
     "dynamic_fps_for_rust",
     "elytratrails",
     "enchantmenthints",
@@ -39,6 +37,7 @@
     "minimap",
     "motion_blur",
     "mousetricks",
+    "orbital",
     "resourcify",
     "rightharvest",
     "server_browser",
@@ -49,20 +48,18 @@
     "tectonic_horizon",
     "toggle_sprint",
     "veinminer",
-    "wayfarer_stones",
-    "wayfarer_stones_native",
     "waypoints",
     "zoom"
   ],
   "package": "horizon-client",
   "mixins": {
-    "injections": 335,
+    "injections": 310,
     "modules": 76,
-    "crates": 2,
+    "crates": 3,
     "bridges": 0,
     "states": 0
   },
-  "cargoLockSha256": "3bb1fd84717dee072446a9d01ae6e2670cb96cee3e17f40cc4ac4c4f1b3cac34",
+  "cargoLockSha256": "b39fa330247bf03a9ec9e6ca61731b3ff3527f2c3114d9201c38afc22d0f743f",
   "compileCheck": true,
-  "clientSha256": "bc6d6378636f5737b3d3efea5802ce78d22fe30a391563f2d4c1b4e459eec068"
+  "clientSha256": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05"
 }

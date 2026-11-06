@@ -8,8 +8,6 @@
   "connected_textures": "https://github.com/tariksabanuz/ContinuityHorizon",
   "coords_hud": "https://github.com/horizon-rust/horizon-mods/tree/main/native/coords-hud",
   "crosshair_indicator": "https://github.com/CayMac97/crosshair-indicator",
-  "deepbore_quarry": "https://github.com/Bioneisme/deepbore-quarry",
-  "deepbore_quarry_native": "https://github.com/Bioneisme/deepbore-quarry",
   "dynamic_fps_for_rust": "https://github.com/Lyvt-Dev/dynamic-fps-for-rust",
   "elytratrails": "https://github.com/soufied/ElytraTrails-Horizon",
   "enchantmenthints": "https://github.com/d3grando/enchantmenthints",
@@ -28,6 +26,7 @@
   "minimap": "https://github.com/horizon-rust/horizon-mods/tree/main/native/minimap",
   "motion_blur": "https://github.com/levzzz5154/horizon-motion-blur",
   "mousetricks": "https://github.com/d3grando/mousetricks",
+  "orbital": "https://github.com/Stink-O/orbital-laser",
   "resourcify": "https://github.com/tariksabanuz/ResourcifyHorizon",
   "rightharvest": "https://github.com/Domanffe/rightharvest",
   "server_browser": "https://github.com/Musti3214/Horizon-Server-Browser/tree/8a467654699ca83ebdf901498fe3dc73c46dbe69/mod",
@@ -38,8 +37,6 @@
   "tectonic_horizon": "https://github.com/eltanschauung/tectonic-horizon",
   "toggle_sprint": "https://github.com/CayMac97/toggle-sprint",
   "veinminer": "https://github.com/levzzz5154/horizon-veinminer",
-  "wayfarer_stones": "https://github.com/Bioneisme/wayfarer-stones",
-  "wayfarer_stones_native": "https://github.com/Bioneisme/wayfarer-stones",
   "waypoints": "https://github.com/Nirokx/horizon-waypoints",
   "zoom": "https://github.com/horizon-rust/horizon-mods/tree/main/native/zoom"
 }
