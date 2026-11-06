@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "packId": "minecraft-10",
+  "revision": "ba7f9896830463113152ea2f4aa67765f8f238be",
+  "previousRevision": "580f83cc07700d3e1cd38152bcdba99cd92d5488",
+  "modCount": 40,
+  "assets": [
+    {
+      "name": "minecraft-rust-mods-windows-x64-97e1bc1b93ebf4523923fea07852420e4b097c07068ec7225eb066d0f570cd28.zip",
+      "sizeBytes": 39870097,
+      "sha256": "97e1bc1b93ebf4523923fea07852420e4b097c07068ec7225eb066d0f570cd28"
+    },
+    {
+      "name": "minecraft-rust-mods-launcher-a1c1f3464ef5c5eb97ca96a136a5dfc20799707dc3830637d72fd5e6901d7553.zip",
+      "sizeBytes": 1025,
+      "sha256": "a1c1f3464ef5c5eb97ca96a136a5dfc20799707dc3830637d72fd5e6901d7553"
+    },
+    {
+      "name": "minecraft-rust-mods-orbital-content-f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809.zip",
+      "sizeBytes": 32986396,
+      "sha256": "f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809"
+    },
+    {
+      "name": "library-7327f2042f2d8ef51c803ccc5ef26cbf7442e341440c211de4e5b392115fa853.zip",
+      "sizeBytes": 1268148,
+      "sha256": "7327f2042f2d8ef51c803ccc5ef26cbf7442e341440c211de4e5b392115fa853"
+    }
+  ],
+  "manifest": {
+    "name": "pack-manifest.json",
+    "sizeBytes": 155824,
+    "sha256": "10956761616f78248660c6ad0e89e2ccf198e2eba40828b803c82ce7f139f46f"
+  },
+  "result": "PASS"
+}
