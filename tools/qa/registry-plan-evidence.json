@@ -1,0 +1,1958 @@
+{
+  "archiveVerification": {
+    "failed": [],
+    "verified": [
+      {
+        "id": "accurate_block_placement",
+        "licenses": [],
+        "sha256": "e631745f6d267360de6eb51995ee995bf1ab3d64393d287b7b93c332b85939ce",
+        "signature": "unsigned",
+        "version": "1.0.0"
+      },
+      {
+        "id": "appleskin",
+        "licenses": [],
+        "sha256": "2dac91d4c4c4ab65684f41a3279c6b27beffa7407e5362b0d7a97c28c07914a6",
+        "signature": "verified",
+        "version": "0.1.3"
+      },
+      {
+        "id": "appleskin_horizon",
+        "licenses": [],
+        "sha256": "38a729f1aad00f6148f29578a2725cb5e7f9aea79a870fcf3cee76f39838c5ff",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "armor_status",
+        "licenses": [],
+        "sha256": "82c8672fa2c43d7946a26a560fd56fdd8f34beecf4bcb459c2d508b3d09eeee6",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "armorhud",
+        "licenses": [],
+        "sha256": "8bd85e1584f307201bce5de2e60466d603b61d4807803d4ebc02772b4f6b704b",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "astral_cruiser",
+        "licenses": [],
+        "sha256": "69100219f92307f9190712da2854bfd43f15cf81773d89d89d6dd22411caa2f2",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "baritone",
+        "licenses": [
+          "mixins/baritone/LICENSE"
+        ],
+        "sha256": "b1a79d09061c30f757f428d9702a1a9f39a3c11d7ad17c96d48e101150e98e0c",
+        "signature": "verified",
+        "version": "1.1.38"
+      },
+      {
+        "id": "basic_hud",
+        "licenses": [],
+        "sha256": "36431d3a2d810e2aefbd8611767a80f9184e3df032e4cc2b9b9fd9398f794560",
+        "signature": "unsigned",
+        "version": "0.4.1"
+      },
+      {
+        "id": "biomecompass",
+        "licenses": [],
+        "sha256": "d9a4aedcf22318774e1ac6bed6f1e00aca13a38c8dc3426d5a7800e4d8c61bf5",
+        "signature": "unsigned",
+        "version": "0.2.2"
+      },
+      {
+        "id": "blockscope",
+        "licenses": [],
+        "sha256": "4fea94e5337aa82df3d981fc6231fecc80161262add577b596bb6661e0e303d1",
+        "signature": "unsigned",
+        "version": "0.3.1"
+      },
+      {
+        "id": "carryblock",
+        "licenses": [],
+        "sha256": "9a6ebd26f640a477815862eb36846fe3289046d0f4c06ef3a815f463ca9a3701",
+        "signature": "unsigned",
+        "version": "0.1.2"
+      },
+      {
+        "id": "chat_animation",
+        "licenses": [],
+        "sha256": "aee273e2861a185ed2667679c0f943dcc73693b46eded6c078cde8bdf13ee49a",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "chatheads",
+        "licenses": [],
+        "sha256": "16f5e1db33255c550c087fcf3ed982a4be9abf61b547b470a08f471d309ad1fe",
+        "signature": "unsigned",
+        "version": "0.1.1"
+      },
+      {
+        "id": "chop",
+        "licenses": [],
+        "sha256": "5abac195c54da7716f35f641489c0dba780444c91b0b3e4f3387ecd4cb2b260b",
+        "signature": "verified",
+        "version": "1.0.1"
+      },
+      {
+        "id": "classic_zoom",
+        "licenses": [],
+        "sha256": "a8bdeba615ed31b9bd10280fcf8ba04a31935bc65fff429fc0e83d1c8090dac9",
+        "signature": "verified",
+        "version": "2.0.0"
+      },
+      {
+        "id": "compass_bar",
+        "licenses": [],
+        "sha256": "bb8f191f89f5ea963301fd2d28315b251dfb8df9656b640975eddffaec3e6b00",
+        "signature": "verified",
+        "version": "0.1.0"
+      },
+      {
+        "id": "connected_textures",
+        "licenses": [],
+        "sha256": "e86d1d3fd92045737b90218de51c158b60519afc6618c063c87f64ca68d36adf",
+        "signature": "unsigned",
+        "version": "0.1.2"
+      },
+      {
+        "id": "coords_hud",
+        "licenses": [],
+        "sha256": "432376fad3062b3517e274d3b8c0d0b52fc5d6de2aee20a0b340c8cab5a8cf08",
+        "signature": "unsigned",
+        "version": "2.0.0"
+      },
+      {
+        "id": "create",
+        "licenses": [
+          "mixins/create/LICENSE",
+          "mixins/create/NOTICE.md"
+        ],
+        "sha256": "13638c5571ef7ac32be5bb19ddac90959796d6c102122de09f6a81d39be74d97",
+        "signature": "unsigned",
+        "version": "0.7.0-alpha.2"
+      },
+      {
+        "id": "crosshair_indicator",
+        "licenses": [],
+        "sha256": "96beba1f7c94fca492b552fb12af0d20047dc1799f0801607841d56b12786226",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "crossversion",
+        "licenses": [],
+        "sha256": "5b371f1b7b3582e0c92aa1dc22b491b50c024fe95833aa2bd9457189631caafd",
+        "signature": "verified",
+        "version": "0.8.0"
+      },
+      {
+        "id": "customhud",
+        "licenses": [],
+        "sha256": "ab255d3c722b40f4d068a762857d6c027c11381308bfe23196e2974307814a7f",
+        "signature": "unsigned",
+        "version": "1.6.0"
+      },
+      {
+        "id": "deepbore_quarry",
+        "licenses": [],
+        "sha256": "2a75f3adc59aaf273fd833545c50a63a7f829916156b74d85bebbb6273b0d8b6",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "deepbore_quarry_native",
+        "licenses": [
+          "mixins/deepbore_quarry_native/LICENSE"
+        ],
+        "sha256": "bda03ffe35cca7973ec8a19cbcd5b50dade5f698c30faea8f84b9343cfeb31ef",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "distant_horizons",
+        "licenses": [],
+        "sha256": "c53a2501f14efb624839329aac6999ddf8c64a399d41bec42a0c878902feea81",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "dynamic_fps_for_rust",
+        "licenses": [
+          "mixins/dynamic_fps_for_rust/LICENSE"
+        ],
+        "sha256": "50fad9a8d1d481a3862479b313c04e0dc6f8494a84d4cd007583822f5671e17e",
+        "signature": "verified",
+        "version": "0.1.0"
+      },
+      {
+        "id": "eatinganimation",
+        "licenses": [],
+        "sha256": "07ef4fde3ebbc4f132aab593b12187bce15e1a46689ab40bd3067c685aca85b9",
+        "signature": "verified",
+        "version": "0.1.0"
+      },
+      {
+        "id": "elytratrails",
+        "licenses": [],
+        "sha256": "feea003d336b3275be563c1a1ae7c4d455385d6c1b75712ef879861e121ba198",
+        "signature": "verified",
+        "version": "0.1.1"
+      },
+      {
+        "id": "enchantmenthints",
+        "licenses": [],
+        "sha256": "6f1b80a7c22e02b086d5eea2ed6f7c5481b3e40d6a974bf9e382a3df4a2de9df",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "fair_freecam",
+        "licenses": [],
+        "sha256": "4fdd0b3067a00d23fe30ee4d594293ef0705325bb5e6e5b292f90c1e8b8a5f8a",
+        "signature": "unsigned",
+        "version": "1.2.0"
+      },
+      {
+        "id": "fast_items",
+        "licenses": [
+          "mixins/fast_items/LICENSE"
+        ],
+        "sha256": "c3acd8adfeac6450c3a13b5172c8abb298cb3ceb355dfc539b4bdd653ef15502",
+        "signature": "verified",
+        "version": "0.1.0"
+      },
+      {
+        "id": "flair",
+        "licenses": [],
+        "sha256": "64e4d645d5bda3c363603d483af2095d6d3673d91803954f338d54265bf4fab5",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "fly_speed",
+        "licenses": [],
+        "sha256": "4d50b18d86371b2bf4b43726b506278d7e404a8227609a33165f7aa83ba0cda0",
+        "signature": "verified",
+        "version": "0.2.0"
+      },
+      {
+        "id": "fps_overlay",
+        "licenses": [],
+        "sha256": "bedb670e2490ce8239906c86eabd3a0c131ef5037b2937607231bdbdba38c171",
+        "signature": "unsigned",
+        "version": "2.0.0"
+      },
+      {
+        "id": "freecam",
+        "licenses": [],
+        "sha256": "6314ed87d3b58ed0244bed388201c64bffb8deab4f5ff7beed2a3791b391a6da",
+        "signature": "verified",
+        "version": "0.1.0"
+      },
+      {
+        "id": "freecam_plus",
+        "licenses": [],
+        "sha256": "264218191c32e7107982eab297b30a43076c5f1467d4e292cb844213258b5eb1",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "freelook",
+        "licenses": [],
+        "sha256": "9c0c92ce9f0fc8e7bc1bd34349e26d42b32b8abd2c7a09ec710936f9b6ce9aaf",
+        "signature": "unsigned",
+        "version": "0.3.1"
+      },
+      {
+        "id": "fullbright",
+        "licenses": [],
+        "sha256": "573c5e04188e0b1a26eb42a8aeaeeefeb6fb334a096afaa834e71b8efa353ad7",
+        "signature": "unsigned",
+        "version": "1.0.0"
+      },
+      {
+        "id": "fullbright_horizon",
+        "licenses": [],
+        "sha256": "db6175eec1711dbc5ab2a2edc40eee9cbc4080ec1d706a3cef688e54ba9cb017",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "fullbright_nofog",
+        "licenses": [],
+        "sha256": "07a13abd8af2405343241f8985db7595a03bfb8ced2f1dfab8a105848eb1b7d7",
+        "signature": "unsigned",
+        "version": "1.0.0"
+      },
+      {
+        "id": "gyro",
+        "licenses": [],
+        "sha256": "2271d5b7e1559544a12e9198523c643bddd2551828ecf0a39b92f7d120b1921b",
+        "signature": "verified",
+        "version": "1.4.1"
+      },
+      {
+        "id": "held_item_info",
+        "licenses": [
+          "mixins/held_item_info/LICENSE"
+        ],
+        "sha256": "37a11d98f0afabe37f8ffa9982dc710ad2985817db6b5e094d807c24d30a6a6a",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "hitbox_plus",
+        "licenses": [],
+        "sha256": "8d1b95e7461e38fc40994b35a82c1f753a58e9751ce27af1dc101a4717dba8a4",
+        "signature": "unsigned",
+        "version": "1.3.0"
+      },
+      {
+        "id": "horizon_physics",
+        "licenses": [],
+        "sha256": "213f6264a20bed7fef64f12f539d0b2364f710857a3acaa351b96e78b3239dc1",
+        "signature": "unsigned",
+        "version": "0.18.0"
+      },
+      {
+        "id": "horizonmatica",
+        "licenses": [],
+        "sha256": "5afe38269722867cb60b9b7cc1ba9efa2efb998580eae2949ab7f7e5399ebb7b",
+        "signature": "verified",
+        "version": "0.2.0"
+      },
+      {
+        "id": "inventory_profiles",
+        "licenses": [],
+        "sha256": "1e5d1c75d05230172820b5bc016d7d3ac792adf473de7dbfb84394d8b795a633",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "inventory_wizard",
+        "licenses": [],
+        "sha256": "03a7c8a528148611e5f309f3d05294a97b6766ca5e3bda9b3f1f79458fe65a42",
+        "signature": "verified",
+        "version": "2.3.3"
+      },
+      {
+        "id": "invisible_frames",
+        "licenses": [
+          "mixins/invisible_frames/LICENSE"
+        ],
+        "sha256": "76128b48ce5c826007379c85634b934ae6bad51c134fbaead7c46b36fecd9274",
+        "signature": "unsigned",
+        "version": "0.1.1"
+      },
+      {
+        "id": "itemnew",
+        "licenses": [],
+        "sha256": "cdc68c9911736703ebc4b8b81895a719edd74ba9d08fe01ddb34fe09b8d490e9",
+        "signature": "unsigned",
+        "version": "0.1.1"
+      },
+      {
+        "id": "jade",
+        "licenses": [],
+        "sha256": "5aa01e83aeda733b60b69d53cfa13fa1c9d4e66f83c54373c5cca4d77fa47087",
+        "signature": "unsigned",
+        "version": "26.3.6"
+      },
+      {
+        "id": "jei",
+        "licenses": [],
+        "sha256": "c5590e0d4618d435fc0c56abcc9cdabf253be694710068a3dd4643ac25466b5b",
+        "signature": "verified",
+        "version": "0.1.0"
+      },
+      {
+        "id": "keystrokes",
+        "licenses": [],
+        "sha256": "bed34d2f8049e92c52cd7c91c0c4c8c9d165faaf0183500cf4021d9e04783a7d",
+        "signature": "unsigned",
+        "version": "2.0.0"
+      },
+      {
+        "id": "killc",
+        "licenses": [],
+        "sha256": "6c44d0a5e93aef42f2a33df8286980d9957a04526ff2c1884dfe7aa83f837086",
+        "signature": "verified",
+        "version": "5.1.0"
+      },
+      {
+        "id": "light_overlay",
+        "licenses": [],
+        "sha256": "b4aeb56b13d9c73df267a1dc7b1f588f4db39bfd55f7beaef97a014fffb5b076",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "lookat",
+        "licenses": [],
+        "sha256": "6c15726116825b5955984223d0e1bccd5d18375005af243a061b2ba2b9139f33",
+        "signature": "unsigned",
+        "version": "0.2.1"
+      },
+      {
+        "id": "minimap",
+        "licenses": [],
+        "sha256": "6f5dbca0699562b088a04b3f5abdc1b7faf8da51257a96da0a4ed639c6644ed9",
+        "signature": "unsigned",
+        "version": "2.0.0"
+      },
+      {
+        "id": "mod_menu",
+        "licenses": [],
+        "sha256": "7896b3b5ad727ef6e2bc56039796713809483fb157daa385f78ebd3353d653bd",
+        "signature": "unsigned",
+        "version": "0.3.0"
+      },
+      {
+        "id": "motion_blur",
+        "licenses": [],
+        "sha256": "4cdaa6369fffea8116b013edfc618358ca989f48ed65c83306d2102f0e506c47",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "mousetricks",
+        "licenses": [],
+        "sha256": "48c60955371963f8e320a9efbe8285bb276d255c29178a8a021e7e2b47535cbe",
+        "signature": "unsigned",
+        "version": "0.2.0"
+      },
+      {
+        "id": "recipes",
+        "licenses": [],
+        "sha256": "51fddf300709404170061355afdf0b407f28eb928bcc0a9133c241cd63f4a0ed",
+        "signature": "unsigned",
+        "version": "2.0.0"
+      },
+      {
+        "id": "resourcify",
+        "licenses": [],
+        "sha256": "a6611819c9401dc7370dece7453cdda2356747f2a34c32940bf82ccd6abdcf53",
+        "signature": "unsigned",
+        "version": "0.1.1"
+      },
+      {
+        "id": "right_click_crops",
+        "licenses": [],
+        "sha256": "681ce896c50dd041132900e7bbab71167f133b3f3862f86e8b1a0cac52754b97",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "rightharvest",
+        "licenses": [],
+        "sha256": "2f70f3a5abaca35f1ff8df7b198f0fd616eacaa5229f5113f75935e16f50255b",
+        "signature": "unsigned",
+        "version": "0.1.1"
+      },
+      {
+        "id": "rmotd",
+        "licenses": [],
+        "sha256": "68d43b760e95178a67bc1c7d54fbde004eee4bb764d9891d83bd4e4fa4bd8ce5",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "server_browser",
+        "licenses": [
+          "mixins/server_browser/LICENSE"
+        ],
+        "sha256": "71279e980f3861608810f762fed93cb3264bc5b069b0200f3e9f46099418e8c3",
+        "signature": "unsigned",
+        "version": "2.2.1"
+      },
+      {
+        "id": "serverify",
+        "licenses": [],
+        "sha256": "f9ad0777f8fc7ea532f799da8a9eb72df2348c8d6bb5dc104f81b6ab47209501",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "shulker_peek",
+        "licenses": [],
+        "sha256": "e4e33cb698d91042b2ed2f93a1c935f279d16d83988115d53c0f33530cabeab5",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "skins_3d",
+        "licenses": [],
+        "sha256": "c9d618c4bedaa92c9373d7363b182eff9f4723889dcb5ba8a877c78ffc0fb6ae",
+        "signature": "verified",
+        "version": "1.0.1"
+      },
+      {
+        "id": "smartf3",
+        "licenses": [],
+        "sha256": "666fc77a12411c8b525dca3d3d478595e760b73c48b62b936fb6026419547929",
+        "signature": "unsigned",
+        "version": "0.1.0"
+      },
+      {
+        "id": "smoothie_capes",
+        "licenses": [
+          "mixins/smoothie_capes/LICENSE"
+        ],
+        "sha256": "303b88bf5dd2c518ed9f5186252813b5a98716289c42e60838d0cb9846fc6429",
+        "signature": "verified",
+        "version": "0.2.0"
+      },
+      {
+        "id": "speedrun_timer",
+        "licenses": [
+          "mixins/speedrun_timer/LICENSE"
+        ],
+        "sha256": "884efd123b6e3a99e783603fd18f94b4fe6cf4b2ce6297e8e58fbb81c699c22e",
+        "signature": "verified",
+        "version": "1.0.1"
+      },
+      {
+        "id": "spider_man",
+        "licenses": [
+          "mixins/spider_man/LICENSE"
+        ],
+        "sha256": "06eefe89fa0f05cfdc6b331b38497d16b4dbc82931581940e127be081055cec8",
+        "signature": "unsigned",
+        "version": "0.2.0"
+      },
+      {
+        "id": "status_effect_hud",
+        "licenses": [],
+        "sha256": "afa30125bb8b402892f1719e550b66d4eb4d7264895f71bb9c98a4caf5c7b432",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "stuck",
+        "licenses": [],
+        "sha256": "8e6292d9c89f660e72f01e54be4103b5273017955c7bd8034dd5ae8ec2e98630",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "tectonic_horizon",
+        "licenses": [],
+        "sha256": "590198d7df43b5c9474c41648db89a15bd4d388be0fe860a2f84a84b59285cec",
+        "signature": "unsigned",
+        "version": "0.3.4"
+      },
+      {
+        "id": "toggle_sprint",
+        "licenses": [],
+        "sha256": "b2a4190f9c19adbceae4a639342b7630bfc3047339eabf57673b7807db5edc6a",
+        "signature": "verified",
+        "version": "1.0.0"
+      },
+      {
+        "id": "treefall",
+        "licenses": [],
+        "sha256": "6f7feea8d0f55291953476b272f00cfc4be42d64972e7efefeb3df47c9dae8ce",
+        "signature": "unsigned",
+        "version": "0.3.0"
+      },
+      {
+        "id": "veinminer",
+        "licenses": [],
+        "sha256": "31a4249da1b35972ae8b34201373c86352f4adc2f5cb3e015749d1fbfecf00a0",
+        "signature": "unsigned",
+        "version": "0.3.2"
+      },
+      {
+        "id": "viahorizon",
+        "licenses": [
+          "mixins/viahorizon/LICENSE",
+          "mixins/viahorizon/NOTICE.md",
+          "mixins/viahorizon/license.rs"
+        ],
+        "sha256": "b87fe3bf8ebd71b4c11c555b8e8825e43ebfe9e29eaef9142b704760d401a96c",
+        "signature": "unsigned",
+        "version": "0.8.5-dev"
+      },
+      {
+        "id": "visuality_horizon",
+        "licenses": [],
+        "sha256": "b764f15a062e44b27c55f478b2d02e163bfb01c3d8e222fcd6d83bcc66f19a0d",
+        "signature": "unsigned",
+        "version": "1.0.2"
+      },
+      {
+        "id": "voicechat",
+        "licenses": [],
+        "sha256": "7a12ef9e691d10128ea081906a313d597c67f22897380618871477f9dd8eabf1",
+        "signature": "unsigned",
+        "version": "1.0.0"
+      },
+      {
+        "id": "wayfarer_stones",
+        "licenses": [],
+        "sha256": "87bec46b6bbe05d95563a4bf7b8a3b92340ca1dd54c2d5709b6a0a41989d7176",
+        "signature": "unsigned",
+        "version": "0.6.0"
+      },
+      {
+        "id": "wayfarer_stones_native",
+        "licenses": [],
+        "sha256": "0c5929425bea6c570ad455229b519fc411ea2b769ef08be8a91bb8b7793d9dba",
+        "signature": "unsigned",
+        "version": "0.6.0"
+      },
+      {
+        "id": "waymap",
+        "licenses": [
+          "mixins/waymap/NOTICE.md"
+        ],
+        "sha256": "096636b4401799f6a48dfa96a5b63ac1e2bb5fd9ad91b34532fd745a1df5af99",
+        "signature": "verified",
+        "version": "0.2.0"
+      },
+      {
+        "id": "waypoints",
+        "licenses": [],
+        "sha256": "9c0e670f1205c23fed0fe0b0eaf8f0b90a01f3cbb883a8eee445ebc03f4d90a4",
+        "signature": "unsigned",
+        "version": "1.0.0"
+      },
+      {
+        "id": "worldedit",
+        "licenses": [],
+        "sha256": "b2bb3019ecd4d5392644c54c70a87d6c3277538a6e18d0c311f3a051f7d2f015",
+        "signature": "unsigned",
+        "version": "1.2.1"
+      },
+      {
+        "id": "xtoxray",
+        "licenses": [],
+        "sha256": "3446a4a70a2b87ef6e9de00ce8a255aa83c2e44ccd5acc9f14887662ed55f27c",
+        "signature": "verified",
+        "version": "2026.29.0"
+      },
+      {
+        "id": "zoom",
+        "licenses": [],
+        "sha256": "49fa2d7d635225c53304fbf1477606c0677eb23d94dac75b730f6c3ba065f127",
+        "signature": "unsigned",
+        "version": "2.0.0"
+      }
+    ]
+  },
+  "basicHudAlternate": {
+    "newestOfficialVersion": "0.5.0",
+    "removedField": "host.models",
+    "sha256": "fe2c5d9da681b4f575bff867df70d6e2f61614b0215a206fb7a0c3b0027db994",
+    "status": "Source references a field removed by pinned Horizon; aggregate Rust check covers 0.4.1 separately",
+    "target": "mixins/basic_hud/players.rs:14",
+    "version": "0.1.0"
+  },
+  "build": "NOT RUN",
+  "combined": [
+    {
+      "exitCode": 0,
+      "mods": [
+        "accurate_block_placement",
+        "appleskin",
+        "armor_status",
+        "armorhud",
+        "basic_hud",
+        "blockscope",
+        "chatheads",
+        "connected_textures",
+        "coords_hud",
+        "crosshair_indicator",
+        "deepbore_quarry_native",
+        "dynamic_fps_for_rust",
+        "elytratrails",
+        "enchantmenthints",
+        "fast_items",
+        "fps_overlay",
+        "freelook",
+        "fullbright_horizon",
+        "fullbright_nofog",
+        "held_item_info",
+        "horizon_physics",
+        "horizonmatica",
+        "inventory_profiles",
+        "inventory_wizard",
+        "invisible_frames",
+        "itemnew",
+        "jei",
+        "keystrokes",
+        "light_overlay",
+        "lookat",
+        "minimap",
+        "motion_blur",
+        "mousetricks",
+        "resourcify",
+        "rightharvest",
+        "server_browser",
+        "skins_3d",
+        "speedrun_timer",
+        "spider_man",
+        "status_effect_hud",
+        "tectonic_horizon",
+        "toggle_sprint",
+        "veinminer",
+        "wayfarer_stones_native",
+        "waypoints",
+        "zoom"
+      ],
+      "result": {
+        "bridges": 2,
+        "crates": 2,
+        "data": 0,
+        "injections": 381,
+        "modules": 93,
+        "post_build": 0,
+        "sharedSites": [
+          {
+            "injectionOrder": [
+              {
+                "injection_id": "fishing",
+                "kind": "HEAD",
+                "mod_id": "horizon_physics",
+                "priority": 100
+              },
+              {
+                "injection_id": "lines",
+                "kind": "HEAD",
+                "mod_id": "light_overlay",
+                "priority": 100
+              }
+            ],
+            "target": "horizon_client::game::fishing::Game<'_>::fishing_line"
+          },
+          {
+            "injectionOrder": [
+              {
+                "injection_id": "face-camera",
+                "kind": "MODIFY_VARIABLE",
+                "mod_id": "fast_items",
+                "priority": 100
+              },
+              {
+                "injection_id": "flatten-sprite-layers",
+                "kind": "MODIFY_VARIABLE",
+                "mod_id": "fast_items",
+                "priority": 100
+              },
+              {
+                "injection_id": "items",
+                "kind": "HEAD",
+                "mod_id": "horizon_physics",
+                "priority": 100
+              }
+            ],
+            "target": "horizon_client::game::item_draw::Game<'_>::dropped_item_geometry"
+          },
+          {
+            "injectionOrder": [
+              {
+                "injection_id": "sort_slots",
+                "kind": "HEAD",
+                "mod_id": "inventory_profiles",
+                "priority": 100
+              },
+              {
+                "injection_id": "sort_slots",
+                "kind": "HEAD",
+                "mod_id": "inventory_wizard",
+                "priority": 100
+              }
+            ],
+            "target": "horizon_client::game::tweaks::Game<'_>::sort_slots"
+          }
+        ],
+        "states": 0,
+        "status": "ok"
+      }
+    }
+  ],
+  "contentCompatibility": [
+    {
+      "id": "compass_bar",
+      "namespaces": [],
+      "sha256": "bb8f191f89f5ea963301fd2d28315b251dfb8df9656b640975eddffaec3e6b00",
+      "version": "0.1.0",
+      "wasm": true
+    },
+    {
+      "id": "deepbore_quarry",
+      "namespaces": [
+        "deepbore_quarry",
+        "minecraft"
+      ],
+      "sha256": "2a75f3adc59aaf273fd833545c50a63a7f829916156b74d85bebbb6273b0d8b6",
+      "version": "0.1.0",
+      "wasm": false
+    },
+    {
+      "id": "wayfarer_stones",
+      "namespaces": [
+        "minecraft",
+        "wayfarer_stones"
+      ],
+      "sha256": "87bec46b6bbe05d95563a4bf7b8a3b92340ca1dd54c2d5709b6a0a41989d7176",
+      "version": "0.6.0",
+      "wasm": false
+    }
+  ],
+  "game": "NOT RUN",
+  "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
+  "mixinsRevision": "e8cd0aa38cffef49cb2e088ef716baa107148c02",
+  "schemaVersion": 1,
+  "singles": [
+    {
+      "exitCode": 0,
+      "mods": [
+        "accurate_block_placement"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "appleskin"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 4,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "armor_status"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "armorhud"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "basic_hud"
+      ],
+      "result": {
+        "bridges": 2,
+        "crates": 0,
+        "data": 0,
+        "injections": 20,
+        "modules": 9,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "blockscope"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "chatheads"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 3,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "connected_textures"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "coords_hud"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "crosshair_indicator"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 1,
+      "mods": [
+        "crossversion"
+      ],
+      "result": {
+        "code": "E_TARGET_NOT_FOUND",
+        "file": "\\\\?\\<case>\\mods\\crossversion\\horizon-mixin.toml",
+        "injection_id": "route-connect",
+        "message": "no source function 'horizon_client::net::Session::connect'; use an exact crate::module::function, Type::method or <Type as Trait>::method ID",
+        "mod_id": "crossversion",
+        "selector": "Self::start",
+        "target": "horizon_client::net::Session::connect"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "deepbore_quarry_native"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 24,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "dynamic_fps_for_rust"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 1,
+      "mods": [
+        "eatinganimation"
+      ],
+      "result": {
+        "code": "E_TARGET_NOT_FOUND",
+        "file": "\\\\?\\<case>\\mods\\eatinganimation\\horizon-mixin.toml",
+        "injection_id": "held-frame",
+        "message": "no source function 'horizon_client::item_render::ItemRenderer::resolve'; use an exact crate::module::function, Type::method or <Type as Trait>::method ID",
+        "mod_id": "eatinganimation",
+        "target": "horizon_client::item_render::ItemRenderer::resolve"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "elytratrails"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 8,
+        "modules": 4,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "enchantmenthints"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "fast_items"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 3,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "fps_overlay"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 1,
+      "mods": [
+        "freecam"
+      ],
+      "result": {
+        "code": "E_TARGET_NOT_FOUND",
+        "file": "\\\\?\\<case>\\mods\\freecam\\horizon-mixin.toml",
+        "injection_id": "freeze",
+        "message": "no source function 'horizon_client::motion::MotionWorld<'_,'_,'_>::controlled_simulation_tick_with_sprint_window'; use an exact crate::module::function, Type::method or <Type as Trait>::method ID",
+        "mod_id": "freecam",
+        "target": "horizon_client::motion::MotionWorld<'_,'_,'_>::controlled_simulation_tick_with_sprint_window"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "freelook"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "fullbright"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "fullbright_horizon"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "fullbright_nofog"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 7,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "held_item_info"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 2,
+        "modules": 0,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "horizon_physics"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 39,
+        "modules": 3,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "horizonmatica"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 2,
+        "data": 0,
+        "injections": 22,
+        "modules": 3,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "inventory_profiles"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 7,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "inventory_wizard"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 11,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "invisible_frames"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 3,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "itemnew"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "jei"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "keystrokes"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "light_overlay"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "lookat"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "minimap"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 1,
+      "mods": [
+        "mod_menu"
+      ],
+      "result": {
+        "code": "E_TARGET_NOT_FOUND",
+        "file": "\\\\?\\<case>\\mods\\mod_menu\\horizon-mixin.toml",
+        "injection_id": "title-buttons",
+        "message": "no source function 'horizon_client::title::Title::buttons'; use an exact crate::module::function, Type::method or <Type as Trait>::method ID",
+        "mod_id": "mod_menu",
+        "target": "horizon_client::title::Title::buttons"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "motion_blur"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "mousetricks"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 9,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "recipes"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "resourcify"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 8,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "rightharvest"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 2,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "server_browser"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 25,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "skins_3d"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 5,
+        "modules": 4,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "smoothie_capes"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 1,
+        "modules": 0,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "speedrun_timer"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "spider_man"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 13,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "status_effect_hud"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 4,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "tectonic_horizon"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 10,
+        "modules": 5,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "toggle_sprint"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "veinminer"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 3,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 1,
+      "mods": [
+        "visuality_horizon"
+      ],
+      "result": {
+        "code": "E_TARGET_NOT_FOUND",
+        "file": "\\\\?\\<case>\\mods\\visuality_horizon\\horizon-mixin.toml",
+        "injection_id": "ambient",
+        "message": "no source function 'horizon_client::animate_tick::block_animate_tick'; use an exact crate::module::function, Type::method or <Type as Trait>::method ID",
+        "mod_id": "visuality_horizon",
+        "target": "horizon_client::animate_tick::block_animate_tick"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "wayfarer_stones_native"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 23,
+        "modules": 2,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 1,
+      "mods": [
+        "waymap"
+      ],
+      "result": {
+        "code": "E_TARGET_NOT_FOUND",
+        "file": "\\\\?\\<case>\\mods\\waymap\\horizon-mixin.toml",
+        "injection_id": "minimap",
+        "message": "no source function 'horizon_client::extras_hud::draw_minimap'; use an exact crate::module::function, Type::method or <Type as Trait>::method ID",
+        "mod_id": "waymap",
+        "target": "horizon_client::extras_hud::draw_minimap"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "waypoints"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 11,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    },
+    {
+      "exitCode": 0,
+      "mods": [
+        "zoom"
+      ],
+      "result": {
+        "bridges": 0,
+        "crates": 0,
+        "data": 0,
+        "injections": 6,
+        "modules": 1,
+        "post_build": 0,
+        "states": 0,
+        "status": "ok"
+      }
+    }
+  ],
+  "source": "Shared signed Horizon source with LANMinecraft Steam overlay; source plan only",
+  "targeted": {
+    "brightness": [
+      {
+        "exitCode": 0,
+        "mods": [
+          "fullbright",
+          "fullbright_nofog"
+        ],
+        "result": {
+          "bridges": 0,
+          "crates": 0,
+          "data": 0,
+          "injections": 13,
+          "modules": 2,
+          "post_build": 0,
+          "sharedSites": [
+            {
+              "injectionOrder": [
+                {
+                  "injection_id": "frame",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright",
+                  "priority": 100
+                },
+                {
+                  "injection_id": "frame",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright_nofog",
+                  "priority": 100
+                }
+              ],
+              "target": "horizon_client::game::native_hooks::Game<'_>::native_frame"
+            },
+            {
+              "injectionOrder": [
+                {
+                  "injection_id": "key",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright",
+                  "priority": 100
+                },
+                {
+                  "injection_id": "key",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright_nofog",
+                  "priority": 100
+                }
+              ],
+              "target": "horizon_client::game::native_hooks::Game<'_>::native_key"
+            },
+            {
+              "injectionOrder": [
+                {
+                  "injection_id": "command",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright",
+                  "priority": 100
+                },
+                {
+                  "injection_id": "command",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright_nofog",
+                  "priority": 100
+                }
+              ],
+              "target": "horizon_client::game::native_hooks::Game<'_>::native_command"
+            }
+          ],
+          "states": 0,
+          "status": "ok"
+        }
+      }
+    ],
+    "capeAndGyro": [
+      {
+        "exitCode": 0,
+        "mods": [
+          "horizon_physics"
+        ],
+        "result": {
+          "bridges": 0,
+          "crates": 0,
+          "data": 0,
+          "injections": 39,
+          "modules": 3,
+          "post_build": 0,
+          "states": 0,
+          "status": "ok"
+        }
+      },
+      {
+        "exitCode": 0,
+        "mods": [
+          "smoothie_capes"
+        ],
+        "result": {
+          "bridges": 0,
+          "crates": 0,
+          "data": 0,
+          "injections": 1,
+          "modules": 0,
+          "post_build": 0,
+          "states": 0,
+          "status": "ok"
+        }
+      },
+      {
+        "exitCode": 1,
+        "mods": [
+          "horizon_physics",
+          "smoothie_capes"
+        ],
+        "result": {
+          "code": "E_OVERWRITE_CONFLICT",
+          "file": "crates/horizon-client/src/mobs/render.rs",
+          "injection_id": "cape",
+          "message": "OVERWRITE must be exclusive on horizon_client_lib::mobs::render::cape; competing injections: horizon_physics/cape, smoothie_capes/smoothie-cape",
+          "mod_id": "horizon_physics",
+          "target": "horizon_client_lib::mobs::render::cape"
+        }
+      },
+      {
+        "exitCode": 0,
+        "mods": [
+          "freelook"
+        ],
+        "result": {
+          "bridges": 0,
+          "crates": 0,
+          "data": 0,
+          "injections": 5,
+          "modules": 1,
+          "post_build": 0,
+          "states": 0,
+          "status": "ok"
+        }
+      },
+      {
+        "exitCode": 1,
+        "mods": [
+          "gyro"
+        ],
+        "result": {
+          "code": "E_MODULE_CONFLICT",
+          "message": "support module 'gyro' collides with an existing type/module/import or unresolved glob import"
+        }
+      },
+      {
+        "exitCode": 1,
+        "mods": [
+          "freelook",
+          "gyro"
+        ],
+        "result": {
+          "code": "E_MODULE_CONFLICT",
+          "message": "support module 'gyro' collides with an existing type/module/import or unresolved glob import"
+        }
+      }
+    ],
+    "recipePanel": [
+      {
+        "exitCode": 0,
+        "mods": [
+          "jei",
+          "recipes"
+        ],
+        "result": {
+          "bridges": 0,
+          "crates": 0,
+          "data": 0,
+          "injections": 11,
+          "modules": 4,
+          "post_build": 0,
+          "sharedSites": [
+            {
+              "injectionOrder": [
+                {
+                  "injection_id": "frame",
+                  "kind": "HEAD",
+                  "mod_id": "jei",
+                  "priority": 100
+                },
+                {
+                  "injection_id": "frame",
+                  "kind": "HEAD",
+                  "mod_id": "recipes",
+                  "priority": 100
+                }
+              ],
+              "target": "horizon_client::game::native_hooks::Game<'_>::native_frame"
+            },
+            {
+              "injectionOrder": [
+                {
+                  "injection_id": "event",
+                  "kind": "HEAD",
+                  "mod_id": "jei",
+                  "priority": 100
+                },
+                {
+                  "injection_id": "event",
+                  "kind": "HEAD",
+                  "mod_id": "recipes",
+                  "priority": 100
+                }
+              ],
+              "target": "horizon_client::game::native_hooks::Game<'_>::native_panel_event"
+            }
+          ],
+          "states": 0,
+          "status": "ok"
+        }
+      }
+    ],
+    "standaloneBrightness": [
+      {
+        "exitCode": 0,
+        "mods": [
+          "fullbright_horizon",
+          "fullbright_nofog"
+        ],
+        "result": {
+          "bridges": 0,
+          "crates": 0,
+          "data": 0,
+          "injections": 13,
+          "modules": 3,
+          "post_build": 0,
+          "sharedSites": [
+            {
+              "injectionOrder": [
+                {
+                  "injection_id": "frame",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright_horizon",
+                  "priority": 100
+                },
+                {
+                  "injection_id": "frame",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright_nofog",
+                  "priority": 100
+                }
+              ],
+              "target": "horizon_client::game::native_hooks::Game<'_>::native_frame"
+            },
+            {
+              "injectionOrder": [
+                {
+                  "injection_id": "key",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright_horizon",
+                  "priority": 100
+                },
+                {
+                  "injection_id": "key",
+                  "kind": "HEAD",
+                  "mod_id": "fullbright_nofog",
+                  "priority": 100
+                }
+              ],
+              "target": "horizon_client::game::native_hooks::Game<'_>::native_key"
+            }
+          ],
+          "states": 0,
+          "status": "ok"
+        }
+      }
+    ]
+  }
+}

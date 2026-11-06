@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 1,
+  "clientSha256": "bc6d6378636f5737b3d3efea5802ce78d22fe30a391563f2d4c1b4e459eec068",
+  "previewSha256": "ca4b94b2429c45ec399d61c742a16bb9d359b3366b6ed9c69b39bb0caa5b2417",
+  "loadedContent": [
+    [
+      "deepbore_quarry",
+      "0.1.0"
+    ],
+    [
+      "wayfarer_stones",
+      "0.6.0"
+    ]
+  ],
+  "registeredNative": [
+    "accurate_block_placement",
+    "appleskin",
+    "armor_status",
+    "armorhud",
+    "blockscope",
+    "chatheads",
+    "connected_textures",
+    "coords_hud",
+    "crosshair_indicator",
+    "deepbore_quarry_native",
+    "elytratrails",
+    "enchantmenthints",
+    "fps_overlay",
+    "freelook",
+    "fullbright_nofog",
+    "held_item_info",
+    "horizon_physics",
+    "horizonmatica",
+    "inventory_profiles",
+    "invisible_frames",
+    "itemnew",
+    "jei",
+    "keystrokes",
+    "lookat",
+    "minimap",
+    "motion_blur",
+    "mousetricks",
+    "resourcify",
+    "rightharvest",
+    "server_browser",
+    "skins_3d",
+    "speedrun_timer",
+    "spider_man",
+    "status_effect_hud",
+    "tectonic_horizon",
+    "toggle_sprint",
+    "wayfarer_stones_native",
+    "waypoints",
+    "zoom"
+  ],
+  "nativeNeedingDirectProbes": [
+    "dynamic_fps_for_rust",
+    "veinminer"
+  ],
+  "modsPage": {
+    "frame": 46,
+    "gui_size": [
+      427.0,
+      240.0
+    ],
+    "screen": "title",
+    "widgets": [
+      {
+        "bounds": [
+          58.0,
+          37.0,
+          310.0,
+          20.0
+        ],
+        "enabled": false,
+        "id": "deepbore-quarry-assets-0-1-0",
+        "kind": "button",
+        "label": "Deepbore Quarry (assets) 0.1.0: ON (Dev)"
+      },
+      {
+        "bounds": [
+          58.0,
+          62.0,
+          310.0,
+          20.0
+        ],
+        "enabled": false,
+        "id": "wayfarer-stones-assets-0-6-0",
+        "kind": "button",
+        "label": "Wayfarer Stones (assets) 0.6.0: ON (Dev)"
+      },
+      {
+        "bounds": [
+          58.0,
+          87.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "appleskin-0-1-3",
+        "kind": "button",
+        "label": "AppleSkin 0.1.3: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          87.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          112.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "accurate-block-placement-1-0-0",
+        "kind": "button",
+        "label": "Accurate Block Placement 1.0.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          112.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-2",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          137.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "armor-status-1-0-0",
+        "kind": "button",
+        "label": "Armor Status 1.0.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          137.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-3",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          162.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "armor-hud-1-0-0",
+        "kind": "button",
+        "label": "Armor HUD 1.0.0: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          162.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-4",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          58.0,
+          187.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "blockscope-0-3-1",
+        "kind": "button",
+        "label": "Blockscope 0.3.1: ON"
+      },
+      {
+        "bounds": [
+          218.0,
+          187.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "settings-5",
+        "kind": "button",
+        "label": "Settings"
+      },
+      {
+        "bounds": [
+          59.0,
+          213.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "open-mod-folder",
+        "kind": "button",
+        "label": "Open Mod Folder"
+      },
+      {
+        "bounds": [
+          217.0,
+          213.0,
+          150.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "done",
+        "kind": "button",
+        "label": "Done"
+      }
+    ]
+  },
+  "worldsOnReopen": {
+    "worlds": [
+      {
+        "commands": true,
+        "corrupted": false,
+        "folder": "RustModsSmoke",
+        "last_played": 1793946338091,
+        "mode": "survival",
+        "name": "RustModsSmoke",
+        "version": "26.3"
+      }
+    ]
+  },
+  "firstState": {
+    "busy": null,
+    "dialog": {
+      "open": null,
+      "screen": null
+    },
+    "dimension": "minecraft:overworld",
+    "gamemode": "spectator",
+    "held": {
+      "count": 1,
+      "item": "deepbore_quarry:quarry"
+    },
+    "input": {
+      "counts": {
+        "agent": 15,
+        "game": 0,
+        "user": 33
+      },
+      "events": 48,
+      "last_origin": "agent",
+      "last_user_age_s": 1.9,
+      "recording": null,
+      "replay": null,
+      "user_since_agent": 0
+    },
+    "looking_at": {
+      "block": null,
+      "entity": null,
+      "kind": "none"
+    },
+    "menu": null,
+    "mining": null,
+    "paused": false,
+    "player": {
+      "absorption": 0.0,
+      "air": 300,
+      "block_pos": [
+        6,
+        137,
+        -12
+      ],
+      "death_time": null,
+      "effects": [],
+      "eye": [
+        6.5,
+        138.62000000476837,
+        -11.5
+      ],
+      "fall_flying": false,
+      "flying": true,
+      "food": 20,
+      "fov_modifier": 1.0999999046325684,
+      "health": 20.0,
+      "hurt_time": 0,
+      "on_ground": false,
+      "pitch": 28.0,
+      "portal_effect": 0.0,
+      "position": [
+        6.5,
+        137.0,
+        -11.5
+      ],
+      "saturation": 5.0,
+      "shield_cooldown": 0,
+      "sneaking": false,
+      "sprinting": false,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "xp": {
+        "level": 0,
+        "progress": 0.0,
+        "total": 0
+      },
+      "yaw": -20.0
+    },
+    "pointer_grabbed": true,
+    "screen": "playing",
+    "selected": 1,
+    "sleeping": null,
+    "swings": 0,
+    "ticks": 75,
+    "time": {
+      "day": 0,
+      "day_time": 6022,
+      "time_of_day": 6022
+    },
+    "using": null,
+    "weather": {
+      "raining": false,
+      "thundering": false
+    },
+    "world": "RustModsSmoke"
+  },
+  "reopenedState": {
+    "busy": null,
+    "dialog": {
+      "open": null,
+      "screen": null
+    },
+    "dimension": "minecraft:overworld",
+    "gamemode": "spectator",
+    "held": {
+      "count": 1,
+      "item": "deepbore_quarry:quarry"
+    },
+    "input": {
+      "counts": {
+        "agent": 1,
+        "game": 0,
+        "user": 0
+      },
+      "events": 1,
+      "last_origin": "agent",
+      "last_user_age_s": null,
+      "recording": null,
+      "replay": null,
+      "user_since_agent": 0
+    },
+    "looking_at": {
+      "block": null,
+      "entity": null,
+      "kind": "none"
+    },
+    "menu": null,
+    "mining": null,
+    "paused": false,
+    "player": {
+      "absorption": 0.0,
+      "air": 300,
+      "block_pos": [
+        6,
+        137,
+        -12
+      ],
+      "death_time": null,
+      "effects": [],
+      "eye": [
+        6.5,
+        138.62000000476837,
+        -11.5
+      ],
+      "fall_flying": false,
+      "flying": true,
+      "food": 20,
+      "fov_modifier": 0.9921875,
+      "health": 20.0,
+      "hurt_time": 0,
+      "on_ground": false,
+      "pitch": 28.0,
+      "portal_effect": 0.0,
+      "position": [
+        6.5,
+        137.0,
+        -11.5
+      ],
+      "saturation": 5.0,
+      "shield_cooldown": 0,
+      "sneaking": false,
+      "sprinting": false,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "xp": {
+        "level": 0,
+        "progress": 0.0,
+        "total": 0
+      },
+      "yaw": -20.0
+    },
+    "pointer_grabbed": false,
+    "screen": "playing",
+    "selected": 1,
+    "sleeping": null,
+    "swings": 0,
+    "ticks": 7,
+    "time": {
+      "day": 0,
+      "day_time": 6023,
+      "time_of_day": 6023
+    },
+    "using": null,
+    "weather": {
+      "raining": false,
+      "thundering": false
+    },
+    "world": "RustModsSmoke"
+  },
+  "bootstrapSha256": "eb90ce18a028f8c7d18f96cb61d7de3de5b9d9ac7b542e1fdb8d4e2f44e6a04b",
+  "windowTitle": "Minecraft Rust Mods",
+  "persistedModItems": [
+    "deepbore_quarry:quarry",
+    "wayfarer_stones:wayfarer_stone"
+  ],
+  "tectonicInstanceConfig": "PASS",
+  "pauseMenu": {
+    "before": "Open to LAN",
+    "after": "Player Reporting",
+    "loopback": "PASS",
+    "liveSteamPublication": "NOT RUN"
+  },
+  "controlsPreset": {
+    "mappingCount": 62,
+    "sha256": "969b87fe9c5063c2e0bc5dfd5bccfe3dea24bf15c8b2114085927268caa75cb8",
+    "runtimeRoundTrip": "PASS"
+  },
+  "timeToTitleSeconds": [
+    19.23,
+    7.55
+  ],
+  "previewPublishedSha256": "aad547165b91a8c6c5f592eb5723035317059c5e764ed5013d5f06210671e3d2",
+  "nativeDirectProbes": [
+    {
+      "id": "dynamic_fps_for_rust",
+      "status": "PASS",
+      "observation": "The first client frame created game/config/dynamic-fps-for-rust.json with focused_fps and idle_fps."
+    },
+    {
+      "id": "veinminer",
+      "status": "PASS",
+      "observation": "/veinminer status replied 'Veinminer: on'."
+    }
+  ],
+  "windowsDefender": {
+    "horizon-client.exe": "PASS",
+    "launch-rust-edition.exe": "PASS"
+  }
+}

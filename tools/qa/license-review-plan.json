@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
+  "mixinsRevision": "e8cd0aa38cffef49cb2e088ef716baa107148c02",
+  "combinedNativeMods": 48,
+  "mixinsPlan": "PASS",
+  "cargoBuild": "NOT RUN",
+  "game": "NOT RUN",
+  "publication": "Pending redistribution review for the combined Steam client",
+  "additionalMods": [
+    {"id": "classic_zoom", "version": "2.0.0", "license": "GPL-3.0-or-later"},
+    {"id": "fly_speed", "version": "0.2.0", "license": "All Rights Reserved"},
+    {"id": "jade", "version": "26.3.6", "license": "CC-BY-NC-SA-4.0"},
+    {"id": "killc", "version": "5.1.0", "license": "CC-BY-SA-4.0"},
+    {"id": "rmotd", "version": "1.0.0", "license": "CC-BY-SA-4.0"},
+    {"id": "serverify", "version": "0.1.0", "license": "GPL-3.0-only"},
+    {"id": "stuck", "version": "1.0.0", "license": "CC-BY-SA-4.0"}
+  ]
+}

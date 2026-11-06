@@ -1,0 +1,63 @@
+# Minecraft Rust Mods
+
+Отдельная сборка для Windows x64 на Horizon, нативной реализации Minecraft Java Edition 26.3 на Rust. Её ID в LANMinecraft — `minecraft-10`, каталог установки — `Minecraft Rust Mods`. Для подготовки игровых ресурсов нужна установленная копия Minecraft Java Edition 26.3. Версия клиента и Steam-ревизия закреплены в `portable-pack.json`. После изменения активного состава надо обновить Steam-ревизию, чтобы два разных состава не подключались друг к другу.
+
+Сборка использует проверенный bootstrap, подготовку игровых ресурсов и Steam-слой Minecraft Rust Edition. Компоненты модов принадлежат этому репозиторию. `.hnmod` встраиваются в клиент при сборке, `.hmod` загружаются из проверенной поставки. Horizon сверяет SHA-256 архивов контентных модов при сетевом входе. Миры, настройки графики и `options.txt` остаются личными данными игрока.
+
+Пресет управления лаунчера содержит 62 поддерживаемых назначения Horizon 26.3. Сочетания модов настраиваются в самой игре. [Раскладка и границы проверки](tools/CONTROLS.md).
+
+[Состав и описания 43 компонентов](MODS.md).
+
+Для Server Atlas 2.2.1 применяется слой интеграции со Steam. Автоматическая запись показывает название мира и ник хоста на двух строках. Переход использует штатный LAN-обработчик со Steam-транспортом. Такие записи пропускают прямой сетевой опрос и не записывают служебный адрес в недавние подключения. Ручные серверы и каталог Atlas продолжают использовать его собственные данные.
+
+## Входы и совместимость
+
+`tools/mod-input-lock.json` фиксирует снимок официального реестра Horizon. `tools/inspect_mods.py` проверяет происхождение, контрольные суммы, подписи при наличии и содержимое архивов. Подробнее о результате инвентаризации в [tools/MOD-INPUTS.md](tools/MOD-INPUTS.md). Записи `candidate` и `compile-probe` подлежат проверке на выбранном Nightly. Карточка строится из проверенного клиентом списка загруженных модов.
+
+`tools/conflict-decisions.json` закрепляет выбор игрока для подтверждённых несовместимостей. Отклонённые версии остаются в lock как проверенные входы для воспроизведения конфликта. Смена версии требует повторного подтверждения совместимости.
+
+Семь проектов с отдельной проверкой условий распространения прошли общий этап планирования. Их компиляция и запуск не проверялись. [Результат планирования](tools/qa/license-review-plan.json).
+
+## Подготовка Windows x64
+
+Понадобятся Python 3.12+, Rust 1.98.1 `x86_64-pc-windows-msvc`, MSVC и Windows SDK. Используйте один зарегистрированный временный стенд LANMinecraft. `$baseSource` — дерево Horizon с проверенным базовым Steam-слоем, `$sourceArchive` — закреплённый подписанный архив Horizon, `$steamTransport` — каталог `source/native` закреплённой версии e4steam. Cargo и тестовый запуск переиспользуют согласованные `$target` и подготовленные игровые ресурсы. Копии миров и ресурсов игрока не требуются.
+
+Для выпуска `$selection` указывает на `tools/mod-selection.json`. Он закрепляет `schemaVersion: 1`, `inputLockSha256` и список `ids`. Перед финальным выпуском в него входят только моды, прошедшие проверки совместимости и лицензий. Сначала примените mixins без `--build`, чтобы получить точную диагностику. Для проверки типов используйте `--check`. После разрешения конфликтов выполните сборку `--build` с тем же набором.
+
+```powershell
+python tools/native_build.py --base-pack $baseRepo --base-source $baseSource `
+    --source-archive $sourceArchive --steam-transport $steamTransport `
+    --archives $archives --inspection $inspection --selection $selection `
+    --work $work --target $target --mixins-root $mixinsRoot --build
+```
+
+Обычная сборка проверяет исходные байты и точный Steam-слой, распаковывает архивы в технические копии и применяет официальный `horizon-mixins`. Оригиналы и их подписи сохраняются. Cargo запускается с закреплёнными зависимостями, поддерживаемая конфигурация компиляции и SHA256 результата записываются в `build.json`.
+
+Чтобы подготовить исходники параллельно со сборкой Edition, вызовите `native_build.py` без `--build`. Он проверит исходники и сохранит SHA256 подготовленных деревьев. После фиксации результата Edition запустите ту же команду с `--build-prepared`. Оба клиента используют один каталог Cargo по очереди.
+
+Для подготовки кандидата зафиксируйте коммит и SHA256 распределительного lock базовой сборки в `tools/base-lock.json`, SHA256 проверенной квитанции сборки в `tools/build-lock.json`, уведомления о распространении каждого мода и их SHA256 в `tools/mod-license-lock.json`. Версия общего bootstrap с поддержкой путей конфигурации экземпляра закрепляется в `tools/bootstrap-lock.json`. `launcher/instance-config.json` удерживает конфигурацию Tectonic в папке игры. Формат каждого lock имеет `schemaVersion: 1`. Поля остальных уровней проверяются по `tools/stage_mod_pack.py`.
+
+```powershell
+python tools/stage_mod_pack.py --base-repo $baseRepo --base-candidate $baseCandidate `
+    --build-work $work --license-cache $licenseCache --bootstrap $bootstrap --candidate $candidate
+```
+
+Запустите кандидат через штатный bootstrap с общим проверенным кешем. Технический клиент сохраняет снимок игры, фиксирует фактически принятые контентные моды и зарегистрированные строки нативных модов, создаёт мир и входит в него повторно. Команда Veinminer и созданный конфиг Dynamic FPS подтверждают запуск модов без собственной строки. Тест Tectonic проверяет путь конфигурации при унаследованной переменной окружения. Проверьте механику модов и открытие сети отдельно. Снимите `library/preview.jpg` из этого прогона и закрепите подтверждённый `library/loaded-mods.json`. Добавьте эти два файла в библиотеку кандидата и закрепите результат `--propose-lock`. Для выпуска требуется чистый checkout и `tools/distribution-lock.json`.
+
+```powershell
+python tools/smoke_runtime.py --base-repo $baseRepo --candidate $candidate `
+    --controller $controller --qa $qa --minecraft $minecraft --java $java --cache $sharedCache
+python tools/generate_manifest.py --candidate $candidate --propose-inventory $smokeJson `
+    --probe-evidence $nativeProbeEvidence
+```
+
+```powershell
+python tools/generate_manifest.py --candidate $candidate --propose-lock
+$revision = git rev-parse HEAD
+python tools/generate_manifest.py --candidate $candidate --out $dist `
+    --library-tool $libraryTool --revision $revision
+python tools/generate_manifest.py --candidate $candidate --out $dist `
+    --library-tool $libraryTool --revision $revision --verify-only
+```
+
+Публикация идёт от проверенных архивов к манифесту и затем к записи каталога LANMinecraft. Первый выпуск требует действующего совместимого лаунчера и успешного скачивания всех публичных файлов после публикации. Minecraft и игровые материалы принадлежат Mojang и Microsoft. [Horizon](https://github.com/horizon-rust/horizon) распространяется по MIT. Лицензии модов и уведомления включаются в поставку.

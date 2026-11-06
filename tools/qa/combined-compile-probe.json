@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
+  "mixinsRevision": "e8cd0aa38cffef49cb2e088ef716baa107148c02",
+  "command": "cargo check --locked --offline --release -p horizon-client --bin horizon-client",
+  "toolchain": "1.98.1-x86_64-pc-windows-msvc",
+  "profile": "release",
+  "nativeMods": 46,
+  "gameStarted": false,
+  "mixins": {"status": "PASS", "injections": 381, "modules": 93, "crates": 2},
+  "compiler": {
+    "status": "FAIL",
+    "exitCode": 101,
+    "errors": [
+      {"mod": "basic_hud", "version": "0.4.1", "code": "E0609", "count": 5, "reason": "Removed LanHost.models field"},
+      {"mod": "basic_hud", "version": "0.4.1", "code": "E0599", "count": 1, "reason": "Removed Game::guest_hit method"},
+      {"mod": "basic_hud", "version": "0.4.1", "code": "E0063", "count": 1, "reason": "TabInputs initializer omits horizon field"}
+    ]
+  }
+}

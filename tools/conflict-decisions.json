@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
+  "decisions": [
+    {
+      "kept": {"id": "horizon_physics", "version": "0.18.0"},
+      "excluded": {"id": "smoothie_capes", "version": "0.2.0"},
+      "diagnostic": "E_OVERWRITE_CONFLICT",
+      "target": "horizon_client_lib::mobs::render::cape",
+      "decision": "player"
+    },
+    {
+      "kept": {"id": "fullbright_nofog", "version": "1.0.0"},
+      "excluded": {"id": "fullbright", "version": "1.0.0"},
+      "diagnostic": "SHARED_COMMAND_SHADOWING",
+      "target": "native_command: /fullbright",
+      "decision": "player"
+    },
+    {
+      "kept": {"id": "jei", "version": "0.1.0"},
+      "excluded": {"id": "recipes", "version": "2.0.0"},
+      "diagnostic": "SHARED_PANEL_OWNERSHIP",
+      "target": "native_frame: Game::native_panel_items",
+      "decision": "player"
+    },
+    {
+      "kept": {"id": "inventory_profiles", "version": "1.0.0"},
+      "excluded": {"id": "inventory_wizard", "version": "2.3.3"},
+      "diagnostic": "SHARED_INVENTORY_SORTER",
+      "target": "Game::sort_slots",
+      "decision": "player"
+    },
+    {
+      "kept": {"id": "horizon_physics", "version": "0.18.0", "feature": "Ropes"},
+      "excluded": {"id": "light_overlay", "version": "1.0.0"},
+      "diagnostic": "CANCELLABLE_HOOK_SHADOWING",
+      "target": "horizon_client::game::fishing::Game<'_>::fishing_line",
+      "decision": "player"
+    },
+    {
+      "kept": {"id": "horizon_physics", "version": "0.18.0", "feature": "Items"},
+      "excluded": {"id": "fast_items", "version": "0.1.0"},
+      "diagnostic": "CANCELLABLE_HOOK_SHADOWING",
+      "target": "horizon_client::game::item_draw::Game<'_>::dropped_item_geometry",
+      "decision": "player"
+    },
+    {
+      "kept": {"id": "fullbright_nofog", "version": "1.0.0"},
+      "excluded": {"id": "fullbright_horizon", "version": "1.0.0"},
+      "diagnostic": "SHARED_RENDERER_GAMMA",
+      "target": "native_frame: renderer.gamma",
+      "decision": "player"
+    }
+  ]
+}

@@ -1,0 +1,630 @@
+{
+  "inputLockSha256": "5885cb5704ed1640c5ae59e5efff852cc406b22f2629e477f651800cd7bade6e",
+  "projects": {
+    "accurate_block_placement": {
+      "LICENSE": "8298b370d7b46231be2d0b64afad31cba3bbea2d07d9d0cbacf524765d164435"
+    },
+    "appleskin": {
+      "LICENSE": "89afbeeea23396960c9be94f8868d8f9aa0340d3369d855d447ce8fe3eaa70d0"
+    },
+    "armor_status": {
+      "LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
+    },
+    "armorhud": {
+      "LICENSE": "dcea8bcfd17533f158f2a47936966e63bac9d046ff54a3f1b7815fb0b9b710a7"
+    },
+    "basic_hud": {
+      "LICENSE": "ef6bd4705f0344b9b54580ac28ea4ae13aa65ae32b67441ac03e385e7bb7b2ca"
+    },
+    "blockscope": {
+      "LICENSE": "89b53ffa2991281fb2d19027b7074066e17db16a0f1274a99600a2b6ae4abfe8"
+    },
+    "chatheads": {
+      "LICENSE": "89b53ffa2991281fb2d19027b7074066e17db16a0f1274a99600a2b6ae4abfe8"
+    },
+    "connected_textures": {
+      "LICENSE": "8b3833000ff1a038149614e676e29e67eb6979d37c1319b69b4653ec15678d6f"
+    },
+    "coords_hud": {
+      "LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    "crosshair_indicator": {
+      "LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
+    },
+    "crossversion": {
+      "LICENSE": "373bf4d59c8a39187177853e7026704749b89da2b5b5a172a10faf55fe75feb4"
+    },
+    "deepbore_quarry": {
+      "LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
+    },
+    "deepbore_quarry_native": {
+      "LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
+    },
+    "dynamic_fps_for_rust": {
+      "LICENSE": "a923ff088a8547f38b369a8d87e4c3184cc4240265d91cbd3d30110294fcb899"
+    },
+    "eatinganimation": {
+      "LICENSE": "175f8353932baf515f5ddbba49a3137b32753f0f7a2f471ee046cc0f39ba1b54"
+    },
+    "elytratrails": {
+      "LICENSE": "73f9ddf053c8e17cc0f63de439e4cb4cfad67e957fb11a6b548ed60029d7c9de"
+    },
+    "enchantmenthints": {
+      "LICENSE": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f"
+    },
+    "fast_items": {
+      "LICENSE": "349781b0a344c175b8329c7e8b33b03a22aa20bbb90010f7449809a33c4e1a5a"
+    },
+    "fps_overlay": {
+      "LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    "freecam": {
+      "LICENSE": "141c84f24e511301797467fb5edde65aaf3d1454d5e41d90eec37f4249643b5a"
+    },
+    "freelook": {
+      "LICENSE": "6723542b6f5c2b1e1213f3443a828ef0df6ba71a5e816a2c6f35735eb1dfe73e"
+    },
+    "fullbright": {
+      "LICENSE": "0b248328d84117ac28b98ad46137ae3b4823782a48930198464f88ab547a53c2"
+    },
+    "fullbright_horizon": {
+      "LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
+    },
+    "fullbright_nofog": {
+      "LICENSE": "6287bf36b648f11679604b41d1d43f8f7ecaa341702d055dccc297f8cacfd948"
+    },
+    "held_item_info": {
+      "LICENSE": "c639973fe5ce086e5efc84869bfae51b7236675cdfe487b769a725d8963aab13"
+    },
+    "horizon_physics": {
+      "LICENSE": "554a5f7b167d1bd87aac82e3dae9854badeb72ece3526a281a3d08f386e23121"
+    },
+    "horizonmatica": {
+      "LICENSE": "7a3c9b8a5f70a385a3ee75e2f41e968e8e0de935e72e270bd69c06e808897d83"
+    },
+    "inventory_profiles": {
+      "LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
+    },
+    "inventory_wizard": {
+      "LICENSE": "edf3caeb9013b0872c47f226db1e002a57f3b292c44707ee57996263b5205aef"
+    },
+    "invisible_frames": {
+      "LICENSE": "c639973fe5ce086e5efc84869bfae51b7236675cdfe487b769a725d8963aab13"
+    },
+    "itemnew": {
+      "LICENSE": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f"
+    },
+    "jei": {
+      "LICENSE": "ea5b23cef25bcae8a916a77557aabc18c27683db05a4b158af506556e82cb695",
+      "NOTICE": "9f70f627e6b2271b6ce71fba4f31f2769de31b1642c1c241540615dab5998070"
+    },
+    "keystrokes": {
+      "LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    "light_overlay": {
+      "LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
+    },
+    "lookat": {
+      "LICENSE": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f"
+    },
+    "minimap": {
+      "LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    "mod_menu": {
+      "LICENSE": "373bf4d59c8a39187177853e7026704749b89da2b5b5a172a10faf55fe75feb4"
+    },
+    "motion_blur": {
+      "LICENSE": "c3de829dc322870a04fc4c939237dd57f5c18f130731079c95ce3d52d2a61193"
+    },
+    "mousetricks": {
+      "LICENSE": "54f03e4f17769a0ac217b9dec80a467d4b829726a93d3c149e6bfb5aa2330d7f"
+    },
+    "recipes": {
+      "LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    },
+    "resourcify": {
+      "LICENSE": "373bf4d59c8a39187177853e7026704749b89da2b5b5a172a10faf55fe75feb4"
+    },
+    "rightharvest": {
+      "LICENSE": "89b53ffa2991281fb2d19027b7074066e17db16a0f1274a99600a2b6ae4abfe8"
+    },
+    "server_browser": {
+      "LICENSE": "721f224b01b0abbae798e0e01c4ad475abd705065dc409f8ee9f0c7ccadbaad9"
+    },
+    "skins_3d": {
+      "LICENSE": "14192bd91ef9c1ecfdd805fce8a6dbc6bd44a59b9b913a1becf7a99953ca06a2"
+    },
+    "smoothie_capes": {
+      "LICENSE": "fd9d202ef4c3d90797233c45e48c6d08534fc7775cd166c3080293f514942aba"
+    },
+    "speedrun_timer": {
+      "LICENSE": "e50756f3973a2d12f2f74c12acfd7803b00ac4de7520f1e78e407f5584e2fbcc"
+    },
+    "spider_man": {
+      "LICENSE": "ef1bd48547f5ce362ea61f8dd2c0bb2e1a731a9a898144f91943f0b8768e1abe"
+    },
+    "status_effect_hud": {
+      "LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
+    },
+    "tectonic_horizon": {
+      "LICENSE": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "THIRD_PARTY_NOTICES.md": "40240b8153ef5449ff9e92be61deb746eb64a8d47305bcb715630df35af9e94a"
+    },
+    "toggle_sprint": {
+      "LICENSE": "eaed5db04d29d24d94ae84918e08ffc13405b8a3ace61befaf22e9663a3eeaf5"
+    },
+    "veinminer": {
+      "LICENSE": "47bd3e93c428406de289c8309f2cbcac3cb68431afdfa851e140e41cfc1fa5cc"
+    },
+    "visuality_horizon": {
+      "LICENSE": "72fb6da2a2dc0a52367f775ff860972460d96706952dd9d86ea21e52de08a1e8"
+    },
+    "wayfarer_stones": {
+      "LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
+    },
+    "wayfarer_stones_native": {
+      "LICENSE": "82668c7452a721a3d908e5ba0305ab2803364e48a40c29d11aa4774e8400c4f9"
+    },
+    "waymap": {
+      "NOTICE.md": "ff76e8eba19af0d582dccd47e585090656fa38987e76d229a27fb898ee545a93"
+    },
+    "waypoints": {
+      "LICENSE": "73ede67570774f3529380e75734e35ce5b48fb865f150270eac65d5cbf097772"
+    },
+    "zoom": {
+      "LICENSE": "b4b374ae9d0f2d8f7be35c6783e41327431da3b5662605da9ba31493630621df"
+    }
+  },
+  "schemaVersion": 1,
+  "sources": {
+    "accurate_block_placement": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "c69af821c6a9d9d3e6ecc5925a8e2ef3f7e583c7",
+        "url": "https://raw.githubusercontent.com/Lutziano888/horizon-accurate-block-placement/c69af821c6a9d9d3e6ecc5925a8e2ef3f7e583c7/LICENSE"
+      }
+    },
+    "appleskin": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "f0eb5ff3d2db0d6000418cd5744e3a551d2f0acf",
+        "url": "https://raw.githubusercontent.com/soufied/AppleSkin-Horizon/f0eb5ff3d2db0d6000418cd5744e3a551d2f0acf/LICENSE"
+      }
+    },
+    "armor_status": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "b3011de34c62f8c47a1b699f0abfb6d9a1db0f1a",
+        "url": "https://raw.githubusercontent.com/CayMac97/armor-status/b3011de34c62f8c47a1b699f0abfb6d9a1db0f1a/LICENSE"
+      }
+    },
+    "armorhud": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "3ee237dc6d70b0014443454be6a743d630053cb8",
+        "url": "https://raw.githubusercontent.com/Thomas-Slot/horizon-armor-hud/3ee237dc6d70b0014443454be6a743d630053cb8/LICENSE"
+      }
+    },
+    "basic_hud": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "55c63f078274e1ebf3d0cbc568a41e4322fd0406",
+        "url": "https://raw.githubusercontent.com/repositorykreml1n/the-basic-hud/55c63f078274e1ebf3d0cbc568a41e4322fd0406/LICENSE"
+      }
+    },
+    "blockscope": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "66d3ee27cba04ff1093b3dd999657aa1fb659f0f",
+        "url": "https://raw.githubusercontent.com/Domanffe/blockscope/66d3ee27cba04ff1093b3dd999657aa1fb659f0f/LICENSE"
+      }
+    },
+    "chatheads": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "c052d3fbd9e38dcd247c34be5e8f580de42cf94a",
+        "url": "https://raw.githubusercontent.com/Domanffe/chatheads/c052d3fbd9e38dcd247c34be5e8f580de42cf94a/LICENSE"
+      }
+    },
+    "connected_textures": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "cd5301759efef6b1819ed7a8590a0d76e15d6d7e",
+        "url": "https://raw.githubusercontent.com/tariksabanuz/ContinuityHorizon/cd5301759efef6b1819ed7a8590a0d76e15d6d7e/LICENSE"
+      }
+    },
+    "coords_hud": {
+      "LICENSE": {
+        "basis": "source-ref",
+        "kind": "official-source",
+        "revision": "d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236",
+        "url": "https://raw.githubusercontent.com/horizon-rust/horizon-mods/d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236/native/coords-hud/LICENSE"
+      }
+    },
+    "crosshair_indicator": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "8a0307288827ee735cd0c57c8d9ae5eba38f5330",
+        "url": "https://raw.githubusercontent.com/CayMac97/crosshair-indicator/8a0307288827ee735cd0c57c8d9ae5eba38f5330/LICENSE"
+      }
+    },
+    "crossversion": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "4cf264981036b46aacb35179e28ec29177fe4289",
+        "url": "https://raw.githubusercontent.com/JustKarkat/horizon-crossversion/4cf264981036b46aacb35179e28ec29177fe4289/LICENSE"
+      }
+    },
+    "deepbore_quarry": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "2d80fd35da08821f6784d8ec40f3359e7bae87d6",
+        "url": "https://raw.githubusercontent.com/Bioneisme/deepbore-quarry/2d80fd35da08821f6784d8ec40f3359e7bae87d6/LICENSE"
+      }
+    },
+    "deepbore_quarry_native": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/deepbore_quarry_native/LICENSE"
+      }
+    },
+    "dynamic_fps_for_rust": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/dynamic_fps_for_rust/LICENSE"
+      }
+    },
+    "eatinganimation": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "78532958cfccf97727eb97316513f311a5d7c02e",
+        "url": "https://raw.githubusercontent.com/soufied/EatingAnimation-Horizon/78532958cfccf97727eb97316513f311a5d7c02e/LICENSE"
+      }
+    },
+    "elytratrails": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "423dfe71c1a9fd0b3e08e547aa7b39907de0079e",
+        "url": "https://raw.githubusercontent.com/soufied/ElytraTrails-Horizon/423dfe71c1a9fd0b3e08e547aa7b39907de0079e/LICENSE"
+      }
+    },
+    "enchantmenthints": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "b7427acc01bc457fef0f5347f54eaa5a795e49d0",
+        "url": "https://raw.githubusercontent.com/d3grando/enchantmenthints/b7427acc01bc457fef0f5347f54eaa5a795e49d0/LICENSE"
+      }
+    },
+    "fast_items": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/fast_items/LICENSE"
+      }
+    },
+    "fps_overlay": {
+      "LICENSE": {
+        "basis": "source-ref",
+        "kind": "official-source",
+        "revision": "d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236",
+        "url": "https://raw.githubusercontent.com/horizon-rust/horizon-mods/d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236/native/fps-overlay/LICENSE"
+      }
+    },
+    "freecam": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "3f357dff4cafa43357f610fbe39b3bb931a90c0c",
+        "url": "https://raw.githubusercontent.com/hakergeniusz/freecam/3f357dff4cafa43357f610fbe39b3bb931a90c0c/LICENSE"
+      }
+    },
+    "freelook": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "95a04133e64a5d9e5bde4dc4ee0fdc3a74f5c1ff",
+        "url": "https://raw.githubusercontent.com/Krzysix17/horizon-freelook/95a04133e64a5d9e5bde4dc4ee0fdc3a74f5c1ff/LICENSE"
+      }
+    },
+    "fullbright": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "94b3a536109303f5a94da528767f6f860f56e6bf",
+        "url": "https://raw.githubusercontent.com/bezi5kt/gamma-rust/94b3a536109303f5a94da528767f6f860f56e6bf/LICENSE"
+      }
+    },
+    "fullbright_horizon": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "2d3cdd8bdd9d373623ac70f5dd20fcc56426277f",
+        "url": "https://raw.githubusercontent.com/CayMac97/fullbright/2d3cdd8bdd9d373623ac70f5dd20fcc56426277f/LICENSE"
+      }
+    },
+    "fullbright_nofog": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "e56e6c2671629ac2ab347adc32e10f5eae02e4ee",
+        "url": "https://raw.githubusercontent.com/Nirokx/horizon-fullbright-nofog/e56e6c2671629ac2ab347adc32e10f5eae02e4ee/LICENSE"
+      }
+    },
+    "held_item_info": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/held_item_info/LICENSE"
+      }
+    },
+    "horizon_physics": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "50c480c0c2ef1026657df1d669cf3b09f127e31b",
+        "url": "https://raw.githubusercontent.com/tariksabanuz/PhysicsModHorizon/50c480c0c2ef1026657df1d669cf3b09f127e31b/LICENSE"
+      }
+    },
+    "horizonmatica": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "7523a16fd05d1ab0ab2e089648adae31b51da169",
+        "url": "https://raw.githubusercontent.com/keksi2k/horizonmatica/7523a16fd05d1ab0ab2e089648adae31b51da169/LICENSE"
+      }
+    },
+    "inventory_profiles": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "2debe59c0e072bd6c4596da0aecfd0f2c8167756",
+        "url": "https://raw.githubusercontent.com/CayMac97/inventory-profiles/2debe59c0e072bd6c4596da0aecfd0f2c8167756/LICENSE"
+      }
+    },
+    "inventory_wizard": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "c0c12245cb013178c75c7fba9daf7ab465a80d3a",
+        "url": "https://raw.githubusercontent.com/VanishingTacos/InventoryWizard-Horizon/c0c12245cb013178c75c7fba9daf7ab465a80d3a/LICENSE"
+      }
+    },
+    "invisible_frames": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/invisible_frames/LICENSE"
+      }
+    },
+    "itemnew": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "98d86210c4042f02c0f13dd1ca571164d626cc3e",
+        "url": "https://raw.githubusercontent.com/d3grando/itemnew/98d86210c4042f02c0f13dd1ca571164d626cc3e/LICENSE"
+      }
+    },
+    "jei": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "6c58705da84e949368298b85b9dc08f0e6cb499c",
+        "url": "https://raw.githubusercontent.com/enderliker/horizon-jei/6c58705da84e949368298b85b9dc08f0e6cb499c/LICENSE"
+      },
+      "NOTICE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "6c58705da84e949368298b85b9dc08f0e6cb499c",
+        "url": "https://raw.githubusercontent.com/enderliker/horizon-jei/6c58705da84e949368298b85b9dc08f0e6cb499c/NOTICE"
+      }
+    },
+    "keystrokes": {
+      "LICENSE": {
+        "basis": "source-ref",
+        "kind": "official-source",
+        "revision": "d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236",
+        "url": "https://raw.githubusercontent.com/horizon-rust/horizon-mods/d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236/native/keystrokes/LICENSE"
+      }
+    },
+    "light_overlay": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "38ce37871d02744de3ae78b9a0dd54445593e2ab",
+        "url": "https://raw.githubusercontent.com/CayMac97/light-overlay/38ce37871d02744de3ae78b9a0dd54445593e2ab/LICENSE"
+      }
+    },
+    "lookat": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "ff5f6f31ed06184a5fcc30ad51f5c853d13d2449",
+        "url": "https://raw.githubusercontent.com/d3grando/lookat/ff5f6f31ed06184a5fcc30ad51f5c853d13d2449/LICENSE"
+      }
+    },
+    "minimap": {
+      "LICENSE": {
+        "basis": "source-ref",
+        "kind": "official-source",
+        "revision": "d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236",
+        "url": "https://raw.githubusercontent.com/horizon-rust/horizon-mods/d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236/native/minimap/LICENSE"
+      }
+    },
+    "mod_menu": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "caec7c4c3a2c6c7746a97d137ccf8f8904801e72",
+        "url": "https://raw.githubusercontent.com/tariksabanuz/ModMenuHorizon/caec7c4c3a2c6c7746a97d137ccf8f8904801e72/LICENSE"
+      }
+    },
+    "motion_blur": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "30a4929fd0ec81390437c23cd79c0f3031d3dfd3",
+        "url": "https://raw.githubusercontent.com/levzzz5154/horizon-motion-blur/30a4929fd0ec81390437c23cd79c0f3031d3dfd3/LICENSE"
+      }
+    },
+    "mousetricks": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "99fa1d49216877506b0e5124d42a785d5ace1e09",
+        "url": "https://raw.githubusercontent.com/d3grando/mousetricks/99fa1d49216877506b0e5124d42a785d5ace1e09/LICENSE"
+      }
+    },
+    "recipes": {
+      "LICENSE": {
+        "basis": "source-ref",
+        "kind": "official-source",
+        "revision": "d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236",
+        "url": "https://raw.githubusercontent.com/horizon-rust/horizon-mods/d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236/native/recipes/LICENSE"
+      }
+    },
+    "resourcify": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "364648324ac0e67489a3f06faa716d96d24668ed",
+        "url": "https://raw.githubusercontent.com/tariksabanuz/ResourcifyHorizon/364648324ac0e67489a3f06faa716d96d24668ed/LICENSE"
+      }
+    },
+    "rightharvest": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "dd9c9fa016c89d62a621a8c4f8aff7d342df4fc6",
+        "url": "https://raw.githubusercontent.com/Domanffe/rightharvest/dd9c9fa016c89d62a621a8c4f8aff7d342df4fc6/LICENSE"
+      }
+    },
+    "server_browser": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/server_browser/LICENSE"
+      }
+    },
+    "skins_3d": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "0a6cf4e6f550af271b03c52b65f1141d1431ca4d",
+        "url": "https://raw.githubusercontent.com/umbx-dot/horizon-3d-skins/0a6cf4e6f550af271b03c52b65f1141d1431ca4d/LICENSE"
+      }
+    },
+    "smoothie_capes": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/smoothie_capes/LICENSE"
+      }
+    },
+    "speedrun_timer": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/speedrun_timer/LICENSE"
+      }
+    },
+    "spider_man": {
+      "LICENSE": {
+        "kind": "mod-archive",
+        "path": "mixins/spider_man/LICENSE"
+      }
+    },
+    "status_effect_hud": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "9342baed4177e278e62cdf9c618be66622768bff",
+        "url": "https://raw.githubusercontent.com/CayMac97/status-effect-hud/9342baed4177e278e62cdf9c618be66622768bff/LICENSE"
+      }
+    },
+    "tectonic_horizon": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "6f69f2b64a41f0cad09f87840cbdb104138c54c3",
+        "url": "https://raw.githubusercontent.com/eltanschauung/tectonic-horizon/6f69f2b64a41f0cad09f87840cbdb104138c54c3/LICENSE"
+      },
+      "THIRD_PARTY_NOTICES.md": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "6f69f2b64a41f0cad09f87840cbdb104138c54c3",
+        "url": "https://raw.githubusercontent.com/eltanschauung/tectonic-horizon/6f69f2b64a41f0cad09f87840cbdb104138c54c3/THIRD_PARTY_NOTICES.md"
+      }
+    },
+    "toggle_sprint": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "c30b952a3c130c253fbeafcec27705b59b414ec0",
+        "url": "https://raw.githubusercontent.com/CayMac97/toggle-sprint/c30b952a3c130c253fbeafcec27705b59b414ec0/LICENSE"
+      }
+    },
+    "veinminer": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "ecd53d031fd479931bf5aca9dce63c03200ef796",
+        "url": "https://raw.githubusercontent.com/levzzz5154/horizon-veinminer/ecd53d031fd479931bf5aca9dce63c03200ef796/LICENSE"
+      }
+    },
+    "visuality_horizon": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "7c9a3d968b75cab8d50bff1e54ef2b650585c684",
+        "url": "https://raw.githubusercontent.com/BenjiSyS/visuality-horizon/7c9a3d968b75cab8d50bff1e54ef2b650585c684/LICENSE"
+      }
+    },
+    "wayfarer_stones": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "d1c49f95c7280bb1c904ad4ffabc80d160ff9ab3",
+        "url": "https://raw.githubusercontent.com/Bioneisme/wayfarer-stones/d1c49f95c7280bb1c904ad4ffabc80d160ff9ab3/LICENSE"
+      }
+    },
+    "wayfarer_stones_native": {
+      "LICENSE": {
+        "basis": "source-head",
+        "kind": "official-source",
+        "revision": "d1c49f95c7280bb1c904ad4ffabc80d160ff9ab3",
+        "url": "https://raw.githubusercontent.com/Bioneisme/wayfarer-stones/d1c49f95c7280bb1c904ad4ffabc80d160ff9ab3/LICENSE"
+      }
+    },
+    "waymap": {
+      "NOTICE.md": {
+        "kind": "mod-archive",
+        "path": "mixins/waymap/NOTICE.md"
+      }
+    },
+    "waypoints": {
+      "LICENSE": {
+        "basis": "release-tag",
+        "kind": "official-source",
+        "revision": "10511637e34b3a0c236a5407401fde6fc2c31ab2",
+        "url": "https://raw.githubusercontent.com/Nirokx/horizon-waypoints/10511637e34b3a0c236a5407401fde6fc2c31ab2/LICENSE"
+      }
+    },
+    "zoom": {
+      "LICENSE": {
+        "basis": "source-ref",
+        "kind": "official-source",
+        "revision": "d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236",
+        "url": "https://raw.githubusercontent.com/horizon-rust/horizon-mods/d2de4c18de0cfc4c1e4f193f2ec09b47adb0d236/native/zoom/LICENSE"
+      }
+    }
+  },
+  "unresolved": {}
+}

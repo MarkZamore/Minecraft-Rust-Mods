@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 2,
+  "minecraftVersion": "26.3",
+  "nativeRuntime": {
+    "executable": "native/launch-rust-edition.exe",
+    "platform": "windows-x64",
+    "adapter": "portable-native",
+    "version": "nightly-2026-11-05-66f3981-mods-r1"
+  }
+}
