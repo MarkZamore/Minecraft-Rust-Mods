@@ -1,0 +1,173 @@
+{
+  "release": {
+    "revision": "580f83cc07700d3e1cd38152bcdba99cd92d5488",
+    "publicReadback": "PASS",
+    "assets": [
+      {
+        "name": "library-12d9ec524f5bd8cefe8aee5d93e2985c5c5868b92b3abde876702c86a76d776f.zip",
+        "sizeBytes": 1268192,
+        "sha256": "12d9ec524f5bd8cefe8aee5d93e2985c5c5868b92b3abde876702c86a76d776f"
+      },
+      {
+        "name": "minecraft-rust-mods-launcher-df353638cb2e18106ae9d9d59a31d73987049f627b897a2eda3481c88cc90b9b.zip",
+        "sizeBytes": 972,
+        "sha256": "df353638cb2e18106ae9d9d59a31d73987049f627b897a2eda3481c88cc90b9b"
+      },
+      {
+        "name": "minecraft-rust-mods-windows-x64-237c7d743a6f9aa080ac32079d242c61d678b3b48b2f840ef834578563562c57.zip",
+        "sizeBytes": 38471550,
+        "sha256": "237c7d743a6f9aa080ac32079d242c61d678b3b48b2f840ef834578563562c57"
+      },
+      {
+        "name": "pack-manifest.json",
+        "sizeBytes": 156549,
+        "sha256": "0e704f760a410fab0e5f3908e47b870e80af99387996e7472b5dafe9aa3239e4"
+      }
+    ]
+  },
+  "catalog": {
+    "commit": "b77d60236de5f7b6a6ab6a85804d6bbcc5c18d8a",
+    "previousBlob": "745e18b384a318ced19d6875394cc670549b160a",
+    "blob": "4f748a80417fb530a9c0617211afaa94774ea60f",
+    "previousCount": 9,
+    "count": 10,
+    "entry": {
+      "id": "minecraft-10",
+      "relativePath": "Minecraft Rust Mods",
+      "source": {
+        "owner": "MarkZamore",
+        "repo": "Minecraft-Rust-Mods",
+        "tag": "pack-latest"
+      }
+    }
+  },
+  "coldCatalogCheck": {
+    "publicCatalog": "PASS",
+    "sourceCount": 10,
+    "launcherAssemblySha256": "64aa679750439cf22e36c090b9d70524f70f062c6686f5adc10ba2e33892243d",
+    "cards": [
+      {
+        "id": "minecraft-9",
+        "name": "Minecraft Rust Edition",
+        "revision": "d340972de9491d4f13349f6d7e3162986ea93632",
+        "mods": 0,
+        "displayMods": 0,
+        "previewWidth": 1280
+      },
+      {
+        "id": "minecraft-10",
+        "name": "Minecraft Rust Mods",
+        "revision": "580f83cc07700d3e1cd38152bcdba99cd92d5488",
+        "mods": 43,
+        "displayMods": 43,
+        "previewWidth": 1280
+      }
+    ]
+  },
+  "presets": {
+    "catalogCommit": "b77d60236de5f7b6a6ab6a85804d6bbcc5c18d8a",
+    "packs": [
+      {
+        "id": "all-the-mods-10",
+        "relativePath": "All The Mods 10",
+        "revision": "70c6cf051fb52dc0aa7703e3bb861e99928be950",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 41745,
+          "sha256": "4dabc94769baf569b24a8f8df68593b652ce3b28e8cf086c8a4f89cb5100e51c"
+        }
+      },
+      {
+        "id": "terrafirma-rebirth",
+        "relativePath": "TerraFirma Rebirth",
+        "revision": "a92d0d4cb05be9137d13fdabc66fbdade0e9c83a",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 16923,
+          "sha256": "dfa1a153069c433e3db403b94d9bfe00ff258aa2cef95503e8c1cd20d162b698"
+        }
+      },
+      {
+        "id": "minecraft-26-2",
+        "relativePath": "Minecraft 26.3",
+        "revision": "94b112b3721cdd689adaa41c47a1c79c192b898f",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 3005,
+          "sha256": "b59348d914d666b1c0b6739a50f267d944180bd3e647a1c897f62ce0ba069524"
+        }
+      },
+      {
+        "id": "caves-and-dungeons",
+        "relativePath": "Caves and Dungeons",
+        "revision": "614706a7fe7b3a5ffc0f14c58b4f99f50015abe7",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 7730,
+          "sha256": "61fa1076a25ef1f0d6138ce85a61c0bad3e55ace65eff8c815d3f29b6f5f74cd"
+        }
+      },
+      {
+        "id": "all-the-mods-9",
+        "relativePath": "All The Mods 9",
+        "revision": "9270ef1f1a1c66734de199e1a46b8a04d2287704",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 27749,
+          "sha256": "180653847d8ff8b70deee595c1b38e51b23c6aacface960abdd10bd62f89be91"
+        }
+      },
+      {
+        "id": "all-the-mods-9-modified",
+        "relativePath": "All the Mods 9 Modified",
+        "revision": "f180e69d8e2fc01849c43e8ce2298ef27e2413cb",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 30694,
+          "sha256": "946884959426d949ace22d3d75dd92086de3cf60409c9f6c4c7bd355c2d4120d"
+        }
+      },
+      {
+        "id": "attack-on-titan",
+        "relativePath": "Awakening Of The Titans",
+        "revision": "6141d10b33b2b63389394b550cbc385acd32055d",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 12137,
+          "sha256": "43bc3aefb09e887b61f7d9f7baa25b095b5ded3fb5d654d698d09cffffc9aca0"
+        }
+      },
+      {
+        "id": "better-than-wolves",
+        "relativePath": "Better Than Wolves",
+        "revision": "89ad2a3ecdb2b1773e0bc619d8eb3c2441097926",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 414,
+          "sha256": "c2d3cfefa8b5ba131dc43ec327183f996d2986be6526905059d0d186e02e6704"
+        }
+      },
+      {
+        "id": "minecraft-9",
+        "relativePath": "Minecraft Rust Edition",
+        "revision": "d340972de9491d4f13349f6d7e3162986ea93632",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 2582,
+          "sha256": "969b87fe9c5063c2e0bc5dfd5bccfe3dea24bf15c8b2114085927268caa75cb8"
+        }
+      },
+      {
+        "id": "minecraft-10",
+        "relativePath": "Minecraft Rust Mods",
+        "revision": "580f83cc07700d3e1cd38152bcdba99cd92d5488",
+        "preset": {
+          "path": "launcher/controls-preset.txt",
+          "sizeBytes": 2582,
+          "sha256": "969b87fe9c5063c2e0bc5dfd5bccfe3dea24bf15c8b2114085927268caa75cb8"
+        }
+      }
+    ],
+    "missing": []
+  }
+}
