@@ -1,0 +1,74 @@
+{
+  "revision": "9bbf7c283d8318510345b11e57b7467ea02f72f7",
+  "checkedUtc": "2026-11-07T16:17:27.761355+00:00",
+  "archivesBeforeManifest": true,
+  "assets": [
+    {
+      "name": "minecraft-rust-mods-windows-x64-23ea4aed7ac31c97b7432141c95b8a437453e1acb4ae850f291b90376e808df8.zip",
+      "sizeBytes": 39886682,
+      "sha256": "23ea4aed7ac31c97b7432141c95b8a437453e1acb4ae850f291b90376e808df8",
+      "readback": "PASS"
+    },
+    {
+      "name": "minecraft-rust-mods-launcher-a1c1f3464ef5c5eb97ca96a136a5dfc20799707dc3830637d72fd5e6901d7553.zip",
+      "sizeBytes": 1025,
+      "sha256": "a1c1f3464ef5c5eb97ca96a136a5dfc20799707dc3830637d72fd5e6901d7553",
+      "readback": "PASS"
+    },
+    {
+      "name": "minecraft-rust-mods-orbital-content-f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809.zip",
+      "sizeBytes": 32986396,
+      "sha256": "f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809",
+      "readback": "PASS"
+    },
+    {
+      "name": "library-854d8e4ef272edaa30cb741768602760969a540647a78d59e4b8ef4237c06161.zip",
+      "sizeBytes": 1268073,
+      "sha256": "854d8e4ef272edaa30cb741768602760969a540647a78d59e4b8ef4237c06161",
+      "readback": "PASS"
+    }
+  ],
+  "modCount": 40,
+  "minecraftVersion": "26.3",
+  "libraryMetadata": "PASS",
+  "manifestPublished": true,
+  "publicReadback": "PASS",
+  "manifest": {
+    "name": "pack-manifest.json",
+    "sizeBytes": 155824,
+    "sha256": "f0ea4746b660b48dd34db53c1d892e36bdfcfc2c6bd8723063594c0b6020c7f0"
+  },
+  "updatePreservation": {
+    "status": "PASS",
+    "oldRevision": "ba7f9896830463113152ea2f4aa67765f8f238be",
+    "newRevision": "9bbf7c283d8318510345b11e57b7467ea02f72f7",
+    "launcherAssemblySha256": "88343d2195fe3ca913272ec2c0217f41597a8df7ecce16018a80f0f0f8cfff39",
+    "managedFilesVerified": 504,
+    "personalFilesPreserved": [
+      "options.txt",
+      "horizon-graphics.txt",
+      "horizon-mods.txt",
+      "config/horizon_physics.txt",
+      "config/tectonic-horizon.json",
+      "saves/BootstrapUpdateQa/level.dat",
+      "saves/BootstrapUpdateQa/playerdata/qa.dat",
+      "backups/personal.zip"
+    ],
+    "update": "PASS",
+    "idempotence": "PASS",
+    "wpfPresentation": "PASS",
+    "versionLabel": "Minecraft 26.3 (40 модов)",
+    "fixtureRemoved": true
+  },
+  "launcherSourceRevision": "53ca4e2584afd84c0b5a0808720f7a2835feb2f9",
+  "scope": {
+    "startupAndMenu": "PASS",
+    "independentPreparation": "PASS",
+    "gameplay": "NOT RUN",
+    "previousWorldMigration": "NOT RUN",
+    "liveTwoAccountSteam": "NOT RUN",
+    "RadeonRx6600": "NOT RUN"
+  },
+  "packOwnedSettings": "Preserved accepted mod client, content, controls, compatibility overlays and existing-world backup guard. No new launcher settings exceptions.",
+  "publicAssetOrder": "PASS"
+}
