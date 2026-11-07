@@ -78,7 +78,7 @@ def smoke(args):
     expected_title = None
     external_config = None
     instance_config = None
-    if args.minecraft is not None:
+    if args.bootstrap or args.minecraft is not None:
         descriptor = load(args.candidate / "portable-pack.json")
         standalone = (args.candidate / descriptor["nativeRuntime"]["executable"], args.minecraft, args.java, args.cache)
         presentation = load(args.candidate / "native/presentation.json")
@@ -286,16 +286,20 @@ def main():
         parser.add_argument("--" + field, required=True, type=lambda value: Path(value).resolve())
     for field in ("resources", "minecraft", "java", "cache"):
         parser.add_argument("--" + field, type=lambda value: Path(value).resolve())
+    parser.add_argument("--bootstrap", action="store_true",
+                        help="run the packaged bootstrap, allowing independent preparation without Minecraft or Java")
     parser.add_argument("--previous-qa", type=lambda value: Path(value).resolve(),
                         help="prior public release smoke instance with old-save-evidence.json")
     parser.add_argument("--startup-only", action="store_true", help="verify startup and menu without opening a world")
     parser.add_argument("--retry-startup", action="store_true",
                         help="reset the test settings and reuse an unfinished startup-only QA directory")
     args = parser.parse_args()
-    paths = (args.minecraft, args.java, args.cache)
-    if (args.resources is not None and any(paths)) or (args.resources is None and not all(paths)):
-        parser.error("Use prepared --resources, or bootstrap with --minecraft, --java and the shared --cache")
-    if args.startup_only and (args.previous_qa is not None or args.minecraft is None):
+    paths = (args.bootstrap, args.minecraft, args.java, args.cache)
+    if (args.resources is not None and any(paths)) or (args.resources is None and args.cache is None):
+        parser.error("Use prepared --resources, or --bootstrap with --cache and optional --minecraft and --java")
+    if args.resources is None:
+        args.bootstrap = True
+    if args.startup_only and (args.previous_qa is not None or not args.bootstrap):
         parser.error("Startup-only QA uses the bootstrap and excludes prior-world migration")
     if args.retry_startup and not args.startup_only:
         parser.error("Retry-startup applies only to startup-only QA")

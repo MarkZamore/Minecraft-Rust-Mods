@@ -1,0 +1,61 @@
+{
+  "upstreamSignature": "PASS",
+  "managedFilesChanged": [
+    "native/launch-rust-edition.exe",
+    "native/native-mods.json"
+  ],
+  "modClientSha256": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05",
+  "bootstrapSha256": "41e8adeb1560a4cb14d3809f225505edbbf581449c11fb638ec6b597ed75cf11",
+  "modCount": 40,
+  "selectionAndSettings": "PASS",
+  "schemaVersion": 1,
+  "checkedUtc": "2026-11-07T16:14:18.415139+00:00",
+  "baseRevision": "4757a85113b2b6b6f806901588572ca5fc82a0f0",
+  "includesEditionRevision": "597328c9c60a3e36ae09b08f5a6669367d1d30ac",
+  "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
+  "independentPreparation": {
+    "result": "PASS",
+    "externalMinecraft": false,
+    "externalJava": false,
+    "emptyCache": true,
+    "minecraftInputs": 5262,
+    "preparedFiles": 28178,
+    "javaMajor": 25,
+    "warmCacheVerified": "PASS",
+    "timeToTitleSeconds": [
+      460.98,
+      6.03
+    ],
+    "command": "python -B tools/smoke_runtime.py --base-repo <pinned-base> --candidate <candidate> --controller <horizon-ctl.exe> --qa <qa> --bootstrap --cache <empty-cache> --startup-only"
+  },
+  "windowsStartup": "PASS",
+  "controlsPreset": {
+    "mappingCount": 63,
+    "sha256": "e17888a0954e7b357cb34101f172f7f03046c588c49c584f0a64f615955c11b7",
+    "runtimeRoundTrip": "PASS"
+  },
+  "modRegistrations": {
+    "native": 38,
+    "content": [
+      [
+        "orbital",
+        "0.5.9"
+      ]
+    ],
+    "withoutModsRow": [
+      "dynamic_fps_for_rust",
+      "veinminer"
+    ]
+  },
+  "libraryGeneratorTests": {
+    "passed": 19,
+    "failed": 0
+  },
+  "scope": {
+    "gameplay": "NOT RUN",
+    "previousWorldMigration": "NOT RUN",
+    "liveTwoAccountSteam": "NOT RUN",
+    "RadeonRx6600": "NOT RUN",
+    "launcherSettingsExceptions": []
+  }
+}

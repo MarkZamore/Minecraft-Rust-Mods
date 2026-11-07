@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "clientSha256": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05",
   "mode": "startup-menu",
-  "reusedQaDirectory": true,
+  "reusedQaDirectory": false,
   "gameplay": "NOT RUN",
   "previousWorldMigration": "NOT RUN",
   "previewSha256": null,
@@ -57,7 +57,7 @@
     "veinminer"
   ],
   "modsPage": {
-    "frame": 427,
+    "frame": 329,
     "gui_size": [
       427.0,
       240.0
@@ -273,7 +273,7 @@
   "worldsOnReopen": null,
   "firstState": null,
   "reopenedState": null,
-  "bootstrapSha256": "eb90ce18a028f8c7d18f96cb61d7de3de5b9d9ac7b542e1fdb8d4e2f44e6a04b",
+  "bootstrapSha256": "41e8adeb1560a4cb14d3809f225505edbbf581449c11fb638ec6b597ed75cf11",
   "windowTitle": "Minecraft Rust Mods",
   "persistedModItems": [],
   "tectonicInstanceConfig": "NOT RUN",
@@ -284,8 +284,8 @@
     "runtimeRoundTrip": "PASS"
   },
   "timeToTitleSeconds": [
-    14.09,
-    10.3
+    460.98,
+    6.03
   ],
   "startupMouse": {
     "onboardingNarratorButton": {
@@ -349,9 +349,6 @@
       "observation": "The client created game/config/dynamic-fps-for-rust.json with focused_fps and idle_fps."
     }
   ],
-  "windowsDefender": {
-    "horizon-client.exe": "PASS"
-  },
   "orbitalGameplay": "NOT RUN",
   "veinminerGameplay": "NOT RUN",
   "liveTwoPlayerSteam": "NOT RUN"

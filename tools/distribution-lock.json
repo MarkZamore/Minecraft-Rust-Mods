@@ -399,8 +399,8 @@
       "sha256": "007836f4354d51241314f564d0ac184ca70fa2d39ea4c56a2a699162f9707d48"
     },
     "native/launch-rust-edition.exe": {
-      "sizeBytes": 2835968,
-      "sha256": "eb90ce18a028f8c7d18f96cb61d7de3de5b9d9ac7b542e1fdb8d4e2f44e6a04b"
+      "sizeBytes": 2885120,
+      "sha256": "41e8adeb1560a4cb14d3809f225505edbbf581449c11fb638ec6b597ed75cf11"
     },
     "native/mods/horizon/src/test/java/dev/horizonlab/parity/ElderCurseTranscript.java": {
       "sizeBytes": 2076,
@@ -1784,7 +1784,7 @@
     },
     "native/native-mods.json": {
       "sizeBytes": 6191,
-      "sha256": "6395f37a9ebd8890f5f66434694664fad2ca9e0e4a79877a183bf724aee0f707"
+      "sha256": "e57b889c3d4b9bf0bd7cd8e2416011c7a9d6542150dfe9cc7e565a3ee7dc3ece"
     },
     "native/presentation.json": {
       "sizeBytes": 125,
@@ -2019,11 +2019,11 @@
       "sha256": "bb459fee9f3904eb347837f6be7a5fcf6891a96306f173c4b31bb8b611f0cbfc"
     }
   },
-  "bootstrapLockSha256": "116d31894476cf8930dc4ecbc5e1c5320418cd9f25eae570d482aaf2a376ab41",
+  "bootstrapLockSha256": "c8a20015bb54aa948aead648d11297485a43533e17a1f9e48967e382ffb9cbc3",
   "library": {
     "content.json": {
-      "sizeBytes": 882,
-      "sha256": "b07fa4cb3fba641dce226c7de545b0417d06b1daca7bcea7eb1090329aebf7ff"
+      "sizeBytes": 662,
+      "sha256": "05b3c9bad723b1c8fc19cf1fde96a8a7900d9aedc2099664a6ae14b312c2819e"
     },
     "mod-pages.json": {
       "sizeBytes": 2882,
@@ -2031,7 +2031,7 @@
     },
     "loaded-mods.json": {
       "sizeBytes": 83960,
-      "sha256": "213220a1fafa2543aa7bc7f94c0b5061cd97cced7445f9bb75dced8bc590ae3d"
+      "sha256": "665cef0fd4d56a122f8305283ddf41ed19b20c8fc7d6bd69b93930cbb8038a81"
     },
     "preview.jpg": {
       "sizeBytes": 1265673,

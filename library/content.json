@@ -2,13 +2,13 @@
   "id": "minecraft-10",
   "relativePath": "Minecraft Rust Mods",
   "name": "Minecraft Rust Mods",
-  "summary": "Minecraft 26.3 на движке Horizon со сборкой совместимых Rust-модов.",
-  "description": "Исследуйте и стройте в мире Minecraft 26.3 на движке Horizon. Ищите предметы и рецепты через JEI, наблюдайте эффекты PhysicsModHorizon и вызывайте орбитальные удары с целеуказателем Orbital Laser. Точный состав и версии приведены в списке модов.",
+  "summary": "",
+  "description": "Исследуйте и стройте в мире Minecraft 26.3 на движке Horizon. Ищите предметы и рецепты через JEI, наблюдайте эффекты PhysicsModHorizon и вызывайте орбитальные удары с целеуказателем Orbital Laser.",
+  "showNativeProject": false,
   "nativeProject": {
     "name": "Horizon",
     "version": "Nightly 2026-11-05",
-    "revision": "66f3981f522b24c250b21523a70080965b940424",
-    "websiteUrl": "https://github.com/horizon-rust/horizon"
+    "revision": "66f3981f522b24c250b21523a70080965b940424"
   },
   "libraryIds": [],
   "parents": {}

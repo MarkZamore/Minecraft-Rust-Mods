@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "source": "https://github.com/MarkZamore/Minecraft-Rust-Edition/tree/d340972de9491d4f13349f6d7e3162986ea93632/launcher/standalone",
-  "sourceRevision": "d340972de9491d4f13349f6d7e3162986ea93632",
-  "sizeBytes": 2835968,
-  "sha256": "eb90ce18a028f8c7d18f96cb61d7de3de5b9d9ac7b542e1fdb8d4e2f44e6a04b"
+  "source": "https://github.com/MarkZamore/Minecraft-Rust-Edition/tree/4757a85113b2b6b6f806901588572ca5fc82a0f0/launcher/standalone",
+  "sourceRevision": "4757a85113b2b6b6f806901588572ca5fc82a0f0",
+  "sizeBytes": 2885120,
+  "sha256": "41e8adeb1560a4cb14d3809f225505edbbf581449c11fb638ec6b597ed75cf11"
 }
