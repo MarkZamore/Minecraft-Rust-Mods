@@ -161,6 +161,7 @@ def server_view(control, file, expected_names, desktop_keys):
     """Observe actual native view buttons/rows; never click a server or join it."""
     initial = file.read_bytes() if file.exists() else None
     observed = []
+    warnings = []
 
     def unchanged():
         current = file.read_bytes() if file.exists() else None
@@ -191,9 +192,24 @@ def server_view(control, file, expected_names, desktop_keys):
                          "savedButtonEnabled": nodes["saved-servers"]["enabled"],
                          "serversDatSha256": unchanged()})
 
+    def open_multiplayer(action):
+        control("click", "multiplayer")
+        ui = wait_ui(control, lambda state: set(VIEW_IDS) <= {row["id"] for row in state["widgets"]}
+                     or {"proceed", "back"} <= {row["id"] for row in state["widgets"]},
+                     "Multiplayer did not render its list or ordinary warning")
+        nodes = {row["id"]: row for row in ui["widgets"]}
+        if not set(VIEW_IDS) <= nodes.keys():
+            if nodes["proceed"].get("enabled") is not True:
+                raise ValueError("The ordinary multiplayer warning's Proceed button is disabled")
+            control("click", "proceed")
+            warnings.append({"action": action, "acceptedWidget": "proceed", "enabled": True,
+                             "warningWidgetIds": list(nodes)})
+        # A repeated warning after this one click fails through the normal
+        # snapshot wait. Never change skipMultiplayerWarning or bypass the UI.
+        snapshot(action, "steam")
+
     title()
-    control("click", "multiplayer")
-    snapshot("open-multiplayer", "steam")
+    open_multiplayer("open-multiplayer")
     control("click", "server-list-refresh")
     snapshot("refresh-steam", "steam")
     control("click", "saved-servers")
@@ -207,8 +223,7 @@ def server_view(control, file, expected_names, desktop_keys):
     control("click", "server-list-back")
     title()
     unchanged()
-    control("click", "multiplayer")
-    snapshot("reopen-after-back", "steam")
+    open_multiplayer("reopen-after-back")
     control("click", "saved-servers")
     snapshot("saved-before-escape", "saved")
     # The ordinary title screen intentionally rejects native control `key`.
@@ -216,11 +231,10 @@ def server_view(control, file, expected_names, desktop_keys):
     desktop_keys.press("Escape")
     title()
     unchanged()
-    control("click", "multiplayer")
-    snapshot("reopen-after-escape", "steam")
+    open_multiplayer("reopen-after-escape")
     return {"status": "PASS", "expectedSavedRows": list(expected_names), "observations": observed,
             "backToTitle": True, "escapeToTitle": True, "bytePreserved": True,
-            "desktopKeys": desktop_keys.evidence}
+            "desktopKeys": desktop_keys.evidence, "multiplayerWarningsAccepted": warnings}
 
 
 def ordinary_launch(client, controller, resources, qa, game, index, action, desktop_keys_class,
@@ -237,6 +251,8 @@ def ordinary_launch(client, controller, resources, qa, game, index, action, desk
         }:
             del environment[key]
     environment.update(HORIZON_CONTROL=str(endpoint), HORIZON_NO_DISCORD="1")
+    # A direct QA launch supplies the same presentation title as the production bootstrap.
+    environment["LANMINECRAFT_BUILD_NAME"] = expected_title
     environment, environment_evidence = prepare_client_environment(client.parent.parent, environment)
     # Never use --control/--control-socket/frames/offscreen: those select a
     # harness startup path which intentionally skips automatic server seeding.

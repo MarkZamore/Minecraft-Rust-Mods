@@ -1,52 +1,261 @@
 {
   "schemaVersion": 1,
-  "scope": "Engine-update preservation release gates; actual historical/provisional receipts must be rejected.",
   "status": "PASS",
-  "negativeReceiptChecks": [
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "realFinalBaseline": "PASS",
+  "gateSourceSha256": "a7f47c90c1ad51c8e00a5180e33afcabe90a0cb4e3b42b33f380cf758cecf57b",
+  "verificationSourceSha256": "499da2f278958e6eba01c0e44152bb4cb1ecfbbf3900726bd6a6464bbbee7d13",
+  "sourceReceipts": {
+    "orbital-startup.json": "8864318eaa6587f206237e81e5d429c9b8b0e69f0ba836bbdc32c3fa29dd0f2f",
+    "multiplayer.json": "24323d34559e65f9e03d4deee85e5a51feb402d1f4b67d03c57fa5709c2aff27",
+    "backup-guard.json": "0f5a46d43a6da54bda2f3b9d5a01acf13a59e2ce0b940235a3fd67ee0b48674c",
+    "server-policy.json": "470380a23207ac606567793b519b8ffe36ed1ff1c5422177dbc0c9a9bf8702f3",
+    "native-notices.json": "2fbcf607d93b0a6d362533ff7a71ee496f806a084c0ab5130ce3d0f9b4609fde",
+    "launcher-notices-support.json": "1d03379267a717329b74236fff880979d1a2bc98c558cfaa113dc33fb2426015"
+  },
+  "rejectionChecks": [
     {
-      "case": "Published old startup-only receipt cannot approve current gameplay",
+      "case": "Same-core gameplay predates the mandatory presentation policy",
+      "status": "PASS",
+      "rejectedWith": "Run exact-client QA from the staged mandatory presentation environment policy"
+    },
+    {
+      "case": "QA presentation differs from the released presentation bytes",
+      "status": "PASS",
+      "rejectedWith": "Run exact-client QA from the staged mandatory presentation environment policy"
+    },
+    {
+      "case": "QA omits the pack-owned environment default",
+      "status": "PASS",
+      "rejectedWith": "Run exact-client QA from the staged mandatory presentation environment policy"
+    },
+    {
+      "case": "Direct QA relies on an inherited diagnostic mask",
+      "status": "PASS",
+      "rejectedWith": "Final clean QA must apply pack defaults rather than inherit a diagnostic environment mask"
+    },
+    {
+      "case": "Bootstrap QA claims a child default that it did not observe",
+      "status": "PASS",
+      "rejectedWith": "Bootstrap QA must not claim an unobserved child environment or pre-apply its defaults"
+    },
+    {
+      "case": "Different client: gameplay",
       "status": "PASS",
       "rejectedWith": "Release needs full gameplay and the approved 65-key controls on the exact client"
     },
     {
-      "case": "Changing the client SHA alone cannot approve startup-only gameplay",
+      "case": "Different client: multiplayer",
+      "status": "PASS",
+      "rejectedWith": "Release needs a complete, non-diagnostic multiplayer report for the exact client"
+    },
+    {
+      "case": "Different client: backup",
+      "status": "PASS",
+      "rejectedWith": "Release needs the exact-client first-open backup and personal-settings preservation check"
+    },
+    {
+      "case": "Different client: server policy",
+      "status": "PASS",
+      "rejectedWith": "Release needs the exact-client fresh/manual/restarted server-list policy check"
+    },
+    {
+      "case": "Different client: native notices",
+      "status": "PASS",
+      "rejectedWith": "Native notice acceptance has another Mods client, engine or shared source contract"
+    },
+    {
+      "case": "Startup-only report",
       "status": "PASS",
       "rejectedWith": "Release needs full gameplay and the approved 65-key controls on the exact client"
     },
     {
-      "case": "Actual successful Orbital diagnostic with skipped JEI is not release acceptance",
+      "case": "Publication chat has no actual numeric listener port",
+      "status": "PASS",
+      "rejectedWith": "Release needs the actual numeric publication port in chat and the closing/replaced pause menu"
+    },
+    {
+      "case": "Multiplayer system chat port differs from the actual listener",
+      "status": "PASS",
+      "rejectedWith": "Release needs the actual multiplayer listener port in its system chat component"
+    },
+    {
+      "case": "Diagnostic multiplayer report",
       "status": "PASS",
       "rejectedWith": "Release needs a complete, non-diagnostic multiplayer report for the exact client"
     },
     {
-      "case": "Actual Creative JEI failure cannot approve multiplayer",
+      "case": "Skipped JEI in an otherwise complete multiplayer report",
       "status": "PASS",
-      "rejectedWith": "Release needs a complete, non-diagnostic multiplayer report for the exact client"
+      "rejectedWith": "Release needs the visible JEI Creative panel, search, recipes and usages"
     },
     {
-      "case": "Existing f14 build receipt cannot approve modified mandatory build recipe",
+      "case": "Lost Waypoints F7/F8 separation",
       "status": "PASS",
-      "rejectedWith": "Build receipt does not match the accepted mod inputs and build"
+      "rejectedWith": "Release needs full gameplay and the approved 65-key controls on the exact client"
+    },
+    {
+      "case": "One participant receives no remote Orbital visual",
+      "status": "PASS",
+      "rejectedWith": "Release needs guest terrain edits and simultaneous local/remote Orbital effects on both clients"
+    },
+    {
+      "case": "A guest terrain fixture block remains unchanged",
+      "status": "PASS",
+      "rejectedWith": "Release needs guest terrain edits and simultaneous local/remote Orbital effects on both clients"
+    },
+    {
+      "case": "Unproven negative guest permission check",
+      "status": "PASS",
+      "rejectedWith": "Release needs the closing publish menu and positive/negative guest command checks"
+    },
+    {
+      "case": "Missing native backup",
+      "status": "PASS",
+      "rejectedWith": "Release needs the exact-client first-open backup and personal-settings preservation check"
+    },
+    {
+      "case": "Duplicate native backup on reopening",
+      "status": "PASS",
+      "rejectedWith": "Release needs the exact-client first-open backup and personal-settings preservation check"
+    },
+    {
+      "case": "Automatic public server row on a fresh profile",
+      "status": "PASS",
+      "rejectedWith": "Release needs no automatic public rows and byte-preserved manual servers.dat through restart"
+    },
+    {
+      "case": "Control-socket harness bypasses ordinary server seeding",
+      "status": "PASS",
+      "rejectedWith": "Release needs the exact-client fresh/manual/restarted server-list policy check"
+    },
+    {
+      "case": "Personal servers.dat bytes changed after restart",
+      "status": "PASS",
+      "rejectedWith": "Release needs no automatic public rows and byte-preserved manual servers.dat through restart"
+    },
+    {
+      "case": "Old startup-only policy report has no Saved-view acceptance",
+      "status": "PASS",
+      "rejectedWith": "Release needs the actual default Steam and explicit Saved server-list UI acceptance"
+    },
+    {
+      "case": "Legacy saved rows leak into the automatic Steam view",
+      "status": "PASS",
+      "rejectedWith": "Server UI changed its view, hid saved rows or rewrote NBT during an action"
+    },
+    {
+      "case": "Explicit Saved view hides an existing legacy row",
+      "status": "PASS",
+      "rejectedWith": "Server UI changed its view, hid saved rows or rewrote NBT during an action"
+    },
+    {
+      "case": "Saved refresh unexpectedly switches to Steam",
+      "status": "PASS",
+      "rejectedWith": "Server UI changed its view, hid saved rows or rewrote NBT during an action"
+    },
+    {
+      "case": "Explicit Steam action remains in Saved",
+      "status": "PASS",
+      "rejectedWith": "Server UI changed its view, hid saved rows or rewrote NBT during an action"
+    },
+    {
+      "case": "Saved Back/Escape fail to return to Title",
+      "status": "PASS",
+      "rejectedWith": "A server-list run lacks its actual saved rows, navigation or byte-preservation observations"
+    },
+    {
+      "case": "Reopening multiplayer remembers Saved instead of default Steam",
+      "status": "PASS",
+      "rejectedWith": "Server UI changed its view, hid saved rows or rewrote NBT during an action"
+    },
+    {
+      "case": "A UI refresh rewrites manual NBT despite a later matching final hash",
+      "status": "PASS",
+      "rejectedWith": "Server UI changed its view, hid saved rows or rewrote NBT during an action"
+    },
+    {
+      "case": "The reconstructed legacy list was rewritten",
+      "status": "PASS",
+      "rejectedWith": "Release needs byte-preserved reconstructed legacy and unknown-field manual NBT with all Saved rows"
+    },
+    {
+      "case": "Manual unknown NBT fields were lost",
+      "status": "PASS",
+      "rejectedWith": "Release needs no automatic public rows and byte-preserved manual servers.dat through restart"
+    },
+    {
+      "case": "Server Escape has no actual desktop acknowledgement",
+      "status": "PASS",
+      "rejectedWith": "Each ordinary server-view run needs its real desktop Escape action"
+    },
+    {
+      "case": "Server Escape was serviced by another unaccepted helper source",
+      "status": "PASS",
+      "rejectedWith": "Release needs the exact-client fresh/manual/restarted server-list policy check"
+    },
+    {
+      "case": "Server Escape acknowledgement belongs to another process",
+      "status": "PASS",
+      "rejectedWith": "Desktop Escape was not acknowledged in time for this exact owned client/window/run"
+    },
+    {
+      "case": "Server Escape acknowledgement arrived after the owned checkpoint expired",
+      "status": "PASS",
+      "rejectedWith": "Desktop Escape was not acknowledged in time for this exact owned client/window/run"
+    },
+    {
+      "case": "Native notice fullscreen was not observed",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notice scenarios or cleanup incomplete"
+    },
+    {
+      "case": "Native notice heartbeat belongs to another process",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notice heartbeat is stale, foreign or not actually presented"
+    },
+    {
+      "case": "Native notice renderer reports an error",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notice heartbeat is stale, foreign or not actually presented"
+    },
+    {
+      "case": "Native notice heartbeats advance without visible pixels",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notice pixels do not match the presented card count"
+    },
+    {
+      "case": "Native notice UI/input proof is absent",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notices changed game UI widgets or have no pause proof"
+    },
+    {
+      "case": "Native notice focus proof uses no foreground window",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notice input/focus and actual chat proof missing"
+    },
+    {
+      "case": "Native notice physical width does not double at DPI 2",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notice DPI did not scale the measured physical width exactly once"
+    },
+    {
+      "case": "Native notice lifetime was not observed",
+      "status": "PASS",
+      "rejectedWith": "Release acceptance: native notice scenarios or cleanup incomplete"
+    },
+    {
+      "case": "Supporting launcher public bytes differ",
+      "status": "PASS",
+      "rejectedWith": "The required native-notice capability has no verified published supporting launcher/source"
+    },
+    {
+      "case": "Supporting launcher source lacks the native capability",
+      "status": "PASS",
+      "rejectedWith": "The required native-notice capability has no verified published supporting launcher/source"
     }
   ],
-  "gateSourceSha256": "93a2535555bc5bff83cab267115b67ec94ece0e32dca3ccd1a478ba3394ed0c4",
-  "fullFinalClientAcceptance": "NOT RUN: final combined EXE is being rebuilt; these rejection checks do not claim gameplay acceptance.",
-  "requiredReceipts": [
-    "tools/qa/orbital-startup.json",
-    "tools/qa/multiplayer.json",
-    "tools/qa/backup-guard.json"
-  ],
-  "allowedExplicitNotRun": [
-    "real Steam overlay/two accounts deferred by user for this acceptance",
-    "historical removed-registry world migration",
-    "Radeon-specific hardware"
-  ],
-  "additionalRequiredChecks": [
-    "All fixture blocks changed and persisted",
-    "Two clean client exits and disposable world cleanup",
-    "JEI actual click-give deltas, close/reopen focus, Creative search priority, panel wheel isolation",
-    "Current selected IDs agree with accepted build"
-  ],
-  "verificationCommand": "python -B: import generate_manifest and verify rejection of historical startup-only, actual diagnostic PASS with skipped JEI, actual JEI FAIL, and prior build receipt from the previous mandatory recipe.",
-  "temporaryProbe": "Minimal prior-receipt probe inside registered run removed in finally; no game/runtime/world copies."
+  "scope": "Release acceptance guards; no game, Steam or GPU scenarios are executed by this command.",
+  "temporaryDataBytes": 0
 }

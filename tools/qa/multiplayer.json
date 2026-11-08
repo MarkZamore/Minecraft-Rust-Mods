@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "environmentPolicy": "pack-presentation-defaults-v1",
+  "environmentDefaults": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "mode": "mods",
+  "diagnosticOnly": false,
+  "transport": "local TCP, two rendered clients, Steam bridge inactive",
+  "realSteamTwoAccounts": "NOT RUN",
+  "result": "PASS",
+  "executionContext": {
+    "entryPoint": "direct native/horizon-client.exe",
+    "bootstrapAcceptance": "NOT RUN by this two-client helper",
+    "processEnvironment": {
+      "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+    },
+    "environmentScope": "Pack presentation defaults applied to own child clients; inherited overrides preserved; parent unchanged",
+    "clients": {
+      "host": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      },
+      "guest": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      }
+    }
+  },
+  "environmentApplications": [
+    {
+      "client": "host",
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    },
+    {
+      "client": "guest",
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    }
+  ],
+  "publishMenu": {
+    "returnedToGame": true,
+    "port": 56609,
+    "numericPortNotice": {
+      "chatPort": 56609,
+      "statusPort": 56609,
+      "matchesStatus": true,
+      "translationKey": "menu.multiplayerOptions.publish.started.lan",
+      "component": {
+        "translate": "menu.multiplayerOptions.publish.started.lan",
+        "with": [
+          56609
+        ]
+      },
+      "renderedLine": "This world is now open to LAN. The port number is 56609"
+    }
+  },
+  "guestCommands": [
+    {
+      "typed": "/gamemode survival",
+      "observed": "survival"
+    },
+    {
+      "typed": "/gamemode creative",
+      "observed": "creative"
+    }
+  ],
+  "jei": {
+    "about": "JEI 0.1.0 (alpha) on hook points version 2: 1659 items, 2025 recipes",
+    "itemButtons": 50,
+    "frame": {
+      "file": "orbital-jei-inventory.png",
+      "sha256": "3caeea12b359e1896e0ad84e8d89b83aaa8a06530af41ff217cb7bff65ce4083",
+      "size": [
+        2560,
+        1440
+      ]
+    },
+    "gamemode": "creative",
+    "inventoryScreen": "creative",
+    "creativeInventory": true,
+    "guiSize": [
+      427.0,
+      240.0
+    ],
+    "search": "minecraft:stone",
+    "shortcuts": {
+      "R": {
+        "action": "recipes",
+        "recipeSlots": [
+          "Cobblestone",
+          "Stone"
+        ],
+        "frame": {
+          "file": "orbital-jei-recipes.png",
+          "sha256": "60e74e7e28d12121a71665ccac56428875b180e442401fb77a8fb83608b4fc6b",
+          "size": [
+            2560,
+            1440
+          ]
+        }
+      },
+      "U": {
+        "action": "uses",
+        "recipeSlots": [
+          "Redstone Torch",
+          "Redstone Torch",
+          "Nether Quartz",
+          "Redstone Torch",
+          "Stone",
+          "Stone",
+          "Stone",
+          "Redstone Torch",
+          "Redstone Dust",
+          "Redstone Torch",
+          "Stone",
+          "Stone",
+          "Stone"
+        ],
+        "frame": {
+          "file": "orbital-jei-uses.png",
+          "sha256": "5dd7d8135f5bc1e626fd8e6d09b53a1f3f97675c336786b7eb05e0d80b22ca06",
+          "size": [
+            2560,
+            1440
+          ]
+        }
+      }
+    },
+    "survival": {
+      "gamemode": "survival",
+      "inventoryScreen": "inventory",
+      "itemButtons": 60,
+      "frame": {
+        "file": "orbital-jei-survival-inventory.png",
+        "sha256": "7f53f890de0867ad653ec4c128d57b23910b1b3ff997e960170414f041395c00",
+        "size": [
+          2560,
+          1440
+        ]
+      }
+    },
+    "give": {
+      "item": "minecraft:stone",
+      "clicks": [
+        {
+          "before": 0,
+          "after": 1,
+          "delta": 1
+        },
+        {
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        }
+      ]
+    },
+    "reopenFocus": {
+      "closedToPlaying": true,
+      "reopenedCreative": true,
+      "typedAfterReopen": "x",
+      "searchUnchanged": true
+    },
+    "creativeSearch": {
+      "outsideText": "diamond",
+      "outsideLeavesJeiSearch": true,
+      "jeiTextOnSearchTab": "minecraft:dirt",
+      "jeiSearchOnSearchTab": true,
+      "restoredSearch": "minecraft:stone",
+      "frame": {
+        "file": "orbital-jei-creative-search.png",
+        "sha256": "ecb61889c8defd532c2cb701e765b06d15549db29c400ddeb93e81a755a74a0e",
+        "size": [
+          2560,
+          1440
+        ]
+      }
+    },
+    "wheelIsolation": {
+      "insideChangesPanelPage": true,
+      "insideReverseRestoresPanelPage": true,
+      "outsideKeepsPanelPage": true,
+      "firstPageFirstItem": "Stone",
+      "secondPageFirstItem": "Cinnabar Brick Wall"
+    }
+  },
+  "orbital": {
+    "fixture": [
+      [
+        -8,
+        116,
+        2
+      ],
+      [
+        -7,
+        113,
+        2
+      ]
+    ],
+    "blocksBefore": [
+      "minecraft:gold_block",
+      "minecraft:stone"
+    ],
+    "blocksAfter": [
+      "minecraft:air",
+      "minecraft:air"
+    ],
+    "guestObservedBlocksAfter": [
+      "minecraft:air",
+      "minecraft:air"
+    ],
+    "framesBefore": {
+      "host": {
+        "file": "orbital-before.png",
+        "sha256": "b6565d404d8543ee0fc3d732f2896ddfcfa61bc70e97ca0e1ac678167e41d257",
+        "size": [
+          2560,
+          1440
+        ]
+      },
+      "guest": {
+        "file": "orbital-before.png",
+        "sha256": "4af5d7af17a1a9f4381fd8a0e762447a4709765f41ec441b78dc43fb4cce2fda",
+        "size": [
+          2560,
+          1440
+        ]
+      }
+    },
+    "framesDuring": {
+      "host": {
+        "file": "orbital-strike.png",
+        "sha256": "cd6d330c27a034779d1419c0651a1220bb9ad5205a38c8122e4e35eb30fb4788",
+        "size": [
+          2560,
+          1440
+        ]
+      },
+      "guest": {
+        "file": "orbital-strike.png",
+        "sha256": "685ff32b4834d9d2a7d9aa2bc66c70bf5bc9a50e0f725bb12295866f2d65d19b",
+        "size": [
+          2560,
+          1440
+        ]
+      }
+    },
+    "hostRemoteVisual": [
+      "[mod orbital] remote visual applied owner=b0cd36a08b0f3cb6a44b7439e428be80 shader=0 generation=2 data_revision=1 words=0"
+    ],
+    "concurrentEffects": {
+      "hostTarget": [
+        56,
+        170,
+        2
+      ],
+      "guestTarget": [
+        -8,
+        116,
+        2
+      ],
+      "hostTerrain": "off",
+      "guestTerrain": "on",
+      "authorPlasmaSeconds": 26,
+      "authorBeamStartsAtSeconds": 4,
+      "cameraTargetDuringCapture": [
+        24,
+        143.0,
+        2
+      ],
+      "hostReceivedGuest": [
+        "[mod orbital] remote visual applied owner=b0cd36a08b0f3cb6a44b7439e428be80 shader=0 generation=2 data_revision=1 words=0"
+      ],
+      "guestReceivedHost": [
+        "[mod orbital] remote visual applied owner=a9b313e2b01131038d4d086ef655fb13 shader=0 generation=2 data_revision=1 words=0"
+      ],
+      "ownEngineStrikes": {
+        "host": "plasma",
+        "guest": "plasma"
+      },
+      "hostTerrainOffFixtureUnchanged": true,
+      "framesOwnAndRemote": {
+        "host": {
+          "file": "orbital-strike.png",
+          "sha256": "cd6d330c27a034779d1419c0651a1220bb9ad5205a38c8122e4e35eb30fb4788",
+          "size": [
+            2560,
+            1440
+          ]
+        },
+        "guest": {
+          "file": "orbital-strike.png",
+          "sha256": "685ff32b4834d9d2a7d9aa2bc66c70bf5bc9a50e0f725bb12295866f2d65d19b",
+          "size": [
+            2560,
+            1440
+          ]
+        }
+      }
+    }
+  },
+  "guestCheatsDisabled": {
+    "typed": "/gamemode spectator",
+    "before": "creative",
+    "after": "creative",
+    "denialObserved": true,
+    "denialEventSeq": [
+      64,
+      65
+    ],
+    "messages": {
+      "actionbar": null,
+      "chat": [
+        "gamemode spectator<--[HERE]",
+        "Unknown or incomplete command. See below for error"
+      ],
+      "order": "newest first",
+      "styled": [
+        {
+          "extra": [
+            {
+              "color": "red",
+              "text": ""
+            },
+            {
+              "color": "red",
+              "extra": [
+                {
+                  "click_event": {
+                    "action": "suggest_command",
+                    "command": "/gamemode spectator"
+                  },
+                  "color": "gray",
+                  "text": ""
+                },
+                {
+                  "click_event": {
+                    "action": "suggest_command",
+                    "command": "/gamemode spectator"
+                  },
+                  "color": "gray",
+                  "text": ""
+                },
+                {
+                  "click_event": {
+                    "action": "suggest_command",
+                    "command": "/gamemode spectator"
+                  },
+                  "color": "red",
+                  "text": "gamemode spectator",
+                  "underlined": true
+                },
+                {
+                  "click_event": {
+                    "action": "suggest_command",
+                    "command": "/gamemode spectator"
+                  },
+                  "color": "red",
+                  "italic": true,
+                  "translate": "command.context.here"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "text": ""
+        },
+        {
+          "extra": [
+            {
+              "color": "red",
+              "text": ""
+            },
+            {
+              "color": "red",
+              "translate": "command.unknown.command"
+            }
+          ],
+          "text": ""
+        }
+      ],
+      "subtitle": null,
+      "title": null
+    }
+  },
+  "processExitCodes": {
+    "host": 0,
+    "guest": 0
+  },
+  "shaderErrors": {
+    "host": [],
+    "guest": []
+  },
+  "disposableWorldsRemoved": true
+}

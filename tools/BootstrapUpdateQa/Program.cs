@@ -67,6 +67,7 @@ try
         report["selectionSha256"] = expected.SelectionSha256;
         report["inputLockSha256"] = expected.InputLockSha256;
         report["horizonRevision"] = expected.HorizonRevision;
+        report["approvedLibraryContentSha256"] = expected.LibraryContentSha256;
     }
     var paths = new AppPaths(fixture);
     paths.Ensure();
@@ -185,8 +186,20 @@ try
             card.BuildTree();
             var expectedCount = expected?.Mods.Count ?? 40;
             var expectedMinecraftVersion = expected?.MinecraftVersion ?? "26.3";
-            Check(card.VersionLabel == $"Minecraft {expectedMinecraftVersion} ({expectedCount} модов)" && card.Summary == "",
-                "The card must show just Minecraft version and mod count.");
+            Check(card.VersionLabel == $"Minecraft {expectedMinecraftVersion} ({expectedCount} модов)",
+                "The version label must show just Minecraft version and mod count.");
+            if (expected is null)
+                Check(card.Summary == "", "The historical bootstrap-only card must retain its blank summary.");
+            else
+            {
+                var displayedDescription = string.Join(" ", expected.Description
+                    .Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries).Select(line => line.Trim()));
+                Check(content.Summary == expected.Summary && card.Summary == expected.Summary
+                    && content.Description == expected.Description && card.Description == displayedDescription,
+                    "The card summary or description differs from the approved source library/content.json.");
+                report["summaryMatchesApprovedSource"] = "PASS";
+                report["descriptionMatchesApprovedSource"] = "PASS";
+            }
             Check(card.WebsiteUri is null && content.NativeProject?.WebsiteUrl is null
                 && !card.Description.Contains("Точный состав", StringComparison.Ordinal),
                 "The removed project URL or trailing composition sentence is still present.");
@@ -291,15 +304,17 @@ sealed record Release(string Root, Manifest Manifest)
 }
 
 sealed record UpgradeExpectations(string MinecraftVersion, string HorizonRevision, Dictionary<string, string> Mods,
-    string SelectionSha256, string InputLockSha256)
+    string SelectionSha256, string InputLockSha256, string Summary, string Description, string LibraryContentSha256)
 {
     public static UpgradeExpectations Read(string packSource)
     {
         var root = Path.GetFullPath(packSource);
         var selectionBytes = File.ReadAllBytes(Path.Combine(root, "tools", "mod-selection.json"));
         var inputBytes = File.ReadAllBytes(Path.Combine(root, "tools", "mod-input-lock.json"));
+        var contentBytes = File.ReadAllBytes(Path.Combine(root, "library", "content.json"));
         using var selection = JsonDocument.Parse(selectionBytes);
         using var input = JsonDocument.Parse(inputBytes);
+        using var content = JsonDocument.Parse(contentBytes);
         using var runtime = JsonDocument.Parse(File.ReadAllBytes(Path.Combine(root, "portable-pack.json")));
         var inputHash = Convert.ToHexStringLower(SHA256.HashData(inputBytes));
         if (selection.RootElement.GetProperty("schemaVersion").GetInt32() != 1
@@ -316,7 +331,12 @@ sealed record UpgradeExpectations(string MinecraftVersion, string HorizonRevisio
         if (mods.Count == 0) throw new InvalidDataException("The engine-upgrade selection is empty.");
         return new(runtime.RootElement.GetProperty("minecraftVersion").GetString()!,
             input.RootElement.GetProperty("horizonRevision").GetString()!, mods,
-            Convert.ToHexStringLower(SHA256.HashData(selectionBytes)), inputHash);
+            Convert.ToHexStringLower(SHA256.HashData(selectionBytes)), inputHash,
+            content.RootElement.GetProperty("summary").GetString()
+                ?? throw new InvalidDataException("The approved library summary is not a string."),
+            content.RootElement.GetProperty("description").GetString()
+                ?? throw new InvalidDataException("The approved library description is not a string."),
+            Convert.ToHexStringLower(SHA256.HashData(contentBytes)));
     }
 }
 sealed class FixtureHandler(Release release) : HttpMessageHandler

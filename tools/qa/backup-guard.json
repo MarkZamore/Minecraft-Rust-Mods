@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "environmentPolicy": "pack-presentation-defaults-v1",
+  "environmentDefaults": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "environmentApplications": [
+    {
+      "index": 7,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    },
+    {
+      "index": 8,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    }
+  ],
+  "methodology": "current-client QA save",
+  "world": "RustModsSmoke",
+  "firstOpenBackup": "PASS",
+  "reopenWithoutDuplicate": "PASS",
+  "sourceFilesSha256": "53d9ea84655d6c22810212cedc6bc99af18eb4492731215e740b702bda95a2c0",
+  "sourceFilesVerified": 32,
+  "sourceSizeBytes": 12458791,
+  "excludedSourceFiles": [
+    "session.lock",
+    ".lanminecraft-rust-mods-orbital-v1"
+  ],
+  "backup": {
+    "name": "2026-11-08_12-32-52_RustModsSmoke.zip",
+    "sizeBytes": 9252931,
+    "sha256": "c58bd24f89d8019f5d6359122a4d974f88d6db76d46e5ad4aa1902b1d2dc1aa4"
+  },
+  "backupMembersVerified": 32,
+  "existingBackupFilesPreserved": 0,
+  "newBackupsAfterReopen": 1,
+  "markerRecreatedZeroBytes": true,
+  "personalSettingsPreserved": 9,
+  "personalSettingsSha256": "a1055347dac1b4c6e277f0e84060f609ce8a07c482eea494aa002e0e3d7116af",
+  "historicalRemovedRegistryMigration": "NOT RUN",
+  "scope": "First-open guard and exact backup bytes; historical removed blocks were not tested."
+}

@@ -1,0 +1,1896 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "acceptanceContext": {
+    "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+    "steamOverlayRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
+    "buildRecipeSha256": "adb20ded4d18e54432c905490d38d696b6ebe20832c1086cbe7adfc92d406e3e",
+    "buildReceiptSha256": "a738c3b37bb2eed2161ded29831be247b96773cc5e2b46c61ba2d9ae42eebeba",
+    "payloadInventorySha256": "0b8faa0b6aaa0b622cf91208261b6baa827442a3c577ffdabea73f755f0d15b3",
+    "noticeContractSha256": "8fd89274925de3fc438ba9380036b15535090cfc86612caeeca6de537e3b0ed3",
+    "noticeQaToolSha256": "76498f9e3787b3b93ec7bea4c2898aeb500a6da4eb3b5cf5341cb7e368599461",
+    "noticeStageToolSha256": "ed9214528f574e61e5e9b89a778b1deda7e51be444cb71704871cc42887d2412",
+    "desktopKeyHelperSha256": "efbdc9c008f5e7b6cb5659f879f0d354301bb029bbe02d9b186115afab85270b",
+    "gameplayToolSha256": "6ad1ee48b9979ddd0969afc0b2536fa033c962299c6d40165a6dd9ae3e06a4b4",
+    "bootstrapSourceSha256": "8179f35f13d7e4fc1263891e8f132525b6a9e66bbc7a90a5eeb18aa51708e883",
+    "bootstrapContractSha256": "b4b1e7dd73408ac75de0529bbd12d7f7a7f9332d9cbe5c2dd03f21e025225664",
+    "bootstrapLockSha256": "59658de1877bb7cc52727f50b4a0a12b4419d4438771527ae3b3a7e19c222fb3",
+    "modsNoticeAdapterSha256": "e1b1f5b6f54f11bd9602d17223a77d58a21a094dc553df9b415fc514afd11c71"
+  },
+  "client": {
+    "sizeBytes": 101605888,
+    "sha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7"
+  },
+  "bootstrap": {
+    "sizeBytes": 2923008,
+    "sha256": "ace261a88a6a5438ede83e9571be2d1189ec7d950948d751460071af446b0c6d"
+  },
+  "startup": "exact bootstrap child; native-ui-v1; real presented unscaled screenshots",
+  "checks": {
+    "bootstrapChildPidAndTitle": "PASS",
+    "titleVisiblePixelsAndFreshPresentation": "PASS",
+    "threeCardsAndSevenSecondExpiry": "PASS",
+    "malformedAndTornKeepPriorUntilOriginalExpiry": "PASS",
+    "future1500msRetainedUntilItsTime": "PASS",
+    "dpiOnceAndGameGuiScaleUnchanged": "PASS",
+    "actualFullscreenVisibleNotice": "PASS",
+    "worldAndChatInputWhileVisible": "PASS",
+    "pauseMenuVisibleWithoutInputWidgets": "PASS",
+    "emptyQueueFreshHeartbeat": "PASS",
+    "sessionSentinelAndNoExtraMod": "PASS",
+    "exactCandidateUnchanged": "PASS"
+  },
+  "captures": [
+    {
+      "file": "title-one.png",
+      "sizeBytes": 2463912,
+      "sha256": "84b53d172ec00d526b825c8335c49a239986286a75e930f608956c74dc792d0b",
+      "pixels": {
+        "count": 1,
+        "boxes": [
+          [
+            12,
+            1354,
+            252,
+            1428
+          ]
+        ],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124608616,
+      "heartbeatBeforeObservedUnixMs": 1794124608405,
+      "heartbeatAfterObservedUnixMs": 1794124608937,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124608348,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124608849,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "title-three.png",
+      "sizeBytes": 2470327,
+      "sha256": "16a5f9a81a32e41eb6af93493833bcb1e1445d7978e13632ea425d5f1411b76e",
+      "pixels": {
+        "count": 3,
+        "boxes": [
+          [
+            12,
+            1182,
+            252,
+            1256
+          ],
+          [
+            12,
+            1268,
+            252,
+            1342
+          ],
+          [
+            12,
+            1354,
+            252,
+            1428
+          ]
+        ],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124609573,
+      "heartbeatBeforeObservedUnixMs": 1794124609371,
+      "heartbeatAfterObservedUnixMs": 1794124609880,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124609366,
+        "renderedCount": 3,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124609856,
+        "renderedCount": 3,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "expired-three.png",
+      "sizeBytes": 2560196,
+      "sha256": "189c9292e0b742daa68e9984e8073ed30ac07c60c9d21e6c5b4bf2d9fdbf5d1c",
+      "pixels": {
+        "count": 0,
+        "boxes": [],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124616682,
+      "heartbeatBeforeObservedUnixMs": 1794124616470,
+      "heartbeatAfterObservedUnixMs": 1794124616987,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124616391,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124616898,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "torn-snapshot-retains-card.png",
+      "sizeBytes": 2621985,
+      "sha256": "b2dbedbe10cfd350500ae4db7c6d91398bc9d76a9ce015399cacd616fa143925",
+      "pixels": {
+        "count": 1,
+        "boxes": [
+          [
+            12,
+            1354,
+            252,
+            1428
+          ]
+        ],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124622219,
+      "heartbeatBeforeObservedUnixMs": 1794124621995,
+      "heartbeatAfterObservedUnixMs": 1794124622521,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124621932,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124622436,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "torn-snapshot-original-expiry.png",
+      "sizeBytes": 2731023,
+      "sha256": "f834fa30118ba706bdb42ac40b5f95305cdf439715dcf629decb4d3c57f69414",
+      "pixels": {
+        "count": 0,
+        "boxes": [],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124624716,
+      "heartbeatBeforeObservedUnixMs": 1794124624494,
+      "heartbeatAfterObservedUnixMs": 1794124625025,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124624437,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124624949,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "future-not-yet-visible.png",
+      "sizeBytes": 2779048,
+      "sha256": "bf0359a58058d2545c45d582474042fb529c689fe12ec3572ce651bbbc9897aa",
+      "pixels": {
+        "count": 0,
+        "boxes": [],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124625745,
+      "heartbeatBeforeObservedUnixMs": 1794124625533,
+      "heartbeatAfterObservedUnixMs": 1794124626045,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124625449,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124625945,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "future-notice-retained.png",
+      "sizeBytes": 2836632,
+      "sha256": "df0e400ac116a9ce86f109fa1cafd9c572a0db598aee4ce9604daa008d037842",
+      "pixels": {
+        "count": 1,
+        "boxes": [
+          [
+            12,
+            1354,
+            252,
+            1428
+          ]
+        ],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124627255,
+      "heartbeatBeforeObservedUnixMs": 1794124627029,
+      "heartbeatAfterObservedUnixMs": 1794124627560,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124626962,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124627456,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "dpi-one.png",
+      "sizeBytes": 2882607,
+      "sha256": "e3f7a3287a45993c4090d7807b540f2615dda5f7e53da34907dbf75d98762232",
+      "pixels": {
+        "count": 1,
+        "boxes": [
+          [
+            12,
+            1354,
+            252,
+            1428
+          ]
+        ],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124628504,
+      "heartbeatBeforeObservedUnixMs": 1794124628262,
+      "heartbeatAfterObservedUnixMs": 1794124628622,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124627972,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124628272,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "dpi-two.png",
+      "sizeBytes": 2899421,
+      "sha256": "d743e3c877d3176810f291384ee86977783e978df85b3db83e6c3dcaacb67a2f",
+      "pixels": {
+        "count": 1,
+        "boxes": [
+          [
+            24,
+            1268,
+            504,
+            1416
+          ]
+        ],
+        "size": [
+          2560,
+          1440
+        ],
+        "expectedPhysicalWidth": 480
+      },
+      "capturedUnixMs": 1794124629565,
+      "heartbeatBeforeObservedUnixMs": 1794124629337,
+      "heartbeatAfterObservedUnixMs": 1794124629665,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124628986,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124629336,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          62,
+          107,
+          2622,
+          1547
+        ],
+        "window": [
+          49,
+          49,
+          2635,
+          1560
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "fullscreen-world.png",
+      "sizeBytes": 55297,
+      "sha256": "868641518756640fbb21dff5948d6560b03280e5c59324ff7e69bf65815677be",
+      "pixels": {
+        "count": 1,
+        "boxes": [
+          [
+            12,
+            1714,
+            252,
+            1788
+          ]
+        ],
+        "size": [
+          2880,
+          1800
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124632677,
+      "heartbeatBeforeObservedUnixMs": 1794124632577,
+      "heartbeatAfterObservedUnixMs": 1794124633163,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124632562,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124632854,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "window": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "world-chat-input-with-card.png",
+      "sizeBytes": 1757339,
+      "sha256": "52d26326bb5f2e578155e85204c638060b9e439cf28984517baa94263c8cda9a",
+      "pixels": {
+        "count": 1,
+        "boxes": [
+          [
+            12,
+            1714,
+            252,
+            1788
+          ]
+        ],
+        "size": [
+          2880,
+          1800
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124633625,
+      "heartbeatBeforeObservedUnixMs": 1794124633412,
+      "heartbeatAfterObservedUnixMs": 1794124633751,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124632854,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124633427,
+        "renderedCount": 1,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "window": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "paused-world-three.png",
+      "sizeBytes": 2347414,
+      "sha256": "9ea8634830e67e0fe00254a962b2a9263ca1fa446c289f380a3545e967212630",
+      "pixels": {
+        "count": 3,
+        "boxes": [
+          [
+            12,
+            1542,
+            252,
+            1616
+          ],
+          [
+            12,
+            1628,
+            252,
+            1702
+          ],
+          [
+            12,
+            1714,
+            252,
+            1788
+          ]
+        ],
+        "size": [
+          2880,
+          1800
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124635032,
+      "heartbeatBeforeObservedUnixMs": 1794124634662,
+      "heartbeatAfterObservedUnixMs": 1794124635174,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124634604,
+        "renderedCount": 3,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124635104,
+        "renderedCount": 3,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "window": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    },
+    {
+      "file": "paused-zero-fresh-heartbeat.png",
+      "sizeBytes": 2358734,
+      "sha256": "d1b14b2a4e249490b40405df25703aaf452dfd19edfa84a419ea7d5ee264a19d",
+      "pixels": {
+        "count": 0,
+        "boxes": [],
+        "size": [
+          2880,
+          1800
+        ],
+        "expectedPhysicalWidth": 240
+      },
+      "capturedUnixMs": 1794124636056,
+      "heartbeatBeforeObservedUnixMs": 1794124635694,
+      "heartbeatAfterObservedUnixMs": 1794124636202,
+      "heartbeatBefore": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124635604,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "heartbeatAfter": {
+        "backend": "native-ui-v1",
+        "pid": 13744,
+        "timestampUnixMs": 1794124636118,
+        "renderedCount": 0,
+        "transformations": 0,
+        "error": ""
+      },
+      "window": {
+        "hwnd": 4590276,
+        "title": "Minecraft Rust Mods",
+        "client": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "window": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "monitor": [
+          0,
+          0,
+          2880,
+          1800
+        ],
+        "foregroundHwnd": 4590276
+      }
+    }
+  ],
+  "fixtureRemoved": true,
+  "arguments": [
+    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\launch-rust-edition.exe",
+    "--game-dir",
+    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\native-notices-final\\game",
+    "--control-socket",
+    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\native-notices-final\\control.json"
+  ],
+  "nativeProcessId": 13744,
+  "bootstrapProcessId": 26100,
+  "titleUiBefore": {
+    "screen": "title",
+    "widgets": [
+      {
+        "id": "not-affiliated-with-mojang-or-microsoft",
+        "bounds": [
+          1084.0,
+          710.0,
+          194.0,
+          10.0
+        ],
+        "label": "Not affiliated with Mojang or Microsoft",
+        "enabled": true
+      },
+      {
+        "id": "singleplayer",
+        "bounds": [
+          540.0,
+          228.0,
+          200.0,
+          20.0
+        ],
+        "label": "Singleplayer",
+        "enabled": true
+      },
+      {
+        "id": "multiplayer",
+        "bounds": [
+          540.0,
+          252.0,
+          200.0,
+          20.0
+        ],
+        "label": "Multiplayer",
+        "enabled": true
+      },
+      {
+        "id": "minecraft-realms",
+        "bounds": [
+          540.0,
+          276.0,
+          200.0,
+          20.0
+        ],
+        "label": "Minecraft Realms",
+        "enabled": true
+      },
+      {
+        "id": "options",
+        "bounds": [
+          540.0,
+          324.0,
+          98.0,
+          20.0
+        ],
+        "label": "Options...",
+        "enabled": true
+      },
+      {
+        "id": "quit-game",
+        "bounds": [
+          642.0,
+          324.0,
+          98.0,
+          20.0
+        ],
+        "label": "Quit Game",
+        "enabled": true
+      },
+      {
+        "id": "friends",
+        "bounds": [
+          606.0,
+          300.0,
+          20.0,
+          20.0
+        ],
+        "label": "Friends",
+        "enabled": true
+      },
+      {
+        "id": "language",
+        "bounds": [
+          630.0,
+          300.0,
+          20.0,
+          20.0
+        ],
+        "label": "Language...",
+        "enabled": true
+      },
+      {
+        "id": "accessibility-settings",
+        "bounds": [
+          654.0,
+          300.0,
+          20.0,
+          20.0
+        ],
+        "label": "Accessibility Settings...",
+        "enabled": true
+      }
+    ]
+  },
+  "processAncestry": [
+    {
+      "parent": 26100,
+      "pid": 13744,
+      "name": "horizon-client.exe",
+      "path": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "created": "2026-11-08T07:56:32.1923910Z"
+    },
+    {
+      "parent": 43896,
+      "pid": 26100,
+      "name": "launch-rust-edition.exe",
+      "path": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\launch-rust-edition.exe",
+      "created": "2026-11-08T07:56:28.1839210Z"
+    }
+  ],
+  "timing": {
+    "lifeMs": 7000,
+    "threeCards": {
+      "createdUnixMs": 1794124608966,
+      "sentUnixMs": 1794124608968,
+      "nearExpiry": {
+        "heartbeat": {
+          "backend": "native-ui-v1",
+          "pid": 13744,
+          "timestampUnixMs": 1794124615390,
+          "renderedCount": 3,
+          "transformations": 0,
+          "error": ""
+        },
+        "observedUnixMs": 1794124615471
+      },
+      "expired": {
+        "heartbeat": {
+          "backend": "native-ui-v1",
+          "pid": 13744,
+          "timestampUnixMs": 1794124616391,
+          "renderedCount": 0,
+          "transformations": 0,
+          "error": ""
+        },
+        "observedUnixMs": 1794124616470
+      }
+    },
+    "tornSnapshot": {
+      "createdUnixMs": 1794124616989,
+      "sentUnixMs": 1794124616991,
+      "invalidSnapshots": [
+        {
+          "kind": "invalid-utf8",
+          "writtenUnixMs": 1794124618991,
+          "heartbeat": {
+            "backend": "native-ui-v1",
+            "pid": 13744,
+            "timestampUnixMs": 1794124619915,
+            "renderedCount": 1,
+            "transformations": 0,
+            "error": ""
+          },
+          "observedUnixMs": 1794124619994
+        },
+        {
+          "kind": "broken-unicode-escape",
+          "writtenUnixMs": 1794124620991,
+          "heartbeat": {
+            "backend": "native-ui-v1",
+            "pid": 13744,
+            "timestampUnixMs": 1794124621932,
+            "renderedCount": 1,
+            "transformations": 0,
+            "error": ""
+          },
+          "observedUnixMs": 1794124621995
+        }
+      ],
+      "expired": {
+        "heartbeat": {
+          "backend": "native-ui-v1",
+          "pid": 13744,
+          "timestampUnixMs": 1794124624437,
+          "renderedCount": 0,
+          "transformations": 0,
+          "error": ""
+        },
+        "observedUnixMs": 1794124624494
+      }
+    },
+    "futureNotice": {
+      "queuedUnixMs": 1794124625026,
+      "createdUnixMs": 1794124626526,
+      "sentUnixMs": 1794124625028
+    }
+  },
+  "dpi": {
+    "oneWidth": 240,
+    "twoWidth": 480,
+    "guiScale": "guiScale:2",
+    "guiScaleBefore": "guiScale:2",
+    "guiScaleAfter": "guiScale:2",
+    "uiBefore": {
+      "screen": "title",
+      "widgets": [
+        {
+          "id": "not-affiliated-with-mojang-or-microsoft",
+          "bounds": [
+            1084.0,
+            710.0,
+            194.0,
+            10.0
+          ],
+          "label": "Not affiliated with Mojang or Microsoft",
+          "enabled": true
+        },
+        {
+          "id": "singleplayer",
+          "bounds": [
+            540.0,
+            228.0,
+            200.0,
+            20.0
+          ],
+          "label": "Singleplayer",
+          "enabled": true
+        },
+        {
+          "id": "multiplayer",
+          "bounds": [
+            540.0,
+            252.0,
+            200.0,
+            20.0
+          ],
+          "label": "Multiplayer",
+          "enabled": true
+        },
+        {
+          "id": "minecraft-realms",
+          "bounds": [
+            540.0,
+            276.0,
+            200.0,
+            20.0
+          ],
+          "label": "Minecraft Realms",
+          "enabled": true
+        },
+        {
+          "id": "options",
+          "bounds": [
+            540.0,
+            324.0,
+            98.0,
+            20.0
+          ],
+          "label": "Options...",
+          "enabled": true
+        },
+        {
+          "id": "quit-game",
+          "bounds": [
+            642.0,
+            324.0,
+            98.0,
+            20.0
+          ],
+          "label": "Quit Game",
+          "enabled": true
+        },
+        {
+          "id": "friends",
+          "bounds": [
+            606.0,
+            300.0,
+            20.0,
+            20.0
+          ],
+          "label": "Friends",
+          "enabled": true
+        },
+        {
+          "id": "language",
+          "bounds": [
+            630.0,
+            300.0,
+            20.0,
+            20.0
+          ],
+          "label": "Language...",
+          "enabled": true
+        },
+        {
+          "id": "accessibility-settings",
+          "bounds": [
+            654.0,
+            300.0,
+            20.0,
+            20.0
+          ],
+          "label": "Accessibility Settings...",
+          "enabled": true
+        }
+      ]
+    },
+    "uiAfter": {
+      "screen": "title",
+      "widgets": [
+        {
+          "id": "not-affiliated-with-mojang-or-microsoft",
+          "bounds": [
+            1084.0,
+            710.0,
+            194.0,
+            10.0
+          ],
+          "label": "Not affiliated with Mojang or Microsoft",
+          "enabled": true
+        },
+        {
+          "id": "singleplayer",
+          "bounds": [
+            540.0,
+            228.0,
+            200.0,
+            20.0
+          ],
+          "label": "Singleplayer",
+          "enabled": true
+        },
+        {
+          "id": "multiplayer",
+          "bounds": [
+            540.0,
+            252.0,
+            200.0,
+            20.0
+          ],
+          "label": "Multiplayer",
+          "enabled": true
+        },
+        {
+          "id": "minecraft-realms",
+          "bounds": [
+            540.0,
+            276.0,
+            200.0,
+            20.0
+          ],
+          "label": "Minecraft Realms",
+          "enabled": true
+        },
+        {
+          "id": "options",
+          "bounds": [
+            540.0,
+            324.0,
+            98.0,
+            20.0
+          ],
+          "label": "Options...",
+          "enabled": true
+        },
+        {
+          "id": "quit-game",
+          "bounds": [
+            642.0,
+            324.0,
+            98.0,
+            20.0
+          ],
+          "label": "Quit Game",
+          "enabled": true
+        },
+        {
+          "id": "friends",
+          "bounds": [
+            606.0,
+            300.0,
+            20.0,
+            20.0
+          ],
+          "label": "Friends",
+          "enabled": true
+        },
+        {
+          "id": "language",
+          "bounds": [
+            630.0,
+            300.0,
+            20.0,
+            20.0
+          ],
+          "label": "Language...",
+          "enabled": true
+        },
+        {
+          "id": "accessibility-settings",
+          "bounds": [
+            654.0,
+            300.0,
+            20.0,
+            20.0
+          ],
+          "label": "Accessibility Settings...",
+          "enabled": true
+        }
+      ]
+    }
+  },
+  "titleUiAfter": {
+    "screen": "title",
+    "widgets": [
+      {
+        "id": "not-affiliated-with-mojang-or-microsoft",
+        "bounds": [
+          1084.0,
+          710.0,
+          194.0,
+          10.0
+        ],
+        "label": "Not affiliated with Mojang or Microsoft",
+        "enabled": true
+      },
+      {
+        "id": "singleplayer",
+        "bounds": [
+          540.0,
+          228.0,
+          200.0,
+          20.0
+        ],
+        "label": "Singleplayer",
+        "enabled": true
+      },
+      {
+        "id": "multiplayer",
+        "bounds": [
+          540.0,
+          252.0,
+          200.0,
+          20.0
+        ],
+        "label": "Multiplayer",
+        "enabled": true
+      },
+      {
+        "id": "minecraft-realms",
+        "bounds": [
+          540.0,
+          276.0,
+          200.0,
+          20.0
+        ],
+        "label": "Minecraft Realms",
+        "enabled": true
+      },
+      {
+        "id": "options",
+        "bounds": [
+          540.0,
+          324.0,
+          98.0,
+          20.0
+        ],
+        "label": "Options...",
+        "enabled": true
+      },
+      {
+        "id": "quit-game",
+        "bounds": [
+          642.0,
+          324.0,
+          98.0,
+          20.0
+        ],
+        "label": "Quit Game",
+        "enabled": true
+      },
+      {
+        "id": "friends",
+        "bounds": [
+          606.0,
+          300.0,
+          20.0,
+          20.0
+        ],
+        "label": "Friends",
+        "enabled": true
+      },
+      {
+        "id": "language",
+        "bounds": [
+          630.0,
+          300.0,
+          20.0,
+          20.0
+        ],
+        "label": "Language...",
+        "enabled": true
+      },
+      {
+        "id": "accessibility-settings",
+        "bounds": [
+          654.0,
+          300.0,
+          20.0,
+          20.0
+        ],
+        "label": "Accessibility Settings...",
+        "enabled": true
+      }
+    ]
+  },
+  "foregroundBeforeChat": 4590276,
+  "foregroundAfterChat": 4590276,
+  "technicalChat": [
+    "There are 1 of a max of 8 players online: Player81872"
+  ],
+  "pauseUiBefore": {
+    "screen": "paused",
+    "widgets": [
+      {
+        "id": "back-to-game",
+        "bounds": [
+          618.0,
+          233.0,
+          204.0,
+          20.0
+        ],
+        "label": "Back to Game",
+        "enabled": true
+      },
+      {
+        "id": "advancements",
+        "bounds": [
+          618.0,
+          257.0,
+          98.0,
+          20.0
+        ],
+        "label": "Advancements",
+        "enabled": true
+      },
+      {
+        "id": "statistics",
+        "bounds": [
+          724.0,
+          257.0,
+          98.0,
+          20.0
+        ],
+        "label": "Statistics",
+        "enabled": true
+      },
+      {
+        "id": "options",
+        "bounds": [
+          618.0,
+          305.0,
+          98.0,
+          20.0
+        ],
+        "label": "Options...",
+        "enabled": true
+      },
+      {
+        "id": "open-to-lan",
+        "bounds": [
+          724.0,
+          305.0,
+          98.0,
+          20.0
+        ],
+        "label": "Open to LAN",
+        "enabled": true
+      },
+      {
+        "id": "save-and-quit-to-title",
+        "bounds": [
+          618.0,
+          329.0,
+          204.0,
+          20.0
+        ],
+        "label": "Save and Quit to Title",
+        "enabled": true
+      },
+      {
+        "id": "play-with-friends",
+        "bounds": [
+          722.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "label": "Play with Friends",
+        "enabled": true
+      },
+      {
+        "id": "button-0",
+        "bounds": [
+          674.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "enabled": true
+      },
+      {
+        "id": "button-1",
+        "bounds": [
+          698.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "enabled": true
+      },
+      {
+        "id": "button-2",
+        "bounds": [
+          746.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "enabled": true
+      }
+    ]
+  },
+  "pauseUiAfter": {
+    "screen": "paused",
+    "widgets": [
+      {
+        "id": "back-to-game",
+        "bounds": [
+          618.0,
+          233.0,
+          204.0,
+          20.0
+        ],
+        "label": "Back to Game",
+        "enabled": true
+      },
+      {
+        "id": "advancements",
+        "bounds": [
+          618.0,
+          257.0,
+          98.0,
+          20.0
+        ],
+        "label": "Advancements",
+        "enabled": true
+      },
+      {
+        "id": "statistics",
+        "bounds": [
+          724.0,
+          257.0,
+          98.0,
+          20.0
+        ],
+        "label": "Statistics",
+        "enabled": true
+      },
+      {
+        "id": "options",
+        "bounds": [
+          618.0,
+          305.0,
+          98.0,
+          20.0
+        ],
+        "label": "Options...",
+        "enabled": true
+      },
+      {
+        "id": "open-to-lan",
+        "bounds": [
+          724.0,
+          305.0,
+          98.0,
+          20.0
+        ],
+        "label": "Open to LAN",
+        "enabled": true
+      },
+      {
+        "id": "save-and-quit-to-title",
+        "bounds": [
+          618.0,
+          329.0,
+          204.0,
+          20.0
+        ],
+        "label": "Save and Quit to Title",
+        "enabled": true
+      },
+      {
+        "id": "play-with-friends",
+        "bounds": [
+          722.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "label": "Play with Friends",
+        "enabled": true
+      },
+      {
+        "id": "button-0",
+        "bounds": [
+          674.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "enabled": true
+      },
+      {
+        "id": "button-1",
+        "bounds": [
+          698.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "enabled": true
+      },
+      {
+        "id": "button-2",
+        "bounds": [
+          746.0,
+          281.0,
+          20.0,
+          20.0
+        ],
+        "enabled": true
+      }
+    ]
+  },
+  "retainedBytes": 30770267,
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "environmentPolicy": "pack-presentation-defaults-v1",
+  "environmentDefaults": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "environmentApplications": [
+    {
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "bootstrap"
+    }
+  ],
+  "baseSource": {
+    "revision": "5c41b1908b6214da3cadbc116bf58929a74151ae",
+    "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+    "overlayRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
+    "contractSha256": "8fd89274925de3fc438ba9380036b15535090cfc86612caeeca6de537e3b0ed3",
+    "qaToolSha256": "76498f9e3787b3b93ec7bea4c2898aeb500a6da4eb3b5cf5341cb7e368599461",
+    "stageToolSha256": "ed9214528f574e61e5e9b89a778b1deda7e51be444cb71704871cc42887d2412",
+    "desktopKeyHelperSha256": "efbdc9c008f5e7b6cb5659f879f0d354301bb029bbe02d9b186115afab85270b",
+    "gameplayToolSha256": "6ad1ee48b9979ddd0969afc0b2536fa033c962299c6d40165a6dd9ae3e06a4b4",
+    "bootstrapSourceSha256": "8179f35f13d7e4fc1263891e8f132525b6a9e66bbc7a90a5eeb18aa51708e883",
+    "bootstrapContractSha256": "b4b1e7dd73408ac75de0529bbd12d7f7a7f9332d9cbe5c2dd03f21e025225664",
+    "bootstrapLockSha256": "59658de1877bb7cc52727f50b4a0a12b4419d4438771527ae3b3a7e19c222fb3"
+  },
+  "modInventory": {
+    "selectedIds": [
+      "accurate_block_placement",
+      "appleskin",
+      "armor_status",
+      "armorhud",
+      "blockscope",
+      "chatheads",
+      "connected_textures",
+      "coords_hud",
+      "crosshair_indicator",
+      "dynamic_fps_for_rust",
+      "elytratrails",
+      "enchantmenthints",
+      "fps_overlay",
+      "freelook",
+      "fullbright_nofog",
+      "held_item_info",
+      "horizon_physics",
+      "horizonmatica",
+      "inventory_profiles",
+      "invisible_frames",
+      "itemnew",
+      "jei",
+      "lookat",
+      "minimap",
+      "motion_blur",
+      "mousetricks",
+      "orbital",
+      "resourcify",
+      "rightharvest",
+      "skins_3d",
+      "spider_man",
+      "status_effect_hud",
+      "tectonic_horizon",
+      "toggle_sprint",
+      "veinminer",
+      "waypoints",
+      "zoom"
+    ],
+    "before": {
+      "registeredNative": [
+        "accurate_block_placement",
+        "appleskin",
+        "armor_status",
+        "armorhud",
+        "blockscope",
+        "chatheads",
+        "connected_textures",
+        "coords_hud",
+        "crosshair_indicator",
+        "elytratrails",
+        "enchantmenthints",
+        "fps_overlay",
+        "freelook",
+        "fullbright_nofog",
+        "held_item_info",
+        "horizon_physics",
+        "horizonmatica",
+        "inventory_profiles",
+        "invisible_frames",
+        "itemnew",
+        "jei",
+        "lookat",
+        "minimap",
+        "motion_blur",
+        "mousetricks",
+        "orbital",
+        "resourcify",
+        "rightharvest",
+        "skins_3d",
+        "spider_man",
+        "status_effect_hud",
+        "tectonic_horizon",
+        "toggle_sprint",
+        "waypoints",
+        "zoom"
+      ],
+      "loadedContent": [
+        [
+          "orbital",
+          "0.5.9"
+        ]
+      ]
+    },
+    "after": {
+      "registeredNative": [
+        "accurate_block_placement",
+        "appleskin",
+        "armor_status",
+        "armorhud",
+        "blockscope",
+        "chatheads",
+        "connected_textures",
+        "coords_hud",
+        "crosshair_indicator",
+        "elytratrails",
+        "enchantmenthints",
+        "fps_overlay",
+        "freelook",
+        "fullbright_nofog",
+        "held_item_info",
+        "horizon_physics",
+        "horizonmatica",
+        "inventory_profiles",
+        "invisible_frames",
+        "itemnew",
+        "jei",
+        "lookat",
+        "minimap",
+        "motion_blur",
+        "mousetricks",
+        "orbital",
+        "resourcify",
+        "rightharvest",
+        "skins_3d",
+        "spider_man",
+        "status_effect_hud",
+        "tectonic_horizon",
+        "toggle_sprint",
+        "waypoints",
+        "zoom"
+      ],
+      "loadedContent": [
+        [
+          "orbital",
+          "0.5.9"
+        ]
+      ]
+    },
+    "visibleWidgetsBefore": [
+      "accurate-block-placement-1-0-0",
+      "appleskin-0-1-3",
+      "armor-hud-1-0-0",
+      "armor-status-1-0-0",
+      "blockscope-0-3-1",
+      "browse-mods",
+      "chatheads-0-1-1",
+      "connected-textures-0-1-2",
+      "coordinates-hud-2-0-0",
+      "crosshair-indicator-1-0-0",
+      "done",
+      "enchantment-hints-0-1-0",
+      "fps-counter-2-0-0",
+      "freelook",
+      "fullbright-nofog-1-0-0",
+      "held-item-info-0-1-0",
+      "horizon-physics-0-18-0",
+      "inventory-profiles-1-0-0",
+      "invisible-frames-0-1-1",
+      "item-new-0-1-1",
+      "jei-0-1-0",
+      "lookat-0-2-1",
+      "minimap-2-0-0",
+      "motion-blur-0-1-0",
+      "mouse-tricks-0-2-0",
+      "open-mod-folder",
+      "orbital-laser-0-5-9",
+      "resourcify-0-1-1",
+      "settings",
+      "settings-10",
+      "settings-11",
+      "settings-12",
+      "settings-13",
+      "settings-14",
+      "settings-15",
+      "settings-16",
+      "settings-17",
+      "settings-18",
+      "settings-19",
+      "settings-2",
+      "settings-20",
+      "settings-21",
+      "settings-22",
+      "settings-3",
+      "settings-4",
+      "settings-5",
+      "settings-6",
+      "settings-7",
+      "settings-8",
+      "settings-9"
+    ],
+    "visibleWidgetsAfter": [
+      "3d-skins-1-0-1",
+      "accurate-block-placement-1-0-0",
+      "appleskin-0-1-3",
+      "armor-hud-1-0-0",
+      "armor-status-1-0-0",
+      "blockscope-0-3-1",
+      "browse-mods",
+      "chatheads-0-1-1",
+      "connected-textures-0-1-2",
+      "coordinates-hud-2-0-0",
+      "crosshair-indicator-1-0-0",
+      "done",
+      "enchantment-hints-0-1-0",
+      "fps-counter-2-0-0",
+      "freelook",
+      "fullbright-nofog-1-0-0",
+      "held-item-info-0-1-0",
+      "horizon-physics-0-18-0",
+      "inventory-profiles-1-0-0",
+      "invisible-frames-0-1-1",
+      "item-new-0-1-1",
+      "jei-0-1-0",
+      "lookat-0-2-1",
+      "minimap-2-0-0",
+      "motion-blur-0-1-0",
+      "mouse-tricks-0-2-0",
+      "open-mod-folder",
+      "orbital-laser-0-5-9",
+      "resourcify-0-1-1",
+      "rightclickharvest-0-1-1",
+      "settings",
+      "settings-10",
+      "settings-11",
+      "settings-12",
+      "settings-13",
+      "settings-14",
+      "settings-15",
+      "settings-16",
+      "settings-17",
+      "settings-18",
+      "settings-19",
+      "settings-2",
+      "settings-20",
+      "settings-21",
+      "settings-22",
+      "settings-23",
+      "settings-24",
+      "settings-25",
+      "settings-26",
+      "settings-27",
+      "settings-28",
+      "settings-29",
+      "settings-3",
+      "settings-4",
+      "settings-5",
+      "settings-6",
+      "settings-7",
+      "settings-8",
+      "settings-9",
+      "spider-man",
+      "status-effect-hud-1-0-0",
+      "tectonic-horizon-0-3-4",
+      "toggle-sprint-1-0-0",
+      "waypoints-1-0-0",
+      "zoom-2-0-0"
+    ]
+  }
+}

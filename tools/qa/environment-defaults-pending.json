@@ -1,25 +1,78 @@
 {
   "schemaVersion": 1,
-  "status": "NOT RUN",
-  "reason": "Power-loss source checkpoint; final post-policy runtime acceptance and public base promotion are incomplete.",
-  "mandatoryPolicy": {"DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"},
+  "status": "PENDING PUBLICATION",
+  "reason": "Exact final runtime, published-base bootstrap policy and all release-gate checks passed. Mods public manifest promotion and installed update acceptance have not been performed by this audit.",
+  "observedAtUtc": "2026-11-08T08:01:54.366254+00:00",
+  "mandatoryPolicy": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
   "coreChangedByThisPolicy": false,
   "candidateMutationByAuditAgent": false,
-  "implemented": [
-    "Pack-owned environment defaults and strict staging/presentation validation",
-    "Source/effective environment evidence required in final QA reports",
-    "Generic bootstrap/source/binary compatibility checks; old base fails closed",
-    "Native notice and update-preservation gates retain exact presentation policy provenance"
-  ],
+  "runtimeAcceptance": "PASS",
+  "sourcePolicyCompatibility": "PASS",
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "bootstrapSha256": "ace261a88a6a5438ede83e9571be2d1189ec7d950948d751460071af446b0c6d",
+  "bootstrapSourceRevision": "ea131ad0395b61b801c0d07147a9374aa545cf8e",
+  "bootstrapSourceSha256": "8179f35f13d7e4fc1263891e8f132525b6a9e66bbc7a90a5eeb18aa51708e883",
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "buildReceiptSha256": "a738c3b37bb2eed2161ded29831be247b96773cc5e2b46c61ba2d9ae42eebeba",
+  "acceptedPublicBase": {
+    "revision": "34d18e6956912ba5412e17eefdd5889f814e6cee",
+    "distributionLockSha256": "07087721379b2e48856c123fabad060a0cff74f158bd96f67deed2b303e11f0f",
+    "manifestSha256": "c6da36d897ade557ad8027192484f16f9f2e870367869fe21df2dc7a2ba30495",
+    "publicReadbackReceiptSha256": "18dae11c47a948d8f523fda1818e09921613029f98a36a9a72251032650ff30f"
+  },
+  "validatedSourceProof": {
+    "revision": "5c41b1908b6214da3cadbc116bf58929a74151ae",
+    "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+    "overlayRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
+    "contractSha256": "8fd89274925de3fc438ba9380036b15535090cfc86612caeeca6de537e3b0ed3",
+    "qaToolSha256": "76498f9e3787b3b93ec7bea4c2898aeb500a6da4eb3b5cf5341cb7e368599461",
+    "stageToolSha256": "ed9214528f574e61e5e9b89a778b1deda7e51be444cb71704871cc42887d2412",
+    "desktopKeyHelperSha256": "efbdc9c008f5e7b6cb5659f879f0d354301bb029bbe02d9b186115afab85270b",
+    "gameplayToolSha256": "6ad1ee48b9979ddd0969afc0b2536fa033c962299c6d40165a6dd9ae3e06a4b4",
+    "bootstrapSourceSha256": "8179f35f13d7e4fc1263891e8f132525b6a9e66bbc7a90a5eeb18aa51708e883",
+    "bootstrapContractSha256": "b4b1e7dd73408ac75de0529bbd12d7f7a7f9332d9cbe5c2dd03f21e025225664",
+    "bootstrapLockSha256": "59658de1877bb7cc52727f50b4a0a12b4419d4438771527ae3b3a7e19c222fb3"
+  },
+  "sourceReceipts": {
+    "orbital-startup.json": "8864318eaa6587f206237e81e5d429c9b8b0e69f0ba836bbdc32c3fa29dd0f2f",
+    "multiplayer.json": "24323d34559e65f9e03d4deee85e5a51feb402d1f4b67d03c57fa5709c2aff27",
+    "backup-guard.json": "0f5a46d43a6da54bda2f3b9d5a01acf13a59e2ce0b940235a3fd67ee0b48674c",
+    "server-policy.json": "470380a23207ac606567793b519b8ffe36ed1ff1c5422177dbc0c9a9bf8702f3",
+    "native-notices.json": "2fbcf607d93b0a6d362533ff7a71ee496f806a084c0ab5130ce3d0f9b4609fde",
+    "launcher-notices-support.json": "1d03379267a717329b74236fff880979d1a2bc98c558cfaa113dc33fb2426015"
+  },
+  "releaseGateVerification": {
+    "status": "PASS",
+    "realFinalBaseline": "PASS",
+    "rejectionCount": 48,
+    "receipt": "update-preservation.json",
+    "receiptSha256": "1ede84ba597c8c253c9e65801fbc71c4f0918e2a25eed36840c761b9c18812ba",
+    "gateSourceSha256": "a7f47c90c1ad51c8e00a5180e33afcabe90a0cb4e3b42b33f380cf758cecf57b",
+    "verificationSourceSha256": "499da2f278958e6eba01c0e44152bb4cb1ecfbbf3900726bd6a6464bbbee7d13"
+  },
+  "sourceComponentAudit": "environment-policy-source.json is the earlier bounded source/helper audit. Final published-base/source/binary and exact presentation policy acceptance are now additionally proven by the real final receipts and release-gate verification above.",
+  "publicManifestPromotion": "NOT RUN",
+  "updateEngine": "NOT RUN",
   "requiredBeforeRelease": [
-    "Accept the newly published Edition base and bootstrap pins; the old 3bf base lacks the new bootstrap contract",
-    "Verify generic bootstrap environment source and exact binary against that published base",
-    "Restage the candidate with the policy and the new bootstrap",
-    "Repeat all final QA from that presentation and bootstrap without a diagnostic inherited mask",
-    "Run the release-gate verifier on the real final reports",
-    "Publish archives and verify public SHA-256 before promoting a new manifest"
+    "Publish the Mods archives and verify their public SHA-256 before promoting the Mods manifest.",
+    "Perform the agreed installed update/engine acceptance and record its actual result."
   ],
-  "sourceComponentAudit": "environment-policy-source.json records the earlier validator/helper boundary checks; its source hashes identify that tested snapshot, not a new gameplay run. The later bootstrap source guard still needs final published-base acceptance.",
-  "runtimeAcceptance": "NOT RUN",
-  "publicManifestPromotion": "NOT RUN"
+  "temporaryDataBytes": 0,
+  "sourceReceiptNormalization": [
+    {
+      "receipt": "native-notices.json",
+      "originalSha256": "948e8502be7484dff1d15f62bab804d9051909b433c89bff7849b564fb1b49c6",
+      "normalizedSha256": "2fbcf607d93b0a6d362533ff7a71ee496f806a084c0ab5130ce3d0f9b4609fde",
+      "jsonSemanticallyUnchanged": true
+    },
+    {
+      "receipt": "launcher-notices-support.json",
+      "originalSha256": "a0877345b4bbf5966f512ded57b5330cf0a55132f6529b0ea4ae537cfe685507",
+      "normalizedSha256": "1d03379267a717329b74236fff880979d1a2bc98c558cfaa113dc33fb2426015",
+      "jsonSemanticallyUnchanged": true
+    }
+  ]
 }

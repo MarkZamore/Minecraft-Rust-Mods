@@ -1,0 +1,1315 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "environmentPolicy": "pack-presentation-defaults-v1",
+  "environmentDefaults": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "environmentApplications": [
+    {
+      "index": 1,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    },
+    {
+      "index": 2,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    },
+    {
+      "index": 3,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    },
+    {
+      "index": 4,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    },
+    {
+      "index": 5,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    },
+    {
+      "index": 6,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    }
+  ],
+  "nativeRuntime": {
+    "executable": "native/launch-rust-edition.exe",
+    "platform": "windows-x64",
+    "adapter": "portable-native",
+    "version": "nightly-2026-11-07-2ebf00a-mods-r1"
+  },
+  "buildReceiptSha256": "a738c3b37bb2eed2161ded29831be247b96773cc5e2b46c61ba2d9ae42eebeba",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "runOwner": "codex/rust-engine-6560641",
+  "methodology": "Six ordinary starts; fresh, reconstructed legacy and custom manual NBT byte comparison",
+  "ordinaryLaunch": true,
+  "launchArguments": [
+    [
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "--resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "--game-dir",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--home",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--name",
+      "RustServerPolicyQA"
+    ],
+    [
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "--resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "--game-dir",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--home",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--name",
+      "RustServerPolicyQA"
+    ],
+    [
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "--resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "--game-dir",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--home",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--name",
+      "RustServerPolicyQA"
+    ],
+    [
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "--resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "--game-dir",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--home",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--name",
+      "RustServerPolicyQA"
+    ],
+    [
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "--resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "--game-dir",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--home",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--name",
+      "RustServerPolicyQA"
+    ],
+    [
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "--resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "--game-dir",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--home",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "--name",
+      "RustServerPolicyQA"
+    ]
+  ],
+  "processExitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "controlVia": "technical horizon-extras.txt agentControl:true; HORIZON_CONTROL endpoint",
+  "desktopKeyProtocol": "edition-server-list-qa/checkpoint-v1",
+  "desktopKeyHelperSha256": "efbdc9c008f5e7b6cb5659f879f0d354301bb029bbe02d9b186115afab85270b",
+  "runs": [
+    {
+      "servers": [],
+      "arguments": [
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "--resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "--game-dir",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--home",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--name",
+        "RustServerPolicyQA"
+      ],
+      "exitCode": 0,
+      "environment": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      },
+      "serverView": {
+        "status": "PASS",
+        "expectedSavedRows": [],
+        "observations": [
+          {
+            "action": "open-multiplayer",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "refresh-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "open-saved",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "refresh-saved",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "explicit-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "saved-before-back",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "reopen-after-back",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "saved-before-escape",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "reopen-after-escape",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          }
+        ],
+        "backToTitle": true,
+        "escapeToTitle": true,
+        "bytePreserved": true,
+        "desktopKeys": [
+          {
+            "request": {
+              "id": "run-1-key-1",
+              "action": "press_key",
+              "key": "Escape",
+              "processId": 42096,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "run": 1,
+              "createdUnixMs": 1794123763949,
+              "timeoutMs": 120000
+            },
+            "acknowledgement": {
+              "id": "run-1-key-1",
+              "status": "PASS",
+              "processId": 42096,
+              "key": "Escape",
+              "performedUnixMs": 1794123791434
+            }
+          }
+        ],
+        "multiplayerWarningsAccepted": [
+          {
+            "action": "open-multiplayer",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-back",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-escape",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "servers": [],
+      "arguments": [
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "--resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "--game-dir",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--home",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--name",
+        "RustServerPolicyQA"
+      ],
+      "exitCode": 0,
+      "environment": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      },
+      "serverView": {
+        "status": "PASS",
+        "expectedSavedRows": [],
+        "observations": [
+          {
+            "action": "open-multiplayer",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "refresh-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "open-saved",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "refresh-saved",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "explicit-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "saved-before-back",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "reopen-after-back",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          },
+          {
+            "action": "saved-before-escape",
+            "mode": "saved",
+            "rows": [],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": null
+          },
+          {
+            "action": "reopen-after-escape",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": null
+          }
+        ],
+        "backToTitle": true,
+        "escapeToTitle": true,
+        "bytePreserved": true,
+        "desktopKeys": [
+          {
+            "request": {
+              "id": "run-2-key-1",
+              "action": "press_key",
+              "key": "Escape",
+              "processId": 20676,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "run": 2,
+              "createdUnixMs": 1794123794211,
+              "timeoutMs": 120000
+            },
+            "acknowledgement": {
+              "id": "run-2-key-1",
+              "status": "PASS",
+              "processId": 20676,
+              "key": "Escape",
+              "performedUnixMs": 1794123836371
+            }
+          }
+        ],
+        "multiplayerWarningsAccepted": [
+          {
+            "action": "open-multiplayer",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-back",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-escape",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "servers": [
+        {
+          "address": "play.playhorizon.dev",
+          "name": "Horizon Official"
+        },
+        {
+          "address": "afri-network.co.za",
+          "name": "Afri-Network (South Africa)"
+        }
+      ],
+      "arguments": [
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "--resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "--game-dir",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--home",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--name",
+        "RustServerPolicyQA"
+      ],
+      "exitCode": 0,
+      "environment": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      },
+      "serverView": {
+        "status": "PASS",
+        "expectedSavedRows": [
+          "Horizon Official",
+          "Afri-Network (South Africa)"
+        ],
+        "observations": [
+          {
+            "action": "open-multiplayer",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "refresh-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "open-saved",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "refresh-saved",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "explicit-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "saved-before-back",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "reopen-after-back",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "saved-before-escape",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "reopen-after-escape",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          }
+        ],
+        "backToTitle": true,
+        "escapeToTitle": true,
+        "bytePreserved": true,
+        "desktopKeys": [
+          {
+            "request": {
+              "id": "run-3-key-1",
+              "action": "press_key",
+              "key": "Escape",
+              "processId": 27760,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "run": 3,
+              "createdUnixMs": 1794123840128,
+              "timeoutMs": 120000
+            },
+            "acknowledgement": {
+              "id": "run-3-key-1",
+              "status": "PASS",
+              "processId": 27760,
+              "key": "Escape",
+              "performedUnixMs": 1794123857780
+            }
+          }
+        ],
+        "multiplayerWarningsAccepted": [
+          {
+            "action": "open-multiplayer",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-back",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-escape",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "servers": [
+        {
+          "address": "play.playhorizon.dev",
+          "name": "Horizon Official"
+        },
+        {
+          "address": "afri-network.co.za",
+          "name": "Afri-Network (South Africa)"
+        }
+      ],
+      "arguments": [
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "--resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "--game-dir",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--home",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--name",
+        "RustServerPolicyQA"
+      ],
+      "exitCode": 0,
+      "environment": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      },
+      "serverView": {
+        "status": "PASS",
+        "expectedSavedRows": [
+          "Horizon Official",
+          "Afri-Network (South Africa)"
+        ],
+        "observations": [
+          {
+            "action": "open-multiplayer",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "refresh-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "open-saved",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "refresh-saved",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "explicit-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "saved-before-back",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "reopen-after-back",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "saved-before-escape",
+            "mode": "saved",
+            "rows": [
+              "Horizon Official",
+              "Afri-Network (South Africa)"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          },
+          {
+            "action": "reopen-after-escape",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+          }
+        ],
+        "backToTitle": true,
+        "escapeToTitle": true,
+        "bytePreserved": true,
+        "desktopKeys": [
+          {
+            "request": {
+              "id": "run-4-key-1",
+              "action": "press_key",
+              "key": "Escape",
+              "processId": 2052,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "run": 4,
+              "createdUnixMs": 1794123861729,
+              "timeoutMs": 120000
+            },
+            "acknowledgement": {
+              "id": "run-4-key-1",
+              "status": "PASS",
+              "processId": 2052,
+              "key": "Escape",
+              "performedUnixMs": 1794123895588
+            }
+          }
+        ],
+        "multiplayerWarningsAccepted": [
+          {
+            "action": "open-multiplayer",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-back",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-escape",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "servers": [
+        {
+          "address": "127.0.0.1:9",
+          "name": "Synthetic Manual QA"
+        }
+      ],
+      "arguments": [
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "--resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "--game-dir",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--home",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--name",
+        "RustServerPolicyQA"
+      ],
+      "exitCode": 0,
+      "environment": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      },
+      "serverView": {
+        "status": "PASS",
+        "expectedSavedRows": [
+          "Synthetic Manual QA"
+        ],
+        "observations": [
+          {
+            "action": "open-multiplayer",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "refresh-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "open-saved",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "refresh-saved",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "explicit-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "saved-before-back",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "reopen-after-back",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "saved-before-escape",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "reopen-after-escape",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          }
+        ],
+        "backToTitle": true,
+        "escapeToTitle": true,
+        "bytePreserved": true,
+        "desktopKeys": [
+          {
+            "request": {
+              "id": "run-5-key-1",
+              "action": "press_key",
+              "key": "Escape",
+              "processId": 35980,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "run": 5,
+              "createdUnixMs": 1794123898697,
+              "timeoutMs": 120000
+            },
+            "acknowledgement": {
+              "id": "run-5-key-1",
+              "status": "PASS",
+              "processId": 35980,
+              "key": "Escape",
+              "performedUnixMs": 1794123930900
+            }
+          }
+        ],
+        "multiplayerWarningsAccepted": [
+          {
+            "action": "open-multiplayer",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-back",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-escape",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "servers": [
+        {
+          "address": "127.0.0.1:9",
+          "name": "Synthetic Manual QA"
+        }
+      ],
+      "arguments": [
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "--resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "--game-dir",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--home",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "--name",
+        "RustServerPolicyQA"
+      ],
+      "exitCode": 0,
+      "environment": {
+        "environmentPolicy": "pack-presentation-defaults-v1",
+        "environmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+        "environmentApplication": "direct-client",
+        "effectiveEnvironmentDefaults": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+        },
+        "environmentDefaultOrigins": {
+          "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+        }
+      },
+      "serverView": {
+        "status": "PASS",
+        "expectedSavedRows": [
+          "Synthetic Manual QA"
+        ],
+        "observations": [
+          {
+            "action": "open-multiplayer",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "refresh-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "open-saved",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "refresh-saved",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "explicit-steam",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "saved-before-back",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "reopen-after-back",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "saved-before-escape",
+            "mode": "saved",
+            "rows": [
+              "Synthetic Manual QA"
+            ],
+            "steamButtonEnabled": true,
+            "savedButtonEnabled": false,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          },
+          {
+            "action": "reopen-after-escape",
+            "mode": "steam",
+            "rows": [],
+            "steamButtonEnabled": false,
+            "savedButtonEnabled": true,
+            "serversDatSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7"
+          }
+        ],
+        "backToTitle": true,
+        "escapeToTitle": true,
+        "bytePreserved": true,
+        "desktopKeys": [
+          {
+            "request": {
+              "id": "run-6-key-1",
+              "action": "press_key",
+              "key": "Escape",
+              "processId": 5444,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "run": 6,
+              "createdUnixMs": 1794123934653,
+              "timeoutMs": 120000
+            },
+            "acknowledgement": {
+              "id": "run-6-key-1",
+              "status": "PASS",
+              "processId": 5444,
+              "key": "Escape",
+              "performedUnixMs": 1794123953770
+            }
+          }
+        ],
+        "multiplayerWarningsAccepted": [
+          {
+            "action": "open-multiplayer",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-back",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          },
+          {
+            "action": "reopen-after-escape",
+            "acceptedWidget": "proceed",
+            "enabled": true,
+            "warningWidgetIds": [
+              "proceed",
+              "back",
+              "button-0"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "freshProfile": {
+    "savedServerCount": 0,
+    "serversDatAbsent": true,
+    "automaticSeedFilesCreated": [],
+    "nativeSavedServers": []
+  },
+  "legacyUpgrade": {
+    "fixtureOrigin": "Reconstructed author-format list from recorded 5a9dd000 ordinary-startup names/addresses",
+    "historicalBaselineClientSha256": "5a9dd0001d9ccce3183561da4349a22751f5515efd3a9f3ed4988756e2b4ff81",
+    "copiedFromUserFile": false,
+    "savedServerCount": 2,
+    "beforeSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d",
+    "afterSha256": "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d",
+    "sizeBytes": 134,
+    "bytePreserved": true,
+    "savedViewRows": [
+      "Horizon Official",
+      "Afri-Network (South Africa)"
+    ],
+    "defaultSteamRows": []
+  },
+  "manualRestart": {
+    "savedServerCount": 1,
+    "beforeSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7",
+    "afterSha256": "89e8948a7890bb644e165beb32a9b75e6a6211dc657d7d3e05c5b811b5d74ac7",
+    "sizeBytes": 254,
+    "bytePreserved": true,
+    "unknownFieldsPreserved": true,
+    "nativeSavedServers": [
+      {
+        "address": "127.0.0.1:9",
+        "name": "Synthetic Manual QA"
+      }
+    ],
+    "address": "127.0.0.1:9",
+    "savedViewRows": [
+      "Synthetic Manual QA"
+    ]
+  },
+  "manualLegacyMarkersPreserved": true,
+  "savedServerView": {
+    "status": "PASS",
+    "contractRevision": "00e1c09d028720370d525cf3c2dae741c02fd9f2",
+    "widgetIds": [
+      "steam-worlds",
+      "saved-servers",
+      "server-list-refresh",
+      "server-list-back"
+    ],
+    "ordinaryRunsVerified": 6,
+    "defaultSteamOnly": true,
+    "savedAllRows": true,
+    "refreshRetainsView": true,
+    "explicitSteamReturn": true,
+    "backAndEscapeReturnToTitle": true,
+    "reopenDefaultsSteam": true,
+    "bytesUnchanged": true
+  },
+  "fixtureRemoved": true
+}

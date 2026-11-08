@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "scope": "Atomic staging from independently verified public34d base plus approved library text",
+  "changed": [
+    "library/content.json",
+    "native/native-mods.json"
+  ],
+  "old": {
+    "library/content.json": {
+      "sizeBytes": 2130,
+      "sha256": "ab2ab7fcfbadba5fbff6709d43e163954334428c47823eb8744a3c291934de31"
+    },
+    "native/native-mods.json": {
+      "sizeBytes": 5739,
+      "sha256": "1f588030a7dc6605f7e0e3ef50468335bc7f8392c4e1f427ee155ff0b01d7fc2"
+    }
+  },
+  "new": {
+    "library/content.json": {
+      "sizeBytes": 2115,
+      "sha256": "91bb9eaba3b641446347bfe2898e6b6bb5d2c587ca44fde19f61a0119526594c"
+    },
+    "native/native-mods.json": {
+      "sizeBytes": 5739,
+      "sha256": "e97826267e9854acc2a1a51bd26a70a323fef18d82bba5df3b520c82bcff4bd2"
+    }
+  },
+  "clientUnchanged": true,
+  "bootstrapUnchanged": true,
+  "presentationUnchanged": true
+}

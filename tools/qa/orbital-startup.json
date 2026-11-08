@@ -1,11 +1,51 @@
 {
   "schemaVersion": 1,
-  "clientSha256": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05",
-  "mode": "startup-menu",
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "environmentPolicy": "pack-presentation-defaults-v1",
+  "environmentDefaults": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "environmentApplications": [
+    {
+      "index": 1,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "bootstrap"
+    },
+    {
+      "index": 2,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "bootstrap"
+    },
+    {
+      "index": 3,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    }
+  ],
+  "mode": "gameplay",
   "reusedQaDirectory": false,
-  "gameplay": "NOT RUN",
+  "gameplay": "PASS",
   "previousWorldMigration": "NOT RUN",
-  "previewSha256": null,
+  "previewSha256": "71c7424bb7f5ba6df91d65491679bb7833110500c008f04fa877aff71b4f0b73",
   "loadedContent": [
     [
       "orbital",
@@ -34,7 +74,6 @@
     "invisible_frames",
     "itemnew",
     "jei",
-    "keystrokes",
     "lookat",
     "minimap",
     "motion_blur",
@@ -42,9 +81,7 @@
     "orbital",
     "resourcify",
     "rightharvest",
-    "server_browser",
     "skins_3d",
-    "speedrun_timer",
     "spider_man",
     "status_effect_hud",
     "tectonic_horizon",
@@ -57,7 +94,7 @@
     "veinminer"
   ],
   "modsPage": {
-    "frame": 329,
+    "frame": 351,
     "gui_size": [
       427.0,
       240.0
@@ -68,18 +105,30 @@
         "bounds": [
           58.0,
           37.0,
+          310.0,
+          20.0
+        ],
+        "enabled": true,
+        "id": "browse-mods",
+        "kind": "button",
+        "label": "Browse Mods..."
+      },
+      {
+        "bounds": [
+          58.0,
+          62.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "jei-0-1-0",
+        "id": "appleskin-0-1-3",
         "kind": "button",
-        "label": "JEI 0.1.0: ON"
+        "label": "AppleSkin 0.1.3: ON"
       },
       {
         "bounds": [
           218.0,
-          37.0,
+          62.0,
           150.0,
           20.0
         ],
@@ -91,19 +140,19 @@
       {
         "bounds": [
           58.0,
-          62.0,
+          87.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "keystrokes-2-0-0",
+        "id": "accurate-block-placement-1-0-0",
         "kind": "button",
-        "label": "Keystrokes 2.0.0: ON"
+        "label": "Accurate Block Placement 1.0.0: ON"
       },
       {
         "bounds": [
           218.0,
-          62.0,
+          87.0,
           150.0,
           20.0
         ],
@@ -115,19 +164,19 @@
       {
         "bounds": [
           58.0,
-          87.0,
+          112.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "lookat-0-2-1",
+        "id": "armor-status-1-0-0",
         "kind": "button",
-        "label": "LookAt 0.2.1: ON"
+        "label": "Armor Status 1.0.0: ON"
       },
       {
         "bounds": [
           218.0,
-          87.0,
+          112.0,
           150.0,
           20.0
         ],
@@ -139,19 +188,19 @@
       {
         "bounds": [
           58.0,
-          112.0,
+          137.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "minimap-2-0-0",
+        "id": "armor-hud-1-0-0",
         "kind": "button",
-        "label": "Minimap 2.0.0: ON"
+        "label": "Armor HUD 1.0.0: ON"
       },
       {
         "bounds": [
           218.0,
-          112.0,
+          137.0,
           150.0,
           20.0
         ],
@@ -163,19 +212,19 @@
       {
         "bounds": [
           58.0,
-          137.0,
+          162.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "motion-blur-0-1-0",
+        "id": "blockscope-0-3-1",
         "kind": "button",
-        "label": "Motion Blur 0.1.0: ON"
+        "label": "Blockscope 0.3.1: ON"
       },
       {
         "bounds": [
           218.0,
-          137.0,
+          162.0,
           150.0,
           20.0
         ],
@@ -187,48 +236,24 @@
       {
         "bounds": [
           58.0,
-          162.0,
+          187.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "mouse-tricks-0-2-0",
+        "id": "chatheads-0-1-1",
         "kind": "button",
-        "label": "Mouse Tricks 0.2.0: ON"
+        "label": "ChatHeads 0.1.1: ON"
       },
       {
         "bounds": [
           218.0,
-          162.0,
+          187.0,
           150.0,
           20.0
         ],
         "enabled": true,
         "id": "settings-6",
-        "kind": "button",
-        "label": "Settings"
-      },
-      {
-        "bounds": [
-          58.0,
-          187.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "orbital-laser-0-5-9",
-        "kind": "button",
-        "label": "Orbital Laser 0.5.9: ON"
-      },
-      {
-        "bounds": [
-          218.0,
-          187.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "settings-7",
         "kind": "button",
         "label": "Settings"
       },
@@ -256,37 +281,366 @@
         "kind": "button",
         "label": "Done"
       }
-    ],
-    "orbitalRow": {
-      "bounds": [
-        58.0,
-        187.0,
-        150.0,
-        20.0
-      ],
-      "enabled": true,
-      "id": "orbital-laser-0-5-9",
-      "kind": "button",
-      "label": "Orbital Laser 0.5.9: ON"
-    }
+    ]
   },
-  "worldsOnReopen": null,
-  "firstState": null,
-  "reopenedState": null,
-  "bootstrapSha256": "41e8adeb1560a4cb14d3809f225505edbbf581449c11fb638ec6b597ed75cf11",
+  "worldsOnReopen": {
+    "worlds": [
+      {
+        "commands": true,
+        "corrupted": false,
+        "folder": "RustModsSmoke",
+        "last_played": 1794123136747,
+        "mode": "survival",
+        "name": "RustModsSmoke",
+        "version": "26.3"
+      }
+    ]
+  },
+  "firstState": {
+    "busy": null,
+    "dialog": {
+      "open": null,
+      "screen": null
+    },
+    "dimension": "minecraft:overworld",
+    "gamemode": "spectator",
+    "held": {
+      "count": 1,
+      "item": "orbital:laser_designator"
+    },
+    "input": {
+      "counts": {
+        "agent": 108,
+        "game": 0,
+        "user": 0
+      },
+      "events": 108,
+      "last_origin": "agent",
+      "last_user_age_s": null,
+      "recording": null,
+      "replay": null,
+      "user_since_agent": 0
+    },
+    "looking_at": {
+      "block": null,
+      "entity": null,
+      "kind": "none"
+    },
+    "menu": null,
+    "mining": null,
+    "paused": false,
+    "player": {
+      "absorption": 0.0,
+      "air": 300,
+      "block_pos": [
+        14,
+        148,
+        -6
+      ],
+      "death_time": null,
+      "effects": [],
+      "eye": [
+        14.5,
+        149.62000000476837,
+        -5.5
+      ],
+      "fall_flying": false,
+      "flying": true,
+      "food": 20,
+      "fov_modifier": 1.0999999046325684,
+      "health": 20.0,
+      "hurt_time": 0,
+      "on_ground": false,
+      "pitch": 28.0,
+      "portal_effect": 0.0,
+      "position": [
+        14.5,
+        148.0,
+        -5.5
+      ],
+      "saturation": 5.0,
+      "shield_cooldown": 0,
+      "sneaking": false,
+      "sprinting": false,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "xp": {
+        "level": 0,
+        "progress": 0.0,
+        "total": 0
+      },
+      "yaw": -20.0
+    },
+    "pointer_grabbed": true,
+    "screen": "playing",
+    "selected": 1,
+    "sleeping": null,
+    "swings": 0,
+    "ticks": 1129,
+    "time": {
+      "day": 1,
+      "day_time": 30018,
+      "time_of_day": 6018
+    },
+    "using": null,
+    "weather": {
+      "raining": false,
+      "thundering": false
+    },
+    "world": "RustModsSmoke"
+  },
+  "reopenedState": {
+    "busy": null,
+    "dialog": {
+      "open": null,
+      "screen": null
+    },
+    "dimension": "minecraft:overworld",
+    "gamemode": "spectator",
+    "held": {
+      "count": 1,
+      "item": "orbital:laser_designator"
+    },
+    "input": {
+      "counts": {
+        "agent": 20,
+        "game": 0,
+        "user": 0
+      },
+      "events": 20,
+      "last_origin": "agent",
+      "last_user_age_s": null,
+      "recording": null,
+      "replay": null,
+      "user_since_agent": 0
+    },
+    "looking_at": {
+      "block": null,
+      "entity": null,
+      "kind": "none"
+    },
+    "menu": null,
+    "mining": null,
+    "paused": false,
+    "player": {
+      "absorption": 0.0,
+      "air": 300,
+      "block_pos": [
+        14,
+        148,
+        -6
+      ],
+      "death_time": null,
+      "effects": [],
+      "eye": [
+        14.5,
+        149.62000000476837,
+        -5.5
+      ],
+      "fall_flying": false,
+      "flying": true,
+      "food": 20,
+      "fov_modifier": 1.0968711376190186,
+      "health": 20.0,
+      "hurt_time": 0,
+      "on_ground": false,
+      "pitch": 28.0,
+      "portal_effect": 0.0,
+      "position": [
+        14.5,
+        148.0,
+        -5.5
+      ],
+      "saturation": 5.0,
+      "shield_cooldown": 0,
+      "sneaking": false,
+      "sprinting": false,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "xp": {
+        "level": 0,
+        "progress": 0.0,
+        "total": 0
+      },
+      "yaw": -20.0
+    },
+    "pointer_grabbed": true,
+    "screen": "playing",
+    "selected": 1,
+    "sleeping": null,
+    "swings": 0,
+    "ticks": 18,
+    "time": {
+      "day": 1,
+      "day_time": 30024,
+      "time_of_day": 6024
+    },
+    "using": null,
+    "weather": {
+      "raining": false,
+      "thundering": false
+    },
+    "world": "RustModsSmoke"
+  },
+  "bootstrapSha256": "ace261a88a6a5438ede83e9571be2d1189ec7d950948d751460071af446b0c6d",
   "windowTitle": "Minecraft Rust Mods",
-  "persistedModItems": [],
-  "tectonicInstanceConfig": "NOT RUN",
-  "pauseMenu": null,
+  "persistedModItems": [
+    "orbital:laser_designator"
+  ],
+  "tectonicInstanceConfig": "PASS",
+  "pauseMenu": {
+    "before": "Open to LAN",
+    "after": "Player Reporting",
+    "returnedToGame": true,
+    "loopback": "PASS",
+    "localPort": 56323,
+    "publicationChat": [
+      "This world is now open to LAN. The port number is 56323"
+    ],
+    "liveSteamPublication": "NOT RUN"
+  },
   "controlsPreset": {
-    "mappingCount": 63,
-    "sha256": "e17888a0954e7b357cb34101f172f7f03046c588c49c584f0a64f615955c11b7",
+    "mappingCount": 65,
+    "sha256": "ced6de676b79efbb6c08396f7749e15f5f32bd5c817a7530487f3452b00290d5",
     "runtimeRoundTrip": "PASS"
   },
   "timeToTitleSeconds": [
-    460.98,
-    6.03
+    42.89,
+    6.48
   ],
+  "orbitalLaser": {
+    "target": [
+      6,
+      127,
+      6
+    ],
+    "fixture": [
+      [
+        6,
+        127,
+        6
+      ],
+      [
+        7,
+        124,
+        6
+      ]
+    ],
+    "blocksBefore": [
+      "minecraft:gold_block",
+      "minecraft:stone"
+    ],
+    "blocksAfter": [
+      "minecraft:air",
+      "minecraft:air"
+    ],
+    "terrainOffUnchanged": true,
+    "controls": {
+      "orbitalWheel": "insert",
+      "horizonmaticaMoveMode": "n",
+      "rotation": "r"
+    },
+    "renderer": {
+      "gpu": "Intel(R) Arc(TM) B390 GPU",
+      "backend": "Vulkan",
+      "size": [
+        2560,
+        1440
+      ]
+    },
+    "frames": {
+      "wheel": {
+        "file": "orbital-wheel.png",
+        "sha256": "ddae9b7dae102cd3375db72f78be02ec1edb1a369889a086ff756ba7fca44492",
+        "size": [
+          2560,
+          1440
+        ]
+      },
+      "baseline": {
+        "file": "orbital-baseline.png",
+        "sha256": "86d51091d919c1d9badc5158d7f11fc0ea420f833fa4baae6fe4577d06451a04",
+        "size": [
+          2560,
+          1440
+        ]
+      },
+      "plasma": {
+        "file": "orbital-plasma.png",
+        "sha256": "5919c0d9484c06b4a921a8056d4b62a37dc5d1e2cf56a1b8e644b666cca62d9d",
+        "size": [
+          2560,
+          1440
+        ]
+      },
+      "hurricane": {
+        "file": "orbital-hurricane.png",
+        "sha256": "67957d7a97d80d9c6d1dbb58810542d1102a2412aac1b83ce5e792df85d1613a",
+        "size": [
+          2560,
+          1440
+        ]
+      },
+      "crater": {
+        "file": "orbital-crater.png",
+        "sha256": "6f7f5d6398078230f624035f1f07bd3b03ed620dc7e9236b5af7e981338e388d",
+        "size": [
+          2560,
+          1440
+        ]
+      }
+    },
+    "reopened": {
+      "inventory": "orbital:laser_designator",
+      "terrain": [
+        "minecraft:air",
+        "minecraft:air"
+      ],
+      "settings": {
+        "laser": "plasma",
+        "terrain": "0",
+        "seed": "7"
+      }
+    },
+    "newWorldMigrationBackups": 0,
+    "strikeEvents": [
+      {
+        "laser": "plasma",
+        "target": [
+          6,
+          127,
+          6
+        ]
+      },
+      {
+        "laser": "hurricane",
+        "target": [
+          6,
+          127,
+          6
+        ]
+      },
+      {
+        "laser": "plasma",
+        "target": [
+          6,
+          127,
+          6
+        ]
+      }
+    ],
+    "concurrentRenderMods": [
+      "horizon_physics",
+      "motion_blur"
+    ],
+    "shaderErrors": []
+  },
   "startupMouse": {
     "onboardingNarratorButton": {
       "label": "Narrator: Not Available",
@@ -311,7 +665,7 @@
     ],
     "physicsQuickSetup": {
       "action": "Skip Setup",
-      "frameSha256": "583973ddcc3ffff73d95400a30348604f63d4270793d0601749f06be025d53c7"
+      "frameSha256": "14e597c4cee4ac7e2bd4941dbe3df784eadaaf2edd98c397d7a42a7e094bb69d"
     },
     "titleMouse": [
       "language",
@@ -337,19 +691,5 @@
         "off"
       ]
     }
-  },
-  "previewSource": {
-    "revision": "580f83cc07700d3e1cd38152bcdba99cd92d5488",
-    "sha256": "aad547165b91a8c6c5f592eb5723035317059c5e764ed5013d5f06210671e3d2"
-  },
-  "nativeDirectProbes": [
-    {
-      "id": "dynamic_fps_for_rust",
-      "status": "PASS",
-      "observation": "The client created game/config/dynamic-fps-for-rust.json with focused_fps and idle_fps."
-    }
-  ],
-  "orbitalGameplay": "NOT RUN",
-  "veinminerGameplay": "NOT RUN",
-  "liveTwoPlayerSteam": "NOT RUN"
+  }
 }

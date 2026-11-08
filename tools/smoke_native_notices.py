@@ -2,11 +2,33 @@
 
 import argparse
 import json
+import os
 from pathlib import Path
 import sys
 
 from native_build import ROOT, load
 from native_notice_acceptance import execution_context, module_at, shared_modules, source_proof, verify_native_notices
+
+
+def windows_cleanup_path(path):
+    """Keep the shared fixture guards while enabling Windows long-path IO."""
+    path = Path(path)
+    if os.name != "nt":
+        return path
+    absolute = os.path.abspath(path)
+    if absolute.startswith("\\\\?\\"):
+        return Path(absolute)
+    if absolute.startswith("\\\\"):
+        return Path("\\\\?\\UNC\\" + absolute[2:])
+    return Path("\\\\?\\" + absolute)
+
+
+def long_path_cleanup(remove_fixture):
+    def cleanup(path, qa):
+        # The original implementation still checks the exact parent, allowed
+        # fixture name and every link, and owns the bounded file-lock retry.
+        return remove_fixture(windows_cleanup_path(path), windows_cleanup_path(qa))
+    return cleanup
 
 
 def main():
@@ -70,6 +92,7 @@ def main():
             shared = module_at(args.base_repo / "tools/native_notices_qa.py", "_mods_notice_qa")
             shared.execution_context = context
             shared.check_mods = check_mods
+            shared.remove_fixture = long_path_cleanup(shared.remove_fixture)
             original_session = shared.Session
 
             class ModsSession(original_session):

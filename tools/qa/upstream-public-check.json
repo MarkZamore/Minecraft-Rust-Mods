@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "checkedAtUtc": "2026-11-08T07:59:25.854017+00:00",
+  "releaseUrl": "https://github.com/horizon-rust/horizon/releases/tag/nightly",
+  "releaseId": 437763591,
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "publishedAt": "2026-11-07T18:34:22Z",
+  "assets": {
+    "horizon-source.tar.gz": {
+      "sizeBytes": 47015509,
+      "digest": "sha256:90479a75b886e0b39663c1116c0424e90d0d0ea4e9633668c1c3fed09bc7d645"
+    },
+    "horizon-windows-x64.zip": {
+      "sizeBytes": 43725292,
+      "digest": "sha256:b692ae851d9db2edffb6aff89901b379f70417fe0d756c57dfb5746484814ae6"
+    }
+  },
+  "scope": "Fresh authoritative release metadata; pinned signed inputs were verified separately before build"
+}
