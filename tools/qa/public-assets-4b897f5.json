@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "phase": "assets",
+  "repository": "MarkZamore/Minecraft-Rust-Mods",
+  "tag": "pack-latest",
+  "revision": "4b897f5463a36057ca6633a234779190ecc4008a",
+  "modCount": 37,
+  "localManifest": {
+    "sha256": "cdc3a831bc091d4c597def0f0a6d2657d06a9d61e221169a652b0fdba9f36ad1",
+    "sizeBytes": 161282
+  },
+  "assets": [
+    {
+      "name": "minecraft-rust-mods-windows-x64-66c9326c8cee2f9c25c2102fb844991133820bd0da3f9c51137f0a730f5e7aae.zip",
+      "sizeBytes": 42035203,
+      "sha256": "66c9326c8cee2f9c25c2102fb844991133820bd0da3f9c51137f0a730f5e7aae"
+    },
+    {
+      "name": "minecraft-rust-mods-launcher-ca08c0385a60ee81ef7067cd5844920ce2296d005b8bd9f149aafdbe62ff1a2c.zip",
+      "sizeBytes": 1080,
+      "sha256": "ca08c0385a60ee81ef7067cd5844920ce2296d005b8bd9f149aafdbe62ff1a2c"
+    },
+    {
+      "name": "minecraft-rust-mods-orbital-content-f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809.zip",
+      "sizeBytes": 32986396,
+      "sha256": "f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809"
+    },
+    {
+      "name": "library-e5b21a57115c362e51bda935213c325733acd989e50443618fa809ebbdf879f5.zip",
+      "sizeBytes": 1391275,
+      "sha256": "e5b21a57115c362e51bda935213c325733acd989e50443618fa809ebbdf879f5"
+    }
+  ],
+  "managedFiles": 520,
+  "checkedAtUtc": "2026-11-08T08:10:48.286509+00:00",
+  "archiveMaps": [
+    {
+      "name": "minecraft-rust-mods-windows-x64-66c9326c8cee2f9c25c2102fb844991133820bd0da3f9c51137f0a730f5e7aae.zip",
+      "members": 518,
+      "managedMembersVerified": 518,
+      "sha256Verified": true
+    },
+    {
+      "name": "minecraft-rust-mods-launcher-ca08c0385a60ee81ef7067cd5844920ce2296d005b8bd9f149aafdbe62ff1a2c.zip",
+      "members": 1,
+      "managedMembersVerified": 1,
+      "sha256Verified": true
+    },
+    {
+      "name": "minecraft-rust-mods-orbital-content-f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809.zip",
+      "members": 1,
+      "managedMembersVerified": 1,
+      "sha256Verified": true
+    },
+    {
+      "name": "library-e5b21a57115c362e51bda935213c325733acd989e50443618fa809ebbdf879f5.zip",
+      "members": 2,
+      "managedMembersVerified": 0,
+      "sha256Verified": true
+    }
+  ],
+  "allManagedMemberHashesVerified": true,
+  "archivesStoredOnDisk": false,
+  "coveredFiles": 520
+}

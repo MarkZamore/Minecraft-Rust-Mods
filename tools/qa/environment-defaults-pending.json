@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "status": "PENDING PUBLICATION",
-  "reason": "Exact final runtime, published-base bootstrap policy and all release-gate checks passed. Mods public manifest promotion and installed update acceptance have not been performed by this audit.",
+  "status": "PASS",
+  "reason": "Exact runtime, installed40-to37 update and public delivery are complete.",
   "observedAtUtc": "2026-11-08T08:01:54.366254+00:00",
   "mandatoryPolicy": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -54,12 +54,9 @@
     "verificationSourceSha256": "499da2f278958e6eba01c0e44152bb4cb1ecfbbf3900726bd6a6464bbbee7d13"
   },
   "sourceComponentAudit": "environment-policy-source.json is the earlier bounded source/helper audit. Final published-base/source/binary and exact presentation policy acceptance are now additionally proven by the real final receipts and release-gate verification above.",
-  "publicManifestPromotion": "NOT RUN",
-  "updateEngine": "NOT RUN",
-  "requiredBeforeRelease": [
-    "Publish the Mods archives and verify their public SHA-256 before promoting the Mods manifest.",
-    "Perform the agreed installed update/engine acceptance and record its actual result."
-  ],
+  "publicManifestPromotion": "PASS",
+  "updateEngine": "PASS",
+  "requiredBeforeRelease": [],
   "temporaryDataBytes": 0,
   "sourceReceiptNormalization": [
     {
@@ -74,5 +71,10 @@
       "normalizedSha256": "1d03379267a717329b74236fff880979d1a2bc98c558cfaa113dc33fb2426015",
       "jsonSemanticallyUnchanged": true
     }
-  ]
+  ],
+  "completedAtUtc": "2026-11-08T08:13:37.697904+00:00",
+  "publishedRevision": "4b897f5463a36057ca6633a234779190ecc4008a",
+  "publicDeliveryEvidence": "public-delivery-4b897f5.json",
+  "publicAssetsEvidence": "public-assets-4b897f5.json",
+  "updateEngineEvidence": "update-engine.json"
 }

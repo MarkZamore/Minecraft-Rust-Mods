@@ -1,6 +1,6 @@
-# Candidate acceptance, 8 November 2026
+# Published release acceptance, 8 November 2026
 
-This candidate is not public yet. All exact-client runtime acceptance reports and strict release gates have passed; installed update acceptance and publication remain. Continue with the pack AGENTS.md and the LANMinecraft storage policy. Source checkpoints on `codex/engine-6560641-20261107`, including `3d0f74e`, do not identify a published pack. Do not replace current evidence with historical receipts or disable release gates.
+Published pack revision: `4b897f5463a36057ca6633a234779190ecc4008a`. All exact-client runtime acceptance reports, strict release gates, installed update acceptance and public delivery passed. Later QA-only commits do not change that manifest revision. Continue with the pack AGENTS.md and the LANMinecraft storage policy; do not replace current evidence with historical receipts or disable release gates.
 
 ## Exact candidate and accepted base
 
@@ -20,15 +20,16 @@ The base was independently restored through `restore_public_base.py`; public arc
 - `qa/server-policy.json`: six ordinary launches, nine view/navigation observations per launch and six genuine desktop Escape actions against the owned PID and title. Fresh Steam view stays empty; reconstructed legacy and manual unknown-field NBT remain byte-identical. All six clients exited with code 0 and fixtures were removed.
 - `qa/native-notices.json`: exact-candidate native notices passed all 12 checks with 13 actual captures, including fullscreen, DPI, input, expiry, visible pixels and fresh heartbeat evidence. Foreground before/after input remained the same owned window (`4590276`), fixture cleanup passed, and the published-base validator accepted the report. Earlier preliminary adapter failures are diagnostic history superseded by this complete final report.
 
-The build, input/license/official-page checks, bootstrap source contract and these report validators passed. `qa/update-preservation.json` records the real final baseline and regression rejection checks. The distribution lock contains 520 managed files and the exact accepted build receipt. `qa/upstream-public-check.json` confirms the target is still the latest published Nightly. These results do not imply that installed update acceptance or publication has passed.
+The build, input/license/official-page checks, bootstrap source contract and these report validators passed. `qa/update-preservation.json` records the real final baseline and 48 regression rejection checks. The distribution lock contains 520 managed files and the exact accepted build receipt. `qa/upstream-public-check.json` confirms the target was the latest published Nightly before release.
 
-## Remaining release work
+## Installed update and public delivery
 
-1. Commit a clean candidate revision, export and verify the exact distribution, then run `BootstrapUpdateQa --engine-upgrade` against the real preceding 40-mod distribution and this 37-mod distribution. Verify personal files, preserved custom bindings, explicit 65-key preset application, metadata and idempotence.
-2. Publish immutable archives, independently read their public bytes and verify SHA-256/coverage, then promote the manifest last. Record the published revision and public delivery proof. A working-branch commit alone does not complete publication.
+`qa/update-engine.json` records the actual `25b37b08` to `4b897f54` update: 520 managed files verified, 12 personal files preserved, explicit 65-key preset and WPF library presentation passed. A repeated update changed and downloaded zero files. The disposable installation was removed.
+
+The source was committed cleanly, exported and verified for the exact published revision. All four archive GETs passed size/SHA-256 checks, safe ZIP member maps and every managed member hash before the manifest was promoted. The manifest was then freshly downloaded and matched all prepared bytes: 161282 bytes, SHA-256 `cdc3a831bc091d4c597def0f0a6d2657d06a9d61e221169a652b0fdba9f36ad1`. See `qa/public-assets-4b897f5.json`, `qa/public-delivery-4b897f5.json` and the reproducible `verify_public_delivery.py` tool. Existing release archives were preserved.
 
 The pack owns `DISABLE_VULKAN_OW_OVERLAY_LAYER=1` in `launcher/environment-defaults.json`; final QA derives it from the staged presentation without a manual inherited mask. The generic bootstrap preserves explicit inherited values, including empty values. The confirmed `owclient.dll` startup crash and successful policy observations were on Intel Arc B390/Vulkan; they do not establish a fix for ASSin's Radeon crash.
 
 Live Steam Shift+Tab, invitations/two-account joining and world transfer remain NOT RUN by the player's deferral. Radeon-specific reproduction and historical removed-block migration also remain NOT RUN. Local TCP and the current-world backup test must not be presented as those scenarios.
 
-Recoverable runtime data stays in registered LANMinecraft `artifacts/agent-runs/rust-engine-6560641-20261107`, owner `codex/rust-engine-6560641`, deletion deadline 9 November 2026. Preserve unique source, worlds and personal settings; remove completed recoverable stands and retain compact evidence after release. Public pinned inputs and committed tools must remain sufficient for continuation on another PC.
+Cleanup passed: 8036360278 bytes of recoverable caches, builds, candidates and distributions were removed. Only 43.294 MiB of compact evidence remains in registered LANMinecraft `artifacts/agent-runs/rust-engine-6560641-20261107`, owner `codex/rust-engine-6560641`, deletion deadline 9 November 2026; no game fixtures remain active. Final notice/MP images and reports were preserved byte-for-byte. See `qa/storage-cleanup-4b897f5.json`. Unique source, Git repositories, user worlds and personal settings were not touched. Public pinned inputs and committed tools remain sufficient for continuation on another PC.

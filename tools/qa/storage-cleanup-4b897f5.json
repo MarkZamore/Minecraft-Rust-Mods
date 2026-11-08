@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "owner": "codex/rust-engine-6560641",
+  "recordedUtc": "2026-11-08T08:17:07.100472+00:00",
+  "revision": "4b897f5463a36057ca6633a234779190ecc4008a",
+  "publicManifestSha256": "cdc3a831bc091d4c597def0f0a6d2657d06a9d61e221169a652b0fdba9f36ad1",
+  "deleteBy": "2026-11-09",
+  "activeGameFixtures": [],
+  "sourceRepositoriesTouched": false,
+  "sourceGitInsideRun": false,
+  "linksInsideRun": false,
+  "finalEvidenceUntouched": true,
+  "removedBytes": 8036360278,
+  "removedBytesKind": "logical bytes of reproducible files, not volume free-space delta",
+  "removed": [
+    {
+      "path": "archives",
+      "logicalBytes": 90625983
+    },
+    {
+      "path": "base-public-34d",
+      "logicalBytes": 143716444
+    },
+    {
+      "path": "base-public-3bf",
+      "logicalBytes": 143662806
+    },
+    {
+      "path": "bootstrap-input",
+      "logicalBytes": 2923008
+    },
+    {
+      "path": "cargo",
+      "logicalBytes": 3921793679
+    },
+    {
+      "path": "edition",
+      "logicalBytes": 150045410
+    },
+    {
+      "path": "jei-review",
+      "logicalBytes": 11044
+    },
+    {
+      "path": "launcher-release",
+      "logicalBytes": 796019
+    },
+    {
+      "path": "library-summary",
+      "logicalBytes": 303260
+    },
+    {
+      "path": "mixins",
+      "logicalBytes": 10441972
+    },
+    {
+      "path": "mixins-target",
+      "logicalBytes": 345130799
+    },
+    {
+      "path": "mod-inputs",
+      "logicalBytes": 35578173
+    },
+    {
+      "path": "mod-review",
+      "logicalBytes": 1916779
+    },
+    {
+      "path": "mod-sync",
+      "logicalBytes": 1920
+    },
+    {
+      "path": "mods-build",
+      "logicalBytes": 406700880
+    },
+    {
+      "path": "mods-candidate",
+      "logicalBytes": 146537667
+    },
+    {
+      "path": "mods-dist",
+      "logicalBytes": 76575236
+    },
+    {
+      "path": "mods-previous-dist",
+      "logicalBytes": 74298340
+    },
+    {
+      "path": "multiplayer-diagnostic",
+      "logicalBytes": 880609
+    },
+    {
+      "path": "multiplayer-diagnostic-jei",
+      "logicalBytes": 48501
+    },
+    {
+      "path": "multiplayer-diagnostic-orbital",
+      "logicalBytes": 18219
+    },
+    {
+      "path": "physics-review",
+      "logicalBytes": 1108
+    },
+    {
+      "path": "qa-tools",
+      "logicalBytes": 26904846
+    },
+    {
+      "path": "resource-cache-2ebf",
+      "logicalBytes": 1757411501
+    },
+    {
+      "path": "server-policy-baseline",
+      "logicalBytes": 242847
+    },
+    {
+      "path": "upstream",
+      "logicalBytes": 0
+    },
+    {
+      "path": "mods-qa/game",
+      "logicalBytes": 681330179
+    },
+    {
+      "path": "mods-qa/orbital-baseline.png",
+      "logicalBytes": 1381520
+    },
+    {
+      "path": "mods-qa/orbital-crater.png",
+      "logicalBytes": 1274521
+    },
+    {
+      "path": "mods-qa/orbital-hurricane.png",
+      "logicalBytes": 1550728
+    },
+    {
+      "path": "mods-qa/orbital-plasma.png",
+      "logicalBytes": 1456135
+    },
+    {
+      "path": "mods-qa/orbital-wheel.png",
+      "logicalBytes": 1172300
+    },
+    {
+      "path": "mods-qa/physics-quick-setup.png",
+      "logicalBytes": 235739
+    },
+    {
+      "path": "mods-qa/preview.png",
+      "logicalBytes": 6355770
+    },
+    {
+      "path": "server-policy-final\\physics-quick-setup.png",
+      "logicalBytes": 235739
+    },
+    {
+      "path": "diagnostic-evidence\\controls-overlap\\hm-r-diagnostic.png",
+      "logicalBytes": 503416
+    },
+    {
+      "path": "diagnostic-evidence\\guard-unmarked-5a\\orbital-hurricane.png",
+      "logicalBytes": 1640257
+    },
+    {
+      "path": "diagnostic-evidence\\guard-unmarked-5a\\orbital-wheel.png",
+      "logicalBytes": 658694
+    },
+    {
+      "path": "diagnostic-evidence\\mp-port-notice-integer-arg\\guest\\physics-quick-setup.png",
+      "logicalBytes": 235739
+    },
+    {
+      "path": "diagnostic-evidence\\mp-port-notice-integer-arg\\host\\orbital-publish-port-failed.png",
+      "logicalBytes": 1055274
+    },
+    {
+      "path": "diagnostic-evidence\\mp-port-notice-integer-arg\\host\\physics-quick-setup.png",
+      "logicalBytes": 235739
+    },
+    {
+      "path": "diagnostic-evidence\\mp-port-notice-metadata\\guest\\physics-quick-setup.png",
+      "logicalBytes": 235739
+    },
+    {
+      "path": "diagnostic-evidence\\mp-port-notice-metadata\\host\\physics-quick-setup.png",
+      "logicalBytes": 235739
+    }
+  ],
+  "retainedBytesBeforeThisReport": 45392395,
+  "retainedFilesBeforeThisReport": 240,
+  "retainedLimitBytes": 52428800,
+  "compactCopies": 88,
+  "nativeNoticesAndMultiplayerPreservedFiles": 30,
+  "exceptions": [],
+  "retainedBytes": 45397231
+}
