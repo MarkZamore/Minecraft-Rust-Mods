@@ -2086,8 +2086,8 @@
   "bootstrapLockSha256": "ed10841051d0e511e5a39125e31b618557c2ad762d9f465eecf311625807da4a",
   "library": {
     "content.json": {
-      "sizeBytes": 2115,
-      "sha256": "91bb9eaba3b641446347bfe2898e6b6bb5d2c587ca44fde19f61a0119526594c"
+      "sizeBytes": 1376,
+      "sha256": "9111c3893ecc76531690304b278bf3187074590c785e478128164e1c6491d02f"
     },
     "mod-pages.json": {
       "sizeBytes": 2575,

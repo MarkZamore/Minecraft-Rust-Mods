@@ -10,7 +10,7 @@ Published pack revision: `4b897f5463a36057ca6633a234779190ecc4008a`. All exact-c
 - Bootstrap: SHA-256 `ace261a88a6a5438ede83e9571be2d1189ec7d950948d751460071af446b0c6d`, 2923008 bytes; source `ea131ad0395b61b801c0d07147a9374aa545cf8e`.
 - Accepted public Edition base: `34d18e6956912ba5412e17eefdd5889f814e6cee`. Its manifest SHA-256 is `c6da36d897ade557ad8027192484f16f9f2e870367869fe21df2dc7a2ba30495`; distribution-lock SHA-256 is `07087721379b2e48856c123fabad060a0cff74f158bd96f67deed2b303e11f0f`.
 
-The base was independently restored through `restore_public_base.py`; public archive hashes and all 479 managed files passed verification. `qa/base-public-readback.json` records that evidence. Final staging preserved the client, bootstrap and presentation bytes; only the approved library text and native base provenance changed. See `qa/final-base-promotion.json`. The actual inventory contains 37 mods, with official mod URLs, the stable `minecraft-10` ID/path/title, no native-project websiteUrl, and the approved five-sentence summary/description.
+The base was independently restored through `restore_public_base.py`; public archive hashes and all 479 managed files passed verification. `qa/base-public-readback.json` records that evidence. Final staging preserved the client, bootstrap and presentation bytes; only the approved library text and native base provenance changed. See `qa/final-base-promotion.json`. The actual inventory contains 37 mods, with official mod URLs, the stable `minecraft-10` ID/path/title, no native-project websiteUrl, and the approved short summary and five-sentence description.
 
 ## Actual PASS evidence
 
