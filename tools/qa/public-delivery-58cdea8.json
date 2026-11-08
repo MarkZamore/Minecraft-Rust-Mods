@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "phase": "manifest",
+  "repository": "MarkZamore/Minecraft-Rust-Mods",
+  "tag": "pack-latest",
+  "revision": "58cdea81da2e2f11f63e7170146df344d3c97bf5",
+  "modCount": 37,
+  "localManifest": {
+    "sha256": "7399e2e4f3c7ad2bcbc4b9fe2a43c514369a3b60afd94bf850c54f39d808cbbe",
+    "sizeBytes": 161282
+  },
+  "assets": [
+    {
+      "name": "minecraft-rust-mods-windows-x64-66c9326c8cee2f9c25c2102fb844991133820bd0da3f9c51137f0a730f5e7aae.zip",
+      "sizeBytes": 42035203,
+      "sha256": "66c9326c8cee2f9c25c2102fb844991133820bd0da3f9c51137f0a730f5e7aae"
+    },
+    {
+      "name": "minecraft-rust-mods-launcher-ca08c0385a60ee81ef7067cd5844920ce2296d005b8bd9f149aafdbe62ff1a2c.zip",
+      "sizeBytes": 1080,
+      "sha256": "ca08c0385a60ee81ef7067cd5844920ce2296d005b8bd9f149aafdbe62ff1a2c"
+    },
+    {
+      "name": "minecraft-rust-mods-orbital-content-f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809.zip",
+      "sizeBytes": 32986396,
+      "sha256": "f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809"
+    },
+    {
+      "name": "library-792aa4fb56c241f75a7186a6a4ed2693df49feb2631e899c9cab38146aa112a0.zip",
+      "sizeBytes": 1391315,
+      "sha256": "792aa4fb56c241f75a7186a6a4ed2693df49feb2631e899c9cab38146aa112a0"
+    }
+  ],
+  "managedFiles": 520,
+  "checkedAtUtc": "2026-11-08T08:25:24.302158+00:00",
+  "publicManifest": {
+    "url": "https://github.com/MarkZamore/Minecraft-Rust-Mods/releases/download/pack-latest/pack-manifest.json",
+    "sha256": "7399e2e4f3c7ad2bcbc4b9fe2a43c514369a3b60afd94bf850c54f39d808cbbe",
+    "sizeBytes": 161282
+  },
+  "assetsProofSha256": "6ab921ad7b5797d1bf06554adceca9af1e77a07681e351a9fddb1782f25587ab",
+  "archivesRedownloaded": false
+}

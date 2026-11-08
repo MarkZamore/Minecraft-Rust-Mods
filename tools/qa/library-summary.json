@@ -1,12 +1,14 @@
 {
+  "schemaVersion": 1,
+  "status": "PASS",
   "repository": "MarkZamore/Minecraft-Rust-Mods",
-  "revision": "25b37b085444875ceaa4e855e8a11f6cfc5ed8cf",
-  "previousRevision": "74978ed1a7d1f372be69c49574f5949a506948f6",
+  "revision": "58cdea81da2e2f11f63e7170146df344d3c97bf5",
+  "previousRevision": "4b897f5463a36057ca6633a234779190ecc4008a",
   "library": {
-    "name": "library-f09e7b958c9d1032d0777f9f6fb80b96a06d62f66a2b204e529c1e0d32f3e815.zip",
-    "sizeBytes": 1268413,
-    "sha256": "f09e7b958c9d1032d0777f9f6fb80b96a06d62f66a2b204e529c1e0d32f3e815",
-    "revision": "25b37b085444875ceaa4e855e8a11f6cfc5ed8cf"
+    "name": "library-792aa4fb56c241f75a7186a6a4ed2693df49feb2631e899c9cab38146aa112a0.zip",
+    "sizeBytes": 1391315,
+    "sha256": "792aa4fb56c241f75a7186a6a4ed2693df49feb2631e899c9cab38146aa112a0",
+    "revision": "58cdea81da2e2f11f63e7170146df344d3c97bf5"
   },
   "changedLibraryFields": [
     "revision",
@@ -14,12 +16,12 @@
   ],
   "descriptionUnchanged": true,
   "runtimeUnchanged": true,
-  "modCount": 40,
-  "publicManifestSha256": "e56bad85d14ea6a467326cc9bd8a42295fa143fd73ee3f80a286b3b8dc97fe80",
-  "publicLibrarySha256": "f09e7b958c9d1032d0777f9f6fb80b96a06d62f66a2b204e529c1e0d32f3e815",
-  "sourceMain": "25b37b085444875ceaa4e855e8a11f6cfc5ed8cf",
-  "publishedUtc": "2026-11-07T18:11:55.057610+00:00",
-  "checks": "PASS",
-  "gameplay": "NOT RUN - text-only publication",
-  "summary": "Выживание и строительство с физикой, схемами построек и орбитальными ударами."
+  "modCount": 37,
+  "summary": "Выживание и строительство с физикой, схемами построек и орбитальными ударами.",
+  "publicManifestSha256": "7399e2e4f3c7ad2bcbc4b9fe2a43c514369a3b60afd94bf850c54f39d808cbbe",
+  "publicLibrarySha256": "792aa4fb56c241f75a7186a6a4ed2693df49feb2631e899c9cab38146aa112a0",
+  "publicAssetsProof": "public-assets-58cdea8.json",
+  "publicManifestProof": "public-delivery-58cdea8.json",
+  "gameplay": "NOT RUN - summary-only update; prior runtime acceptance remains unchanged",
+  "checkedAtUtc": "2026-11-08T08:26:41.122474+00:00"
 }

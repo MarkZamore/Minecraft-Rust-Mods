@@ -1,6 +1,6 @@
 # Published release acceptance, 8 November 2026
 
-Published pack revision: `4b897f5463a36057ca6633a234779190ecc4008a`. All exact-client runtime acceptance reports, strict release gates, installed update acceptance and public delivery passed. Later QA-only commits do not change that manifest revision. Continue with the pack AGENTS.md and the LANMinecraft storage policy; do not replace current evidence with historical receipts or disable release gates.
+Gameplay acceptance revision: `4b897f5463a36057ca6633a234779190ecc4008a`. Current summary-only publication: `58cdea81da2e2f11f63e7170146df344d3c97bf5`; the short summary is one sentence, and the detailed About text is preserved. See `qa/library-summary.json`. All exact-client runtime acceptance reports, strict release gates, installed update acceptance and public delivery passed. Later QA-only commits do not change that manifest revision. Continue with the pack AGENTS.md and the LANMinecraft storage policy; do not replace current evidence with historical receipts or disable release gates.
 
 ## Exact candidate and accepted base
 
