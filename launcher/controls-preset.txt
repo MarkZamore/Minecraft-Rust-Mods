@@ -67,3 +67,7 @@ key_key.debug.improvedTransparency:key.keyboard.x
 
 # Orbital Laser wheel (Horizonmatica rotates placements with R).
 key_orbital.wheel:key.keyboard.insert
+
+# Waypoints: separate from Horizonmatica's M menu and N move mode.
+key_waypoints.create:key.keyboard.f7
+key_waypoints.list:key.keyboard.f8

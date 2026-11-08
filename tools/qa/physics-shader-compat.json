@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "summary": "API 0.1: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS\nAPI 0.2: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS",
+  "actualGPU": "NOT RUN",
+  "shaderSourceSha256": "23dffc59507996590944df8ea51585fa290430f30a18d4580dea9add1c7a537d",
+  "swaySourceSha256": "434d1577162330f64212e1298c4aba3ca5d5f9481331b666eb02eceddc3e7dfa",
+  "recipeSha256": "91be6447ae72753a77ee5e01cfc8f8baa0273e9a066b105f55c6185e23523c6e",
+  "cargoLockSha256": "ab6894c50a0c7d8316b15461a74e45946abec87cfbd958ca7a137a99c6d0b7e4",
+  "naga": "30.0.1 (author's third_party/naga patch)",
+  "api": [
+    "0.1",
+    "0.2"
+  ],
+  "scope": "Exact shader_source and production Physics helper, original and patched shader parse+validation on both APIs; real GPU NOT RUN"
+}

@@ -1,11 +1,15 @@
 """Stage a native Minecraft Rust Mods candidate from a pinned base release and mod build."""
 
 import argparse
+import json
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
+import unicodedata
 
 from inspect_mods import content_file
 from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
@@ -13,11 +17,78 @@ from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, mo
 
 CONTROLS_PRESET = "launcher/controls-preset.txt"
 OPTIONS_TEMPLATE = "configureddefaults/options.txt"
+ENVIRONMENT_DEFAULTS = "launcher/environment-defaults.json"
+REQUIRED_ENVIRONMENT_DEFAULTS = {"DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"}
+
+
+def validate_environment_defaults(value):
+    if not isinstance(value, dict) or len(value) > 16:
+        raise ValueError("Presentation environment defaults must be an object of at most 16 entries")
+    names, total = set(), 0
+    for key, text in value.items():
+        if (not isinstance(key, str) or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]{0,63}", key) or
+                key.casefold() in names or not isinstance(text, str) or
+                any(unicodedata.category(char) == "Cc" for char in text)):
+            raise ValueError("Invalid or case-duplicate presentation environment default")
+        encoded = text.encode("utf-8")
+        if len(encoded) > 1024:
+            raise ValueError("A presentation environment default exceeds 1024 UTF-8 bytes")
+        names.add(key.casefold())
+        total += len(key.encode("ascii")) + len(encoded)
+    if total > 8192:
+        raise ValueError("Presentation environment defaults exceed 8192 bytes in total")
+    return value
+
+
+def environment_defaults():
+    def pairs(rows):
+        result, names = {}, set()
+        for key, value in rows:
+            if key.casefold() in names:
+                raise ValueError("Case-duplicate presentation environment default in source JSON")
+            names.add(key.casefold())
+            result[key] = value
+        return result
+
+    path = ROOT / ENVIRONMENT_DEFAULTS
+    if path.is_symlink() or path.is_junction():
+        raise ValueError("Use an ordinary pack-owned environment defaults source file")
+    value = validate_environment_defaults(json.loads(path.read_bytes(), object_pairs_hook=pairs))
+    if value != REQUIRED_ENVIRONMENT_DEFAULTS:
+        raise ValueError("The mandatory pack Vulkan overlay opt-out policy is missing or changed")
+    return value
+
+
+def verify_environment_evidence(report, presentation_sha, applications):
+    defaults = environment_defaults()
+
+    def source_matches(value):
+        return (isinstance(value, dict) and value.get("environmentPolicy") == "pack-presentation-defaults-v1" and
+                value.get("environmentDefaults") == defaults and value.get("presentationSha256") == presentation_sha)
+
+    entries = report.get("environmentApplications", []) if isinstance(report, dict) else []
+    if (not source_matches(report) or not isinstance(entries, list) or len(entries) < len(applications) or
+            any(not isinstance(entry, dict) for entry in entries) or
+            [entry.get("environmentApplication") for entry in entries[:len(applications)]] != list(applications)):
+        raise ValueError("Run exact-client QA from the staged mandatory presentation environment policy")
+    for entry in entries:
+        if not isinstance(entry, dict) or not source_matches(entry):
+            raise ValueError("A QA launch has another presentation environment policy")
+        if entry.get("environmentApplication") == "direct-client":
+            if (entry.get("effectiveEnvironmentDefaults") != defaults or
+                    entry.get("environmentDefaultOrigins") != {name: "default" for name in defaults}):
+                raise ValueError("Final clean QA must apply pack defaults rather than inherit a diagnostic environment mask")
+        elif entry.get("environmentApplication") == "bootstrap":
+            if "effectiveEnvironmentDefaults" in entry or "environmentDefaultOrigins" in entry:
+                raise ValueError("Bootstrap QA must not claim an unobserved child environment or pre-apply its defaults")
+        else:
+            raise ValueError("Unknown QA environment application path")
 
 
 def presentation():
     return {"name": load(ROOT / "library/content.json")["name"],
-            "instanceConfig": load(ROOT / "launcher/instance-config.json")}
+            "instanceConfig": load(ROOT / "launcher/instance-config.json"),
+            "environmentDefaults": environment_defaults()}
 
 
 def checked_base(repo, candidate):
@@ -25,7 +96,9 @@ def checked_base(repo, candidate):
     command = ["git", "-C", str(repo)]
     inputs = ("portable-pack.json", "library", "integration/steam", "tools/distribution-lock.json",
               "tools/generate_manifest.py", "tools/stage_runtime.py", "tools/smoke_runtime.py", "tools/upstream-lock.json",
-              "tools/steam-lock.json", "tools/overlay-receipt.json", "tools/upstream", CONTROLS_PRESET, OPTIONS_TEMPLATE)
+              "tools/steam-lock.json", "tools/overlay-receipt.json", "tools/upstream", CONTROLS_PRESET, OPTIONS_TEMPLATE,
+              "launcher/standalone", "launcher/environment-defaults.json", "tools/bootstrap-lock.json",
+              "tools/bootstrap_contract.py")
     changes = subprocess.check_output([*command, "status", "--porcelain", "--untracked-files=all", "--", *inputs], text=True)
     if (pin.get("schemaVersion") != 1 or changes or
             subprocess.run([*command, "merge-base", "--is-ancestor", pin["revision"], "HEAD"]).returncode or
@@ -91,6 +164,8 @@ def copy_licenses(selected, cache, target):
 
 def stage(args):
     pin, generator, files = checked_base(args.base_repo, args.base_candidate)
+    from native_notice_acceptance import verify_bootstrap_source
+    verify_bootstrap_source(args.base_repo, args.bootstrap)
     build, selected, client = approved_build(args.build_work)
     if build["steamOverlayRecipeSha256"] != load(args.base_repo / "tools/overlay-receipt.json")["recipeSha256"]:
         raise ValueError("Mods and the pinned Edition runtime must use the same verified Steam overlay")
@@ -160,7 +235,16 @@ def stage(args):
             if source.is_file():
                 shutil.copyfile(source, library / name)
         write(staged / "build-receipt.json", build)
-        staged.rename(args.candidate)
+        # Windows scanners can briefly hold a newly written PE file. Keep the
+        # candidate atomic while allowing that transient handle to close.
+        for attempt in range(21):
+            try:
+                staged.rename(args.candidate)
+                break
+            except PermissionError as error:
+                if getattr(error, "winerror", None) not in (5, 32) or attempt == 20:
+                    raise
+                time.sleep(0.25)
 
 
 def main():

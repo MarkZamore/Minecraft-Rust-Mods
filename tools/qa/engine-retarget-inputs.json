@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "checkedUtc": "2026-11-07T22:24:14.230043+00:00",
+  "status": "INPUTS VERIFIED",
+  "runtime": "NOT RUN",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "releaseUrl": "https://github.com/horizon-rust/horizon/releases/tag/nightly",
+  "publishedAt": "2026-11-07T18:34:22Z",
+  "inputLockSha256": "e4a958c04934b2354b324cf7fee9a0b0082dfc258002940bf65f82d83a8c1503",
+  "selectionSha256": "354424c4e039600dcb10b8c7413baac344d9b69fb76b9f26642ad6a21a98cf78",
+  "archiveInspectionSha256": "bda6e68470c31fdce5f96c1b7718124a457bddd417fddfb65222562aa4313ee0",
+  "selectedCount": 37,
+  "allArchiveHashesAndAvailableSignatures": "PASS",
+  "authorArchivesOrVersionsChanged": false,
+  "upstreamSignedInputs": {
+    "horizon-source.tar.gz": {
+      "sha256": "90479a75b886e0b39663c1116c0424e90d0d0ea4e9633668c1c3fed09bc7d645",
+      "sizeBytes": 47015509
+    },
+    "horizon-windows-x64.zip": {
+      "sha256": "b692ae851d9db2edffb6aff89901b379f70417fe0d756c57dfb5746484814ae6",
+      "sizeBytes": 43725292
+    }
+  },
+  "upstreamSignatureVerification": "PASS",
+  "signatureKey": "MU4oiIQcCxkZvbwSjjXs7SySCuM6ywRQ3nGaJYZG0gw=",
+  "signedMetadataHooks": 432,
+  "signedMetadataHelpers": 174,
+  "pending": [
+    "final common Steam/Saved UI source checkpoint",
+    "Mods compilation",
+    "exact-client Windows gameplay and update acceptance",
+    "public release"
+  ]
+}

@@ -12,15 +12,16 @@ import zipfile
 
 from inspect_mods import content_file
 from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
-from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE, presentation
+from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE, presentation, verify_environment_evidence
 
 
-FEATURES = ["native-runtime-v1", "native-steam-v1", "minecraft-26-world-layout-v1"]
+FEATURES = ["native-runtime-v1", "native-steam-v1", "minecraft-26-world-layout-v1",
+            "native-launcher-notices-v1"]
 LIBRARY_FILES = ("content.json", "mod-pages.json", "loaded-mods.json", "preview.jpg")
 FILE_SEGMENT = re.compile(r"[A-Za-z0-9_.$-]+")
 ORBITAL_CONTENT = "native/horizon-mods/orbital.hmod"
 NATIVE_WITHOUT_MODS_ROW = {"dynamic_fps_for_rust", "veinminer"}
-PACK_OVERLAY_MODS = {"horizon_physics", "orbital", "server_browser"}
+PACK_OVERLAY_MODS = {"horizon_physics", "orbital", "jei"}
 
 
 def file_info(path):
@@ -51,17 +52,24 @@ def accepted_build(candidate):
     path = candidate / "build-receipt.json"
     build = load(path)
     approval = load(ROOT / "tools/build-lock.json")
+    selection = load(ROOT / "tools/mod-selection.json")
     if (approval["receiptSha256"] != sha(path) or build["compileCheck"] is not True or
             build["inputLockSha256"] != sha(INPUT_LOCK) or build["conflictDecisionsSha256"] != sha(DECISIONS) or
-            build["buildRecipeSha256"] != build_recipe_sha()):
+            build["buildRecipeSha256"] != build_recipe_sha() or selection.get("schemaVersion") != 1 or
+            selection.get("inputLockSha256") != sha(INPUT_LOCK) or selection.get("ids") != build["ids"]):
         raise ValueError("Build receipt does not match the accepted mod inputs and build")
     return build, approval
 
 
-def verify_release_startup(candidate, build, bootstrap_sha):
+def verify_release_startup(candidate, build, bootstrap_sha, *, base_repo=None):
     if not PACK_OVERLAY_MODS <= set(build["ids"]):
         raise ValueError("The release omits a mod with a required pack compatibility overlay")
     report = load(ROOT / "tools/qa/orbital-startup.json")
+    presentation_file = candidate / "native/presentation.json"
+    if load(presentation_file) != presentation():
+        raise ValueError("Restage the exact candidate with its mandatory pack presentation environment defaults")
+    policy_sha = sha(presentation_file)
+    verify_environment_evidence(report, policy_sha, ("bootstrap", "bootstrap", "direct-client"))
     preset = candidate / CONTROLS_PRESET
     if (report["clientSha256"] != build["clientSha256"] or report["bootstrapSha256"] != bootstrap_sha or
             report["windowTitle"] != presentation()["name"] or
@@ -77,9 +85,228 @@ def verify_release_startup(candidate, build, bootstrap_sha):
             mouse["physicsQuickSetup"]["action"] != "Skip Setup" or
             not {"language", "accessibility", "options", "controls"} <= set(mouse["titleMouse"])):
         raise ValueError("The Windows report must verify the startup screen and Physics menu fix")
+    verify_gameplay_acceptance(report, build, preset)
+    multiplayer = load(ROOT / "tools/qa/multiplayer.json")
+    backup = load(ROOT / "tools/qa/backup-guard.json")
+    servers = load(ROOT / "tools/qa/server-policy.json")
+    verify_environment_evidence(multiplayer, policy_sha, ("direct-client",) * 2)
+    verify_environment_evidence(backup, policy_sha, ("direct-client",) * 2)
+    verify_environment_evidence(servers, policy_sha, ("direct-client",) * 6)
+    verify_multiplayer_acceptance(multiplayer, build)
+    verify_backup_acceptance(backup, build)
+    verify_server_policy_acceptance(servers, build, base_repo=base_repo)
+    if base_repo is None:
+        raise ValueError("Native notice acceptance requires the explicit pinned --base-repo checkout")
+    from native_notice_acceptance import verify_launcher_support, verify_native_notices
+    verify_launcher_support(load(ROOT / "tools/qa/launcher-notices-support.json"))
+    verify_native_notices(load(ROOT / "tools/qa/native-notices.json"), candidate, build, base_repo)
 
 
-def describe(candidate):
+def verify_gameplay_acceptance(report, build, preset):
+    required_keys = {"key_orbital.wheel": "key.keyboard.insert",
+                     "key_waypoints.create": "key.keyboard.f7", "key_waypoints.list": "key.keyboard.f8"}
+    mappings = dict(line.split(":", 1) for line in preset.read_text(encoding="utf-8").splitlines()
+                    if line.startswith("key_"))
+    if (report.get("schemaVersion") != 1 or report.get("clientSha256") != build["clientSha256"] or
+            report.get("mode") != "gameplay" or report.get("gameplay") != "PASS" or
+            report["controlsPreset"].get("mappingCount") != 65 or len(mappings) != 65 or
+            any(mappings.get(key) != value for key, value in required_keys.items())):
+        raise ValueError("Release needs full gameplay and the approved 65-key controls on the exact client")
+    pause = report["pauseMenu"]
+    port, chat = pause.get("localPort"), pause.get("publicationChat")
+    if (type(port) is not int or not 1 <= port <= 65535 or
+            pause.get("loopback") != "PASS" or pause.get("returnedToGame") is not True or
+            pause.get("before") not in {"Open to LAN", "Открыть для сети"} or
+            pause.get("after") not in {"Player Reporting", "Жалобы"} or
+            not isinstance(chat, list) or not all(isinstance(line, str) for line in chat) or
+            not any(re.search(rf"(?<!\d){port}(?!\d)", line) for line in chat)):
+        raise ValueError("Release needs the actual numeric publication port in chat and the closing/replaced pause menu")
+    orbital = report["orbitalLaser"]
+    if (orbital["controls"] != {"orbitalWheel": "insert", "horizonmaticaMoveMode": "n", "rotation": "r"} or
+            orbital.get("terrainOffUnchanged") is not True or orbital.get("shaderErrors") != [] or
+            not all_fixture_blocks_changed(orbital) or
+            orbital["reopened"]["terrain"] != orbital["blocksAfter"]):
+        raise ValueError("Release needs verified Insert/R controls, Orbital rendering and persistent terrain edits")
+
+
+def all_fixture_blocks_changed(evidence):
+    before, after = evidence["blocksBefore"], evidence["blocksAfter"]
+    return bool(before) and len(before) == len(after) and all(a != b for a, b in zip(before, after, strict=True))
+
+
+def verify_multiplayer_acceptance(report, build):
+    if (report.get("schemaVersion") != 1 or report.get("clientSha256") != build["clientSha256"] or
+            report.get("horizonRevision") != build["horizonRevision"] or report.get("mode") != "mods" or
+            report.get("result") != "PASS" or report.get("diagnosticOnly") is not False or
+            report.get("processExitCodes") != {"host": 0, "guest": 0} or
+            report.get("disposableWorldsRemoved") is not True):
+        raise ValueError("Release needs a complete, non-diagnostic multiplayer report for the exact client")
+    commands = {(row["typed"], row["observed"]) for row in report["guestCommands"]}
+    published = report["publishMenu"]
+    port, notice = published.get("port"), published.get("numericPortNotice", {})
+    component = notice.get("component", {})
+    if (type(port) is not int or not 1 <= port <= 65535 or
+            type(notice.get("chatPort")) is not int or type(notice.get("statusPort")) is not int or
+            notice["chatPort"] != port or notice["statusPort"] != port or notice.get("matchesStatus") is not True or
+            notice.get("translationKey") != "menu.multiplayerOptions.publish.started.lan" or
+            component.get("translate") != "menu.multiplayerOptions.publish.started.lan" or
+            not any((isinstance(arg, dict) and arg.get("text") == str(port)) or
+                    (isinstance(arg, str) and arg == str(port)) or (type(arg) is int and arg == port)
+                    for arg in component.get("with", []))):
+        raise ValueError("Release needs the actual multiplayer listener port in its system chat component")
+    denied = report["guestCheatsDisabled"]
+    if (report["publishMenu"].get("returnedToGame") is not True or
+            not {("/gamemode survival", "survival"), ("/gamemode creative", "creative")} <= commands or
+            denied["before"] != "creative" or denied["after"] != "creative" or
+            denied.get("typed") != "/gamemode spectator" or denied.get("denialObserved") is not True or
+            not denied.get("denialEventSeq")):
+        raise ValueError("Release needs the closing publish menu and positive/negative guest command checks")
+    jei = report["jei"]
+    if (jei.get("gamemode") != "creative" or jei.get("inventoryScreen") != "creative" or
+            jei.get("creativeInventory") is not True or jei.get("itemButtons", 0) <= 0 or
+            jei.get("search") != "minecraft:stone" or set(jei.get("shortcuts", {})) != {"R", "U"} or
+            any(not jei["shortcuts"][key].get("recipeSlots") for key in ("R", "U"))):
+        raise ValueError("Release needs the visible JEI Creative panel, search, recipes and usages")
+    give, focus, search, wheel = (jei[name] for name in ("give", "reopenFocus", "creativeSearch", "wheelIsolation"))
+    clicks = give["clicks"]
+    if (give.get("item") != "minecraft:stone" or len(clicks) != 2 or
+            any(row.get("delta") != 1 or row["after"] - row["before"] != 1 for row in clicks) or
+            any(focus.get(key) != value for key, value in {"closedToPlaying": True, "reopenedCreative": True,
+                "typedAfterReopen": "x", "searchUnchanged": True}.items()) or
+            any(search.get(key) != value for key, value in {"outsideText": "diamond", "outsideLeavesJeiSearch": True,
+                "jeiTextOnSearchTab": "minecraft:dirt", "jeiSearchOnSearchTab": True,
+                "restoredSearch": "minecraft:stone"}.items()) or
+            any(wheel.get(key) is not True for key in ("insideChangesPanelPage", "insideReverseRestoresPanelPage",
+                                                     "outsideKeepsPanelPage"))):
+        raise ValueError("Release needs JEI click-give, focus, Creative search priority and panel wheel isolation checks")
+    orbital = report["orbital"]
+    concurrent = orbital["concurrentEffects"]
+    if (not all_fixture_blocks_changed(orbital) or
+            orbital["guestObservedBlocksAfter"] != orbital["blocksAfter"] or not orbital.get("hostRemoteVisual") or
+            not concurrent.get("hostReceivedGuest") or not concurrent.get("guestReceivedHost") or
+            concurrent.get("ownEngineStrikes") != {"host": "plasma", "guest": "plasma"} or
+            concurrent.get("hostTerrainOffFixtureUnchanged") is not True or
+            set(concurrent.get("framesOwnAndRemote", {})) != {"host", "guest"} or
+            report.get("shaderErrors") != {"host": [], "guest": []}):
+        raise ValueError("Release needs guest terrain edits and simultaneous local/remote Orbital effects on both clients")
+
+
+def verify_backup_acceptance(report, build):
+    count = report.get("sourceFilesVerified", 0)
+    if (report.get("schemaVersion") != 1 or report.get("clientSha256") != build["clientSha256"] or
+            report.get("status") != "PASS" or report.get("firstOpenBackup") != "PASS" or
+            report.get("reopenWithoutDuplicate") != "PASS" or report.get("markerRecreatedZeroBytes") is not True or
+            count <= 0 or report.get("backupMembersVerified") != count or
+            report.get("newBackupsAfterReopen") != 1 or report.get("personalSettingsPreserved", 0) <= 0):
+        raise ValueError("Release needs the exact-client first-open backup and personal-settings preservation check")
+
+
+def verify_server_policy_acceptance(report, build, *, base_repo=None):
+    if base_repo is None:
+        raise ValueError("Server Escape acceptance requires the explicit pinned --base-repo checkout")
+    from native_notice_acceptance import source_proof
+    proof = source_proof(base_repo, build, published=True)
+    arguments = report.get("launchArguments", [])
+    harness_flags = {"--control", "--control-socket", "--frames", "--world-frames", "--benchmark",
+                     "--offscreen", "--headless", "--dedicated"}
+    if (report.get("schemaVersion") != 1 or report.get("clientSha256") != build["clientSha256"] or
+            report.get("horizonRevision") != build["horizonRevision"] or
+            report.get("buildReceiptSha256") != load(ROOT / "tools/build-lock.json")["receiptSha256"] or
+            report.get("nativeRuntime") != load(ROOT / "portable-pack.json")["nativeRuntime"] or
+            report.get("status") != "PASS" or len(arguments) != 6 or report.get("fixtureRemoved") is not True or
+            report.get("desktopKeyProtocol") != "edition-server-list-qa/checkpoint-v1" or
+            report.get("desktopKeyHelperSha256") != proof["desktopKeyHelperSha256"] or
+            report.get("processExitCodes") != [0] * len(arguments) or
+            report.get("ordinaryLaunch") is not True or
+            any(not run or any(arg.split("=", 1)[0] in harness_flags for arg in run) for run in arguments)):
+        raise ValueError("Release needs the exact-client fresh/manual/restarted server-list policy check")
+    fresh, manual = report["freshProfile"], report["manualRestart"]
+    before = manual.get("beforeSha256", "")
+    if (fresh.get("savedServerCount") != 0 or fresh.get("automaticSeedFilesCreated") != [] or
+            manual.get("savedServerCount", 0) <= 0 or manual.get("bytePreserved") is not True or
+            manual.get("unknownFieldsPreserved") is not True or report.get("manualLegacyMarkersPreserved") is not True or
+            not re.fullmatch(r"[0-9a-f]{64}", before) or
+            manual.get("afterSha256") != before):
+        raise ValueError("Release needs no automatic public rows and byte-preserved manual servers.dat through restart")
+    verify_saved_server_views(report)
+
+
+def verify_saved_server_views(report):
+    """Require actual UI observations for both views, not just an empty new file."""
+    view = report.get("savedServerView", {})
+    required = ("defaultSteamOnly", "savedAllRows", "refreshRetainsView", "explicitSteamReturn",
+                "backAndEscapeReturnToTitle", "reopenDefaultsSteam", "bytesUnchanged")
+    widget_ids = {"steam-worlds", "saved-servers", "server-list-refresh", "server-list-back"}
+    if (view.get("status") != "PASS" or
+            view.get("contractRevision") != "00e1c09d028720370d525cf3c2dae741c02fd9f2" or
+            set(view.get("widgetIds", [])) != widget_ids or view.get("ordinaryRunsVerified") != 6 or
+            any(view.get(key) is not True for key in required)):
+        raise ValueError("Release needs the actual default Steam and explicit Saved server-list UI acceptance")
+    legacy, manual = report.get("legacyUpgrade", {}), report["manualRestart"]
+    # This hash identifies only our explicitly reconstructed QA input. It must
+    # never classify or delete an existing player's row or servers.dat file.
+    legacy_sha = "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+    if (legacy.get("copiedFromUserFile") is not False or
+            not str(legacy.get("fixtureOrigin", "")).startswith("Reconstructed author-format list") or
+            legacy.get("savedServerCount") != 2 or legacy.get("sizeBytes") != 134 or
+            legacy.get("beforeSha256") != legacy_sha or legacy.get("afterSha256") != legacy_sha or
+            legacy.get("bytePreserved") is not True or legacy.get("defaultSteamRows") != [] or
+            len(legacy.get("savedViewRows", [])) != 2 or len(manual.get("savedViewRows", [])) != 1 or
+            manual.get("savedServerCount") != 1):
+        raise ValueError("Release needs byte-preserved reconstructed legacy and unknown-field manual NBT with all Saved rows")
+    actions = (("open-multiplayer", "steam"), ("refresh-steam", "steam"), ("open-saved", "saved"),
+               ("refresh-saved", "saved"), ("explicit-steam", "steam"), ("saved-before-back", "saved"),
+               ("reopen-after-back", "steam"), ("saved-before-escape", "saved"),
+               ("reopen-after-escape", "steam"))
+    runs = report.get("runs", [])
+    if len(runs) != 6:
+        raise ValueError("Release needs all six fresh, legacy and manual ordinary UI runs")
+    for index, run in enumerate(runs):
+        expected_names = [] if index < 2 else legacy["savedViewRows"] if index < 4 else manual["savedViewRows"]
+        expected_sha = None if index < 2 else legacy_sha if index < 4 else manual["beforeSha256"]
+        actual = run.get("serverView", {})
+        observations = actual.get("observations", [])
+        if (run.get("arguments") != report["launchArguments"][index] or run.get("exitCode") != 0 or
+                [row.get("name") for row in run.get("servers", [])] != expected_names or
+                actual.get("status") != "PASS" or actual.get("expectedSavedRows") != expected_names or
+                actual.get("backToTitle") is not True or actual.get("escapeToTitle") is not True or
+                actual.get("bytePreserved") is not True or len(observations) != len(actions)):
+            raise ValueError("A server-list run lacks its actual saved rows, navigation or byte-preservation observations")
+        if index < 2:
+            expected_sha = observations[0].get("serversDatSha256")
+            if expected_sha is not None and not re.fullmatch(r"[0-9a-f]{64}", str(expected_sha)):
+                raise ValueError("Fresh server-list UI has no valid unchanged-file observation")
+        for observation, (action, mode) in zip(observations, actions, strict=True):
+            if (observation.get("action") != action or observation.get("mode") != mode or
+                    observation.get("rows") != (expected_names if mode == "saved" else []) or
+                    observation.get("steamButtonEnabled") is not (mode == "saved") or
+                    observation.get("savedButtonEnabled") is not (mode == "steam") or
+                    observation.get("serversDatSha256") != expected_sha):
+                raise ValueError("Server UI changed its view, hid saved rows or rewrote NBT during an action")
+        verify_server_desktop_key(actual.get("desktopKeys", []), index + 1, run["arguments"][0])
+
+
+def verify_server_desktop_key(events, run, executable):
+    def positive(value):
+        return isinstance(value, int) and not isinstance(value, bool) and value > 0
+
+    if not isinstance(events, list) or len(events) != 1:
+        raise ValueError("Each ordinary server-view run needs its real desktop Escape action")
+    request, ack = events[0].get("request", {}), events[0].get("acknowledgement", {})
+    created, performed = request.get("createdUnixMs"), ack.get("performedUnixMs")
+    if (request.get("id") != f"run-{run}-key-1" or request.get("action") != "press_key" or
+            request.get("key") != "Escape" or type(request.get("run")) is not int or request["run"] != run or
+            not positive(request.get("processId")) or request.get("timeoutMs") != 120_000 or
+            pathlib.PureWindowsPath(request.get("executable", "")) != pathlib.PureWindowsPath(executable) or
+            request.get("title") != presentation()["name"] or not positive(created) or not positive(performed) or
+            not created <= performed <= created + 120_000 or ack.get("status") != "PASS" or
+            ack.get("id") != request["id"] or not positive(ack.get("processId")) or
+            ack["processId"] != request["processId"] or
+            ack.get("key") != "Escape"):
+        raise ValueError("Desktop Escape was not acknowledged in time for this exact owned client/window/run")
+
+
+def describe(candidate, *, base_repo=None):
     runtime = load(ROOT / "portable-pack.json")
     content = load(ROOT / "library/content.json")
     build, approval = accepted_build(candidate)
@@ -94,7 +321,7 @@ def describe(candidate):
     bootstrap = load(ROOT / "tools/bootstrap-lock.json")
     if files[descriptor["executable"]] != {"sizeBytes": bootstrap["sizeBytes"], "sha256": bootstrap["sha256"]}:
         raise ValueError("The staged bootstrap differs from the verified isolated native wrapper")
-    verify_release_startup(candidate, build, bootstrap["sha256"])
+    verify_release_startup(candidate, build, bootstrap["sha256"], base_repo=base_repo)
     for name in LIBRARY_FILES:
         if file_info(candidate / "library" / name) != file_info(ROOT / "library" / name):
             raise ValueError(f"The staged library file differs from source: {name}")
@@ -231,6 +458,8 @@ def output_files(root):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidate", required=True, type=pathlib.Path)
+    parser.add_argument("--base-repo", type=pathlib.Path,
+                        help="Clean pinned Edition checkout supplying the shared notice acceptance contract")
     parser.add_argument("--out", type=pathlib.Path)
     parser.add_argument("--library-tool", type=pathlib.Path)
     parser.add_argument("--revision")
@@ -247,7 +476,7 @@ def main():
             inventory_document = propose_inventory(args.candidate, args.propose_inventory, args.probe_evidence)
             print(json.dumps(inventory_document, ensure_ascii=False, indent=2))
             return
-        runtime, content, count, distribution = describe(args.candidate)
+        runtime, content, count, distribution = describe(args.candidate, base_repo=args.base_repo)
         if args.propose_lock:
             print(json.dumps(distribution, ensure_ascii=False, indent=2))
             return

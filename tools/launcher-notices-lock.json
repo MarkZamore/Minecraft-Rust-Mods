@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "feature": "native-launcher-notices-v1",
+  "minimumReleaseNumber": 477,
+  "repository": "https://github.com/MarkZamore/LANMinecraft",
+  "commitSha": "98e3146e5bc469e54deedf3512681a9a351320ed",
+  "releaseNumber": 478,
+  "publicAsset": {
+    "url": "https://github.com/MarkZamore/LANMinecraft/releases/download/latest/LANMinecraft.exe",
+    "sha256": "3338b80f0eb01c6247ca2b5847199c68a6250eb5465736bb4063c94df40ff6c7",
+    "sizeBytes": 157872128
+  },
+  "publicUpdateMetadata": {
+    "url": "https://github.com/MarkZamore/LANMinecraft/releases/download/latest/update.json",
+    "sha256": "5ae8e39ef91b7803dd0f3a226a2aa1be0356a7308c3d0aa34600371d42f25baa",
+    "sizeBytes": 1206,
+    "commitSha": "98e3146e5bc469e54deedf3512681a9a351320ed",
+    "releaseNumber": 478,
+    "assetName": "LANMinecraft.exe"
+  },
+  "sourceFiles": {
+    "Program/GameNoticeOverlayService.cs": {
+      "sha256": "86440a2fa80f29e1460555fffb8d9c43ec15c36d0afbe758892cdd559d3f6aa5",
+      "sizeBytes": 19889
+    },
+    "Program/MinecraftProcessService.cs": {
+      "sha256": "80cc0439e4382dce9a95d3a3caceae6799fe34051dbf54991ffc49dd86aac22b",
+      "sizeBytes": 87675
+    },
+    "Program/PortablePackSyncService.cs": {
+      "sha256": "a46c0d7f366fd57396f8c63ac1b5ee58c6b71642667289dc25ad3191af3e4a0a",
+      "sizeBytes": 101080
+    },
+    "Program/GameProcessTree.cs": {
+      "sha256": "da7cda534aecd475a76f28bbb28ce37e644eb5ae7b711819d0cbdca875d1d2e3",
+      "sizeBytes": 2778
+    },
+    "Program/NoticeOverlay/README.md": {
+      "sha256": "ea65962e2149024b72852864d0e9896c667faeed96acc6bdb07f513e8baaa0e8",
+      "sizeBytes": 6866
+    }
+  },
+  "requiredSourceChecks": [
+    "nativeCapabilityConstant",
+    "capabilityAdvertisedByInstaller",
+    "nativeSessionWithoutJavaAgent",
+    "nativeLaunchPassesDirectory",
+    "verifiedNativeProcessTree",
+    "nativeHeartbeatBackendAndActualPid",
+    "freshHeartbeatAndErrorFallback"
+  ]
+}

@@ -1,7 +1,24 @@
 {
   "schemaVersion": 1,
-  "source": "https://github.com/MarkZamore/Minecraft-Rust-Edition/tree/4757a85113b2b6b6f806901588572ca5fc82a0f0/launcher/standalone",
-  "sourceRevision": "4757a85113b2b6b6f806901588572ca5fc82a0f0",
-  "sizeBytes": 2885120,
-  "sha256": "41e8adeb1560a4cb14d3809f225505edbbf581449c11fb638ec6b597ed75cf11"
+  "source": "https://github.com/MarkZamore/Minecraft-Rust-Edition/tree/ea131ad0395b61b801c0d07147a9374aa545cf8e/launcher/standalone",
+  "sourceRevision": "ea131ad0395b61b801c0d07147a9374aa545cf8e",
+  "sourceSha256": "8179f35f13d7e4fc1263891e8f132525b6a9e66bbc7a90a5eeb18aa51708e883",
+  "sourceFiles": {
+    "launcher/standalone/.cargo/config.toml": "b30e5a93f3ee1e18d93d09516eb08d9ccccdda15027615c61d58be7264185711",
+    "launcher/standalone/Cargo.lock": "af53d08fb3af8937fc1d8c2ea07b5f0824c08a039b8d2b820bdd402f3d665ddd",
+    "launcher/standalone/Cargo.toml": "c2f537080dc0210fdc04f3b2120d362dd0844f55f95248c017eba3289e2b31f3",
+    "launcher/standalone/src/environment_defaults.rs": "c3e9ea529ae1c4926857f9eec614636a3a4f4f4c3b74c76fd0a3f5f1d190ec55",
+    "launcher/standalone/src/main.rs": "76e7dd861f24e4be8b786823399b79ae1ec44e388cbea82ebc4005516180a2e1",
+    "launcher/standalone/src/minecraft_inputs.rs": "74e9ba0e78504c37705825b61c30af8016d0ab07edbe4fc3044211f1316d61ec",
+    "launcher/standalone/src/prepared_data.rs": "3bbd23cb1f6ba2edce231756b8236745ca44b735a5c35370388acf2d44806f8e"
+  },
+  "build": {
+    "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+    "target": "x86_64-pc-windows-msvc",
+    "rustflags": "-C target-feature=+crt-static",
+    "profile": "release",
+    "sourceCommit": "ea131ad0395b61b801c0d07147a9374aa545cf8e"
+  },
+  "sizeBytes": 2923008,
+  "sha256": "ace261a88a6a5438ede83e9571be2d1189ec7d950948d751460071af446b0c6d"
 }

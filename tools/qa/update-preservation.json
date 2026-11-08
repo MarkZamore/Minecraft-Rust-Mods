@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "scope": "Engine-update preservation release gates; actual historical/provisional receipts must be rejected.",
+  "status": "PASS",
+  "negativeReceiptChecks": [
+    {
+      "case": "Published old startup-only receipt cannot approve current gameplay",
+      "status": "PASS",
+      "rejectedWith": "Release needs full gameplay and the approved 65-key controls on the exact client"
+    },
+    {
+      "case": "Changing the client SHA alone cannot approve startup-only gameplay",
+      "status": "PASS",
+      "rejectedWith": "Release needs full gameplay and the approved 65-key controls on the exact client"
+    },
+    {
+      "case": "Actual successful Orbital diagnostic with skipped JEI is not release acceptance",
+      "status": "PASS",
+      "rejectedWith": "Release needs a complete, non-diagnostic multiplayer report for the exact client"
+    },
+    {
+      "case": "Actual Creative JEI failure cannot approve multiplayer",
+      "status": "PASS",
+      "rejectedWith": "Release needs a complete, non-diagnostic multiplayer report for the exact client"
+    },
+    {
+      "case": "Existing f14 build receipt cannot approve modified mandatory build recipe",
+      "status": "PASS",
+      "rejectedWith": "Build receipt does not match the accepted mod inputs and build"
+    }
+  ],
+  "gateSourceSha256": "93a2535555bc5bff83cab267115b67ec94ece0e32dca3ccd1a478ba3394ed0c4",
+  "fullFinalClientAcceptance": "NOT RUN: final combined EXE is being rebuilt; these rejection checks do not claim gameplay acceptance.",
+  "requiredReceipts": [
+    "tools/qa/orbital-startup.json",
+    "tools/qa/multiplayer.json",
+    "tools/qa/backup-guard.json"
+  ],
+  "allowedExplicitNotRun": [
+    "real Steam overlay/two accounts deferred by user for this acceptance",
+    "historical removed-registry world migration",
+    "Radeon-specific hardware"
+  ],
+  "additionalRequiredChecks": [
+    "All fixture blocks changed and persisted",
+    "Two clean client exits and disposable world cleanup",
+    "JEI actual click-give deltas, close/reopen focus, Creative search priority, panel wheel isolation",
+    "Current selected IDs agree with accepted build"
+  ],
+  "verificationCommand": "python -B: import generate_manifest and verify rejection of historical startup-only, actual diagnostic PASS with skipped JEI, actual JEI FAIL, and prior build receipt from the previous mandatory recipe.",
+  "temporaryProbe": "Minimal prior-receipt probe inside registered run removed in finally; no game/runtime/world copies."
+}

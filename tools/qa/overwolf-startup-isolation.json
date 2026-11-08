@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS startup isolation, not complete game acceptance",
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "faultingModule": "owclient.dll",
+  "faultingModuleVersion": "2.2.314.19",
+  "windowsException": "c0000409",
+  "layerName": "VK_LAYER_OW_OVERLAY",
+  "layerManifestSha256": "d4c719581282ef7c2e2fb98257623996f1b5d29f08564a015de63e31e5e0e448",
+  "documentedDisableEnvironment": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "khronosContract": "https://github.com/KhronosGroup/Vulkan-Loader/blob/main/docs/LoaderLayerInterface.md",
+  "isolation": [
+    {
+      "index": 23,
+      "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+      "processEnvironment": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "ready": {
+        "ok": true,
+        "screen": "title",
+        "waited_seconds": 1.55e-05
+      },
+      "screen": "title",
+      "widgetCount": 5,
+      "dialog": {
+        "open": null,
+        "screen": null
+      },
+      "modules": [
+        {
+          "ModuleName": "vulkan-1.dll",
+          "FileName": "C:\\Windows\\SYSTEM32\\vulkan-1.dll"
+        },
+        {
+          "ModuleName": "ow-graphics-vulkan.dll",
+          "FileName": "C:\\Program Files (x86)\\Overwolf\\0.314.1.1\\ow-graphics-vulkan.dll"
+        }
+      ],
+      "exitCode": 0
+    },
+    {
+      "index": 24,
+      "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+      "processEnvironment": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "ready": {
+        "ok": true,
+        "screen": "title",
+        "waited_seconds": 1.18e-05
+      },
+      "screen": "title",
+      "widgetCount": 5,
+      "dialog": {
+        "open": null,
+        "screen": null
+      },
+      "modules": [
+        {
+          "ModuleName": "vulkan-1.dll",
+          "FileName": "C:\\Windows\\SYSTEM32\\vulkan-1.dll"
+        },
+        {
+          "ModuleName": "ow-graphics-vulkan.dll",
+          "FileName": "C:\\Program Files (x86)\\Overwolf\\0.314.1.1\\ow-graphics-vulkan.dll"
+        }
+      ],
+      "exitCode": 0
+    },
+    {
+      "index": 25,
+      "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+      "processEnvironment": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "ready": {
+        "ok": true,
+        "screen": "title",
+        "waited_seconds": 1.12e-05
+      },
+      "screen": "title",
+      "widgetCount": 5,
+      "dialog": {
+        "open": null,
+        "screen": null
+      },
+      "modules": [
+        {
+          "ModuleName": "vulkan-1.dll",
+          "FileName": "C:\\Windows\\SYSTEM32\\vulkan-1.dll"
+        },
+        {
+          "ModuleName": "ow-graphics-vulkan.dll",
+          "FileName": "C:\\Program Files (x86)\\Overwolf\\0.314.1.1\\ow-graphics-vulkan.dll"
+        }
+      ],
+      "exitCode": 0
+    }
+  ],
+  "systemRegistryModified": false,
+  "foreignProcessesStopped": false,
+  "steamLayerDisableRequested": false,
+  "clientRecompiledForIsolation": false,
+  "pending": "Deliver policy through pack-owned bootstrap and rerun complete exact-client acceptance without external test-only switch"
+}

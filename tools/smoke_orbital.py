@@ -3,6 +3,7 @@
 from math import floor
 import re
 import struct
+import time
 
 from native_build import sha
 
@@ -26,6 +27,21 @@ def command(control, text, expected):
     response = control("command", text)
     if not any(expected in line for line in response["chat"]):
         raise ValueError(f"{text!r} did not answer {expected!r}: {response!r}")
+
+
+def wait_client_message(control, expected, timeout=30):
+    # Native mod feedback is ChatSource::Client. The current controller's event
+    # stream tracks server chat; its styled view also includes the rendered
+    # client lines. Observe the actual UI instead of waiting for a server event.
+    deadline = time.monotonic() + timeout
+    while True:
+        reply = control("messages", "50")
+        lines = [*reply.get("chat", []), *(row.get("text", "") for row in reply.get("styled", []))]
+        if any(expected in line for line in lines):
+            return
+        if time.monotonic() >= deadline:
+            raise ValueError(f"Native client feedback did not display {expected!r}: {reply!r}")
+        time.sleep(0.1)
 
 
 def item_present(control):
@@ -84,19 +100,21 @@ def check_separate_controls(control, qa, target):
     name = "orbital-key-smoke"
     command(control, f"/hm pos1 {x} {y} {z}", "Corner 1 at")
     command(control, f"/hm pos2 {x + 1} {y} {z}", "Corner 2 at")
-    sequence = str(control("events")["last"])
     command(control, f"/hm save {name}", f"Saving {name}.litematic")
-    control("wait-for", "chat", f"Saved {name}", "--since", sequence, "--timeout", "20")
-    sequence = str(control("events")["last"])
-    command(control, f"/hm load {name}", "Loading")
-    control("wait-for", "chat", "Loaded ", "--since", sequence, "--timeout", "20")
+    wait_client_message(control, f"Saved {name}")
+    reply = control("command", f"/hm load {name}")
+    if not any("Loading" in line or f"Loaded {name}" in line for line in reply["chat"]):
+        raise ValueError(f"Horizonmatica did not start or complete loading: {reply!r}")
+    wait_client_message(control, f"Loaded {name}")
     command(control, "/hm info", "rotation none,")
 
     control("key", "n", "tap")
     control("key", "r", "tap")
     control("wait-for", "screen", "playing", "--timeout", "10")
     command(control, "/hm info", "rotation cw_90,")
-    control("key", WHEEL_KEY, "tap")
+    # The control socket accepts every canonical game key; its short aliases
+    # cover only a subset and do not include Insert.
+    control("key", f"key.keyboard.{WHEEL_KEY}", "tap")
     control("wait-for", "screen", "mod", "--timeout", "10")
     wheel = photograph(control, qa, "wheel")
     control("key", "esc", "tap")

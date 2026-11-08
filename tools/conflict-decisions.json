@@ -1,80 +1,172 @@
 {
-  "schemaVersion": 1,
-  "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
   "decisions": [
     {
-      "kept": {"id": "horizon_physics", "version": "0.18.0"},
-      "excluded": {"id": "smoothie_capes", "version": "0.2.0"},
+      "decision": "player",
       "diagnostic": "E_OVERWRITE_CONFLICT",
-      "target": "horizon_client_lib::mobs::render::cape",
-      "decision": "player"
+      "excluded": {
+        "id": "smoothie_capes",
+        "version": "0.2.0"
+      },
+      "kept": {
+        "id": "horizon_physics",
+        "version": "0.18.0"
+      },
+      "target": "horizon_client_lib::mobs::render::cape"
     },
     {
-      "kept": {"id": "fullbright_nofog", "version": "1.0.0"},
-      "excluded": {"id": "fullbright", "version": "1.0.0"},
+      "decision": "player",
       "diagnostic": "SHARED_COMMAND_SHADOWING",
-      "target": "native_command: /fullbright",
-      "decision": "player"
+      "excluded": {
+        "id": "fullbright",
+        "version": "1.0.0"
+      },
+      "kept": {
+        "id": "fullbright_nofog",
+        "version": "1.0.0"
+      },
+      "target": "native_command: /fullbright"
     },
     {
-      "kept": {"id": "jei", "version": "0.1.0"},
-      "excluded": {"id": "recipes", "version": "2.0.0"},
+      "decision": "player",
       "diagnostic": "SHARED_PANEL_OWNERSHIP",
-      "target": "native_frame: Game::native_panel_items",
-      "decision": "player"
+      "excluded": {
+        "id": "recipes",
+        "version": "2.0.0"
+      },
+      "kept": {
+        "id": "jei",
+        "version": "0.1.0"
+      },
+      "target": "native_frame: Game::native_panel_items"
     },
     {
-      "kept": {"id": "inventory_profiles", "version": "1.0.0"},
-      "excluded": {"id": "inventory_wizard", "version": "2.3.3"},
+      "decision": "player",
       "diagnostic": "SHARED_INVENTORY_SORTER",
-      "target": "Game::sort_slots",
-      "decision": "player"
+      "excluded": {
+        "id": "inventory_wizard",
+        "version": "2.3.3"
+      },
+      "kept": {
+        "id": "inventory_profiles",
+        "version": "1.0.0"
+      },
+      "target": "Game::sort_slots"
     },
     {
-      "kept": {"id": "horizon_physics", "version": "0.18.0", "feature": "Ropes"},
-      "excluded": {"id": "light_overlay", "version": "1.0.0"},
+      "decision": "player",
       "diagnostic": "CANCELLABLE_HOOK_SHADOWING",
-      "target": "horizon_client::game::fishing::Game<'_>::fishing_line",
-      "decision": "player"
+      "excluded": {
+        "id": "light_overlay",
+        "version": "1.0.0"
+      },
+      "kept": {
+        "feature": "Ropes",
+        "id": "horizon_physics",
+        "version": "0.18.0"
+      },
+      "target": "horizon_client::game::fishing::Game<'_>::fishing_line"
     },
     {
-      "kept": {"id": "horizon_physics", "version": "0.18.0", "feature": "Items"},
-      "excluded": {"id": "fast_items", "version": "0.1.0"},
+      "decision": "player",
       "diagnostic": "CANCELLABLE_HOOK_SHADOWING",
-      "target": "horizon_client::game::item_draw::Game<'_>::dropped_item_geometry",
-      "decision": "player"
+      "excluded": {
+        "id": "fast_items",
+        "version": "0.1.0"
+      },
+      "kept": {
+        "feature": "Items",
+        "id": "horizon_physics",
+        "version": "0.18.0"
+      },
+      "target": "horizon_client::game::item_draw::Game<'_>::dropped_item_geometry"
     },
     {
-      "kept": {"id": "fullbright_nofog", "version": "1.0.0"},
-      "excluded": {"id": "fullbright_horizon", "version": "1.0.0"},
+      "decision": "player",
       "diagnostic": "SHARED_RENDERER_GAMMA",
-      "target": "native_frame: renderer.gamma",
-      "decision": "player"
+      "excluded": {
+        "id": "fullbright_horizon",
+        "version": "1.0.0"
+      },
+      "kept": {
+        "id": "fullbright_nofog",
+        "version": "1.0.0"
+      },
+      "target": "native_frame: renderer.gamma"
     },
     {
-      "kept": {"id": "orbital", "version": "0.5.9"},
-      "excluded": {"id": "deepbore_quarry_native", "version": "0.1.0"},
-      "excludedContent": [{"id": "deepbore_quarry", "version": "0.1.0"}],
+      "decision": "player",
       "diagnostic": "MISSING_BLOCK_LIFECYCLE_CALLBACK",
-      "target": "Orbital Game::native_edit_blocks bypasses GameLevel::native_block_changed; quarry force tickets and owner reservation may persist",
-      "decision": "player"
+      "excluded": {
+        "id": "deepbore_quarry_native",
+        "version": "0.1.0"
+      },
+      "excludedContent": [
+        {
+          "id": "deepbore_quarry",
+          "version": "0.1.0"
+        }
+      ],
+      "kept": {
+        "id": "orbital",
+        "version": "0.5.9"
+      },
+      "target": "Orbital Game::native_edit_blocks bypasses GameLevel::native_block_changed; quarry force tickets and owner reservation may persist"
     },
     {
-      "kept": {"id": "orbital", "version": "0.5.9"},
-      "excluded": {"id": "wayfarer_stones_native", "version": "0.6.0"},
-      "excludedContent": [{"id": "wayfarer_stones", "version": "0.6.0"}],
+      "decision": "player",
       "diagnostic": "MISSING_BLOCK_LIFECYCLE_CALLBACK",
-      "target": "Orbital Game::native_edit_blocks bypasses GameLevel::native_block_changed; destroyed stones may stay linked or selectable",
-      "decision": "player"
+      "excluded": {
+        "id": "wayfarer_stones_native",
+        "version": "0.6.0"
+      },
+      "excludedContent": [
+        {
+          "id": "wayfarer_stones",
+          "version": "0.6.0"
+        }
+      ],
+      "kept": {
+        "id": "orbital",
+        "version": "0.5.9"
+      },
+      "target": "Orbital Game::native_edit_blocks bypasses GameLevel::native_block_changed; destroyed stones may stay linked or selectable"
     }
   ],
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
   "keybindingDecisions": [
     {
-      "mods": [{"id": "horizonmatica", "version": "0.2.0"}, {"id": "orbital", "version": "0.5.9"}],
+      "decision": "player",
       "diagnostic": "SHARED_WORLD_KEY",
-      "target": "R: Horizonmatica Move Mode rotation and Orbital Laser wheel while holding the Designator",
+      "mods": [
+        {
+          "id": "horizonmatica",
+          "version": "0.2.0"
+        },
+        {
+          "id": "orbital",
+          "version": "0.5.9"
+        }
+      ],
       "resolution": "Keep both mods and bind the Orbital Laser wheel to Insert in the pack's controls preset",
-      "decision": "player"
+      "target": "R: Horizonmatica Move Mode rotation and Orbital Laser wheel while holding the Designator"
+    },
+    {
+      "decidedLocalDate": "2026-11-08",
+      "decision": "player",
+      "diagnostic": "SHARED_WORLD_KEYS",
+      "mods": [
+        {
+          "id": "horizonmatica",
+          "version": "0.2.0"
+        },
+        {
+          "id": "waypoints",
+          "version": "1.0.0"
+        }
+      ],
+      "resolution": "Keep both mods. The explicit controls preset assigns Waypoints create to F7 and list to F8, retaining Horizonmatica author M/N and R rotation plus Orbital Insert. Other personal settings remain unchanged.",
+      "target": "N opens Waypoints create screen while Horizonmatica enters Move Mode; M opens both mod interfaces"
     }
-  ]
+  ],
+  "schemaVersion": 1
 }

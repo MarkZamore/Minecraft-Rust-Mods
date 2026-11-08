@@ -7,6 +7,7 @@ from pathlib import Path
 SOURCE = "crates/horizon-client/src/game/world_loading.rs"
 SOURCE_SHA256 = "dd00d259b4b8115ffd7c07c7c2f0ac6923ca6a6cbc882fe72e53f8ae33c9fee9"
 LOCK = "        let session_lock = horizon_client::save::SessionLock::acquire(&save_root)?;\n"
+EARLY = "        let create = create.as_ref();\n"
 REQUEST = "pub(super) struct WorldRequest {"
 GUARD = '''const ORBITAL_WORLD_MARKER: &str = ".lanminecraft-rust-mods-orbital-v1";
 
@@ -63,7 +64,15 @@ fn prepare_orbital_world(save_root: &std::path::Path, folder: &str) -> Result<()
 }
 
 '''
-CHECK = '''        if options.dedicated.is_none() {
+CHECK = '''        // Integrated servers set options.dedicated for compatibility too.
+        // Protect local worlds by their fixed execution role, before fallback,
+        // data fixes or legacy migration can change the on-disk bytes. This
+        // backup-only lock ends here: the author's file fixer may remove
+        // session.lock, then the original load acquires its lifetime lock.
+        if options.execution_role
+            != execution_role::ExecutionRole::DedicatedServer
+        {
+            let _backup_lock = horizon_client::save::SessionLock::acquire(&save_root)?;
             prepare_orbital_world(&save_root, &folder).map_err(|error| {
                 format!("Minecraft Rust Mods could not protect world \\"{folder}\\" before opening: {error}")
             })?;
@@ -75,9 +84,9 @@ def patch(raw: bytes) -> bytes:
     if hashlib.sha256(raw).hexdigest() != SOURCE_SHA256:
         raise ValueError("Horizon world-loading source changed before the Orbital save guard")
     source = raw.decode("utf-8")
-    if source.count(LOCK) != 1 or source.count(REQUEST) != 1:
+    if source.count(LOCK) != 1 or source.count(REQUEST) != 1 or source.count(EARLY) != 1:
         raise ValueError("Horizon world-loading anchors changed")
-    source = source.replace(REQUEST, GUARD + REQUEST).replace(LOCK, LOCK + CHECK)
+    source = source.replace(REQUEST, GUARD + REQUEST).replace(EARLY, EARLY + CHECK)
     return source.encode("utf-8")
 
 

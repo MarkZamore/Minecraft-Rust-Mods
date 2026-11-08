@@ -1,0 +1,68 @@
+{
+  "upstreamRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "sourceArchiveSha256": "90479a75b886e0b39663c1116c0424e90d0d0ea4e9633668c1c3fed09bc7d645",
+  "editionCheckpoint": "5ed0ee340267c291765302cf6ecf64ba0f03679f",
+  "editionRecipeSha256": "c58edfaf313a5affc98fa83c7f978196e7c794b845ed84b60e01decbad6198fd",
+  "transportCommit": "89b0ce80b31366601906e69ba5fb0c4a323ec9c6",
+  "transportTreeSha256": "f0d3f400397aaae5f56b508575019dd7fbed30e22dbf60cd6a67cd2cce505033",
+  "method": "ImmutablefinalSourceReadyrecipe.changescomputedinmemoryagainstSHA-verifiedsignedarchive; only7hostfileswrittentodisposableprobe",
+  "hostPins": {
+    "crates/horizon-client/src/game.rs": "e3791cb180e09c20c5972d7489993e279b0c588bd6d2804a5aad17bb2c7e8dd6",
+    "crates/horizon-client/src/game/native_panel.rs": "7ea0845828a67489a4b667582d039ed8985bafea1d1a4fe6841c87207e1733e3",
+    "crates/horizon-client/src/game/native_text_field.rs": "b88ea7a33256a3a935f90f7173bdb76370e40e6a14a95869966833a6aa462ff2",
+    "crates/horizon-client/src/game/pad_menu.rs": "66767aaf202c6995fc6a93bd326905259423fab02534ac54f99a93c99ddb71cc",
+    "crates/horizon-client/src/game/native_panel_recipes.rs": "3504b2c7f00dffae5c19f10b4f0ddf3cb7a5d6529b86ea0b58ba0fb9bea0e038",
+    "crates/horizon-client/src/game/control.rs": "10a22932d9d35224e860a41aed6c8e02bf991c779cfd4edb0f4572e1b99288b1",
+    "crates/horizon-client/src/game/ime.rs": "25a29233992630c0ef30427949005bb2b9ed09d7556f91aa7081f18ea2530488"
+  },
+  "hostProvenance": {
+    "crates/horizon-client/src/game.rs": {
+      "officialSha256": "b12f409bf298f8d7f40f2e79e7e39d5fe7ebe464ecbbeac6914d7814d114de23",
+      "commonSha256": "e3791cb180e09c20c5972d7489993e279b0c588bd6d2804a5aad17bb2c7e8dd6",
+      "commonChanged": true
+    },
+    "crates/horizon-client/src/game/native_panel.rs": {
+      "officialSha256": "7ea0845828a67489a4b667582d039ed8985bafea1d1a4fe6841c87207e1733e3",
+      "commonSha256": "7ea0845828a67489a4b667582d039ed8985bafea1d1a4fe6841c87207e1733e3",
+      "commonChanged": false
+    },
+    "crates/horizon-client/src/game/native_text_field.rs": {
+      "officialSha256": "b88ea7a33256a3a935f90f7173bdb76370e40e6a14a95869966833a6aa462ff2",
+      "commonSha256": "b88ea7a33256a3a935f90f7173bdb76370e40e6a14a95869966833a6aa462ff2",
+      "commonChanged": false
+    },
+    "crates/horizon-client/src/game/pad_menu.rs": {
+      "officialSha256": "66767aaf202c6995fc6a93bd326905259423fab02534ac54f99a93c99ddb71cc",
+      "commonSha256": "66767aaf202c6995fc6a93bd326905259423fab02534ac54f99a93c99ddb71cc",
+      "commonChanged": false
+    },
+    "crates/horizon-client/src/game/native_panel_recipes.rs": {
+      "officialSha256": "3504b2c7f00dffae5c19f10b4f0ddf3cb7a5d6529b86ea0b58ba0fb9bea0e038",
+      "commonSha256": "3504b2c7f00dffae5c19f10b4f0ddf3cb7a5d6529b86ea0b58ba0fb9bea0e038",
+      "commonChanged": false
+    },
+    "crates/horizon-client/src/game/control.rs": {
+      "officialSha256": "10a22932d9d35224e860a41aed6c8e02bf991c779cfd4edb0f4572e1b99288b1",
+      "commonSha256": "10a22932d9d35224e860a41aed6c8e02bf991c779cfd4edb0f4572e1b99288b1",
+      "commonChanged": false
+    },
+    "crates/horizon-client/src/game/ime.rs": {
+      "officialSha256": "25a29233992630c0ef30427949005bb2b9ed09d7556f91aa7081f18ea2530488",
+      "commonSha256": "25a29233992630c0ef30427949005bb2b9ed09d7556f91aa7081f18ea2530488",
+      "commonChanged": false
+    }
+  },
+  "hostOutputs": {
+    "crates/horizon-client/src/game/native_text_field.rs": "7a5c3ad3976498f507d24668670580c98b471bd2d7dcff0c1b7d536815178658",
+    "crates/horizon-client/src/game/native_panel.rs": "2b19167d94401fa187068bd361282c51b2c46747de3d92d63b0d431b6c6d7c2c",
+    "crates/horizon-client/src/game.rs": "49eec0a10153b9cf114ca439492b374e57dc140ef15f0f3a615468621e59c4da",
+    "crates/horizon-client/src/game/pad_menu.rs": "fa0c4bf9e9dbb4b399125e052fe16b57bf19f9dd956b452b5f2965e31fe93254",
+    "crates/horizon-client/src/game/ime.rs": "25a29233992630c0ef30427949005bb2b9ed09d7556f91aa7081f18ea2530488",
+    "crates/horizon-client/src/game/native_panel_recipes.rs": "c107734d8bbeed92320aa17ba8f219d555a745e83d12a548798d8db06e39cd8d",
+    "crates/horizon-client/src/game/control.rs": "10a22932d9d35224e860a41aed6c8e02bf991c779cfd4edb0f4572e1b99288b1"
+  },
+  "sevenFilePrepare": "PASS",
+  "rust2024Syntax": "PASS",
+  "actualWindowsClient": "NOT RUN",
+  "jeiRecipeSha256": "434b0f6e4aad24915dd91ae9b0d177dd7e13d81c53902bc0f6b3c2e13f010f86"
+}

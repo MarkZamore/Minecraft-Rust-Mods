@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "authorHorizonRevision": "6560641ba51a452f6bc2407baa4eb1b3be517ca8",
+  "scope": "Function-bound source policy preparation only; combined Windows QA is separate.",
+  "source": "crates/horizon-client/src/multiplayer.rs",
+  "originalSourceSha256": "960b94e6df14178d436fd722bcf3acb3d092107f3d63671bfcf4c39aef727966",
+  "preparedSourceSha256": "e44a5bde1188e39d0242d6ce5b664b3e34c438e330ac38f57f89e6de600097eb",
+  "functionSha256": {
+    "add_official_server": "83f5eb68b637e0f6858f319b874f0cae0f264e148378f47fcf27312053eb89ec",
+    "add_partner_servers": "5d62a13ea0624f509285f39798b96f4699211307a38d7281d4493b11bf071811"
+  },
+  "recipeSha256": "c850e24b464e4bd22721d9e99e81ec760304e818b9b14b2839124ea448664295",
+  "checks": [
+    {
+      "case": "Only the two complete seed functions change",
+      "status": "PASS"
+    },
+    {
+      "case": "Both replacement bodies perform only Ok(())",
+      "status": "PASS"
+    },
+    {
+      "case": "add_official_server: body changed",
+      "status": "PASS",
+      "rejectedWith": "Horizon server seeding function changed before mandatory policy preparation: add_official_server"
+    },
+    {
+      "case": "add_official_server: signature changed",
+      "status": "PASS",
+      "rejectedWith": "Horizon server seeding function changed before mandatory policy preparation: add_official_server"
+    },
+    {
+      "case": "add_official_server: function missing",
+      "status": "PASS",
+      "rejectedWith": "Horizon server seeding function changed before mandatory policy preparation: add_official_server"
+    },
+    {
+      "case": "add_partner_servers: body changed",
+      "status": "PASS",
+      "rejectedWith": "Horizon server seeding function changed before mandatory policy preparation: add_partner_servers"
+    },
+    {
+      "case": "add_partner_servers: signature changed",
+      "status": "PASS",
+      "rejectedWith": "Horizon server seeding function changed before mandatory policy preparation: add_partner_servers"
+    },
+    {
+      "case": "add_partner_servers: function missing",
+      "status": "PASS",
+      "rejectedWith": "Horizon server seeding function changed before mandatory policy preparation: add_partner_servers"
+    },
+    {
+      "case": "Unrelated shared source context remains byte-identical and does not invalidate function pins",
+      "status": "PASS"
+    }
+  ],
+  "runtime": "NOT RUN: awaiting final exact Windows client and tools/qa/server-policy.json",
+  "temporaryDataBytes": 0
+}

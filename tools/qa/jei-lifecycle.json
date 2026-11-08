@@ -1,0 +1,22 @@
+{
+  "sourceSha256": {
+    "glue.rs": "3b531b4d6c67d5da7c22fc62ac4de073c7f069094cdcfa2d48bf484d8748d7cf",
+    "runtime.rs": "7436912434a65143bc5b6c2fc3a7321a03ec23bea79e0ccea9fe60d660e1e8c8"
+  },
+  "recipeSha256": "434b0f6e4aad24915dd91ae9b0d177dd7e13d81c53902bc0f6b3c2e13f010f86",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "lifecycleTests": 7,
+  "status": "PASS",
+  "actualWindowsClient": "NOT RUN",
+  "summary": "test result: ok. 38 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+  "baseline": {
+    "status": "EXPECTED_FAILURES",
+    "summary": "test result: FAILED. 34 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s"
+  },
+  "evidence": {
+    "nativeFrame": "crates/horizon-client/src/game/extras.rs:64 calls native_frame even outside world",
+    "tableReplacement": "crates/horizon-client/src/game/native_recipes.rs replaces Arc tables on Login and received recipe content",
+    "originalBug": "JEI 0.1.0 returns whenever thread-local viewer is Some; no Arc invalidation or panel restoration",
+    "limits": "Harness proves lifecycle failures. Exact client original symptom still needs /jei counts, inventory screenshot, and recipe R/U checks. Narrow GUI can intentionally lack panel room."
+  }
+}

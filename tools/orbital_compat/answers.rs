@@ -1,8 +1,7 @@
-/// Answers belong only to a query this window sent through its local server.
+/// Answers belong only to an outstanding query sent to this window's server.
 pub(super) fn from_server(game: &mut Game<'_>, channel: &str, data: &[u8]) {
     if channel != ANSWER
         || !game.native_window()
-        || game.integrated.is_none()
         || data.len() > wire::MESSAGE_LIMIT
     {
         return;

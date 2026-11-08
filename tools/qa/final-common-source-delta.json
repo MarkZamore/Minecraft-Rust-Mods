@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "sourceReadyRevision": "3852ee50faa296d3ee32686b2cff5ab97c799a33",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "recipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
+  "changedOutputsFrom5ed": [
+    "crates/horizon-client/src/lanmc_rust_logo.png",
+    "crates/horizon-client/src/multiplayer.rs",
+    "packaging/icons/rust-edition.ico"
+  ],
+  "sourceDelta": "PASS",
+  "jeiGamePinUnchanged": true,
+  "spiderRemotePinUnchanged": true,
+  "authorArchiveVersionsUnchanged": true,
+  "runtime": "NOT RUN"
+}

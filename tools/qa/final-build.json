@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "inputLockSha256": "47c1768972f31e1fd46cb296356244d095daacbb9761dbfffa01ed76e2145939",
-  "horizonRevision": "66f3981f522b24c250b21523a70080965b940424",
-  "steamOverlayRecipeSha256": "eb8f86b92ac4f712bf7d980dca8ceed4d65e546c4cc7000528b447edfe896c0a",
+  "inputLockSha256": "e4a958c04934b2354b324cf7fee9a0b0082dfc258002940bf65f82d83a8c1503",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "steamOverlayRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
   "mixinsRevision": "e8cd0aa38cffef49cb2e088ef716baa107148c02",
-  "mixinsSha256": "5a5cbb6732e1f84c0de62e900653dc041b15acab8c479b78b32728a6976c37cc",
-  "conflictDecisionsSha256": "84c0d63858e20dac0e656bfd079a608b994aee8e15542d4f37bc7de9e4b4166f",
-  "buildRecipeSha256": "2de9e5ca4beb1c8adb31108cfc1da4cdf1e9acde4f00b2a3d2ceb703a945eaa5",
+  "mixinsSha256": "0edb53d4823b9b80815d6414d53b98ada2fabb9e9ba079bd736a9a013be09dda",
+  "conflictDecisionsSha256": "f76a3178535913ab94b8076efa507162de5fdf954e7e0e54e1e944956bd0fc9a",
+  "buildRecipeSha256": "adb20ded4d18e54432c905490d38d696b6ebe20832c1086cbe7adfc92d406e3e",
   "rust": "1.98.1",
   "rustFlags": "-C target-feature=+crt-static",
   "ids": [
@@ -32,7 +32,6 @@
     "invisible_frames",
     "itemnew",
     "jei",
-    "keystrokes",
     "lookat",
     "minimap",
     "motion_blur",
@@ -40,9 +39,7 @@
     "orbital",
     "resourcify",
     "rightharvest",
-    "server_browser",
     "skins_3d",
-    "speedrun_timer",
     "spider_man",
     "status_effect_hud",
     "tectonic_horizon",
@@ -53,13 +50,13 @@
   ],
   "package": "horizon-client",
   "mixins": {
-    "injections": 310,
-    "modules": 76,
+    "injections": 275,
+    "modules": 74,
     "crates": 3,
     "bridges": 0,
     "states": 0
   },
-  "cargoLockSha256": "b39fa330247bf03a9ec9e6ca61731b3ff3527f2c3114d9201c38afc22d0f743f",
+  "cargoLockSha256": "865f43f3c2cfc3c405c26e19e68ffa3a1cd3179bcad8f15591cd3c48b93a743c",
   "compileCheck": true,
-  "clientSha256": "a82331cd97a608e3e7c4b73675637b32a341551d565e52ff27b9ad5e8ea26a05"
+  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7"
 }

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "sourcePort": "PASS",
+  "runtime": "NOT RUN",
+  "baseRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
+  "sourceFile": "crates/horizon-client/src/game/remote.rs",
+  "inputSha256": "412038605c92bd98a2fbd07f36ac0c9f03a972a48c8b5119ec582f579d09a097",
+  "outputSha256": "6be5e3d6d0f00ce288e991f55cd0699eea33018a648fa9d86c6cc463a642d602",
+  "authorRemoteStatePacketLogicPreserved": true,
+  "changes": "Qualify three serializer and three Value references; remove the nested use forbidden in RETURN hook by official horizon-mixins0.6.0. File outside method unchanged.",
+  "pending": "Exact-client compilation/gameplay",
+  "baseSourceProvenance": "Immutable published SourceReady commit; shared source remote.rs pin crosschecked",
+  "baseCommit": "3852ee50faa296d3ee32686b2cff5ab97c799a33"
+}

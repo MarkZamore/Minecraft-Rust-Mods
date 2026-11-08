@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "status": "NOT RUN",
+  "reason": "Power-loss source checkpoint; final post-policy runtime acceptance and public base promotion are incomplete.",
+  "mandatoryPolicy": {"DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"},
+  "coreChangedByThisPolicy": false,
+  "candidateMutationByAuditAgent": false,
+  "implemented": [
+    "Pack-owned environment defaults and strict staging/presentation validation",
+    "Source/effective environment evidence required in final QA reports",
+    "Generic bootstrap/source/binary compatibility checks; old base fails closed",
+    "Native notice and update-preservation gates retain exact presentation policy provenance"
+  ],
+  "requiredBeforeRelease": [
+    "Accept the newly published Edition base and bootstrap pins; the old 3bf base lacks the new bootstrap contract",
+    "Verify generic bootstrap environment source and exact binary against that published base",
+    "Restage the candidate with the policy and the new bootstrap",
+    "Repeat all final QA from that presentation and bootstrap without a diagnostic inherited mask",
+    "Run the release-gate verifier on the real final reports",
+    "Publish archives and verify public SHA-256 before promoting a new manifest"
+  ],
+  "sourceComponentAudit": "environment-policy-source.json records the earlier validator/helper boundary checks; its source hashes identify that tested snapshot, not a new gameplay run. The later bootstrap source guard still needs final published-base acceptance.",
+  "runtimeAcceptance": "NOT RUN",
+  "publicManifestPromotion": "NOT RUN"
+}

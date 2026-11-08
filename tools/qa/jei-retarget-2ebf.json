@@ -1,0 +1,75 @@
+{
+  "upstreamRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "inputs": [
+    {
+      "path": "crates/horizon-client/src/game.rs",
+      "bytes": 1065340,
+      "sha256": "b12f409bf298f8d7f40f2e79e7e39d5fe7ebe464ecbbeac6914d7814d114de23",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game.rs"
+    },
+    {
+      "path": "crates/horizon-client/src/game/native_panel.rs",
+      "bytes": 32713,
+      "sha256": "7ea0845828a67489a4b667582d039ed8985bafea1d1a4fe6841c87207e1733e3",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game/native_panel.rs"
+    },
+    {
+      "path": "crates/horizon-client/src/game/native_panel_recipes.rs",
+      "bytes": 22694,
+      "sha256": "3504b2c7f00dffae5c19f10b4f0ddf3cb7a5d6529b86ea0b58ba0fb9bea0e038",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game/native_panel_recipes.rs"
+    },
+    {
+      "path": "crates/horizon-client/src/game/native_text_field.rs",
+      "bytes": 18320,
+      "sha256": "b88ea7a33256a3a935f90f7173bdb76370e40e6a14a95869966833a6aa462ff2",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game/native_text_field.rs"
+    },
+    {
+      "path": "crates/horizon-client/src/game/pad_menu.rs",
+      "bytes": 106459,
+      "sha256": "66767aaf202c6995fc6a93bd326905259423fab02534ac54f99a93c99ddb71cc",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game/pad_menu.rs"
+    },
+    {
+      "path": "crates/horizon-client/src/game/control.rs",
+      "bytes": 77784,
+      "sha256": "10a22932d9d35224e860a41aed6c8e02bf991c779cfd4edb0f4572e1b99288b1",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game/control.rs"
+    },
+    {
+      "path": "crates/horizon-client/src/game/ime.rs",
+      "bytes": 6599,
+      "sha256": "25a29233992630c0ef30427949005bb2b9ed09d7556f91aa7081f18ea2530488",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game/ime.rs"
+    }
+  ],
+  "scope": "JEIhostcompatibility2ebf;GamepinverifiedagainstfinalimmutableSourceReadyEdition5ed0ee3checkpoint",
+  "authorBehaviorPreserved": [
+    "Creative browser draw followed by pad menu guide",
+    "Recipes Creative ownership and layout",
+    "Recipes Escape Back path",
+    "Creative transfer button suppression",
+    "control.rs and ime.rs byte-identical",
+    "new pad slider-hold and guide behavior retained"
+  ],
+  "packBehavior": [
+    "JEI Creative whitelist exemption alongside Recipes",
+    "JEI-only mouse release suppression, E close blur and native search focus",
+    "JEI-only R/U hover routing and Creative panel wheel",
+    "JEI native-text-field and on-screen-keyboard priority"
+  ],
+  "verification": {
+    "officialInputSHA256": "PASS",
+    "sevenFilePrepare": "PASS",
+    "rust2024Syntax": "PASS",
+    "authorControlIMEUnchanged": "PASS",
+    "authorCreativeTransferGuards": "PASS",
+    "authorPadGuideCalls": "PASS",
+    "lifecycleTests": 38,
+    "lifecycle": "PASS",
+    "actualWindowsClient": "NOT RUN"
+  },
+  "recipeSha256": "434b0f6e4aad24915dd91ae9b0d177dd7e13d81c53902bc0f6b3c2e13f010f86",
+  "commonCheckpoint": "5ed0ee340267c291765302cf6ecf64ba0f03679f"
+}

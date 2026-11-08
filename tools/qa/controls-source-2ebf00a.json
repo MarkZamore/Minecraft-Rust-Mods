@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "sourceCompatibility": "PASS",
+  "authorSources": {
+    "crates/horizon-client-render/src/settings.rs": {
+      "sizeBytes": 45348,
+      "sha256": "02c85ee6ec89e807e6f7fb6c9d8e5d611e7deafcff7bc70358d69710bced7419",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client-render/src/settings.rs",
+      "unchanged": false,
+      "previousSha256": "54be84d0d6de472792eab7c13900208cba25615220534f0b37fa7eb883b267e8"
+    },
+    "crates/horizon-client/src/game/world_loading.rs": {
+      "sizeBytes": 36861,
+      "sha256": "dd00d259b4b8115ffd7c07c7c2f0ac6923ca6a6cbc882fe72e53f8ae33c9fee9",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client/src/game/world_loading.rs",
+      "unchanged": true,
+      "previousSha256": "dd00d259b4b8115ffd7c07c7c2f0ac6923ca6a6cbc882fe72e53f8ae33c9fee9"
+    },
+    "crates/horizon-client-input/src/keybinds.rs": {
+      "sizeBytes": 27811,
+      "sha256": "a28526affc8d0012e71c5a45e208ee961fd99e7e7f3ee5f5a859c2393c67702d",
+      "url": "https://raw.githubusercontent.com/horizon-rust/horizon/2ebf00a0281c592f79191e76fce0e7d522c6f425/crates/horizon-client-input/src/keybinds.rs",
+      "unchanged": true,
+      "previousSha256": "a28526affc8d0012e71c5a45e208ee961fd99e7e7f3ee5f5a859c2393c67702d"
+    }
+  },
+  "settingsDiff": "Only author enum variant PadGameplayGuide added after PadKeyboard",
+  "controlsOverlayAnchors": "PASS",
+  "worldGuardSourceUnchanged": true,
+  "worldGuardPatch": "PASS",
+  "worldGuardBeforeMutations": true,
+  "originalLateSessionLockPreserved": true,
+  "nativeInputKeybindsUnchanged": true,
+  "baseMappingsUnchanged": 62,
+  "presetMappings": 65,
+  "controlsPresetSha256": "ced6de676b79efbb6c08396f7749e15f5f32bd5c817a7530487f3452b00290d5",
+  "bindings": {
+    "orbitalWheel": "Insert",
+    "horizonmaticaMove": "N",
+    "horizonmaticaRotation": "R",
+    "waypointsCreate": "F7",
+    "waypointsList": "F8"
+  },
+  "runtime": "NOT RUN",
+  "scope": "Source compatibility only. Exact 2ebf00a Windows acceptance is required after rebuilding."
+}

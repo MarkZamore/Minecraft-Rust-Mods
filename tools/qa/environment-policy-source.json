@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "scope": "In-memory source-policy/default-inheritance component checks only; not Windows or GPU acceptance.",
+  "sourceSha256": {
+    "tools/stage_mod_pack.py": "06a4190fe6cb9951cb40b0f9645f5c7ebfd4c32d630889969be92dbaae9cebf0",
+    "tools/native_qa_environment.py": "c9f8bfa0b47d1d7a8359cd0de015ea70fed3b016e8abae2e47ef916495e0b670",
+    "launcher/environment-defaults.json": "d25ce60fb4c1c24d343678ddb401a96faa7495465de4c4855f4a656f0db62a62"
+  },
+  "declaredDefault": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "componentChecks": 51,
+  "results": [
+    {
+      "case": "empty generic map",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "mandatory declared default",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "underscore name",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "64 ASCII name",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "empty value",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "1024 ASCII value",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "1024 UTF-8 emoji bytes",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "1024 UTF-8 Cyrillic bytes",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "16 entries",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "8192 total UTF-8 bytes",
+      "expected": "accept in generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "nonobject",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "null object",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "17 entries",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "empty name",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "65 ASCII name",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "leading digit",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "equals name",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "space name",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "non-ASCII name",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "newline name",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "nonstring name",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "integer value",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "boolean value",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "null value",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "1025 ASCII bytes",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "1028 UTF-8 emoji bytes",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "NUL control",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "newline control",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "tab control",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "DEL control",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "C1 control",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "lone surrogate",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "8193 total bytes",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "Windows case-duplicate keys",
+      "expected": "reject in both generic validators",
+      "status": "PASS"
+    },
+    {
+      "case": "missing mandatory default",
+      "expected": "reject by exact mandatory source map",
+      "status": "PASS"
+    },
+    {
+      "case": "changed mandatory value",
+      "expected": "reject by exact mandatory source map",
+      "status": "PASS"
+    },
+    {
+      "case": "additional unrequested graphics backend",
+      "expected": "reject by exact mandatory source map",
+      "status": "PASS"
+    },
+    {
+      "case": "changed mandatory key case",
+      "expected": "reject by exact mandatory source map",
+      "status": "PASS"
+    },
+    {
+      "case": "exact duplicate source JSON",
+      "expected": "reject duplicate raw source names",
+      "status": "PASS"
+    },
+    {
+      "case": "case duplicate source JSON",
+      "expected": "reject duplicate raw source names",
+      "status": "PASS"
+    },
+    {
+      "case": "exact duplicate staged environment JSON",
+      "expected": "reject duplicate raw staged data",
+      "status": "PASS"
+    },
+    {
+      "case": "case duplicate staged environment JSON",
+      "expected": "reject duplicate raw staged data",
+      "status": "PASS"
+    },
+    {
+      "case": "duplicate staged presentation field",
+      "expected": "reject duplicate raw staged data",
+      "status": "PASS"
+    },
+    {
+      "case": "absent applies default",
+      "expected": "new child mapping preserves all inherited values and spelling",
+      "status": "PASS"
+    },
+    {
+      "case": "inherited one preserved",
+      "expected": "new child mapping preserves all inherited values and spelling",
+      "status": "PASS"
+    },
+    {
+      "case": "inherited zero preserved",
+      "expected": "new child mapping preserves all inherited values and spelling",
+      "status": "PASS"
+    },
+    {
+      "case": "inherited empty preserved",
+      "expected": "new child mapping preserves all inherited values and spelling",
+      "status": "PASS"
+    },
+    {
+      "case": "case-insensitive inherited empty and backend preserved",
+      "expected": "new child mapping preserves all inherited values and spelling",
+      "status": "PASS"
+    },
+    {
+      "case": "context cleanup after success",
+      "expected": "only introduced defaults are removed in finally",
+      "status": "PASS"
+    },
+    {
+      "case": "context cleanup after exception",
+      "expected": "only introduced defaults are removed in finally",
+      "status": "PASS"
+    },
+    {
+      "case": "context retains inherited empty",
+      "expected": "only introduced defaults are removed in finally",
+      "status": "PASS"
+    }
+  ],
+  "commandOverlayPrecedence": {
+    "scope": "This Python helper implements the defaults/inherit phase only.",
+    "explicitEnvironmentAndRemoval": "Caller overlays and removals must be applied last; production bootstrap owns full Command.env/Command.env_remove precedence.",
+    "currentDirectQaCallSites": "No current direct QA call explicitly removes or overwrites the OW key after this phase.",
+    "fullProductionCommandPrecedence": "NOT RUN: new bootstrap implementation is owned and tested separately."
+  },
+  "runtime": "NOT RUN: no game, bootstrap, GPU, process launch, candidate mutation, or OS environment mutation was performed.",
+  "temporaryDataBytes": 0,
+  "verificationCommand": "python -B - (in-memory boundary, raw JSON, exact-source-map, inheritance and context-finally probes importing stage_mod_pack and native_qa_environment)",
+  "reproducibleCompanionCommand": "python -B tools/test_native_qa_environment.py --work $registeredRun",
+  "companionCommandScope": "The checked-in regression runner covers the utility contract; the 51 in-memory source audit observations above were performed separately without creating fixtures."
+}

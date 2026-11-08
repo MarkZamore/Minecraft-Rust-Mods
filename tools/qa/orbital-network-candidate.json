@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "targetHorizon": "6560641ba51a452f6bc2407baa4eb1b3be517ca8",
+  "mod": {
+    "id": "orbital",
+    "version": "0.5.9",
+    "originalSha256": "3cfd63b72e673c4275ff5ba5018662baf3ce01ddfbd8a4d98bdf1fbfe813f684"
+  },
+  "status": "candidate, not release acceptance",
+  "architecture": "Author world-mutating engine remains only at source client, server verifies placed UUID and permission >=2. Observers receive known local shader index, bounded params/data and sound events. Separate renderer and buffers per actor UUID. Native reliable mod channels carry data, never shader text. Orbital command batches use the live placed player connection and the author run_quiet_line path, preserving actual permission, source position, host command policy and native command hooks with quiet output; no console-level execute wrapper.",
+  "boundedInputs": {
+    "postDataWords": 262144,
+    "origin": "unchanged author SDK POST_DATA_WORDS",
+    "chunkWords": 6000,
+    "incompleteState": "one pending and one complete snapshot per actual server player, newer pending resets old assembly",
+    "backpressure": "cursor commits only after native enqueue, byte-identical retry; round robin across owners",
+    "soundEventsPerRecipient": 256,
+    "soundExpiryTicks": 100,
+    "stateExpiryTicks": 200,
+    "soundTrackedNamesPerOwner": 256,
+    "visualPacketsPerTick": "native_net::PER_TICK/2, includes sounds and all owners; scheduled before bulk world requests/answers",
+    "soundPacketsPerTick": "at most half the visual budget, leaves visual state/data guaranteed progress"
+  },
+  "cleanup": [
+    "source permission loss/disconnect/dimension change sends tombstone",
+    "recipient dimension checked for queued sound events",
+    "client dimension load/unload clears remote caches",
+    "stale cache drops after 200 ticks",
+    "GPU drawer retained only for current pass owners, including title frames"
+  ],
+  "sources": {
+    "tools/orbital_compat/answers.rs": "96c3cbb297d5d0d7b2ad6a457cb2579d9b7e2e3d083f6e5632a6c00f493fcd15",
+    "tools/orbital_compat/atlas_test.rs": "08f9be74d22dc0487926d212adbc16b8b990dcb5ecbc3cf733ce386da2767db6",
+    "tools/orbital_compat/visual.rs": "d5021ad7c5d958bc7dfa9e9111bc1df6f3780cc71a3ece5468ad08271babe6d8",
+    "tools/orbital_compat/visual_harness.rs": "7af21340310347ae34417beddd6f9a004d50abbfdb42bef9c7949085e175b74f",
+    "tools/orbital_compat/visual_wire.rs": "a7fa9563c8a8b23dc3873d65c66d60aee86ba4184c3be76f05d9ef836173a13c",
+    "tools/orbital_compat/wheel_hint.rs": "33dda84d72152e207e6fa4d93a702320744915af79c8d002b70fb5134fdeaa8f",
+    "tools/orbital_compat/wire.rs": "ae6cb2b45137df2e81fdbb6e69cee66525aedd2c2e8171e5026c0fee04c12f2c",
+    "tools/orbital_compat/__init__.py": "90881c8cc32ef609395b58aaf572717c97948dbef760b2f9f9ff1cd160c1b966"
+  },
+  "checks": [
+    {
+      "name": "source SHA256 and exact recipe anchors",
+      "status": "PASS"
+    },
+    {
+      "name": "standalone codec and endpoint tests",
+      "status": "PASS",
+      "passed": 16,
+      "failed": 0,
+      "command": "rustc --edition 2024 --test tools/orbital_compat/visual_harness.rs -o <run>/visual-endpoint-tests.exe; <run>/visual-endpoint-tests.exe",
+      "coverage": [
+        "malformed and truncated metadata",
+        "bounded data reassembly",
+        "duplicate chunks",
+        "superseded incomplete state",
+        "clear cancels inflight data",
+        "OP authorization and server-owned UUID",
+        "forged clock rejected",
+        "dimension transition",
+        "sound queue dimension change",
+        "concurrent UUID passes",
+        "concurrent matching sound stop",
+        "unchanged data revision across generations receives new GPU token",
+        "retry preserves metadata-before-data order",
+        "invented sound names bounded independently to 256 per owner",
+        "constant full work + answer backlogs and continuous sound production: metadata tick1, maximum 1MiB effect snapshot across both hops within14ticks; at least nativePER_TICK/2 world slots each tick",
+        "dimension clear blocks previous source and WGSL quality rebuild until an actual clear/invisible pass; later legitimate strike accepted"
+      ]
+    },
+    {
+      "name": "author Hurricane table repack with receiver atlas",
+      "status": "PASS",
+      "passed": 1,
+      "failed": 0,
+      "filtered": 172,
+      "command": "cargo test --offline --manifest-path <prepared-orbital>/engine/Cargo.toml network_repack_uses -- --nocapture",
+      "evidence": "Test changes destination grass_block layer from 5 to 71, then runs the author hu_repack through network_repack(9). Local atlas words change; canonical block ID and biome tint remain identical. Other laser data remains unchanged."
+    },
+    {
+      "name": "exact combined Windows client build",
+      "status": "NOT RUN"
+    },
+    {
+      "name": "two-client LAN and Steam session",
+      "status": "NOT RUN"
+    },
+    {
+      "name": "multi-owner GPU visual composition and Radeon GPU",
+      "status": "NOT RUN"
+    },
+    {
+      "name": "production glue reserves visual quota before bulk queues",
+      "status": "PASS",
+      "evidence": "Exact source anchors checked: tick_client occurs before flush_work, tick_server before server answer loop."
+    },
+    {
+      "name": "native player command permission path source port",
+      "status": "PASS",
+      "evidence": "Exact pinned lan_quiet.rs body is byte-identical; the sole change is fn run_quiet_line -> pub(super) fn run_quiet_line. Modified source hash rejected. Orbital finds current placed UUID connection and calls this method; native_run_command console path is absent.",
+      "originalSource": "crates/horizon-client/src/game/lan_quiet.rs",
+      "originalSha256": "d815f06570366b9146e64f879dc8c6cd675225347296cb3faa08bf44c855d7a9",
+      "patchedSha256": "cd0dbf5d08447129009da39df8bbfe27f6bfc78b165d7e3c52f13c4a0d4f832a",
+      "gameplayVerification": "NOT RUN"
+    },
+    {
+      "name": "Orbital HUD and two chat hints reflect personal key binding",
+      "status": "PASS",
+      "evidence": "Exact original glue anchors; compiled standalone helper probe with default Insert, custom Q, custom F6, give-response label and unchanged unrelated text. Uses Game::native_mod_key and Horizon keybinds::display_name; helper does not write settings.",
+      "scope": "Standalone Rust helper compile/probe with mocked Game/key-label endpoints; exact Windows HUD and personal-bind interaction require runtime QA.",
+      "gameplayVerification": "NOT RUN"
+    }
+  ],
+  "knownLimits": [
+    "Audio exposes stop by event, not public per-instance stop. When two owners play the same event, stopping one preserves the other; the first overlapping audio instance finishes naturally.",
+    "Atlas remap is required only for Hurricane table 9; remaining author tables contain coordinates/colors, not sprite-layer indices. Pixel rendering with different GPU atlases or personal resource packs still requires runtime acceptance.",
+    "Original author engine identifies world changes by game clock; its local strike lifecycle across same-clock dimension transitions remains unchanged. Pack network replication blocks the previous active source until an actual clear, including quality rebuilds. Local engine lifecycle across portals still needs separate runtime QA."
+  ],
+  "temporaryCleanup": {
+    "removedRecoverableBytes": 301654458,
+    "retainedLogs": "mod-sync/endpoint-tests.log and atlas-tests.log; generated source, target and test executables removed",
+    "deleteBy": "2026-11-08"
+  },
+  "documentationAdjustment": "Leading inner module docs changed from //! to // for official mixins 0.6.0; production semantics unchanged after the recorded tests."
+}

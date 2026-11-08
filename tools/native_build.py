@@ -22,7 +22,7 @@ ROOT = TOOLS.parent
 RECIPE = Path(__file__).resolve()
 INPUT_LOCK = TOOLS / "mod-input-lock.json"
 DECISIONS = TOOLS / "conflict-decisions.json"
-HORIZON_VERSION = "nightly-2026-11-05-66f3981"
+HORIZON_VERSION = "nightly-2026-11-07-2ebf00a"
 RUST = "1.98.1"
 MIXINS_REPO = "https://github.com/horizon-rust/horizon-mixins"
 MIXINS_REVISION = "e8cd0aa38cffef49cb2e088ef716baa107148c02"
@@ -50,7 +50,7 @@ def run(args, env, *, capture=False):
 
 
 def build_recipe_sha():
-    sources = [RECIPE, TOOLS / "orbital_controls.py", TOOLS / "orbital_world_guard.py", TOOLS / "physics_title_compat.py",
+    sources = [RECIPE, TOOLS / "orbital_controls.py", TOOLS / "orbital_world_guard.py", TOOLS / "physics_title_compat.py", TOOLS / "jei_compat.py", TOOLS / "spider_compat.py", TOOLS / "server_seed_compat.py",
                *(TOOLS / "orbital_compat").rglob("*")]
     files = {}
     for path in sources:
@@ -177,6 +177,9 @@ def unpack_inputs(rows, archives, work, revision):
         if row["id"] == "orbital":
             from orbital_compat import apply
             apply(bundle)
+        if row["id"] == "jei":
+            from jei_compat import apply as apply_jei
+            apply_jei(bundle)
         manifest = bundle / "horizon-mixin.toml"
         text = manifest.read_text(encoding="utf-8")
         parsed = tomllib.loads(text)
@@ -332,15 +335,28 @@ def execute(args):
         shutil.copytree(args.base_source, source)
         marker = source / ".horizon-revision"
         marker.write_text(lock["horizonRevision"] + "\n", encoding="ascii", newline="\n")
+        from server_seed_compat import prepare_source as prepare_server_policy
+        prepare_server_policy(source)
+        if "horizon_physics" in ids:
+            from physics_title_compat import prepare_source as prepare_physics_source
+            prepare_physics_source(source)
+        if "spider_man" in ids:
+            from spider_compat import prepare_source as prepare_spider_source
+            prepare_spider_source(source)
+        if "jei" in ids:
+            from jei_compat import prepare_source as prepare_jei_source
+            prepare_jei_source(source)
         if "orbital" in ids:
+            from orbital_compat import prepare_source as prepare_orbital_source
             from orbital_controls import apply as apply_orbital_controls
             from orbital_world_guard import apply as apply_orbital_world_guard
+            prepare_orbital_source(source)
             apply_orbital_controls(source)
             apply_orbital_world_guard(source)
     env = os.environ.copy()
     env.pop("HORIZON_MOD_API_INJECTIONS", None)
     env.update(CARGO_TARGET_DIR=str(args.target), RUSTFLAGS="-C target-feature=+crt-static",
-               HORIZON_VERSION=HORIZON_VERSION, HORIZON_NIGHTLY="2026-11-05 66f3981")
+               HORIZON_VERSION=HORIZON_VERSION, HORIZON_NIGHTLY="2026-11-07 2ebf00a")
     version = run(["rustc", "--version"], env, capture=True).stdout.split()
     if version[1] != RUST:
         raise ValueError(f"The reviewed toolchain uses Rust {RUST}")

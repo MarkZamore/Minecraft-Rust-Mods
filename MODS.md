@@ -1,6 +1,6 @@
 # Моды Minecraft Rust Mods
 
-В сборке 40 нативных модов. Ресурсы Orbital Laser входят в состав самого мода.
+В сборке 37 нативных модов. Ресурсы Orbital Laser входят в состав самого мода.
 
 ## Мир и механики
 
@@ -31,10 +31,8 @@
 - **Coordinates HUD** — Показывает координаты и направление взгляда. [GitHub](https://github.com/horizon-rust/horizon-mods/tree/main/native/coords-hud)
 - **Crosshair Indicator** — Меняет вид прицела, когда цель в пределах удара. [GitHub](https://github.com/CayMac97/crosshair-indicator)
 - **FPS Counter** — Показывает текущий FPS, минимум и показатель 1% low. [GitHub](https://github.com/horizon-rust/horizon-mods/tree/main/native/fps-overlay)
-- **Keystrokes** — Подсвечивает нажатия клавиш и кнопок мыши, показывает клики в секунду. [GitHub](https://github.com/horizon-rust/horizon-mods/tree/main/native/keystrokes)
 - **LookAt** — Показывает подсказку о блоке или мобе под прицелом, включая здоровье моба или подходящий инструмент для блока. [GitHub](https://github.com/d3grando/lookat)
 - **Minimap** — Показывает мини-карту окрестностей. [GitHub](https://github.com/horizon-rust/horizon-mods/tree/main/native/minimap)
-- **Speedrun Timer** — Считает время от первого движения до выхода из Энда и сохраняет результаты. [GitHub](https://github.com/Demerobit/Speedrun-Timer-Horizon-Rust-Minecraft)
 - **Status Effect HUD** — Показывает значки, уровни и таймеры активных эффектов. [GitHub](https://github.com/CayMac97/status-effect-hud)
 - **Waypoints** — Позволяет создавать метки и показывает их названия и расстояния в мире. [GitHub](https://github.com/Nirokx/horizon-waypoints)
 
@@ -54,5 +52,4 @@
 - **ChatHeads** — Показывает головы авторов рядом со строками чата. [GitHub](https://github.com/Domanffe/chatheads)
 - **Dynamic FPS for rust** — Снижает нагрузку в фоне, при простое или питании от батареи. [GitHub](https://github.com/Lyvt-Dev/dynamic-fps-for-rust)
 - **ResourcifyHorizon** — Ищет и устанавливает ресурспаки Modrinth из игры. [GitHub](https://github.com/tariksabanuz/ResourcifyHorizon)
-- **Server Atlas** — Добавляет поиск серверов, избранное, фильтры, заметки и включаемый онлайн-каталог. [GitHub](https://github.com/Musti3214/Horizon-Server-Browser/tree/8a467654699ca83ebdf901498fe3dc73c46dbe69/mod)
 - **Toggle Sprint** — Переключает бег и приседание без удержания клавиш и показывает активный режим. [GitHub](https://github.com/CayMac97/toggle-sprint)

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "checkedAtUtc": "2026-11-07T23:47:12.688832+00:00",
+  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "inputLockSha256": "e4a958c04934b2354b324cf7fee9a0b0082dfc258002940bf65f82d83a8c1503",
+  "selectionSha256": "354424c4e039600dcb10b8c7413baac344d9b69fb76b9f26642ad6a21a98cf78",
+  "publishedComparisonRevision": "a449ad935f43c6e57a97256d6dbb6c5b4407817a",
+  "selectedCount": 37,
+  "removed": [
+    "keystrokes",
+    "server_browser",
+    "speedrun_timer"
+  ],
+  "added": [],
+  "retainedProjectRecordsChanged": [],
+  "archiveCheck": {
+    "verified": 37,
+    "totalBytes": 35282547,
+    "failures": [],
+    "manifestAndSafeArchivePaths": "PASS",
+    "signatures": {
+      "authorVerified": 12,
+      "authorUnsigned": 25
+    }
+  },
+  "licenseCheck": {
+    "verifiedNoticeSets": 37,
+    "allCachedNoticeSha256": "PASS",
+    "unresolved": {},
+    "licenses": {
+      "MIT": 36,
+      "CC0-1.0": 1
+    },
+    "retainedNoticesUnchanged": true
+  },
+  "dependencyCheck": {
+    "nativeMixinDeclarations": "37 empty dependency maps; no omitted declared native dependency",
+    "authorInputsUnchanged": true,
+    "compiledCargoClosure": "Covered by exact final locked build, not re-resolved by this audit"
+  },
+  "sideCheck": {
+    "kind": "37 native mods statically compiled into the Windows client and its integrated-server runtime",
+    "separateNativeSideField": "Not declared by these native author manifests; execution roles are governed by their native hooks",
+    "orbitalContentCompanion": "both; exact bundled manifest checked",
+    "dedicatedServerAcceptance": "NOT RUN"
+  },
+  "pagesCheck": {
+    "exactSelectedIdSet": true,
+    "matchesInputWebsiteUrl": true,
+    "httpHead200": 37,
+    "redirects": 0,
+    "unavailable": [],
+    "checkedUrls": {
+      "accurate_block_placement": "https://github.com/Lutziano888/horizon-accurate-block-placement",
+      "appleskin": "https://github.com/soufied/AppleSkin-Horizon",
+      "armor_status": "https://github.com/CayMac97/armor-status",
+      "armorhud": "https://github.com/Thomas-Slot/horizon-armor-hud",
+      "blockscope": "https://github.com/Domanffe/blockscope",
+      "chatheads": "https://github.com/Domanffe/chatheads",
+      "connected_textures": "https://github.com/tariksabanuz/ContinuityHorizon",
+      "coords_hud": "https://github.com/horizon-rust/horizon-mods/tree/main/native/coords-hud",
+      "crosshair_indicator": "https://github.com/CayMac97/crosshair-indicator",
+      "dynamic_fps_for_rust": "https://github.com/Lyvt-Dev/dynamic-fps-for-rust",
+      "elytratrails": "https://github.com/soufied/ElytraTrails-Horizon",
+      "enchantmenthints": "https://github.com/d3grando/enchantmenthints",
+      "fps_overlay": "https://github.com/horizon-rust/horizon-mods/tree/main/native/fps-overlay",
+      "freelook": "https://github.com/Krzysix17/horizon-freelook",
+      "fullbright_nofog": "https://github.com/Nirokx/horizon-fullbright-nofog",
+      "held_item_info": "https://github.com/AltMugen/horizon-held-item-info",
+      "horizon_physics": "https://github.com/tariksabanuz/PhysicsModHorizon",
+      "horizonmatica": "https://github.com/keksi2k/horizonmatica",
+      "inventory_profiles": "https://github.com/CayMac97/inventory-profiles",
+      "invisible_frames": "https://github.com/AltMugen/horizon-invisible-frames",
+      "itemnew": "https://github.com/d3grando/itemnew",
+      "jei": "https://github.com/enderliker/horizon-jei",
+      "lookat": "https://github.com/d3grando/lookat",
+      "minimap": "https://github.com/horizon-rust/horizon-mods/tree/main/native/minimap",
+      "motion_blur": "https://github.com/levzzz5154/horizon-motion-blur",
+      "mousetricks": "https://github.com/d3grando/mousetricks",
+      "orbital": "https://github.com/Stink-O/orbital-laser",
+      "resourcify": "https://github.com/tariksabanuz/ResourcifyHorizon",
+      "rightharvest": "https://github.com/Domanffe/rightharvest",
+      "skins_3d": "https://github.com/umbx-dot/horizon-3d-skins",
+      "spider_man": "https://github.com/wyddy7/minecraft-spider-man-rust",
+      "status_effect_hud": "https://github.com/CayMac97/status-effect-hud",
+      "tectonic_horizon": "https://github.com/eltanschauung/tectonic-horizon",
+      "toggle_sprint": "https://github.com/CayMac97/toggle-sprint",
+      "veinminer": "https://github.com/levzzz5154/horizon-veinminer",
+      "waypoints": "https://github.com/Nirokx/horizon-waypoints",
+      "zoom": "https://github.com/horizon-rust/horizon-mods/tree/main/native/zoom"
+    }
+  },
+  "actualListCheck": {
+    "MODS.mdRows": 37
+  },
+  "status": "PASS",
+  "scope": "Inputs, official pages and composition audit; Windows gameplay/Steam/public archive delivery are separate release gates"
+}

@@ -22,7 +22,6 @@
     "invisible_frames",
     "itemnew",
     "jei",
-    "keystrokes",
     "lookat",
     "minimap",
     "motion_blur",
@@ -30,9 +29,7 @@
     "orbital",
     "resourcify",
     "rightharvest",
-    "server_browser",
     "skins_3d",
-    "speedrun_timer",
     "spider_man",
     "status_effect_hud",
     "tectonic_horizon",
@@ -41,6 +38,6 @@
     "waypoints",
     "zoom"
   ],
-  "inputLockSha256": "47c1768972f31e1fd46cb296356244d095daacbb9761dbfffa01ed76e2145939",
+  "inputLockSha256": "e4a958c04934b2354b324cf7fee9a0b0082dfc258002940bf65f82d83a8c1503",
   "schemaVersion": 1
 }

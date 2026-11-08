@@ -4,11 +4,13 @@ import argparse
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import time
 
 from inspect_mods import content_file
 from native_build import INPUT_LOCK, load, module_at, sha, write
+from native_qa_environment import direct_client_environment, environment_policy
 import smoke_orbital
 import smoke_previous_world
 import smoke_startup
@@ -31,6 +33,8 @@ def options(path):
 
 def smoke(args):
     client = args.candidate / "native/horizon-client.exe"
+    environment = environment_policy(args.candidate)
+    environment_launches = []
     receipt = load(args.candidate / "build-receipt.json")
     if sha(client) != receipt["clientSha256"] or sha(INPUT_LOCK) != receipt["inputLockSha256"]:
         raise ValueError("The staged client differs from the build receipt")
@@ -50,11 +54,14 @@ def smoke(args):
         sys.path.pop(0)
     preset_file = args.candidate / CONTROLS_PRESET
     preset = options(preset_file)
-    expected_keys = 63 if smoke_orbital.ID in expected_native else 62
+    expected_keys = 62 + int(smoke_orbital.ID in expected_native) + 2 * int("waypoints" in expected_native)
     if len(preset) != expected_keys or any(not name.startswith("key_") for name in preset):
         raise ValueError(f"Expected the exact {expected_keys}-key Horizon controls preset")
-    if expected_keys == 63 and preset.get(smoke_orbital.WHEEL_MAPPING) != f"key.keyboard.{smoke_orbital.WHEEL_KEY}":
+    if smoke_orbital.ID in expected_native and preset.get(smoke_orbital.WHEEL_MAPPING) != f"key.keyboard.{smoke_orbital.WHEEL_KEY}":
         raise ValueError("Expected the published Orbital Laser wheel binding on Insert")
+    if "waypoints" in expected_native and (preset.get("key_waypoints.create") != "key.keyboard.f7"
+                                          or preset.get("key_waypoints.list") != "key.keyboard.f8"):
+        raise ValueError("Expected the player-selected Waypoints F7/F8 preset")
     args.qa.mkdir(exist_ok=args.retry_startup)
     game = args.qa / "game"
     game.mkdir(exist_ok=args.retry_startup)
@@ -175,6 +182,20 @@ def smoke(args):
 
     title_times = []
 
+    def run_with_environment(executable, controller, resources, qa, index, action,
+                             standalone=None, expected_title=None):
+        if standalone is not None:
+            # The staged production bootstrap is responsible for its own
+            # defaults. Do not mask a missing bootstrap implementation here.
+            environment_launches.append({"index": index, **environment,
+                                         "environmentApplication": "bootstrap"})
+            return base.run_client(executable, controller, resources, qa, index, action,
+                                   standalone, expected_title)
+        with direct_client_environment(args.candidate) as direct:
+            environment_launches.append({"index": index, **direct})
+            return base.run_client(executable, controller, resources, qa, index, action,
+                                   standalone, expected_title)
+
     def run(index, action):
         started = time.monotonic()
 
@@ -182,8 +203,8 @@ def smoke(args):
             title_times.append(round(time.monotonic() - started, 2))
             return action(control)
 
-        return base.run_client(client, args.controller, args.resources, args.qa, index,
-                               measure, standalone, expected_title)
+        return run_with_environment(client, args.controller, args.resources, args.qa, index,
+                                    measure, standalone, expected_title)
 
     old_environment = {name: os.environ.pop(name) for name in tuple(os.environ)
                        if name.upper().startswith("LANMINECRAFT_")}
@@ -200,11 +221,13 @@ def smoke(args):
             os.environ[TECTONIC_ENV] = str(instance_config)
         resources = args.resources if standalone is None else args.cache / "resources"
         if not args.startup_only:
-            pause_menu = base.run_client(client, args.controller, resources, args.qa, 3, pause_loopback)
+            pause_menu = run_with_environment(client, args.controller, resources, args.qa, 3, pause_loopback)
         if args.previous_qa is not None:
-            migration = smoke_previous_world.verify(base.run_client, client, args.controller, resources,
+            migration = smoke_previous_world.verify(run_with_environment, client, args.controller, resources,
                                                     args.previous_qa, standalone, expected_title)
-            write(args.qa / "previous-world-migration.json", migration)
+            write(args.qa / "previous-world-migration.json", {
+                **migration, **environment, "environmentApplications": environment_launches,
+            })
     finally:
         for name, value in old_environment.items():
             if value is None:
@@ -258,9 +281,11 @@ def smoke(args):
         probes.append({"id": "veinminer", "status": "PASS", "observation": f"/veinminer status replied {veinminer!r}."})
     write(args.qa / "native-probes.json", {
         "schemaVersion": 1, "clientSha256": receipt["clientSha256"], "results": probes,
+        **environment, "environmentApplications": environment_launches,
     })
     write(args.qa / "smoke.json", {
         "schemaVersion": 1, "clientSha256": receipt["clientSha256"],
+        **environment, "environmentApplications": environment_launches,
         "mode": "startup-menu" if args.startup_only else "gameplay",
         "reusedQaDirectory": args.retry_startup,
         "gameplay": "NOT RUN" if args.startup_only else "PASS",
@@ -303,7 +328,14 @@ def main():
         parser.error("Startup-only QA uses the bootstrap and excludes prior-world migration")
     if args.retry_startup and not args.startup_only:
         parser.error("Retry-startup applies only to startup-only QA")
-    smoke(args)
+    try:
+        smoke(args)
+    except subprocess.CalledProcessError as error:
+        if error.stdout:
+            print(error.stdout, file=sys.stderr)
+        if error.stderr:
+            print(error.stderr, file=sys.stderr)
+        raise
 
 
 if __name__ == "__main__":
