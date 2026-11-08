@@ -140,12 +140,12 @@ try
     {
         var controls = new ControlsPresetService(logger);
         var preset = controls.TryLoad(canonical);
-        Check(preset is not null && preset.Entries.Single(entry => entry.Name == "key_orbital.wheel").Value
+        Check(preset is not null && preset.Entries.Single(entry => entry.Name == "orbital.wheel").Value
             == "key.keyboard.insert"
-            && preset.Entries.Single(entry => entry.Name == "key_waypoints.create").Value == "key.keyboard.f7"
-            && preset.Entries.Single(entry => entry.Name == "key_waypoints.list").Value == "key.keyboard.f8",
+            && preset.Entries.Single(entry => entry.Name == "waypoints.create").Value == "key.keyboard.f7"
+            && preset.Entries.Single(entry => entry.Name == "waypoints.list").Value == "key.keyboard.f8",
             "The release preset must retain Insert and separate Waypoints onto F7/F8.");
-        Check(controls.Evaluate(canonical, game).FirstDifference == "key_orbital.wheel",
+        Check(controls.Evaluate(canonical, game).FirstDifference == "orbital.wheel",
             "The update must preserve the personal Orbital key until the preset is explicitly applied.");
         var changedControls = controls.Apply(canonical, game);
         Check(changedControls > 0 && controls.Evaluate(canonical, game).IsApplied,
