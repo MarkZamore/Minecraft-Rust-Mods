@@ -1,0 +1,25 @@
+{
+  "repository": "MarkZamore/Minecraft-Rust-Mods",
+  "revision": "25b37b085444875ceaa4e855e8a11f6cfc5ed8cf",
+  "previousRevision": "74978ed1a7d1f372be69c49574f5949a506948f6",
+  "library": {
+    "name": "library-f09e7b958c9d1032d0777f9f6fb80b96a06d62f66a2b204e529c1e0d32f3e815.zip",
+    "sizeBytes": 1268413,
+    "sha256": "f09e7b958c9d1032d0777f9f6fb80b96a06d62f66a2b204e529c1e0d32f3e815",
+    "revision": "25b37b085444875ceaa4e855e8a11f6cfc5ed8cf"
+  },
+  "changedLibraryFields": [
+    "revision",
+    "summary"
+  ],
+  "descriptionUnchanged": true,
+  "runtimeUnchanged": true,
+  "modCount": 40,
+  "publicManifestSha256": "e56bad85d14ea6a467326cc9bd8a42295fa143fd73ee3f80a286b3b8dc97fe80",
+  "publicLibrarySha256": "f09e7b958c9d1032d0777f9f6fb80b96a06d62f66a2b204e529c1e0d32f3e815",
+  "sourceMain": "25b37b085444875ceaa4e855e8a11f6cfc5ed8cf",
+  "publishedUtc": "2026-11-07T18:11:55.057610+00:00",
+  "checks": "PASS",
+  "gameplay": "NOT RUN - text-only publication",
+  "summary": "Выживание и строительство с физикой, схемами построек и орбитальными ударами."
+}
