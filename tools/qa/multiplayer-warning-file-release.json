@@ -1,0 +1,22 @@
+{
+  "sourceFix": "8e44d16ec4e552d52082249dceb99dd67f189f56",
+  "previousRevision": "58cdea81da2e2f11f63e7170146df344d3c97bf5",
+  "publishedRevision": "a778d746adfcfb7cef2c312cee3919e5445aa83d",
+  "runtime": "NOT RUN (file-only release authorized)",
+  "packId": "minecraft-10",
+  "managedFiles": 520,
+  "changedFiles": [
+    "native/horizon-client.exe"
+  ],
+  "client": {
+    "sha256": "20f3e611605158dabfb0f59ea2d78d90064708b1f2b91e5e860f482ebc83dd76",
+    "sizeBytes": 101605888
+  },
+  "manifest": {
+    "sizeBytes": 161282,
+    "sha256": "7435e7ccaa9492706cc26e59462ca51569672607e2f03e4e5b631cd2292264de"
+  },
+  "sourceBuildReceiptSha256": "e4dbfbff896c90bb2c70cc2dd15c0e223865c50e18c3b5a6150421f4b38046af",
+  "archiveReadbackSha256": "0a527e76158940560aa8b8e9be7eb950e565bad9bbdbe306c77aab9700026937",
+  "manifestReadbackSha256": "daef166cb57bef8dd70365c9c361bb229078632523f5a455a27a5fb5102e924d"
+}
