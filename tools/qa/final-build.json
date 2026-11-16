@@ -4,9 +4,9 @@
   "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
   "steamOverlayRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
   "mixinsRevision": "e8cd0aa38cffef49cb2e088ef716baa107148c02",
-  "mixinsSha256": "0edb53d4823b9b80815d6414d53b98ada2fabb9e9ba079bd736a9a013be09dda",
+  "mixinsSha256": "a19adfd10285b792e480d88fe40ccc7bb5e3a70256424803bd72f8de678c1b2a",
   "conflictDecisionsSha256": "f76a3178535913ab94b8076efa507162de5fdf954e7e0e54e1e944956bd0fc9a",
-  "buildRecipeSha256": "adb20ded4d18e54432c905490d38d696b6ebe20832c1086cbe7adfc92d406e3e",
+  "buildRecipeSha256": "03a3890e1f96442f30638757bcc4a5a2dfc277de65620ba4ac84bfa7418bd586",
   "rust": "1.98.1",
   "rustFlags": "-C target-feature=+crt-static",
   "ids": [
@@ -57,6 +57,7 @@
     "states": 0
   },
   "cargoLockSha256": "865f43f3c2cfc3c405c26e19e68ffa3a1cd3179bcad8f15591cd3c48b93a743c",
+  "multiplayerMenuActionSha256": "a3806de38ed8ed8efd53780932bb2cb216232f5a42850d020662394c48907b9d",
   "compileCheck": true,
-  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7"
+  "clientSha256": "20f3e611605158dabfb0f59ea2d78d90064708b1f2b91e5e860f482ebc83dd76"
 }
