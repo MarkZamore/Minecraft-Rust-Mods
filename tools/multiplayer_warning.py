@@ -20,6 +20,10 @@ PACK_ACTION = """            (Mode::Main, Some(4)) => {
                 Action::None
             }"""
 PACK_ACTION_SHA256 = sha256(PACK_ACTION.encode()).hexdigest()
+MIXINS_ACTION = PACK_ACTION.replace(
+    "Mode::Multiplayer(crate::multiplayer::Screen::list(&self.saves));",
+    "Mode::Multiplayer(\n                    crate::multiplayer::Screen::list(&self.saves),\n                );",
+)
 
 
 def prepare_source(workspace: Path) -> None:
@@ -50,6 +54,8 @@ def prepare_source(workspace: Path) -> None:
 
 def verify_prepared_source(workspace: Path) -> str:
     source = (workspace / TITLE).read_bytes()
-    if source.count(PACK_ACTION.encode()) != 1 or AUTHOR_ACTION.encode() in source:
+    # horizon-mixins pretty-prints the title module after Physics injections.
+    if (source.count(b"(Mode::Main, Some(4))") != 1 or
+            sum(source.count(action.encode()) for action in (PACK_ACTION, MIXINS_ACTION)) != 1):
         raise ValueError("Prepared Horizon client lost the required Multiplayer menu policy")
     return PACK_ACTION_SHA256
