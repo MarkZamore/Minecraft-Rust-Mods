@@ -51,7 +51,7 @@ def run(args, env, *, capture=False):
 
 def build_recipe_sha():
     sources = [RECIPE, TOOLS / "orbital_controls.py", TOOLS / "orbital_world_guard.py", TOOLS / "physics_title_compat.py", TOOLS / "jei_compat.py", TOOLS / "spider_compat.py", TOOLS / "server_seed_compat.py",
-               *(TOOLS / "orbital_compat").rglob("*")]
+               TOOLS / "multiplayer_warning.py", *(TOOLS / "orbital_compat").rglob("*")]
     files = {}
     for path in sources:
         if path.is_symlink() or path.is_junction():
@@ -306,6 +306,8 @@ def apply_mixins(source, bundles, stage, mixins, env):
 
 
 def execute(args):
+    from multiplayer_warning import prepare_source as prepare_multiplayer_menu, verify_prepared_source
+
     input_bytes = INPUT_LOCK.read_bytes()
     lock = json.loads(input_bytes)
     rows = {row["id"]: row for row in lock["projects"]}
@@ -337,6 +339,7 @@ def execute(args):
         marker.write_text(lock["horizonRevision"] + "\n", encoding="ascii", newline="\n")
         from server_seed_compat import prepare_source as prepare_server_policy
         prepare_server_policy(source)
+        prepare_multiplayer_menu(source)
         if "horizon_physics" in ids:
             from physics_title_compat import prepare_source as prepare_physics_source
             prepare_physics_source(source)
@@ -386,6 +389,7 @@ def execute(args):
         inject_packaged_content(stage)
         verify_downloaded_lock(source / "Cargo.lock", stage / "Cargo.lock")
     evidence["cargoLockSha256"] = sha(stage / "Cargo.lock")
+    evidence["multiplayerMenuActionSha256"] = verify_prepared_source(stage)
     package = evidence["package"]
     build = args.build or args.build_prepared
     post_build = stage / "native-post-build.json"

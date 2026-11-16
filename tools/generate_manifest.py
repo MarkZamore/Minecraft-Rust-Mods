@@ -11,6 +11,7 @@ import tempfile
 import zipfile
 
 from inspect_mods import content_file
+from multiplayer_warning import PACK_ACTION_SHA256
 from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
 from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE, presentation, verify_environment_evidence
 
@@ -55,7 +56,8 @@ def accepted_build(candidate):
     selection = load(ROOT / "tools/mod-selection.json")
     if (approval["receiptSha256"] != sha(path) or build["compileCheck"] is not True or
             build["inputLockSha256"] != sha(INPUT_LOCK) or build["conflictDecisionsSha256"] != sha(DECISIONS) or
-            build["buildRecipeSha256"] != build_recipe_sha() or selection.get("schemaVersion") != 1 or
+            build["buildRecipeSha256"] != build_recipe_sha() or
+            build.get("multiplayerMenuActionSha256") != PACK_ACTION_SHA256 or selection.get("schemaVersion") != 1 or
             selection.get("inputLockSha256") != sha(INPUT_LOCK) or selection.get("ids") != build["ids"]):
         raise ValueError("Build receipt does not match the accepted mod inputs and build")
     return build, approval
@@ -233,6 +235,11 @@ def verify_server_policy_acceptance(report, build, *, base_repo=None):
 
 def verify_saved_server_views(report):
     """Require actual UI observations for both views, not just an empty new file."""
+    from smoke_server_policy import EXISTING_OPTIONS
+
+    options = report.get("existingProfileOptions", {})
+    if options.get("before") != EXISTING_OPTIONS or options.get("afterEachLaunch") != [EXISTING_OPTIONS] * 2:
+        raise ValueError("Release needs existing multiplayer and personal options preserved through restart")
     view = report.get("savedServerView", {})
     required = ("defaultSteamOnly", "savedAllRows", "refreshRetainsView", "explicitSteamReturn",
                 "backAndEscapeReturnToTitle", "reopenDefaultsSteam", "bytesUnchanged")
@@ -276,6 +283,13 @@ def verify_saved_server_views(report):
             expected_sha = observations[0].get("serversDatSha256")
             if expected_sha is not None and not re.fullmatch(r"[0-9a-f]{64}", str(expected_sha)):
                 raise ValueError("Fresh server-list UI has no valid unchanged-file observation")
+        entries = actual.get("multiplayerEntries", [])
+        entry_actions = ["open-multiplayer", "reopen-after-back", "reopen-after-escape"]
+        if ([entry.get("action") for entry in entries] != entry_actions or
+                any(not widget_ids <= set(entry.get("widgetIds", [])) or
+                    "proceed" in entry["widgetIds"] or
+                    entry.get("optionsUnchanged") is not True for entry in entries)):
+            raise ValueError("Multiplayer must open the Steam list directly on every title-screen entry")
         for observation, (action, mode) in zip(observations, actions, strict=True):
             if (observation.get("action") != action or observation.get("mode") != mode or
                     observation.get("rows") != (expected_names if mode == "saved" else []) or

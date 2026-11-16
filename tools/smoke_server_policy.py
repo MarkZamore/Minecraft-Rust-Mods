@@ -34,6 +34,13 @@ VIEW_IDS = ("steam-worlds", "saved-servers", "server-list-refresh", "server-list
 LEGACY_ROWS = [("Horizon Official", "play.playhorizon.dev"),
                ("Afri-Network (South Africa)", "afri-network.co.za")]
 LEGACY_SHA256 = "1f8109f98d5ad63d570fb81d7eb6dab039a63495cd77358d8346fcb58ae8bc6d"
+EXISTING_OPTIONS = {"skipMultiplayerWarning": "false", "fov": "0.5", "mouseSensitivity": "0.375"}
+
+
+def options_for(path):
+    if not path.exists():
+        return {}
+    return dict(line.split(":", 1) for line in path.read_text(encoding="utf-8").splitlines() if ":" in line)
 
 
 def utf(text):
@@ -160,8 +167,9 @@ def wait_ui(control, predicate, label, seconds=30):
 def server_view(control, file, expected_names, desktop_keys):
     """Observe actual native view buttons/rows; never click a server or join it."""
     initial = file.read_bytes() if file.exists() else None
+    options = file.with_name("options.txt")
     observed = []
-    warnings = []
+    multiplayer_entries = []
 
     def unchanged():
         current = file.read_bytes() if file.exists() else None
@@ -193,19 +201,20 @@ def server_view(control, file, expected_names, desktop_keys):
                          "serversDatSha256": unchanged()})
 
     def open_multiplayer(action):
+        before = options.read_bytes() if options.exists() else None
         control("click", "multiplayer")
-        ui = wait_ui(control, lambda state: set(VIEW_IDS) <= {row["id"] for row in state["widgets"]}
-                     or {"proceed", "back"} <= {row["id"] for row in state["widgets"]},
-                     "Multiplayer did not render its list or ordinary warning")
-        nodes = {row["id"]: row for row in ui["widgets"]}
-        if not set(VIEW_IDS) <= nodes.keys():
-            if nodes["proceed"].get("enabled") is not True:
-                raise ValueError("The ordinary multiplayer warning's Proceed button is disabled")
-            control("click", "proceed")
-            warnings.append({"action": action, "acceptedWidget": "proceed", "enabled": True,
-                             "warningWidgetIds": list(nodes)})
-        # A repeated warning after this one click fails through the normal
-        # snapshot wait. Never change skipMultiplayerWarning or bypass the UI.
+        def opened(ui):
+            ids = {row["id"] for row in ui["widgets"]}
+            if {"proceed", "back"} <= ids:
+                raise ValueError("Multiplayer showed the third-party warning")
+            return set(VIEW_IDS) <= ids
+
+        ui = wait_ui(control, opened, "Multiplayer did not open the server list directly")
+        after = options.read_bytes() if options.exists() else None
+        if before != after:
+            raise ValueError("Opening Multiplayer rewrote options.txt")
+        multiplayer_entries.append({"action": action, "widgetIds": [row["id"] for row in ui["widgets"]],
+                                    "optionsUnchanged": True})
         snapshot(action, "steam")
 
     title()
@@ -234,7 +243,7 @@ def server_view(control, file, expected_names, desktop_keys):
     open_multiplayer("reopen-after-escape")
     return {"status": "PASS", "expectedSavedRows": list(expected_names), "observations": observed,
             "backToTitle": True, "escapeToTitle": True, "bytePreserved": True,
-            "desktopKeys": desktop_keys.evidence, "multiplayerWarningsAccepted": warnings}
+            "desktopKeys": desktop_keys.evidence, "multiplayerEntries": multiplayer_entries}
 
 
 def ordinary_launch(client, controller, resources, qa, game, index, action, desktop_keys_class,
@@ -400,8 +409,18 @@ def verify(args):
         # evidence; it must not be presented as an actual user's captured file.
         legacy = legacy_nbt()
         file.write_bytes(legacy)
+        options_path = game / "options.txt"
+        options = options_for(options_path)
+        options.update(EXISTING_OPTIONS)
+        options_path.write_text("".join(f"{key}:{value}\n" for key, value in options.items()), encoding="utf-8")
+        report["existingProfileOptions"] = {"before": EXISTING_OPTIONS, "afterEachLaunch": []}
         for index in (3, 4):
             result = run(index, [name for name, _ in LEGACY_ROWS])
+            options = options_for(options_path)
+            settings = {key: options.get(key) for key in EXISTING_OPTIONS}
+            if settings != EXISTING_OPTIONS:
+                raise ValueError("An existing profile lost its warning preference or personal settings")
+            report["existingProfileOptions"]["afterEachLaunch"].append(settings)
             expected_rows = [{"name": name, "address": address} for name, address in LEGACY_ROWS]
             if file.read_bytes() != legacy or result["servers"] != expected_rows or seed_files(game):
                 raise ValueError("Ordinary startup rewrote the reconstructed legacy saved-server list")
