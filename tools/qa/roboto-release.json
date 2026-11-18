@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "launcherRelease": 542,
+  "editionRevision": "744008e40af038268eb5baefc7f39bdfb25e4ed2",
+  "modsClientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
+  "manifest": {
+    "url": "https://github.com/MarkZamore/Minecraft-Rust-Mods/releases/download/pack-latest/pack-manifest.json",
+    "sha256": "cf21eb30cee4e362bbf4a139522ae9f16728b92448ca7fadabdb477e6c27eecf",
+    "sizeBytes": 161282
+  },
+  "sourceRevision": "2711fec1db33428c222ad8f92ec982b1befce86b",
+  "archiveMaps": [
+    {
+      "name": "minecraft-rust-mods-windows-x64-00d472ab2c7bfc6df805082d684eed57cdfba4a9a0fe26d8e323fc290e563b17.zip",
+      "members": 518,
+      "managedMembersVerified": 518,
+      "sha256Verified": true
+    },
+    {
+      "name": "minecraft-rust-mods-launcher-ca08c0385a60ee81ef7067cd5844920ce2296d005b8bd9f149aafdbe62ff1a2c.zip",
+      "members": 1,
+      "managedMembersVerified": 1,
+      "sha256Verified": true
+    },
+    {
+      "name": "minecraft-rust-mods-orbital-content-f005d60b2be56da7dda728ad840fa4138db1553e3aa2d4a27d230421d3f8d809.zip",
+      "members": 1,
+      "managedMembersVerified": 1,
+      "sha256Verified": true
+    },
+    {
+      "name": "library-c80f0d31b39b6a59edc7324607bf31afcd037b1538c83f6b134f5f49fddcd8c6.zip",
+      "members": 2,
+      "managedMembersVerified": 0,
+      "sha256Verified": true
+    }
+  ],
+  "managedFiles": 520,
+  "update": {
+    "status": "PASS",
+    "profile": "same-engine",
+    "oldManifestSha256": "7435e7ccaa9492706cc26e59462ca51569672607e2f03e4e5b631cd2292264de",
+    "newManifestSha256": "cf21eb30cee4e362bbf4a139522ae9f16728b92448ca7fadabdb477e6c27eecf",
+    "gameplay": "NOT RUN",
+    "steamMultiplayer": "NOT RUN",
+    "removedModIds": [],
+    "selectionSha256": "354424c4e039600dcb10b8c7413baac344d9b69fb76b9f26642ad6a21a98cf78",
+    "inputLockSha256": "e4a958c04934b2354b324cf7fee9a0b0082dfc258002940bf65f82d83a8c1503",
+    "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+    "approvedLibraryContentSha256": "9111c3893ecc76531690304b278bf3187074590c785e478128164e1c6491d02f",
+    "oldRevision": "a778d746adfcfb7cef2c312cee3919e5445aa83d",
+    "newRevision": "2711fec1db33428c222ad8f92ec982b1befce86b",
+    "launcherAssemblySha256": "7207e5df047d9e356c381bc1e5564de2cee72d189394417ca7f76c5e221cbc30",
+    "managedFilesVerified": 520,
+    "changedManagedPaths": [
+      "native/horizon-client.exe",
+      "native/native-mods.json"
+    ],
+    "removedManagedPaths": [],
+    "personalFilesPreserved": [
+      "options.txt",
+      "horizon-graphics.txt",
+      "horizon-mods.txt",
+      "config/horizon_physics.txt",
+      "config/tectonic-horizon.json",
+      "saves/BootstrapUpdateQa/level.dat",
+      "saves/BootstrapUpdateQa/playerdata/qa.dat",
+      "backups/personal.zip",
+      "servers.dat",
+      "horizon-mods/.horizon-mod-data/speedrun_timer/qa.txt",
+      "horizon-mods/.horizon-mod-data/keystrokes/qa.txt",
+      "horizon-mods/.horizon-mod-data/server_browser/qa.txt"
+    ],
+    "update": "PASS",
+    "idempotence": "PASS",
+    "explicitControlsPreset": "PASS",
+    "controlsPresetSha256": "ced6de676b79efbb6c08396f7749e15f5f32bd5c817a7530487f3452b00290d5",
+    "controlsMappings": 65,
+    "summaryMatchesApprovedSource": "PASS",
+    "descriptionMatchesApprovedSource": "PASS",
+    "wpfPresentation": "PASS",
+    "versionLabel": "Minecraft 26.3 (37 модов)",
+    "fixtureRemoved": true
+  }
+}
