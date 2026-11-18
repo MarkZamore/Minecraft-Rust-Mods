@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -45,7 +45,7 @@
   "reusedQaDirectory": false,
   "gameplay": "PASS",
   "previousWorldMigration": "NOT RUN",
-  "previewSha256": "71c7424bb7f5ba6df91d65491679bb7833110500c008f04fa877aff71b4f0b73",
+  "previewSha256": "d8c70a19087898f12ed85271af3103a5a4513fa48a7ac460c02dc4c9eb4fb2f1",
   "loadedContent": [
     [
       "orbital",
@@ -94,7 +94,7 @@
     "veinminer"
   ],
   "modsPage": {
-    "frame": 351,
+    "frame": 313,
     "gui_size": [
       427.0,
       240.0
@@ -289,7 +289,7 @@
         "commands": true,
         "corrupted": false,
         "folder": "RustModsSmoke",
-        "last_played": 1794123136747,
+        "last_played": 1795000360725,
         "mode": "survival",
         "name": "RustModsSmoke",
         "version": "26.3"
@@ -333,16 +333,16 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        14,
-        148,
-        -6
+        11,
+        137,
+        -12
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        14.5,
-        149.62000000476837,
-        -5.5
+        11.5,
+        138.62000000476837,
+        -11.5
       ],
       "fall_flying": false,
       "flying": true,
@@ -354,9 +354,9 @@
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        14.5,
-        148.0,
-        -5.5
+        11.5,
+        137.0,
+        -11.5
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
@@ -379,7 +379,7 @@
     "selected": 1,
     "sleeping": null,
     "swings": 0,
-    "ticks": 1129,
+    "ticks": 1124,
     "time": {
       "day": 1,
       "day_time": 30018,
@@ -429,16 +429,16 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        14,
-        148,
-        -6
+        11,
+        137,
+        -12
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        14.5,
-        149.62000000476837,
-        -5.5
+        11.5,
+        138.62000000476837,
+        -11.5
       ],
       "fall_flying": false,
       "flying": true,
@@ -450,9 +450,9 @@
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        14.5,
-        148.0,
-        -5.5
+        11.5,
+        137.0,
+        -11.5
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
@@ -499,9 +499,9 @@
     "after": "Player Reporting",
     "returnedToGame": true,
     "loopback": "PASS",
-    "localPort": 56323,
+    "localPort": 60584,
     "publicationChat": [
-      "This world is now open to LAN. The port number is 56323"
+      "This world is now open to LAN. The port number is 60584"
     ],
     "liveSteamPublication": "NOT RUN"
   },
@@ -511,25 +511,25 @@
     "runtimeRoundTrip": "PASS"
   },
   "timeToTitleSeconds": [
-    42.89,
-    6.48
+    25.26,
+    6.06
   ],
   "orbitalLaser": {
     "target": [
-      6,
-      127,
-      6
+      3,
+      116,
+      0
     ],
     "fixture": [
       [
-        6,
-        127,
-        6
+        3,
+        116,
+        0
       ],
       [
-        7,
-        124,
-        6
+        4,
+        113,
+        0
       ]
     ],
     "blocksBefore": [
@@ -557,7 +557,7 @@
     "frames": {
       "wheel": {
         "file": "orbital-wheel.png",
-        "sha256": "ddae9b7dae102cd3375db72f78be02ec1edb1a369889a086ff756ba7fca44492",
+        "sha256": "4d4d27eb88d854f6687e3f9673d67530453f07f1776baba539c1610dbdda29b1",
         "size": [
           2560,
           1440
@@ -565,7 +565,7 @@
       },
       "baseline": {
         "file": "orbital-baseline.png",
-        "sha256": "86d51091d919c1d9badc5158d7f11fc0ea420f833fa4baae6fe4577d06451a04",
+        "sha256": "dc2eef5371af066ce46d5f2f2020864cf63c5464e8fe6a4ac51dbe99c1091001",
         "size": [
           2560,
           1440
@@ -573,7 +573,7 @@
       },
       "plasma": {
         "file": "orbital-plasma.png",
-        "sha256": "5919c0d9484c06b4a921a8056d4b62a37dc5d1e2cf56a1b8e644b666cca62d9d",
+        "sha256": "0fd68c84e7b112a33394e34f4e2e48587e4082c7951d3d4ee663a0cfc94a3939",
         "size": [
           2560,
           1440
@@ -581,7 +581,7 @@
       },
       "hurricane": {
         "file": "orbital-hurricane.png",
-        "sha256": "67957d7a97d80d9c6d1dbb58810542d1102a2412aac1b83ce5e792df85d1613a",
+        "sha256": "7efc26f5a01fe8c5f1973fd7329d79ad5cca9c18a0cd905341f05f9f78d849d2",
         "size": [
           2560,
           1440
@@ -589,7 +589,7 @@
       },
       "crater": {
         "file": "orbital-crater.png",
-        "sha256": "6f7f5d6398078230f624035f1f07bd3b03ed620dc7e9236b5af7e981338e388d",
+        "sha256": "058a9b50d066d04d282d38196f4c15b8cbba0a7e9f1576e1be621cd801c1faa2",
         "size": [
           2560,
           1440
@@ -613,25 +613,25 @@
       {
         "laser": "plasma",
         "target": [
-          6,
-          127,
-          6
+          3,
+          116,
+          0
         ]
       },
       {
         "laser": "hurricane",
         "target": [
-          6,
-          127,
-          6
+          3,
+          116,
+          0
         ]
       },
       {
         "laser": "plasma",
         "target": [
-          6,
-          127,
-          6
+          3,
+          116,
+          0
         ]
       }
     ],

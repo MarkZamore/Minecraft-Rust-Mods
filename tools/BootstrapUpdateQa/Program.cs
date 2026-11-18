@@ -1,6 +1,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Windows;
@@ -9,8 +10,8 @@ using System.Windows.Documents;
 using System.Windows.Media.Imaging;
 using Minecraft;
 
-if (args.Length != 4 && (args.Length != 6 || args[4] != "--engine-upgrade"))
-    throw new ArgumentException("BootstrapUpdateQa <LANMinecraft-root> <old-dist> <new-dist> <output> [--engine-upgrade <pack-source>]");
+if (args.Length != 4 && (args.Length != 6 || args[4] is not ("--engine-upgrade" or "--same-engine")))
+    throw new ArgumentException("BootstrapUpdateQa <LANMinecraft-root> <old-dist> <new-dist> <output> [--engine-upgrade|--same-engine <pack-source>]");
 
 var workspace = Path.GetFullPath(args[0]);
 var output = Path.GetFullPath(args[3]);
@@ -22,6 +23,7 @@ var fixture = Path.Combine(output, "installation");
 var oldRelease = Release.Read(args[1]);
 var newRelease = Release.Read(args[2]);
 var expected = args.Length == 6 ? UpgradeExpectations.Read(args[5]) : null;
+var profile = expected is null ? "bootstrap-only" : args[4][2..];
 Directory.CreateDirectory(output);
 var source = new PackSyncSource("MarkZamore", "Minecraft-Rust-Mods", "pack-latest");
 const string pack = "Minecraft Rust Mods";
@@ -29,7 +31,9 @@ var json = new JsonSerializerOptions(JsonSerializerDefaults.Web) { WriteIndented
 var report = new Dictionary<string, object?>
 {
     ["status"] = "RUNNING",
-    ["profile"] = expected is null ? "bootstrap-only" : "engine-upgrade",
+    ["profile"] = profile,
+    ["oldManifestSha256"] = Hash(oldRelease.ManifestPath),
+    ["newManifestSha256"] = Hash(newRelease.ManifestPath),
     ["gameplay"] = "NOT RUN",
     ["steamMultiplayer"] = "NOT RUN"
 };
@@ -51,18 +55,41 @@ try
         Check(oldRelease.Manifest.Revision != newRelease.Manifest.Revision
             && newRelease.Manifest.MinecraftVersion == expected.MinecraftVersion
             && newRelease.Manifest.ModCount == expected.Mods.Count,
-            "The engine-upgrade manifest does not match the selected Minecraft version and mod count.");
-        Check(changed.Contains("native/horizon-client.exe") && changed.Contains("native/native-mods.json")
-            && changed.Contains("portable-pack.json"), "The upgrade must replace the combined client and runtime metadata.");
+            "The target manifest does not match the selected Minecraft version and mod count.");
         using var oldLibrary = System.IO.Compression.ZipFile.OpenRead(oldRelease.Library);
         using var oldEntry = oldLibrary.GetEntry("library.json")!.Open();
         var oldContent = JsonSerializer.Deserialize<CatalogDescription>(oldEntry, json)!;
-        var removedIds = oldContent.Mods.Where(mod => mod.IsLoadedMod).Select(mod => mod.Id)
-            .Except(expected.Mods.Keys, StringComparer.Ordinal).Order().ToArray();
-        var retainedIds = oldContent.Mods.Where(mod => mod.IsLoadedMod).Select(mod => mod.Id)
-            .Except(removedIds, StringComparer.Ordinal).ToHashSet(StringComparer.Ordinal);
-        Check(removedIds.SequenceEqual(new[] { "keystrokes", "server_browser", "speedrun_timer" })
-            && retainedIds.SetEquals(expected.Mods.Keys), "Only the three player-requested mods may leave this upgrade.");
+        var oldMods = oldContent.Mods.Where(mod => mod.IsLoadedMod)
+            .ToDictionary(mod => mod.Id, mod => mod.Version, StringComparer.Ordinal);
+        var removedIds = oldMods.Keys.Except(expected.Mods.Keys, StringComparer.Ordinal).Order().ToArray();
+        if (profile == "same-engine")
+        {
+            Check(changed.SequenceEqual(new[] { "native/horizon-client.exe", "native/native-mods.json" })
+                && removed.Length == 0 && oldFiles.ContainsKey("native/horizon-client.exe")
+                && oldFiles.ContainsKey("native/native-mods.json"),
+                "Same-engine mode accepts exactly a new client and native mod provenance, with no removals.");
+            Check(oldRelease.Manifest.MinecraftVersion == expected.MinecraftVersion
+                && oldRelease.Manifest.ModCount == expected.Mods.Count
+                && oldContent.MinecraftVersion == expected.MinecraftVersion
+                && oldContent.NativeProject?.Revision == expected.HorizonRevision
+                && oldFiles.TryGetValue("portable-pack.json", out var oldDescriptor)
+                && newFiles.TryGetValue("portable-pack.json", out var newDescriptor)
+                && oldDescriptor == newDescriptor
+                && oldRelease.Manifest.NativeRuntime.ValueKind is JsonValueKind.Object
+                && JsonElement.DeepEquals(oldRelease.Manifest.NativeRuntime, newRelease.Manifest.NativeRuntime),
+                "Same-engine mode requires the published Horizon revision and the same runtime descriptor.");
+            Check(removedIds.Length == 0 && oldMods.Count == expected.Mods.Count &&
+                expected.Mods.All(pair => oldMods.TryGetValue(pair.Key, out var version) && version == pair.Value),
+                "Same-engine mode requires every published mod ID and version to remain unchanged.");
+        }
+        else
+        {
+            Check(changed.Contains("native/horizon-client.exe") && changed.Contains("native/native-mods.json")
+                && changed.Contains("portable-pack.json"), "The upgrade must replace the combined client and runtime metadata.");
+            var retainedIds = oldMods.Keys.Except(removedIds, StringComparer.Ordinal).ToHashSet(StringComparer.Ordinal);
+            Check(removedIds.SequenceEqual(new[] { "keystrokes", "server_browser", "speedrun_timer" })
+                && retainedIds.SetEquals(expected.Mods.Keys), "Only the three player-requested mods may leave this upgrade.");
+        }
         report["removedModIds"] = removedIds;
         report["selectionSha256"] = expected.SelectionSha256;
         report["inputLockSha256"] = expected.InputLockSha256;
@@ -173,6 +200,11 @@ try
     {
         try
         {
+            // Supply the exact verified desktop resources without running the
+            // launcher's queued startup on this measurement-only STA.
+            typeof(App).Assembly.GetType("Minecraft.BootstrapLaunchContext", throwOnError: true)!
+                .GetMethod("InitializeTestComponentsFromEnvironment", BindingFlags.NonPublic | BindingFlags.Static)!
+                .Invoke(null, null);
             var app = new App();
             app.InitializeComponent();
             using var library = System.IO.Compression.ZipFile.OpenRead(newRelease.Library);
@@ -280,9 +312,10 @@ static void DeleteFixture(string directory)
 sealed record FileEntry(string Path, long SizeBytes, string Sha256);
 sealed record Asset(string Name, long SizeBytes, string Sha256);
 sealed record Manifest(string PackId, string RelativePath, string Revision, string MinecraftVersion, int? ModCount,
-    FileEntry[] Files, Asset[] Assets, Asset Library);
+    FileEntry[] Files, Asset[] Assets, Asset Library, JsonElement NativeRuntime);
 sealed record Release(string Root, Manifest Manifest)
 {
+    public string ManifestPath => Path.Combine(Root, "pack-manifest.json");
     public string Library => Path.Combine(Root, "assets", Manifest.Library.Name);
     public static Release Read(string directory)
     {

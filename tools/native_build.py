@@ -235,6 +235,51 @@ def tree_hash(root):
     return hashlib.sha256(json.dumps(files, sort_keys=True).encode("ascii")).hexdigest()
 
 
+def restore_partial_source(base, work, revision):
+    from multiplayer_warning import EDITION_ACTION, PACK_ACTION, TITLE
+    from server_seed_compat import SOURCE, adapt
+
+    source = work / "source"
+    if (work.is_symlink() or work.is_junction() or not work.is_dir()
+            or list(work.iterdir()) != [source] or source.resolve() == base):
+        raise ValueError("Resume requires an isolated source-only preparation directory")
+
+    def entries(root):
+        if root.is_symlink() or root.is_junction() or not root.is_dir():
+            raise ValueError("Resume requires an ordinary source directory")
+        result = set()
+        for directory, folders, files in os.walk(root, followlinks=False):
+            for name in (*folders, *files):
+                item = Path(directory) / name
+                if item.is_symlink() or item.is_junction() or not (item.is_dir() or item.is_file()):
+                    raise ValueError("Resume cannot reuse linked or special source entries")
+                result.add((item.relative_to(root).as_posix(), item.is_dir()))
+        return result
+
+    marker = (".horizon-revision", False)
+    expected = entries(base)
+    if (marker in expected or entries(source) != expected | {marker}
+            or (source / marker[0]).read_bytes() != (revision + "\n").encode("ascii")):
+        raise ValueError("Resume source tree does not match the verified base")
+
+    changes = {}
+    for name, directory in expected:
+        if directory or sha(base / name) == sha(source / name):
+            continue
+        original = (base / name).read_bytes()
+        known = None
+        if name == SOURCE:
+            known = adapt(original.decode("utf-8")).encode("utf-8")
+        elif name == TITLE and original.count(EDITION_ACTION) == 1:
+            known = original.replace(EDITION_ACTION, PACK_ACTION.encode("utf-8"))
+        if known is None or (source / name).read_bytes() != known:
+            raise ValueError(f"Resume source contains an unreviewed change: {name}")
+        changes[name] = original
+
+    for name, original in changes.items():
+        (source / name).write_bytes(original)
+
+
 def inject_packaged_content(stage):
     game = stage / "crates/horizon-client/src/game.rs"
     source = game.read_text(encoding="utf-8")
@@ -333,10 +378,13 @@ def execute(args):
     recipe = verify_base(args, lock["horizonRevision"], prepared=args.build_prepared)
     source = args.work / "source"
     if not args.build_prepared:
-        args.work.mkdir()
-        shutil.copytree(args.base_source, source)
-        marker = source / ".horizon-revision"
-        marker.write_text(lock["horizonRevision"] + "\n", encoding="ascii", newline="\n")
+        if args.resume_source_preparation:
+            restore_partial_source(args.base_source, args.work, lock["horizonRevision"])
+        else:
+            args.work.mkdir()
+            shutil.copytree(args.base_source, source)
+            marker = source / ".horizon-revision"
+            marker.write_text(lock["horizonRevision"] + "\n", encoding="ascii", newline="\n")
         from server_seed_compat import prepare_source as prepare_server_policy
         prepare_server_policy(source)
         prepare_multiplayer_menu(source)
@@ -420,6 +468,8 @@ def main():
     action.add_argument("--check", action="store_true")
     action.add_argument("--build", action="store_true")
     action.add_argument("--build-prepared", action="store_true", help="Compile the same verified stage prepared without --build")
+    action.add_argument("--resume-source-preparation", action="store_true",
+                        help="Recheck a source-only interrupted preparation against the verified base and resume in place")
     args = parser.parse_args()
     try:
         execute(args)

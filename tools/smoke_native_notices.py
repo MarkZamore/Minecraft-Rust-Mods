@@ -33,7 +33,7 @@ def long_path_cleanup(remove_fixture):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    for name in ("base-repo", "candidate", "controller", "cache", "out"):
+    for name in ("base-repo", "candidate", "controller", "cache", "launcher-fonts", "out"):
         parser.add_argument("--" + name, required=True, type=lambda value: Path(value).resolve())
     args = parser.parse_args()
     from generate_manifest import accepted_build
@@ -112,7 +112,8 @@ def main():
             shared.Session = ModsSession
             sys.argv = [str(args.base_repo / "tools/native_notices_qa.py"),
                         "--candidate", str(args.candidate), "--controller", str(args.controller),
-                        "--cache", str(args.cache), "--out", str(args.out)]
+                        "--cache", str(args.cache), "--launcher-fonts", str(args.launcher_fonts),
+                        "--out", str(args.out)]
             shared.main()
     finally:
         sys.argv = original_argv

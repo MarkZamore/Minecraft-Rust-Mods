@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "PASS",
-  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -105,75 +105,75 @@
     "adapter": "portable-native",
     "version": "nightly-2026-11-07-2ebf00a-mods-r1"
   },
-  "buildReceiptSha256": "a738c3b37bb2eed2161ded29831be247b96773cc5e2b46c61ba2d9ae42eebeba",
+  "buildReceiptSha256": "0472db3510c934a368e8b13af0f31977af150d17673bfe2008d6bb412b39e57d",
   "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
-  "runOwner": "codex/rust-engine-6560641",
+  "runOwner": "horizon",
   "methodology": "Six ordinary starts; fresh, reconstructed legacy and custom manual NBT byte comparison",
   "ordinaryLaunch": true,
   "launchArguments": [
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
       "--name",
       "RustServerPolicyQA"
     ]
@@ -188,18 +188,18 @@
   ],
   "controlVia": "technical horizon-extras.txt agentControl:true; HORIZON_CONTROL endpoint",
   "desktopKeyProtocol": "edition-server-list-qa/checkpoint-v1",
-  "desktopKeyHelperSha256": "efbdc9c008f5e7b6cb5659f879f0d354301bb029bbe02d9b186115afab85270b",
+  "desktopKeyHelperSha256": "2374f614ae425d7aa8267ab0c337aaddb7e5e6b1e91df994884be9094c8b9e88",
   "runs": [
     {
       "servers": [],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -304,52 +304,79 @@
               "id": "run-1-key-1",
               "action": "press_key",
               "key": "Escape",
-              "processId": 42096,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "processId": 4600,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 1,
-              "createdUnixMs": 1794123763949,
+              "createdUnixMs": 1795000884763,
               "timeoutMs": 120000
             },
             "acknowledgement": {
               "id": "run-1-key-1",
-              "status": "PASS",
-              "processId": 42096,
               "key": "Escape",
-              "performedUnixMs": 1794123791434
+              "processId": 4600,
+              "status": "PASS",
+              "performedUnixMs": 1795000885083,
+              "hwnd": 20906590,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "screenshot": "run-1-key-1.before.png",
+              "screenshotSha256": "6b33f2e60b86af01bda8b02d9a659a7a56e016c6560056af4fc599627e3ec869",
+              "capturedUnixMs": 1795000885081,
+              "clientBounds": [
+                62,
+                107,
+                2622,
+                1547
+              ]
             }
           }
         ],
-        "multiplayerWarningsAccepted": [
+        "multiplayerEntries": [
           {
             "action": "open-multiplayer",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-back",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-escape",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           }
         ]
       }
@@ -357,13 +384,13 @@
     {
       "servers": [],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -468,52 +495,79 @@
               "id": "run-2-key-1",
               "action": "press_key",
               "key": "Escape",
-              "processId": 20676,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "processId": 32260,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 2,
-              "createdUnixMs": 1794123794211,
+              "createdUnixMs": 1795000887422,
               "timeoutMs": 120000
             },
             "acknowledgement": {
               "id": "run-2-key-1",
-              "status": "PASS",
-              "processId": 20676,
               "key": "Escape",
-              "performedUnixMs": 1794123836371
+              "processId": 32260,
+              "status": "PASS",
+              "performedUnixMs": 1795000887715,
+              "hwnd": 57673138,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "screenshot": "run-2-key-1.before.png",
+              "screenshotSha256": "0703dafa505f3892fd016ba6c38216f79c59d64e947050265e17ae0831a74913",
+              "capturedUnixMs": 1795000887711,
+              "clientBounds": [
+                111,
+                156,
+                2671,
+                1596
+              ]
             }
           }
         ],
-        "multiplayerWarningsAccepted": [
+        "multiplayerEntries": [
           {
             "action": "open-multiplayer",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-back",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-escape",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           }
         ]
       }
@@ -530,13 +584,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -656,52 +710,79 @@
               "id": "run-3-key-1",
               "action": "press_key",
               "key": "Escape",
-              "processId": 27760,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "processId": 18208,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 3,
-              "createdUnixMs": 1794123840128,
+              "createdUnixMs": 1795000889965,
               "timeoutMs": 120000
             },
             "acknowledgement": {
               "id": "run-3-key-1",
-              "status": "PASS",
-              "processId": 27760,
               "key": "Escape",
-              "performedUnixMs": 1794123857780
+              "processId": 18208,
+              "status": "PASS",
+              "performedUnixMs": 1795000890268,
+              "hwnd": 42403206,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "screenshot": "run-3-key-1.before.png",
+              "screenshotSha256": "5a60362c8914d71e3d187d120e12190a720221879f2591e6ff2222f69dbe4099",
+              "capturedUnixMs": 1795000890264,
+              "clientBounds": [
+                160,
+                205,
+                2720,
+                1645
+              ]
             }
           }
         ],
-        "multiplayerWarningsAccepted": [
+        "multiplayerEntries": [
           {
             "action": "open-multiplayer",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-back",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-escape",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           }
         ]
       }
@@ -718,13 +799,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -844,52 +925,79 @@
               "id": "run-4-key-1",
               "action": "press_key",
               "key": "Escape",
-              "processId": 2052,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "processId": 32152,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 4,
-              "createdUnixMs": 1794123861729,
+              "createdUnixMs": 1795000892513,
               "timeoutMs": 120000
             },
             "acknowledgement": {
               "id": "run-4-key-1",
-              "status": "PASS",
-              "processId": 2052,
               "key": "Escape",
-              "performedUnixMs": 1794123895588
+              "processId": 32152,
+              "status": "PASS",
+              "performedUnixMs": 1795000892791,
+              "hwnd": 7537764,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "screenshot": "run-4-key-1.before.png",
+              "screenshotSha256": "5f5237987c2af1654da0fa9fae8057266e2d678f27c4bddaa47e6f70936c5eb7",
+              "capturedUnixMs": 1795000892789,
+              "clientBounds": [
+                209,
+                254,
+                2769,
+                1694
+              ]
             }
           }
         ],
-        "multiplayerWarningsAccepted": [
+        "multiplayerEntries": [
           {
             "action": "open-multiplayer",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-back",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-escape",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           }
         ]
       }
@@ -902,13 +1010,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -1023,52 +1131,79 @@
               "id": "run-5-key-1",
               "action": "press_key",
               "key": "Escape",
-              "processId": 35980,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "processId": 23556,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 5,
-              "createdUnixMs": 1794123898697,
+              "createdUnixMs": 1795000895079,
               "timeoutMs": 120000
             },
             "acknowledgement": {
               "id": "run-5-key-1",
-              "status": "PASS",
-              "processId": 35980,
               "key": "Escape",
-              "performedUnixMs": 1794123930900
+              "processId": 23556,
+              "status": "PASS",
+              "performedUnixMs": 1795000895361,
+              "hwnd": 21168734,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "screenshot": "run-5-key-1.before.png",
+              "screenshotSha256": "c4d26c03e36af9d23edaf71364ac12ade8713224eefd101de2d4551cd36e4a79",
+              "capturedUnixMs": 1795000895357,
+              "clientBounds": [
+                258,
+                303,
+                2818,
+                1743
+              ]
             }
           }
         ],
-        "multiplayerWarningsAccepted": [
+        "multiplayerEntries": [
           {
             "action": "open-multiplayer",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-back",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-escape",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           }
         ]
       }
@@ -1081,13 +1216,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\resource-cache-2ebf\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\server-policy-final\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -1202,52 +1337,79 @@
               "id": "run-6-key-1",
               "action": "press_key",
               "key": "Escape",
-              "processId": 5444,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
+              "processId": 8488,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 6,
-              "createdUnixMs": 1794123934653,
+              "createdUnixMs": 1795000897622,
               "timeoutMs": 120000
             },
             "acknowledgement": {
               "id": "run-6-key-1",
-              "status": "PASS",
-              "processId": 5444,
               "key": "Escape",
-              "performedUnixMs": 1794123953770
+              "processId": 8488,
+              "status": "PASS",
+              "performedUnixMs": 1795000897900,
+              "hwnd": 7668836,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "title": "Minecraft Rust Mods",
+              "screenshot": "run-6-key-1.before.png",
+              "screenshotSha256": "e39c2600c3c062a3e51fabdc590e5f8adf821f58a2d78ecfedd3b9eacf33858f",
+              "capturedUnixMs": 1795000897882,
+              "clientBounds": [
+                307,
+                352,
+                2867,
+                1792
+              ]
             }
           }
         ],
-        "multiplayerWarningsAccepted": [
+        "multiplayerEntries": [
           {
             "action": "open-multiplayer",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-back",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           },
           {
             "action": "reopen-after-escape",
-            "acceptedWidget": "proceed",
-            "enabled": true,
-            "warningWidgetIds": [
-              "proceed",
-              "back",
-              "button-0"
-            ]
+            "widgetIds": [
+              "steam-worlds",
+              "saved-servers",
+              "join-server",
+              "direct-connection",
+              "add-server",
+              "edit",
+              "delete",
+              "server-list-refresh",
+              "server-list-back"
+            ],
+            "optionsUnchanged": true
           }
         ]
       }
@@ -1258,6 +1420,25 @@
     "serversDatAbsent": true,
     "automaticSeedFilesCreated": [],
     "nativeSavedServers": []
+  },
+  "existingProfileOptions": {
+    "before": {
+      "skipMultiplayerWarning": "false",
+      "fov": "0.5",
+      "mouseSensitivity": "0.375"
+    },
+    "afterEachLaunch": [
+      {
+        "skipMultiplayerWarning": "false",
+        "fov": "0.5",
+        "mouseSensitivity": "0.375"
+      },
+      {
+        "skipMultiplayerWarning": "false",
+        "fov": "0.5",
+        "mouseSensitivity": "0.375"
+      }
+    ]
   },
   "legacyUpgrade": {
     "fixtureOrigin": "Reconstructed author-format list from recorded 5a9dd000 ordinary-startup names/addresses",

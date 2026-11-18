@@ -9,10 +9,19 @@ dotnet build tools/BootstrapUpdateQa/BootstrapUpdateQa.csproj --artifacts-path $
     -p:LauncherRoot=$launcherSource -p:SkipPortableIdentityAdapter=true
 $probe = Get-ChildItem "$build/bin/BootstrapUpdateQa" -Recurse -Filter BootstrapUpdateQa.dll |
     Select-Object -First 1
+. "$launcherSource/tools/Prepare-DesktopComponentTests.ps1"
 dotnet $probe.FullName $workspace $oldDist $newDist $output
 ```
 
 Без дополнительных аргументов действует прежний профиль `bootstrap-only`: изменяются ровно `native/launch-rust-edition.exe` и `native/native-mods.json`, состав карточки содержит 40 модов. SHA-256 клиента, контентного пакета, пресета и остальных файлов поставки сохраняются. Проверка завершится ошибкой при другом изменении состава или управляемых файлов.
+
+Для пересборки клиента с прежним движком и составом:
+
+```powershell
+dotnet $probe.FullName $workspace $oldDist $newDist $output --same-engine $packSource
+```
+
+Профиль `same-engine` разрешает заменить только `native/horizon-client.exe` и `native/native-mods.json`. Обе поставки должны сохранить версию Minecraft, ревизию Horizon, описание запуска, состав и версии модов из согласованных исходников. Он использует ту же проверку установки, сохранности 12 личных файлов, повторного обновления, пресета и карточки. Исходные и целевые манифесты фиксируются по SHA-256.
 
 Для обновления движка с удалением Speedrun Timer, Keystrokes и Server Atlas:
 

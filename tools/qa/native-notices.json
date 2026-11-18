@@ -3,27 +3,38 @@
   "status": "PASS",
   "acceptanceContext": {
     "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
-    "steamOverlayRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
-    "buildRecipeSha256": "adb20ded4d18e54432c905490d38d696b6ebe20832c1086cbe7adfc92d406e3e",
-    "buildReceiptSha256": "a738c3b37bb2eed2161ded29831be247b96773cc5e2b46c61ba2d9ae42eebeba",
-    "payloadInventorySha256": "0b8faa0b6aaa0b622cf91208261b6baa827442a3c577ffdabea73f755f0d15b3",
-    "noticeContractSha256": "8fd89274925de3fc438ba9380036b15535090cfc86612caeeca6de537e3b0ed3",
-    "noticeQaToolSha256": "76498f9e3787b3b93ec7bea4c2898aeb500a6da4eb3b5cf5341cb7e368599461",
+    "steamOverlayRecipeSha256": "4decabee42e09fa5a66f7279a87e4f5e3cffda5a47e85fbac839506a1645fed0",
+    "buildRecipeSha256": "ff277f2e6a8ca10e9852a130469cf1d8e0065354b26cb381e993aacfef178eb5",
+    "buildReceiptSha256": "0472db3510c934a368e8b13af0f31977af150d17673bfe2008d6bb412b39e57d",
+    "payloadInventorySha256": "dbb7810c53924ef0a227510cea12126dd1959abd39561696566dd264ec4c3d2d",
+    "noticeContractSha256": "e0d9f7126ff319aac551389989c979e5745f7d5935a622fcd75b2bb35ef47d8e",
+    "noticeQaToolSha256": "028d80a4e92eeca6c352c873f4ef731fb8c1fdd101fe875521f0a15c72727f69",
     "noticeStageToolSha256": "ed9214528f574e61e5e9b89a778b1deda7e51be444cb71704871cc42887d2412",
-    "desktopKeyHelperSha256": "efbdc9c008f5e7b6cb5659f879f0d354301bb029bbe02d9b186115afab85270b",
+    "desktopKeyHelperSha256": "2374f614ae425d7aa8267ab0c337aaddb7e5e6b1e91df994884be9094c8b9e88",
     "gameplayToolSha256": "6ad1ee48b9979ddd0969afc0b2536fa033c962299c6d40165a6dd9ae3e06a4b4",
     "bootstrapSourceSha256": "8179f35f13d7e4fc1263891e8f132525b6a9e66bbc7a90a5eeb18aa51708e883",
     "bootstrapContractSha256": "b4b1e7dd73408ac75de0529bbd12d7f7a7f9332d9cbe5c2dd03f21e025225664",
     "bootstrapLockSha256": "59658de1877bb7cc52727f50b4a0a12b4419d4438771527ae3b3a7e19c222fb3",
-    "modsNoticeAdapterSha256": "e1b1f5b6f54f11bd9602d17223a77d58a21a094dc553df9b415fc514afd11c71"
+    "modsNoticeAdapterSha256": "c52e5869677b179475687530d6063c57c60b8be3577de04dec417d8ad6f57a02"
   },
   "client": {
-    "sizeBytes": 101605888,
-    "sha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7"
+    "sizeBytes": 101607936,
+    "sha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16"
   },
   "bootstrap": {
     "sizeBytes": 2923008,
     "sha256": "ace261a88a6a5438ede83e9571be2d1189ec7d950948d751460071af446b0c6d"
+  },
+  "fontMode": "roboto-v1",
+  "fontFiles": {
+    "Roboto-Regular.ttf": {
+      "sizeBytes": 123720,
+      "sha256": "dece7c71bbe61710787f0839c722c65e87355dd2eb4a823e6b5488121ff81e4b"
+    },
+    "Roboto-SemiBold.ttf": {
+      "sizeBytes": 124288,
+      "sha256": "f478ba88b0292e685e487901dfbb1401457d32d6ebee4030cdfd5698235bffa8"
+    }
   },
   "startup": "exact bootstrap child; native-ui-v1; real presented unscaled screenshots",
   "checks": {
@@ -43,8 +54,8 @@
   "captures": [
     {
       "file": "title-one.png",
-      "sizeBytes": 2463912,
-      "sha256": "84b53d172ec00d526b825c8335c49a239986286a75e930f608956c74dc792d0b",
+      "sizeBytes": 2463802,
+      "sha256": "1b8bcf3701d2e60944298d55cd80c5a410497adb93f3446a58056680e60ac5db",
       "pixels": {
         "count": 1,
         "boxes": [
@@ -61,27 +72,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124608616,
-      "heartbeatBeforeObservedUnixMs": 1794124608405,
-      "heartbeatAfterObservedUnixMs": 1794124608937,
+      "capturedUnixMs": 1795000434525,
+      "heartbeatBeforeObservedUnixMs": 1795000434323,
+      "heartbeatAfterObservedUnixMs": 1795000434833,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124608348,
+        "pid": 22448,
+        "timestampUnixMs": 1795000434215,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124608849,
+        "pid": 22448,
+        "timestampUnixMs": 1795000434725,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -101,13 +114,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "title-three.png",
-      "sizeBytes": 2470327,
-      "sha256": "16a5f9a81a32e41eb6af93493833bcb1e1445d7978e13632ea425d5f1411b76e",
+      "sizeBytes": 2471335,
+      "sha256": "1ffb4eb16eb469eff854c64a16f158905c2d3ecec7958cf28ebd2850d4d5d106",
       "pixels": {
         "count": 3,
         "boxes": [
@@ -136,27 +149,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124609573,
-      "heartbeatBeforeObservedUnixMs": 1794124609371,
-      "heartbeatAfterObservedUnixMs": 1794124609880,
+      "capturedUnixMs": 1795000435452,
+      "heartbeatBeforeObservedUnixMs": 1795000435262,
+      "heartbeatAfterObservedUnixMs": 1795000435749,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124609366,
+        "pid": 22448,
+        "timestampUnixMs": 1795000435242,
         "renderedCount": 3,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124609856,
+        "pid": 22448,
+        "timestampUnixMs": 1795000435734,
         "renderedCount": 3,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -176,13 +191,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "expired-three.png",
-      "sizeBytes": 2560196,
-      "sha256": "189c9292e0b742daa68e9984e8073ed30ac07c60c9d21e6c5b4bf2d9fdbf5d1c",
+      "sizeBytes": 2561365,
+      "sha256": "9f688a4bd0305cdd3d83e9e689f6cb508479283b0c80d1d8333a44a78c6ec676",
       "pixels": {
         "count": 0,
         "boxes": [],
@@ -192,27 +207,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124616682,
-      "heartbeatBeforeObservedUnixMs": 1794124616470,
-      "heartbeatAfterObservedUnixMs": 1794124616987,
+      "capturedUnixMs": 1795000442569,
+      "heartbeatBeforeObservedUnixMs": 1795000442364,
+      "heartbeatAfterObservedUnixMs": 1795000442866,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124616391,
+        "pid": 22448,
+        "timestampUnixMs": 1795000442268,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124616898,
+        "pid": 22448,
+        "timestampUnixMs": 1795000442770,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -232,13 +249,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "torn-snapshot-retains-card.png",
-      "sizeBytes": 2621985,
-      "sha256": "b2dbedbe10cfd350500ae4db7c6d91398bc9d76a9ce015399cacd616fa143925",
+      "sizeBytes": 2621359,
+      "sha256": "12052edfc22fea61b88aa2c94f292b784247c64457011e8dd843ecf6f60dead8",
       "pixels": {
         "count": 1,
         "boxes": [
@@ -255,27 +272,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124622219,
-      "heartbeatBeforeObservedUnixMs": 1794124621995,
-      "heartbeatAfterObservedUnixMs": 1794124622521,
+      "capturedUnixMs": 1795000448094,
+      "heartbeatBeforeObservedUnixMs": 1795000447875,
+      "heartbeatAfterObservedUnixMs": 1795000448393,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124621932,
+        "pid": 22448,
+        "timestampUnixMs": 1795000447803,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124622436,
+        "pid": 22448,
+        "timestampUnixMs": 1795000448310,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -295,13 +314,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "torn-snapshot-original-expiry.png",
-      "sizeBytes": 2731023,
-      "sha256": "f834fa30118ba706bdb42ac40b5f95305cdf439715dcf629decb4d3c57f69414",
+      "sizeBytes": 2730790,
+      "sha256": "9d23ae712bc9cfdb980f17ba281c5cb14231c98b3ba6420607daeecf2a980ffb",
       "pixels": {
         "count": 0,
         "boxes": [],
@@ -311,27 +330,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124624716,
-      "heartbeatBeforeObservedUnixMs": 1794124624494,
-      "heartbeatAfterObservedUnixMs": 1794124625025,
+      "capturedUnixMs": 1795000450601,
+      "heartbeatBeforeObservedUnixMs": 1795000450374,
+      "heartbeatAfterObservedUnixMs": 1795000450901,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124624437,
+        "pid": 22448,
+        "timestampUnixMs": 1795000450310,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124624949,
+        "pid": 22448,
+        "timestampUnixMs": 1795000450818,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -351,13 +372,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "future-not-yet-visible.png",
-      "sizeBytes": 2779048,
-      "sha256": "bf0359a58058d2545c45d582474042fb529c689fe12ec3572ce651bbbc9897aa",
+      "sizeBytes": 2780480,
+      "sha256": "55a79614621d18c72e8a54d1a977a42a81787d0af9ba9874d0fedc15a0c937ca",
       "pixels": {
         "count": 0,
         "boxes": [],
@@ -367,27 +388,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124625745,
-      "heartbeatBeforeObservedUnixMs": 1794124625533,
-      "heartbeatAfterObservedUnixMs": 1794124626045,
+      "capturedUnixMs": 1795000451630,
+      "heartbeatBeforeObservedUnixMs": 1795000451409,
+      "heartbeatAfterObservedUnixMs": 1795000451930,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124625449,
+        "pid": 22448,
+        "timestampUnixMs": 1795000451334,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124625945,
+        "pid": 22448,
+        "timestampUnixMs": 1795000451829,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -407,13 +430,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "future-notice-retained.png",
-      "sizeBytes": 2836632,
-      "sha256": "df0e400ac116a9ce86f109fa1cafd9c572a0db598aee4ce9604daa008d037842",
+      "sizeBytes": 2837771,
+      "sha256": "0f506d97a465c42aeec95d1da7a4ae72adde4b34b7729fc18d57788b233c71c9",
       "pixels": {
         "count": 1,
         "boxes": [
@@ -430,27 +453,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124627255,
-      "heartbeatBeforeObservedUnixMs": 1794124627029,
-      "heartbeatAfterObservedUnixMs": 1794124627560,
+      "capturedUnixMs": 1795000453125,
+      "heartbeatBeforeObservedUnixMs": 1795000452907,
+      "heartbeatAfterObservedUnixMs": 1795000453427,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124626962,
+        "pid": 22448,
+        "timestampUnixMs": 1795000452845,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124627456,
+        "pid": 22448,
+        "timestampUnixMs": 1795000453342,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -470,13 +495,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "dpi-one.png",
-      "sizeBytes": 2882607,
-      "sha256": "e3f7a3287a45993c4090d7807b540f2615dda5f7e53da34907dbf75d98762232",
+      "sizeBytes": 2882093,
+      "sha256": "9e85dd2d6a24a419e3a520b0c9cc3aaa7bb304c766e89e8850d5a031c480be79",
       "pixels": {
         "count": 1,
         "boxes": [
@@ -493,27 +518,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124628504,
-      "heartbeatBeforeObservedUnixMs": 1794124628262,
-      "heartbeatAfterObservedUnixMs": 1794124628622,
+      "capturedUnixMs": 1795000454348,
+      "heartbeatBeforeObservedUnixMs": 1795000454130,
+      "heartbeatAfterObservedUnixMs": 1795000454451,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124627972,
+        "pid": 22448,
+        "timestampUnixMs": 1795000453842,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124628272,
+        "pid": 22448,
+        "timestampUnixMs": 1795000454347,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -533,13 +560,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "dpi-two.png",
-      "sizeBytes": 2899421,
-      "sha256": "d743e3c877d3176810f291384ee86977783e978df85b3db83e6c3dcaacb67a2f",
+      "sizeBytes": 2899829,
+      "sha256": "c83cb2be8f718f22e26f6c4daa4d4c308f678931120ee1fb5bd7f316d7316a8f",
       "pixels": {
         "count": 1,
         "boxes": [
@@ -556,27 +583,29 @@
         ],
         "expectedPhysicalWidth": 480
       },
-      "capturedUnixMs": 1794124629565,
-      "heartbeatBeforeObservedUnixMs": 1794124629337,
-      "heartbeatAfterObservedUnixMs": 1794124629665,
+      "capturedUnixMs": 1795000455378,
+      "heartbeatBeforeObservedUnixMs": 1795000455165,
+      "heartbeatAfterObservedUnixMs": 1795000455476,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124628986,
+        "pid": 22448,
+        "timestampUnixMs": 1795000454864,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124629336,
+        "pid": 22448,
+        "timestampUnixMs": 1795000455164,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           62,
@@ -596,13 +625,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "fullscreen-world.png",
-      "sizeBytes": 55297,
-      "sha256": "868641518756640fbb21dff5948d6560b03280e5c59324ff7e69bf65815677be",
+      "sizeBytes": 55615,
+      "sha256": "e5566c1b9fd28b108205138cbee21c3d59155b48a1e8f8f6ce0161534f9272ba",
       "pixels": {
         "count": 1,
         "boxes": [
@@ -619,27 +648,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124632677,
-      "heartbeatBeforeObservedUnixMs": 1794124632577,
-      "heartbeatAfterObservedUnixMs": 1794124633163,
+      "capturedUnixMs": 1795000458567,
+      "heartbeatBeforeObservedUnixMs": 1795000458485,
+      "heartbeatAfterObservedUnixMs": 1795000458969,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124632562,
+        "pid": 22448,
+        "timestampUnixMs": 1795000458427,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124632854,
+        "pid": 22448,
+        "timestampUnixMs": 1795000458565,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           0,
@@ -659,13 +690,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "world-chat-input-with-card.png",
-      "sizeBytes": 1757339,
-      "sha256": "52d26326bb5f2e578155e85204c638060b9e439cf28984517baa94263c8cda9a",
+      "sizeBytes": 2284173,
+      "sha256": "c823b7b9460fcc37d5b0bd478d57a648735c11d30e73426e3902463191142744",
       "pixels": {
         "count": 1,
         "boxes": [
@@ -682,27 +713,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124633625,
-      "heartbeatBeforeObservedUnixMs": 1794124633412,
-      "heartbeatAfterObservedUnixMs": 1794124633751,
+      "capturedUnixMs": 1795000459334,
+      "heartbeatBeforeObservedUnixMs": 1795000459091,
+      "heartbeatAfterObservedUnixMs": 1795000459475,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124632854,
+        "pid": 22448,
+        "timestampUnixMs": 1795000458565,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124633427,
+        "pid": 22448,
+        "timestampUnixMs": 1795000459416,
         "renderedCount": 1,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           0,
@@ -722,13 +755,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "paused-world-three.png",
-      "sizeBytes": 2347414,
-      "sha256": "9ea8634830e67e0fe00254a962b2a9263ca1fa446c289f380a3545e967212630",
+      "sizeBytes": 2464943,
+      "sha256": "eb3fbaa97330483339ff13b650d328a2bbf8a612bf243dfc2f016f38b5530178",
       "pixels": {
         "count": 3,
         "boxes": [
@@ -757,27 +790,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124635032,
-      "heartbeatBeforeObservedUnixMs": 1794124634662,
-      "heartbeatAfterObservedUnixMs": 1794124635174,
+      "capturedUnixMs": 1795000460877,
+      "heartbeatBeforeObservedUnixMs": 1795000460503,
+      "heartbeatAfterObservedUnixMs": 1795000461007,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124634604,
+        "pid": 22448,
+        "timestampUnixMs": 1795000460455,
         "renderedCount": 3,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124635104,
+        "pid": 22448,
+        "timestampUnixMs": 1795000460955,
         "renderedCount": 3,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           0,
@@ -797,13 +832,13 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     },
     {
       "file": "paused-zero-fresh-heartbeat.png",
-      "sizeBytes": 2358734,
-      "sha256": "d1b14b2a4e249490b40405df25703aaf452dfd19edfa84a419ea7d5ee264a19d",
+      "sizeBytes": 2481661,
+      "sha256": "659b2b09f02cfbad94dabf6499cf9c4cbd2cc6cd038d1f3d416717a56420e8b3",
       "pixels": {
         "count": 0,
         "boxes": [],
@@ -813,27 +848,29 @@
         ],
         "expectedPhysicalWidth": 240
       },
-      "capturedUnixMs": 1794124636056,
-      "heartbeatBeforeObservedUnixMs": 1794124635694,
-      "heartbeatAfterObservedUnixMs": 1794124636202,
+      "capturedUnixMs": 1795000461895,
+      "heartbeatBeforeObservedUnixMs": 1795000461532,
+      "heartbeatAfterObservedUnixMs": 1795000462039,
       "heartbeatBefore": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124635604,
+        "pid": 22448,
+        "timestampUnixMs": 1795000461455,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "heartbeatAfter": {
         "backend": "native-ui-v1",
-        "pid": 13744,
-        "timestampUnixMs": 1794124636118,
+        "pid": 22448,
+        "timestampUnixMs": 1795000461955,
         "renderedCount": 0,
         "transformations": 0,
-        "error": ""
+        "error": "",
+        "fontMode": "roboto-v1"
       },
       "window": {
-        "hwnd": 4590276,
+        "hwnd": 15533684,
         "title": "Minecraft Rust Mods",
         "client": [
           0,
@@ -853,20 +890,20 @@
           2880,
           1800
         ],
-        "foregroundHwnd": 4590276
+        "foregroundHwnd": 15533684
       }
     }
   ],
   "fixtureRemoved": true,
   "arguments": [
-    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\launch-rust-edition.exe",
+    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\launch-rust-edition.exe",
     "--game-dir",
-    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\native-notices-final\\game",
+    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-notices\\game",
     "--control-socket",
-    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\native-notices-final\\control.json"
+    "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-notices\\control.json"
   ],
-  "nativeProcessId": 13744,
-  "bootstrapProcessId": 26100,
+  "nativeProcessId": 22448,
+  "bootstrapProcessId": 10496,
   "titleUiBefore": {
     "screen": "title",
     "widgets": [
@@ -973,95 +1010,100 @@
   },
   "processAncestry": [
     {
-      "parent": 26100,
-      "pid": 13744,
+      "parent": 10496,
+      "pid": 22448,
       "name": "horizon-client.exe",
-      "path": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\horizon-client.exe",
-      "created": "2026-11-08T07:56:32.1923910Z"
+      "path": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+      "created": "2026-11-18T11:13:33.4771510Z"
     },
     {
-      "parent": 43896,
-      "pid": 26100,
+      "parent": 8116,
+      "pid": 10496,
       "name": "launch-rust-edition.exe",
-      "path": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-engine-6560641-20261107\\mods-candidate\\native\\launch-rust-edition.exe",
-      "created": "2026-11-08T07:56:28.1839210Z"
+      "path": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\launch-rust-edition.exe",
+      "created": "2026-11-18T11:13:29.8542580Z"
     }
   ],
   "timing": {
     "lifeMs": 7000,
     "threeCards": {
-      "createdUnixMs": 1794124608966,
-      "sentUnixMs": 1794124608968,
+      "createdUnixMs": 1795000434859,
+      "sentUnixMs": 1795000434860,
       "nearExpiry": {
         "heartbeat": {
           "backend": "native-ui-v1",
-          "pid": 13744,
-          "timestampUnixMs": 1794124615390,
+          "pid": 22448,
+          "timestampUnixMs": 1795000441268,
           "renderedCount": 3,
           "transformations": 0,
-          "error": ""
+          "error": "",
+          "fontMode": "roboto-v1"
         },
-        "observedUnixMs": 1794124615471
+        "observedUnixMs": 1795000441363
       },
       "expired": {
         "heartbeat": {
           "backend": "native-ui-v1",
-          "pid": 13744,
-          "timestampUnixMs": 1794124616391,
+          "pid": 22448,
+          "timestampUnixMs": 1795000442268,
           "renderedCount": 0,
           "transformations": 0,
-          "error": ""
+          "error": "",
+          "fontMode": "roboto-v1"
         },
-        "observedUnixMs": 1794124616470
+        "observedUnixMs": 1795000442364
       }
     },
     "tornSnapshot": {
-      "createdUnixMs": 1794124616989,
-      "sentUnixMs": 1794124616991,
+      "createdUnixMs": 1795000442870,
+      "sentUnixMs": 1795000442871,
       "invalidSnapshots": [
         {
           "kind": "invalid-utf8",
-          "writtenUnixMs": 1794124618991,
+          "writtenUnixMs": 1795000444872,
           "heartbeat": {
             "backend": "native-ui-v1",
-            "pid": 13744,
-            "timestampUnixMs": 1794124619915,
+            "pid": 22448,
+            "timestampUnixMs": 1795000445787,
             "renderedCount": 1,
             "transformations": 0,
-            "error": ""
+            "error": "",
+            "fontMode": "roboto-v1"
           },
-          "observedUnixMs": 1794124619994
+          "observedUnixMs": 1795000445874
         },
         {
           "kind": "broken-unicode-escape",
-          "writtenUnixMs": 1794124620991,
+          "writtenUnixMs": 1795000446872,
           "heartbeat": {
             "backend": "native-ui-v1",
-            "pid": 13744,
-            "timestampUnixMs": 1794124621932,
+            "pid": 22448,
+            "timestampUnixMs": 1795000447803,
             "renderedCount": 1,
             "transformations": 0,
-            "error": ""
+            "error": "",
+            "fontMode": "roboto-v1"
           },
-          "observedUnixMs": 1794124621995
+          "observedUnixMs": 1795000447875
         }
       ],
       "expired": {
         "heartbeat": {
           "backend": "native-ui-v1",
-          "pid": 13744,
-          "timestampUnixMs": 1794124624437,
+          "pid": 22448,
+          "timestampUnixMs": 1795000450310,
           "renderedCount": 0,
           "transformations": 0,
-          "error": ""
+          "error": "",
+          "fontMode": "roboto-v1"
         },
-        "observedUnixMs": 1794124624494
+        "observedUnixMs": 1795000450374
       }
     },
     "futureNotice": {
-      "queuedUnixMs": 1794124625026,
-      "createdUnixMs": 1794124626526,
-      "sentUnixMs": 1794124625028
+      "queuedUnixMs": 1795000450903,
+      "createdUnixMs": 1795000452403,
+      "sentUnixMs": 1795000450904
     }
   },
   "dpi": {
@@ -1383,10 +1425,10 @@
       }
     ]
   },
-  "foregroundBeforeChat": 4590276,
-  "foregroundAfterChat": 4590276,
+  "foregroundBeforeChat": 15533684,
+  "foregroundAfterChat": 15533684,
   "technicalChat": [
-    "There are 1 of a max of 8 players online: Player81872"
+    "There are 1 of a max of 8 players online: Player69669"
   ],
   "pauseUiBefore": {
     "screen": "paused",
@@ -1612,8 +1654,8 @@
       }
     ]
   },
-  "retainedBytes": 30770267,
-  "clientSha256": "66d74e951a05e2584ec0d8a5b332b15660eab6bc6f83f5819f0be159b41eecb7",
+  "retainedBytes": 31541497,
+  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
   "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
@@ -1631,13 +1673,13 @@
     }
   ],
   "baseSource": {
-    "revision": "5c41b1908b6214da3cadbc116bf58929a74151ae",
+    "revision": "744008e40af038268eb5baefc7f39bdfb25e4ed2",
     "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
-    "overlayRecipeSha256": "1d112caee5a55a951b2766136f144b503e1b6cdbe4c0fdb60b265644de2cbbcc",
-    "contractSha256": "8fd89274925de3fc438ba9380036b15535090cfc86612caeeca6de537e3b0ed3",
-    "qaToolSha256": "76498f9e3787b3b93ec7bea4c2898aeb500a6da4eb3b5cf5341cb7e368599461",
+    "overlayRecipeSha256": "4decabee42e09fa5a66f7279a87e4f5e3cffda5a47e85fbac839506a1645fed0",
+    "contractSha256": "e0d9f7126ff319aac551389989c979e5745f7d5935a622fcd75b2bb35ef47d8e",
+    "qaToolSha256": "028d80a4e92eeca6c352c873f4ef731fb8c1fdd101fe875521f0a15c72727f69",
     "stageToolSha256": "ed9214528f574e61e5e9b89a778b1deda7e51be444cb71704871cc42887d2412",
-    "desktopKeyHelperSha256": "efbdc9c008f5e7b6cb5659f879f0d354301bb029bbe02d9b186115afab85270b",
+    "desktopKeyHelperSha256": "2374f614ae425d7aa8267ab0c337aaddb7e5e6b1e91df994884be9094c8b9e88",
     "gameplayToolSha256": "6ad1ee48b9979ddd0969afc0b2536fa033c962299c6d40165a6dd9ae3e06a4b4",
     "bootstrapSourceSha256": "8179f35f13d7e4fc1263891e8f132525b6a9e66bbc7a90a5eeb18aa51708e883",
     "bootstrapContractSha256": "b4b1e7dd73408ac75de0529bbd12d7f7a7f9332d9cbe5c2dd03f21e025225664",

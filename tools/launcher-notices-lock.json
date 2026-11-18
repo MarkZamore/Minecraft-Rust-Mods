@@ -1,43 +1,56 @@
 {
   "schemaVersion": 1,
   "feature": "native-launcher-notices-v1",
+  "fontMode": "roboto-v1",
   "minimumReleaseNumber": 477,
   "repository": "https://github.com/MarkZamore/LANMinecraft",
-  "commitSha": "98e3146e5bc469e54deedf3512681a9a351320ed",
-  "releaseNumber": 478,
+  "commitSha": "0a96f6839a0e626a38b4e35f436a5d90e080e470",
+  "releaseNumber": 542,
   "publicAsset": {
     "url": "https://github.com/MarkZamore/LANMinecraft/releases/download/latest/LANMinecraft.exe",
-    "sha256": "3338b80f0eb01c6247ca2b5847199c68a6250eb5465736bb4063c94df40ff6c7",
-    "sizeBytes": 157872128
+    "sizeBytes": 9254912,
+    "sha256": "6cf16a01c4e8ef347a782950c7cd0a618a871a7f935b40af1f509ca6f054ea66"
   },
   "publicUpdateMetadata": {
+    "sizeBytes": 329,
+    "sha256": "d7459b6837d2c62d17a540b38676909ffe97b0368d6ce67bb9647a51043e6d9a",
     "url": "https://github.com/MarkZamore/LANMinecraft/releases/download/latest/update.json",
-    "sha256": "5ae8e39ef91b7803dd0f3a226a2aa1be0356a7308c3d0aa34600371d42f25baa",
-    "sizeBytes": 1206,
-    "commitSha": "98e3146e5bc469e54deedf3512681a9a351320ed",
-    "releaseNumber": 478,
+    "commitSha": "0a96f6839a0e626a38b4e35f436a5d90e080e470",
+    "releaseNumber": 542,
     "assetName": "LANMinecraft.exe"
   },
   "sourceFiles": {
     "Program/GameNoticeOverlayService.cs": {
-      "sha256": "86440a2fa80f29e1460555fffb8d9c43ec15c36d0afbe758892cdd559d3f6aa5",
-      "sizeBytes": 19889
+      "sizeBytes": 24042,
+      "sha256": "a947371d9ff0379e13fe2cfd46abe0a2cdec2838305de3db18c2c83f3cb19fea"
     },
     "Program/MinecraftProcessService.cs": {
-      "sha256": "80cc0439e4382dce9a95d3a3caceae6799fe34051dbf54991ffc49dd86aac22b",
-      "sizeBytes": 87675
+      "sizeBytes": 90520,
+      "sha256": "284a0049df7615e1c833568a5bb2fb8b06a59841a45f8c2ddf5621e5803bbf99"
     },
     "Program/PortablePackSyncService.cs": {
-      "sha256": "a46c0d7f366fd57396f8c63ac1b5ee58c6b71642667289dc25ad3191af3e4a0a",
-      "sizeBytes": 101080
+      "sizeBytes": 110447,
+      "sha256": "4746106b72434bc12dd503018446db47eee48c9a96029cc6a32b228ab799d1c4"
     },
     "Program/GameProcessTree.cs": {
-      "sha256": "da7cda534aecd475a76f28bbb28ce37e644eb5ae7b711819d0cbdca875d1d2e3",
-      "sizeBytes": 2778
+      "sizeBytes": 2778,
+      "sha256": "da7cda534aecd475a76f28bbb28ce37e644eb5ae7b711819d0cbdca875d1d2e3"
     },
-    "Program/NoticeOverlay/README.md": {
-      "sha256": "ea65962e2149024b72852864d0e9896c667faeed96acc6bdb07f513e8baaa0e8",
-      "sizeBytes": 6866
+    "Program/Minecraft.csproj": {
+      "sizeBytes": 5433,
+      "sha256": "19e7346d19c56363cd18c1dfd813e28417117905b7a8e7995a735e5544c04faa"
+    },
+    "Program/Assets/Fonts/Roboto-Regular.ttf": {
+      "sizeBytes": 123720,
+      "sha256": "dece7c71bbe61710787f0839c722c65e87355dd2eb4a823e6b5488121ff81e4b"
+    },
+    "Program/Assets/Fonts/Roboto-SemiBold.ttf": {
+      "sizeBytes": 124288,
+      "sha256": "f478ba88b0292e685e487901dfbb1401457d32d6ebee4030cdfd5698235bffa8"
+    },
+    "Program/Assets/Fonts/OFL.txt": {
+      "sizeBytes": 4394,
+      "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
     }
   },
   "requiredSourceChecks": [
@@ -47,6 +60,7 @@
     "nativeLaunchPassesDirectory",
     "verifiedNativeProcessTree",
     "nativeHeartbeatBackendAndActualPid",
-    "freshHeartbeatAndErrorFallback"
+    "freshHeartbeatAndErrorFallback",
+    "packagedRobotoSessionAndHeartbeat"
   ]
 }

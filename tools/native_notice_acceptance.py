@@ -171,19 +171,30 @@ def verify_native_notices(report, candidate, build, base_repo, *, published=True
             before.get("loadedContent") != sorted(smoke["loadedContent"])):
         raise ValueError("Native notices did not retain the accepted Mods inventory")
     with shared_modules(base_repo) as contract:
-        contract.verify_native_notices(report, files, execution_context(candidate, build, proof), name)
+        overlay = load(base_repo / "tools/overlay-receipt.json")
+        arguments = (report, files, execution_context(candidate, build, proof), name)
+        if overlay.get("noticeFontMode") is None:
+            contract.verify_native_notices(*arguments)
+        else:
+            contract.verify_native_notices(*arguments, overlay["noticeFontMode"])
 
 
 def verify_launcher_support(report):
     pin = load(ROOT / "tools/launcher-notices-lock.json")
+    font_mode = pin.get("fontMode")
+    source_checks = LAUNCHER_SOURCE_CHECKS
+    if font_mode is not None:
+        if font_mode != "roboto-v1" or report.get("fontMode") != font_mode:
+            raise ValueError("The published launcher does not have the required Roboto notice contract")
+        source_checks += ("packagedRobotoSessionAndHeartbeat",)
     if (pin.get("schemaVersion") != 1 or pin.get("feature") != "native-launcher-notices-v1" or
-            not pin.get("sourceFiles") or set(pin.get("requiredSourceChecks", [])) != set(LAUNCHER_SOURCE_CHECKS) or
+            not pin.get("sourceFiles") or set(pin.get("requiredSourceChecks", [])) != set(source_checks) or
             report.get("schemaVersion") != 1 or report.get("status") != "PASS" or
             report.get("feature") != pin["feature"] or report.get("commitSha") != pin["commitSha"] or
             report.get("releaseNumber") != pin["releaseNumber"] or report.get("publicAsset") != pin["publicAsset"] or
             report.get("publicUpdateMetadata") != pin["publicUpdateMetadata"] or
             report.get("sourceFiles") != pin["sourceFiles"] or
-            not all(report.get("sourceChecks", {}).get(key) is True for key in LAUNCHER_SOURCE_CHECKS) or
+            not all(report.get("sourceChecks", {}).get(key) is True for key in source_checks) or
             report.get("publicReadback", {}).get("sha256") != pin["publicAsset"]["sha256"] or
             report.get("publicReadback", {}).get("sizeBytes") != pin["publicAsset"]["sizeBytes"]):
         raise ValueError("The required native-notice capability has no verified published supporting launcher/source")
