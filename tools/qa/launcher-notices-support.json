@@ -4,35 +4,35 @@
   "fontMode": "roboto-v1",
   "minimumReleaseNumber": 477,
   "repository": "https://github.com/MarkZamore/LANMinecraft",
-  "commitSha": "0a96f6839a0e626a38b4e35f436a5d90e080e470",
-  "releaseNumber": 542,
+  "commitSha": "8a543f650b0e0c7adebfeb0b5142d88340ebf9f1",
+  "releaseNumber": 545,
   "publicAsset": {
     "url": "https://github.com/MarkZamore/LANMinecraft/releases/download/latest/LANMinecraft.exe",
-    "sizeBytes": 9254912,
-    "sha256": "6cf16a01c4e8ef347a782950c7cd0a618a871a7f935b40af1f509ca6f054ea66"
+    "sizeBytes": 9455616,
+    "sha256": "cc86b907368c4c5aad2c7d957e0444c08c9c62dd3b9519de6cfd91d7fde77db2"
   },
   "publicUpdateMetadata": {
     "sizeBytes": 329,
-    "sha256": "d7459b6837d2c62d17a540b38676909ffe97b0368d6ce67bb9647a51043e6d9a",
+    "sha256": "996b5fbc4a6db8715956748f2d0cb753f2718ecac76586bb12c24c8fd4a97208",
     "url": "https://github.com/MarkZamore/LANMinecraft/releases/download/latest/update.json",
-    "commitSha": "0a96f6839a0e626a38b4e35f436a5d90e080e470",
-    "releaseNumber": 542,
+    "commitSha": "8a543f650b0e0c7adebfeb0b5142d88340ebf9f1",
+    "releaseNumber": 545,
     "assetName": "LANMinecraft.exe"
   },
   "sourceFiles": {
-    "Program/GameNoticeOverlayService.cs": {
+    "Program/UI/GameNoticeOverlayService.cs": {
       "sizeBytes": 24042,
       "sha256": "a947371d9ff0379e13fe2cfd46abe0a2cdec2838305de3db18c2c83f3cb19fea"
     },
-    "Program/MinecraftProcessService.cs": {
-      "sizeBytes": 90520,
-      "sha256": "284a0049df7615e1c833568a5bb2fb8b06a59841a45f8c2ddf5621e5803bbf99"
+    "Program/Launch/MinecraftProcessService.cs": {
+      "sizeBytes": 92716,
+      "sha256": "6ea34a7928728d64a228c1e154246b9ef6647fcc1cdcefde9e7947f0c852f42e"
     },
-    "Program/PortablePackSyncService.cs": {
-      "sizeBytes": 110447,
-      "sha256": "4746106b72434bc12dd503018446db47eee48c9a96029cc6a32b228ab799d1c4"
+    "Program/Packs/Installation/PortablePackSyncService.cs": {
+      "sizeBytes": 108928,
+      "sha256": "0ab3e605cd0a6980b3c9a6377112b81276d2edc5b46798f937d295f0e0793303"
     },
-    "Program/GameProcessTree.cs": {
+    "Program/Launch/GameProcessTree.cs": {
       "sizeBytes": 2778,
       "sha256": "da7cda534aecd475a76f28bbb28ce37e644eb5ae7b711819d0cbdca875d1d2e3"
     },
@@ -64,7 +64,7 @@
     "packagedRobotoSessionAndHeartbeat"
   ],
   "status": "PASS",
-  "verifiedAtUtc": "2026-11-18T10:57:55.306957+00:00",
+  "verifiedAtUtc": "2026-11-19T19:48:37.833837+00:00",
   "sourceChecks": {
     "nativeCapabilityConstant": true,
     "capabilityAdvertisedByInstaller": true,
@@ -77,14 +77,14 @@
   },
   "publicReadback": {
     "url": "https://github.com/MarkZamore/LANMinecraft/releases/download/latest/LANMinecraft.exe",
-    "sizeBytes": 9254912,
-    "sha256": "6cf16a01c4e8ef347a782950c7cd0a618a871a7f935b40af1f509ca6f054ea66",
-    "method": "Fresh public EXE GET streamed to SHA-256 without saving the executable"
+    "sizeBytes": 9455616,
+    "sha256": "cc86b907368c4c5aad2c7d957e0444c08c9c62dd3b9519de6cfd91d7fde77db2",
+    "method": "Fresh public EXE GET streamed to SHA-256; metadata and GitHub asset digests checked independently"
   },
   "release": {
     "tag": "latest",
     "url": "https://github.com/MarkZamore/LANMinecraft/releases/tag/latest",
-    "targetCommitish": "0a96f6839a0e626a38b4e35f436a5d90e080e470"
+    "targetCommitish": "8a543f650b0e0c7adebfeb0b5142d88340ebf9f1"
   },
-  "scope": "Verification of the publicly delivered launcher and its exact source; native gameplay is checked separately."
+  "scope": "Verification of the publicly delivered launcher and its exact Git source; native gameplay is checked separately."
 }
