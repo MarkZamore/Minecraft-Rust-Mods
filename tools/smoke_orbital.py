@@ -59,6 +59,20 @@ def sample(control, points):
     return result
 
 
+def wait_for_crater(control, points, before, timeout=120):
+    deadline = time.monotonic() + timeout
+    after = before
+    while time.monotonic() < deadline:
+        blocks = [control("block", *map(str, point), timeout=max(1, min(10, deadline - time.monotonic())))
+                  for point in points]
+        if all(block["loaded"] for block in blocks):
+            after = [block["block"] for block in blocks]
+            if all(old != new for old, new in zip(before, after, strict=True)):
+                return after
+        time.sleep(min(0.5, max(0, deadline - time.monotonic())))
+    raise ValueError(f"Terrain-on Plasma did not carve both sampled layers within {timeout} seconds: {after!r}")
+
+
 def camera(control, target):
     x, y, z = target
     # Use the long-range Designator ray, outside vanilla block-interaction range.
@@ -188,10 +202,7 @@ def exercise(control, qa):
     command(control, "/orbital terrain on", "Terrain damage on")
     camera(control, target)
     hold_designator(control)
-    control("wait", "550", timeout=150)
-    changed = sample(control, points)
-    if any(after == before for before, after in zip(fixture_blocks, changed, strict=True)):
-        raise ValueError(f"The terrain-on Plasma did not carve the surface and the sample below it: {changed!r}")
+    changed = wait_for_crater(control, points, fixture_blocks)
     frames["crater"] = photograph(control, qa, "crater")
     command(control, "/orbital terrain off", "Terrain damage off")
     return {"target": list(target), "fixture": [list(point) for point in points],
@@ -203,8 +214,9 @@ def exercise(control, qa):
 
 def verify_reopened(control, game, evidence):
     item_present(control)
-    if sample(control, evidence["fixture"]) != evidence["blocksAfter"]:
-        raise ValueError("The Orbital terrain edits did not persist when the saved world reopened")
+    # An all-air section can be absent from the client's chunk cache on reopen.
+    for point, block in zip(evidence["fixture"], evidence["blocksAfter"], strict=True):
+        command(control, f"execute if block {' '.join(map(str, point))} {block}", "Test passed")
     command(control, "/orbital seed", "Seed: held at 7")
     settings = dict(line.split("=", 1) for line in (game / SETTINGS).read_text(encoding="utf-8").splitlines()
                     if "=" in line)
