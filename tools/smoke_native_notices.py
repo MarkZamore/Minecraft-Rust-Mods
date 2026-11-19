@@ -64,15 +64,23 @@ def main():
         session.control("options", "mods")
         page = session.control("ui")
         ids = sorted(item["id"] for item in page["widgets"])
+        enabled = {item["id"] for item in page["widgets"] if item["enabled"]}
+        if {"a-z", "field-0", "open-mods-folder", "back"} <= enabled:
+            close = "back"
+        elif {"open-mod-folder", "done"} <= enabled:
+            close = "done"
+        else:
+            raise AssertionError("Native notices did not open the reviewed Mods screen")
         log = (session.qa / "client.log").read_text(encoding="utf-8", errors="replace")
         registered = sorted(set(NATIVE.findall(log)))
         content = sorted([list(row) for row in set(CONTENT.findall(log))])
-        if registered != expected or content != expected_content or "done" not in ids or "open-mod-folder" not in ids:
+        if registered != expected or content != expected_content:
             raise AssertionError("Native notices changed the accepted Mods inventory")
         # Fullscreen can expose more rows without changing the actual mod set.
         evidence = {"registeredNative": registered, "loadedContent": content}
         inventories.append(evidence)
         visible_widgets.append(ids)
+        session.control("click", close)
         for _ in range(3):
             page = session.control("ui")
             done = [item for item in page["widgets"] if item["id"] == "done"]
