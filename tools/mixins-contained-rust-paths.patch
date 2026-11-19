@@ -1,0 +1,43 @@
+diff --git a/crates/horizon-mixins-core/src/index.rs b/crates/horizon-mixins-core/src/index.rs
+--- a/crates/horizon-mixins-core/src/index.rs
++++ b/crates/horizon-mixins-core/src/index.rs
+@@ -1,4 +1,4 @@
+-use crate::{Diagnostic, Result, diagnostic::io, source};
++use crate::{Diagnostic, Result, diagnostic::io};
+ use quote::ToTokens;
+ use std::{
+     collections::{BTreeMap, BTreeSet},
+@@ -401,14 +401,29 @@ impl Index {
+                                 )
+                                 .file(file));
+                             };
+-                            source::relative(Path::new(&value.value()))?;
++                            let value = value.value();
++                            let module_path = Path::new(&value);
++                            if module_path.as_os_str().is_empty()
++                                || module_path.components().any(|part| {
++                                    !matches!(
++                                        part,
++                                        std::path::Component::Normal(_)
++                                            | std::path::Component::ParentDir
++                                    )
++                                })
++                            {
++                                return Err(Diagnostic::new(
++                                    "E_INVALID_PATH",
++                                    "expected a relative Rust module path",
++                                )
++                                .file(module_path));
++                            }
+                             // #[path] on an external item is relative to the containing source directory.
++                            // read() canonicalizes the result and refuses paths outside the workspace.
+                             let base = if parent.is_empty() {
+                                 root.join(file).parent().unwrap().to_path_buf()
+                             } else {
+                                 module_dir.to_path_buf()
+                             };
+-                            base.join(value.value())
++                            base.join(module_path)
+                         } else {
+                             let a = module_dir.join(format!("{}.rs", m.ident));
+                             let b = module_dir.join(m.ident.to_string()).join("mod.rs");

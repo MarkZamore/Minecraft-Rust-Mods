@@ -1,12 +1,16 @@
-"""Adapt the verified Orbital Laser 0.5.9 native bundle to this pack."""
+"""Adapt verified Orbital Laser native bundles to this pack."""
 
 import hashlib
 from pathlib import Path
 
 
 RECIPE = Path(__file__).resolve().parent
+F001_REVISION = "f00125f61f794aaa3d4e950d301f353b35b6ee3d"
 QUIET_SOURCE = "crates/horizon-client/src/game/lan_quiet.rs"
 QUIET_SOURCE_SHA256 = "d815f06570366b9146e64f879dc8c6cd675225347296cb3faa08bf44c855d7a9"
+F001_QUIET_SOURCE = "crates/horizon-client/src/game/network/lan_quiet.rs"
+F001_QUIET_SOURCE_SHA256 = "a84656095b72e3e9b005a4601d9bc5cd759038fd37b16a6d7ddc0f9db3db49dd"
+F001_COMMAND_TARGET = "horizon_client::game::native_hooks::legacy::Game<'_>"
 SOURCE_HASHES = {
     "engine/src/strike/hurricane.rs": "b8d429b497f8fed80e4007f761169ebeed877602a0b19d10714b9c83645b7b56",
     "engine/src/sdk.rs": "e0ccae671baaf558bd45032db710b1e2c1096ff08ca75f60465e30547ab6670f",
@@ -16,6 +20,7 @@ SOURCE_HASHES = {
     "glue.rs": "18eff45a2261e6f1a1aae5cd0c1af99efbdffdfe2ead59694f64d6a750b42773",
     "engine/src/lib.rs": "ae7d0e6a09cc799f89f4ddbdfe9acbc096b0a3acde83be9e8990229b1d191747",
     "perform_command.rs": "86a22bd60e0d268141d40a4829e558f36cf828f63735ee518cbc1c52fd25f584",
+    "register_commands.rs": "2e5b48730cf9a44809c89f057c651935417bb4bc58dbc637b056ea02cab9a843",
 }
 
 
@@ -31,18 +36,29 @@ def section(source: str, start: str, end: str, replacement: str) -> str:
     return source[:left] + replacement + source[right:]
 
 
-def quiet_source(raw: bytes) -> str:
+def quiet_source(raw: bytes, *, revision: str | None = None) -> str:
     """Expose the author's checked, quiet player-command path to this mod only."""
-    if hashlib.sha256(raw).hexdigest() != QUIET_SOURCE_SHA256:
-        raise ValueError(f"Orbital quiet command source has changed: {QUIET_SOURCE}")
+    if revision == F001_REVISION:
+        source, expected, scope = F001_QUIET_SOURCE, F001_QUIET_SOURCE_SHA256, "in crate::game"
+    else:
+        source, expected, scope = QUIET_SOURCE, QUIET_SOURCE_SHA256, "super"
+    if hashlib.sha256(raw).hexdigest() != expected:
+        raise ValueError(f"Orbital quiet command source has changed: {source}")
     before = "    fn run_quiet_line(&mut self, conn: u32, line: &str) -> bool {"
-    after = "    pub(super) fn run_quiet_line(&mut self, conn: u32, line: &str) -> bool {"
+    after = f"    pub({scope}) fn run_quiet_line(&mut self, conn: u32, line: &str) -> bool {{"
     return replace(raw.decode("utf-8"), before, after)
 
 
-def prepare_source(stage: Path) -> None:
-    path = stage / QUIET_SOURCE
-    path.write_text(quiet_source(path.read_bytes()), encoding="utf-8", newline="\n")
+def prepare_source(stage: Path, *, revision: str | None = None) -> None:
+    path = stage / (F001_QUIET_SOURCE if revision == F001_REVISION else QUIET_SOURCE)
+    if path.is_symlink() or path.is_junction():
+        raise ValueError(f"Linked Orbital quiet command source: {path}")
+    path.write_text(quiet_source(path.read_bytes(), revision=revision), encoding="utf-8", newline="\n")
+
+
+def prepare_latest_source(stage: Path) -> None:
+    from . import latest
+    latest.prepare_source(stage)
 
 
 def adapt_glue(source: str) -> str:
@@ -345,7 +361,13 @@ fn draw_one(world: &mut crate::gfx::native_render::WorldDrawn<'_>, pass: &Pass, 
     return source
 
 
-def apply(bundle: Path) -> None:
+def apply(bundle: Path, *, revision: str | None = None) -> None:
+    if revision == F001_REVISION:
+        from . import latest
+        original = (bundle / "horizon-mixin.toml").read_bytes()
+        if hashlib.sha256(original).hexdigest() == latest.SOURCE_HASHES["horizon-mixin.toml"]:
+            latest.apply(bundle)
+            return
     for name, expected in SOURCE_HASHES.items():
         if hashlib.sha256((bundle / name).read_bytes()).hexdigest() != expected:
             raise ValueError(f"Unexpected Orbital Laser 0.5.9 source: {name}")
@@ -358,7 +380,28 @@ def apply(bundle: Path) -> None:
     if not found or 'id = "content_find"' not in shim or shim.count("[[injection]]") != 1:
         raise ValueError("Orbital Laser's content discovery shim changed")
     source = replace(before.rstrip() + "\n", 'hook = "perform_command"', 'hook = "perform_console_command"')
-    source = replace(
+    source = add_wire_modules(source)
+    glue = bundle / "glue.rs"
+    updated_glue = adapt_hint_glue(adapt_visual_glue(adapt_glue(glue.read_text(encoding="utf-8"))))
+    visual = (RECIPE / "visual.rs").read_text(encoding="utf-8")
+    if revision == F001_REVISION:
+        from . import payload_port
+        source, updated_glue = adapt_typed_commands(bundle, source, updated_glue)
+        source, updated_glue, visual = payload_port.adapt(bundle, source, updated_glue, visual)
+    adapt_engine(bundle)
+    post = bundle / "post.rs"
+    updated_post = adapt_post(post.read_text(encoding="utf-8"))
+    manifest.write_text(source, encoding="utf-8", newline="\n")
+    glue.write_text(updated_glue, encoding="utf-8", newline="\n")
+    post.write_text(updated_post, encoding="utf-8", newline="\n")
+    (bundle / "visual_wire.rs").write_bytes((RECIPE / "visual_wire.rs").read_bytes())
+    (bundle / "visual.rs").write_text(visual, encoding="utf-8", newline="\n")
+    (bundle / "wire.rs").write_bytes((RECIPE / "wire.rs").read_bytes())
+    (bundle / "content_find.rs").unlink()
+
+
+def add_wire_modules(source: str) -> str:
+    return replace(
         source, 'source = "glue.rs"\n', '''source = "glue.rs"
 
 [[module]]
@@ -380,11 +423,14 @@ name = "orbital_visual"
 source = "visual.rs"
 ''',
     )
-    glue = bundle / "glue.rs"
-    updated_glue = adapt_hint_glue(adapt_visual_glue(adapt_glue(glue.read_text(encoding="utf-8"))))
+
+
+def adapt_engine(bundle: Path, *, engine_source: str | None = None) -> None:
     engine = bundle / "engine/src/lib.rs"
+    if engine_source is None:
+        engine_source = engine.read_text(encoding="utf-8")
     updated_engine = replace(
-        engine.read_text(encoding="utf-8"),
+        engine_source,
         'input::register_key("wheel", "Open the laser wheel", "key.keyboard.r");',
         'input::register_key("wheel", "Open the laser wheel", "key.keyboard.insert");',
     )
@@ -435,13 +481,43 @@ pub fn network_repack(shader: u8, words: &mut [u32]) {
     sdk.write_text(sdk_source, encoding="utf-8", newline="\n")
     hurricane = bundle / "engine/src/strike/hurricane.rs"
     hurricane.write_text(hurricane.read_text(encoding="utf-8") + "\n" + (RECIPE / "atlas_test.rs").read_text(encoding="utf-8"), encoding="utf-8", newline="\n")
-    post = bundle / "post.rs"
-    updated_post = adapt_post(post.read_text(encoding="utf-8"))
-    manifest.write_text(source, encoding="utf-8", newline="\n")
-    glue.write_text(updated_glue, encoding="utf-8", newline="\n")
     engine.write_text(updated_engine, encoding="utf-8", newline="\n")
-    post.write_text(updated_post, encoding="utf-8", newline="\n")
-    for name in ("visual_wire.rs", "visual.rs"):
-        (bundle / name).write_bytes((RECIPE / name).read_bytes())
-    (bundle / "wire.rs").write_bytes((RECIPE / "wire.rs").read_bytes())
-    (bundle / "content_find.rs").unlink()
+
+
+def adapt_typed_commands(bundle: Path, manifest: str, glue: str, *, sequenced: bool = False) -> tuple[str, str]:
+    manifest = replace(manifest, 'hook = "register_commands"\nhook_version = 1',
+        f'target = "{F001_COMMAND_TARGET}::legacy_register_commands"')
+    manifest = replace(manifest, '&mut Vec<crate::mod_api::NativeCommand>', '&mut Vec<mod_api::Command>')
+    manifest = replace(manifest, '''hook = "perform_console_command"
+hook_version = 1
+kind = "HEAD"
+helper = "perform_command.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "command", ty = "&str", value = "command" },''', f'''target = "{F001_COMMAND_TARGET}::legacy_run_mod_command"
+kind = "HEAD"
+helper = "perform_command.rs"
+bindings = [
+  {{ name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" }},
+  {{ name = "source", ty = "&mod_api::CommandSource", value = "source" }},
+  {{ name = "command", ty = "&mod_api::CommandInvocation", value = "command" }},''')
+    glue = replace(glue, "Vec<crate::mod_api::NativeCommand>", "Vec<mod_api::Command>")
+    constructor = "op(u, CONSOLE_LEVEL)" if sequenced else "new(u)"
+    glue = replace(glue, f"crate::mod_api::NativeCommand::{constructor}", f"mod_api::Command::{constructor}")
+    start = glue.index("/// The `perform_console_command` hook:")
+    end = glue.index("\n// ---- the content", start) if sequenced else glue.index("\n}", start) + len("\n}")
+    command = (RECIPE / "typed_command.rs").read_text(encoding="utf-8").rstrip()
+    glue = glue[:start] + command + glue[end:]
+    register = bundle / "register_commands.rs"
+    register.write_text(replace(register.read_text(encoding="utf-8"),
+        "Vec<crate::mod_api::NativeCommand>", "Vec<mod_api::Command>"), encoding="utf-8", newline="\n")
+    (bundle / "perform_command.rs").write_text('''fn orbital_perform_command(
+    game: &mut crate::game::Game<'_>,
+    source: &mod_api::CommandSource,
+    command: &mod_api::CommandInvocation,
+    ran: &mut bool,
+) {
+    crate::game::orbital_glue::perform_command(game, source, command, ran);
+}
+''', encoding="utf-8", newline="\n")
+    return manifest, glue

@@ -1,5 +1,5 @@
 {
-  "inputLockSha256": "e4a958c04934b2354b324cf7fee9a0b0082dfc258002940bf65f82d83a8c1503",
+  "inputLockSha256": "d036c91d046ff14da23f6c73c236251cd388e9a38eee44169879a126cad4e369",
   "projects": {
     "accurate_block_placement": {
       "LICENSE": "8298b370d7b46231be2d0b64afad31cba3bbea2d07d9d0cbacf524765d164435"
@@ -492,8 +492,8 @@
       "LICENSE": {
         "basis": "source-commit",
         "kind": "official-source",
-        "revision": "3e52c99737bc325270b09dd2ea0acbba51b5a196",
-        "url": "https://raw.githubusercontent.com/Stink-O/orbital-laser/3e52c99737bc325270b09dd2ea0acbba51b5a196/LICENSE"
+        "revision": "6311d5f9ba8610deeab35a3ef46b43b9ab7b01e8",
+        "url": "https://raw.githubusercontent.com/Stink-O/orbital-laser/6311d5f9ba8610deeab35a3ef46b43b9ab7b01e8/LICENSE"
       }
     },
     "recipes": {

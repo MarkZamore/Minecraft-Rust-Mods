@@ -132,7 +132,7 @@
       "target": "Orbital Game::native_edit_blocks bypasses GameLevel::native_block_changed; destroyed stones may stay linked or selectable"
     }
   ],
-  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
   "keybindingDecisions": [
     {
       "decision": "player",

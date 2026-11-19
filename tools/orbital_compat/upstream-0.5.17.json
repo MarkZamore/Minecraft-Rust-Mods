@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "orbital",
+  "version": "0.5.17",
+  "source": "https://github.com/Stink-O/orbital-laser/commit/6311d5f9ba8610deeab35a3ef46b43b9ab7b01e8",
+  "release": {
+    "id": 450530802,
+    "tag": "v0.5.17",
+    "url": "https://github.com/Stink-O/orbital-laser/releases/tag/v0.5.17"
+  },
+  "asset": {
+    "id": 764921282,
+    "name": "orbital-laser-native-v0.5.17.hnmod",
+    "size": 66645571,
+    "sha256": "f81a867009d0cd5f2229ea9fc8229b3d638acc0a22fc754bcd2025c7c10e6281"
+  },
+  "checksums": {
+    "id": 764921290,
+    "size": 270,
+    "sha256": "c0fe2598db5e5835b7ae7dee9233d074cdfdf4c63dec492ed16ff77a146e568f"
+  },
+  "license": {
+    "name": "MIT",
+    "path": "LICENSE",
+    "size": 1064,
+    "sha256": "d70cf70db2655fb78f2204653b1a4355a4d5256ca2bf68ab55deef9904ff5998"
+  },
+  "declaredNative": {
+    "game": "26.3",
+    "horizon": "4626921895df51521be64d485ee763412de2917c",
+    "mixins": "5a64af938ec86b00d53d16a408aabc0038fb3e57"
+  },
+  "contentCompanion": {
+    "size": 63880128,
+    "sha256": "a752c3423cf547b45fee43bb59963ee3807c32cd7b9e2dcb5f61eb7b6dc9db14",
+    "manifestSha256": "14b02129620e6d1ee591c16856c785ca27d9bcc5abc7adf04603f9120d254887"
+  }
+}

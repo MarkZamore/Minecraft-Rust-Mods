@@ -12,8 +12,8 @@ import time
 import unicodedata
 
 from inspect_mods import content_file
-from multiplayer_warning import PACK_ACTION_SHA256
-from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
+from multiplayer_warning import expected_action_sha256
+from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, tree_hash, write
 
 
 CONTROLS_PRESET = "launcher/controls-preset.txt"
@@ -129,7 +129,7 @@ def approved_build(work):
     if (build.get("schemaVersion") != 1 or build["inputLockSha256"] != sha(INPUT_LOCK)
             or build["conflictDecisionsSha256"] != sha(DECISIONS)
             or build["buildRecipeSha256"] != build_recipe_sha()
-            or build.get("multiplayerMenuActionSha256") != PACK_ACTION_SHA256
+            or build.get("multiplayerMenuActionSha256") != expected_action_sha256(build["horizonRevision"])
             or build["compileCheck"] is not True
             or build["horizonRevision"] != lock["horizonRevision"]):
         raise ValueError("Build was made from another input lock or Horizon revision")
@@ -142,6 +142,11 @@ def approved_build(work):
     client = work / "runtime/horizon-client.exe"
     if not client.is_file() or client.is_symlink() or sha(client) != build["clientSha256"]:
         raise ValueError("Combined Horizon client differs from the accepted build")
+    from legacy_native_hooks import REVISION
+    if build["horizonRevision"] == REVISION:
+        packages = work / "compiled-native"
+        if not packages.is_dir() or tree_hash(packages) != build["compiledNativeTreeSha256"]:
+            raise ValueError("Compiled native packages differ from the accepted build")
     return build, selected, client
 
 
@@ -227,6 +232,11 @@ def stage(args):
             content.mkdir(exist_ok=True)
             shutil.copyfile(args.build_work / "content" / name, content / name)
             generator.verify_file(content / name, {"sizeBytes": expected["size"], "sha256": expected["sha256"]})
+        if "compiledNativeTreeSha256" in build:
+            packages = native / "horizon-native-mods"
+            shutil.copytree(args.build_work / "compiled-native", packages)
+            if tree_hash(packages) != build["compiledNativeTreeSha256"]:
+                raise ValueError("Compiled native packages changed while staging")
         licenses = native / "third_party/mods"
         licenses.mkdir(parents=True, exist_ok=True)
         copy_licenses(selected, args.license_cache, licenses)

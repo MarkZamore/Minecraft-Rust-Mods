@@ -8,6 +8,14 @@ SOURCE_HASHES = {
     "glue.rs": "3b531b4d6c67d5da7c22fc62ac4de073c7f069094cdcfa2d48bf484d8748d7cf",
     "runtime.rs": "7436912434a65143bc5b6c2fc3a7321a03ec23bea79e0ccea9fe60d660e1e8c8",
 }
+F00125F_REVISION = "f00125f61f794aaa3d4e950d301f353b35b6ee3d"
+F00125F_BUNDLE_SHA256 = {
+    "command.rs": "0fbf3c193a61982dc79388afa911eab6a3aec9245f429268f4e783407c2fc7a5",
+    "settings.rs": "fa48ac717cd4b025c5c965d025931d77c737f8349cc3a8010f51b5788769b83d",
+    "click.rs": "53969c649b872accc309b173f0d8bdcd2dc1ba0b9763c77cc37034b8c984beaf",
+    "event.rs": "02e4ded1c710b962847c71209eeb8c20b943850dea16dbda37f44f956ed00b40",
+    "horizon-mixin.toml": "1707694d511375b415acfdd0102d26b2704d6cc71fdb1832dc27357dbe264904",
+}
 
 # Official 2ebf00a sources, with game.rs after the immutable Edition 5ed0ee3
 # common Steam/notice recipe. Recheck this pin when that common recipe changes.
@@ -19,6 +27,30 @@ HOST_SOURCE_HASHES = {
     "crates/horizon-client/src/game/native_panel_recipes.rs": "3504b2c7f00dffae5c19f10b4f0ddf3cb7a5d6529b86ea0b58ba0fb9bea0e038",
     "crates/horizon-client/src/game/control.rs": "10a22932d9d35224e860a41aed6c8e02bf991c779cfd4edb0f4572e1b99288b1",
     "crates/horizon-client/src/game/ime.rs": "25a29233992630c0ef30427949005bb2b9ed09d7556f91aa7081f18ea2530488",
+}
+
+CLIENT = "crates/horizon-client/src/"
+CREATIVE_SCREEN = CLIENT + "game/interface/creative_screen.rs"
+PLAY_KEYS = CLIENT + "game/interface/play_keys.rs"
+MODDING_PANEL = CLIENT + "game/modding/native_panel.rs"
+MODDING_RECIPES = CLIENT + "game/modding/native_panel_recipes.rs"
+FOCUSED_TEXT = CLIENT + "game/interface/focused_text_field.rs"
+PAD_MENU = CLIENT + "game/interface/pad_menu.rs"
+RUNTIME_CONTROL = CLIENT + "game/runtime/control.rs"
+IME = CLIENT + "game/interface/ime.rs"
+
+# Official f00125f sources, with game.rs after the pinned Edition overlay.
+# The shared legacy hooks do not replace these files.
+F00125F_HOST_SHA256 = {
+    CLIENT + "game.rs": "98769993cbeb7f8f40eecfbc7843d820ce729a7c7e7f7c83c4168e75a65e20c0",
+    CREATIVE_SCREEN: "14a02a728479d2cf8517c93a074f69e91ad879a48d47acfb9f26f5a5b835fa02",
+    PLAY_KEYS: "6192bed85215a9cb0922007ad42341424ee6599353a0ce589c17906fc30bc9ff",
+    MODDING_PANEL: "b21bdd244033884de58e66fc85831cada48d7333345d05957e3761a88cc5cc22",
+    MODDING_RECIPES: "af0eb0b65a71f1fc9ec7f627f76b0a2004ee04c639ba34a9c950c6086cad1a4f",
+    FOCUSED_TEXT: "298a216847601e5c16e6786d035160bdce881d4337b03788bde7db1747f5362f",
+    PAD_MENU: "b886b3cbd970bd9e235253e307529e5596cfa768e246b902543800c1f0777c5b",
+    RUNTIME_CONTROL: "c5a2f6e4ce0218101f172a06fea9a34d810280ffaadc5bf22621122f198b5ab9",
+    IME: "826f626cf82c854869aa8c06b3e000777176f48a6c70bcbbd95ff58c787104d4",
 }
 
 
@@ -38,21 +70,26 @@ def adapt_host_game(source: str) -> str:
             }'''
     if source.count(author_draw) != 1:
         raise ValueError("Horizon Creative browser/pad guide path changed")
-    source = replace_once(source, '''    fn click_creative(&mut self, right: bool) {
+    return adapt_creative_close(adapt_creative_input(adapt_creative_screen(source)))
+
+
+def adapt_creative_screen(source: str) -> str:
+    click = '''fn click_creative(&mut self, right: bool) {
         if self.mod_browser_press(right) {
             return;
-        }''', '''    fn click_creative(&mut self, right: bool) {
-        if self.mod_browser_press(right) {
-            if self.jei_panel_owner() { self.inv_clicks.skip_release(); }
-            return;
-        }''')
+        }'''
+    source = replace_once(source, click, click.replace("            return;",
+        "            if self.jei_panel_owner() { self.inv_clicks.skip_release(); }\n            return;"))
     source = replace_once(source, '''            // CreativeModeInventoryScreen: an unbordered EditBox of 50 at (82, 6).
             let search = &mut self.creative_screen.search;''', '''            // CreativeModeInventoryScreen: an unbordered EditBox of 50 at (82, 6).
             let panel_typing = self.jei_panel_owner() && self.mod_browser_typing();
             let search = &mut self.creative_screen.search;''')
-    source = replace_once(source, '''            search.bordered = false;
+    return replace_once(source, '''            search.bordered = false;
             search.focused = true;''', '''            search.bordered = false;
             search.focused = !panel_typing;''')
+
+
+def adapt_creative_input(source: str) -> str:
     source = replace_once(source, '''                    if self.screen == Screen::Creative
                         && self.creative_screen.tab().search
                         && !self.mod_browser_typing()
@@ -63,8 +100,11 @@ def adapt_host_game(source: str) -> str:
                         && event.state''')
     source = replace_once(source, "                    let bundle = bundles::takes_bundle_wheel(self.screen)\n",
         "                    let browser = self.mod_browser_scroll(d);\n                    let bundle = !browser && bundles::takes_bundle_wheel(self.screen)\n")
-    source = replace_once(source, "                    if self.screen == Screen::Creative && d != 0.0 && !bundle {",
+    return replace_once(source, "                    if self.screen == Screen::Creative && d != 0.0 && !bundle {",
         "                    if self.screen == Screen::Creative && d != 0.0 && !bundle && !browser {")
+
+
+def adapt_creative_close(source: str) -> str:
     # Escape already blurs every browser upstream. E needs the JEI equivalent.
     anchor = '''                Screen::Creative => {
                     self.pad_clear_focus();
@@ -73,7 +113,7 @@ def adapt_host_game(source: str) -> str:
         "self.pad_clear_focus();\n                    if self.jei_panel_owner() { self.mod_browser_closed(); }"))
 
 
-def adapt_host_panel(source: str) -> str:
+def adapt_host_panel(source: str, *, separate_tooltip: bool = False) -> str:
     # Exempt only the selected JEI; keep built-in Recipes and other owners as authored.
     source = replace_once(source,
         '        if self.screen == Screen::Creative && of.0.native_id() != "recipes" {',
@@ -82,7 +122,8 @@ def adapt_host_panel(source: str) -> str:
             && self.panel.of.is_some()''', '''        matches!(self.screen, Screen::Inventory | Screen::Creative)
             && self.title.is_none()
             && self.panel.of.is_some()''')
-    source = replace_once(source, '''        } else {
+    if not separate_tooltip:
+        source = replace_once(source, '''        } else {
             self.draw_slot_tooltip(batch);
         }
     }
@@ -149,14 +190,82 @@ def adapt_host_recipes(source: str) -> str:
     /// A press on the recipes: true when it hit one of their parts.''')
 
 
-def prepare_source(workspace: Path) -> None:
+def adapt_pad_search(source: str) -> str:
+    return replace_once(source,
+        '        } else if self.screen == Screen::Creative && self.creative_screen.tab().search {',
+        '        } else if self.screen == Screen::Creative && self.creative_screen.tab().search && !(self.jei_panel_owner() && self.mod_browser_typing()) {')
+
+
+def verify_text_routing(control: str, ime: str, creative_ime: str) -> None:
+    panel_typing = 'Screen::Inventory | Screen::Creative if self.mod_browser_typing() => {'
+    if control.count(panel_typing) != 2:
+        raise ValueError("Horizon Creative text/backspace paths changed")
+    for anchor in (
+        'Screen::Creative => self.mod_browser_typing() || self.creative_screen.tab().search,',
+        panel_typing,
+        creative_ime,
+    ):
+        if ime.count(anchor) != 1:
+            raise ValueError("Horizon Creative IME path changed")
+    if ime.index(panel_typing) > ime.index(creative_ime):
+        raise ValueError("Horizon Creative IME field priority changed")
+
+
+def read_host_files(workspace: Path, hashes: dict[str, str]) -> dict[str, str]:
     originals = {}
-    for name, expected in HOST_SOURCE_HASHES.items():
-        raw = (workspace / name).read_bytes()
+    for name, expected in hashes.items():
+        path = workspace / name
+        if path.is_symlink() or path.is_junction():
+            raise ValueError(f"Horizon native panel source must be an ordinary file: {name}")
+        raw = path.read_bytes()
         if hashlib.sha256(raw).hexdigest() != expected:
             raise ValueError(f"Horizon native panel source changed before JEI creative port: {name}")
         originals[name] = raw.decode("utf-8")
-    base = "crates/horizon-client/src/"
+    return originals
+
+
+def prepare_source(workspace: Path) -> None:
+    if (workspace / CREATIVE_SCREEN).exists():
+        updated = adapt_f00125f_host(read_host_files(workspace, F00125F_HOST_SHA256))
+    else:
+        updated = adapt_2ebf00a_host(read_host_files(workspace, HOST_SOURCE_HASHES))
+    for name, source in updated.items():
+        (workspace / name).write_text(source, encoding="utf-8", newline="\n")
+
+
+def adapt_f00125f_host(originals: dict[str, str]) -> dict[str, str]:
+    screen = originals[CREATIVE_SCREEN]
+    for anchor in (
+        "let browser_tip = self.draw_mod_browser(batch);",
+        "self.draw_mod_browser_tooltip(batch, tooltip);",
+    ):
+        if screen.count(anchor) != 1:
+            raise ValueError("Horizon Creative panel drawing or tooltip path changed")
+    focused = originals[FOCUSED_TEXT]
+    panel_text = "Screen::Inventory | Screen::Creative if self.mod_browser_typing() => {"
+    creative_text = "Screen::Creative if self.creative_screen.tab().search && !self.creative_ignore_text => {"
+    if focused.count(panel_text) != 1 or focused.count(creative_text) != 1 or focused.index(panel_text) > focused.index(creative_text):
+        raise ValueError("Horizon Creative focused field priority changed")
+    verify_text_routing(originals[RUNTIME_CONTROL], originals[IME],
+                        "Screen::Creative => self.creative_search_edit(Some(text)),")
+    panel = adapt_host_panel(originals[MODDING_PANEL], separate_tooltip=True)
+    # Empty JEI results keep their search field across a recipe refresh and on Back.
+    panel = replace_once(panel, "self.native_changed(self.searching && !self.sent.is_empty());",
+        'self.native_changed((self.searching || mod_id == "jei") && !self.sent.is_empty());')
+    panel = replace_once(panel, 'let filtering = mod_id == "recipes" && !self.sent.is_empty();',
+        'let filtering = matches!(mod_id, "recipes" | "jei") && !self.sent.is_empty();')
+    return {
+        CLIENT + "game.rs": adapt_creative_input(originals[CLIENT + "game.rs"]),
+        CREATIVE_SCREEN: adapt_creative_screen(screen),
+        PLAY_KEYS: adapt_creative_close(originals[PLAY_KEYS]),
+        MODDING_PANEL: panel,
+        MODDING_RECIPES: adapt_host_recipes(originals[MODDING_RECIPES]),
+        PAD_MENU: adapt_pad_search(originals[PAD_MENU]),
+    }
+
+
+def adapt_2ebf00a_host(originals: dict[str, str]) -> dict[str, str]:
+    base = CLIENT
     updated = {
         base + "game.rs": adapt_host_game(originals[base + "game.rs"]),
         base + "game/native_panel.rs": adapt_host_panel(originals[base + "game/native_panel.rs"]),
@@ -168,26 +277,12 @@ def prepare_source(workspace: Path) -> None:
     text = replace_once(text, '            Screen::Inventory if self.mod_browser_typing() => {',
         '            screen if self.mod_browser_typing() && (screen == Screen::Inventory || (screen == Screen::Creative && self.jei_panel_owner())) => {')
     updated[base + "game/native_text_field.rs"] = text
-    pad = originals[base + "game/pad_menu.rs"]
-    updated[base + "game/pad_menu.rs"] = replace_once(pad,
-        '        } else if self.screen == Screen::Creative && self.creative_screen.tab().search {',
-        '        } else if self.screen == Screen::Creative && self.creative_screen.tab().search && !(self.jei_panel_owner() && self.mod_browser_typing()) {')
+    updated[base + "game/pad_menu.rs"] = adapt_pad_search(originals[base + "game/pad_menu.rs"])
     # 2ebf already has correct Creative text/backspace and IME admission and
     # priority. Validate these author paths; no additional rewrite is needed.
-    control = originals[base + "game/control.rs"]
-    if control.count('Screen::Inventory | Screen::Creative if self.mod_browser_typing() => {') != 2:
-        raise ValueError("Horizon Creative text/backspace paths changed")
-    ime = originals[base + "game/ime.rs"]
-    for anchor in (
-        'Screen::Creative => self.mod_browser_typing() || self.creative_screen.tab().search,',
-        'Screen::Inventory | Screen::Creative if self.mod_browser_typing() => {',
-    ):
-        if ime.count(anchor) != 1:
-            raise ValueError("Horizon Creative IME path changed")
-    if ime.index('Screen::Inventory | Screen::Creative if self.mod_browser_typing() => {') > ime.index('Screen::Creative => self.creative_search_edit(Some(&text)),'):
-        raise ValueError("Horizon Creative IME field priority changed")
-    for name, source in updated.items():
-        (workspace / name).write_text(source, encoding="utf-8", newline="\n")
+    verify_text_routing(originals[base + "game/control.rs"], originals[base + "game/ime.rs"],
+                        "Screen::Creative => self.creative_search_edit(Some(&text)),")
+    return updated
 
 
 def adapt_glue(source: str) -> str:
@@ -264,13 +359,109 @@ def adapt_runtime(source: str) -> str:
     /// The player changed the language: rewrite the strings of the next page.''')
 
 
-def apply(bundle: Path) -> None:
-    for name, expected in SOURCE_HASHES.items():
-        if hashlib.sha256((bundle / name).read_bytes()).hexdigest() != expected:
-            raise ValueError(f"Unexpected JEI for Horizon 0.1.0 source: {name}")
-    updated = {
-        "glue.rs": adapt_glue((bundle / "glue.rs").read_text(encoding="utf-8")),
-        "runtime.rs": adapt_runtime((bundle / "runtime.rs").read_text(encoding="utf-8")),
+def adapt_f00125f_glue(source: str) -> str:
+    source = replace_once(source,
+        '''    NativePanelEvent, NativeRecipeKind, NativeRecipeLayout, NativeRecipeStack, NativeRecipeView,
+    NativeRecipes, NativeStack,
+};''', '''    NativeRecipeKind, NativeRecipeLayout, NativeRecipeResult, NativeRecipeStack,
+    NativeRecipeView, NativeRecipes, PanelEvent as NativePanelEvent,
+};
+use mod_api::{Stack as NativeStack, __private::{item_key, item_key_id}};''')
+    for before, after in (
+        ("native_known_recipes()", "known_recipes()"),
+        ("native_setting(", "setting("),
+        ("native_give(", "recipe_give("),
+        ("native_place_recipe(", "place_recipe("),
+    ):
+        source = source.replace(before, after)
+    source = replace_once(source, "game.native_panel_items(jei::ID, panel_stacks(stacks));",
+                          "game.panel_items(jei::ID, to_native(stacks)?);")
+    source = replace_once(source, "                to_native(tabs),\n", "                to_native(tabs)?,\n")
+    source = replace_once(source, "                views.into_iter().map(native_view).collect(),",
+                          "                views.into_iter().map(native_view).collect::<Result<_, _>>()?,")
+    start = source.index("/// The game's stacks.")
+    end = source.index("fn native_view", start)
+    source = source[:start] + '''/// Resolve the exact list without changing the indices passed back by the panel.
+fn to_native(stacks: Vec<Stack>) -> Result<Vec<NativeStack>, String> {
+    stacks.into_iter().map(|s| {
+        let item = item_key(&s.item).ok_or_else(|| format!("Unknown item {}", s.item))?;
+        Ok(NativeStack { item, count: s.count, components: s.components })
+    }).collect()
+}
+
+''' + source[end:]
+    source = replace_once(source, "fn native_view(view: View) -> NativeRecipeView {\n    NativeRecipeView {",
+        '''fn native_view(view: View) -> Result<NativeRecipeView, String> {
+    // The previous viewer's result stacks were alternatives in a single slot.
+    let stacks = to_native(view.results)?;
+    let results = if stacks.is_empty() { Vec::new() } else {
+        vec![NativeRecipeResult { stacks, chance: None }]
+    };
+    Ok(NativeRecipeView {''')
+    source = replace_once(source,
+        '''        slots: view.slots.into_iter().map(to_native).collect(),
+        results: to_native(view.results),
+        note: view.note,
+        action: view.action,
     }
+}''', '''        slots: view.slots.into_iter().map(to_native).collect::<Result<_, _>>()?,
+        results,
+        fluid_inputs: Vec::new(),
+        fluid_outputs: Vec::new(),
+        note: view.note,
+        action: view.action,
+    })
+}''')
+    for name in ("Key", "SlotClicked"):
+        # The guards on the exact original files make both replacements unambiguous.
+        anchor = f"}} => Event::{name} {{"
+        start = source.index(anchor)
+        end = source.index("\n        },", start)
+        source = source[:start] + replace_once(source[start:end], "stack: stack_of(stack),",
+                                                "stack: stack_of(stack)?,") + source[end:]
+    return replace_once(source, '''fn stack_of(stack: &NativeStack) -> Stack {
+    Stack {
+        item: stack.item.clone(),
+        count: stack.count,
+        components: stack.components.clone(),
+    }
+}''', '''fn stack_of(stack: &NativeStack) -> Option<Stack> {
+    Some(Stack {
+        item: item_key_id(stack.item)?.to_owned(),
+        count: stack.count,
+        components: stack.components.clone(),
+    })
+}''')
+
+
+def adapt_f00125f_bundle(originals: dict[str, str], updated: dict[str, str]) -> None:
+    updated["glue.rs"] = adapt_f00125f_glue(updated["glue.rs"])
+    for name in ("command.rs", "settings.rs", "click.rs"):
+        updated[name] = originals[name].replace("native_setting(", "setting(").replace("native_set_setting(", "set_setting(")
+    for name in ("event.rs", "horizon-mixin.toml"):
+        updated[name] = replace_once(originals[name], "native_hooks::NativePanelEvent", "native_hooks::PanelEvent")
+    prefix = "horizon_client::game::native_hooks::"
+    manifest = updated["horizon-mixin.toml"]
+    for name in ("command", "panel_event"):
+        manifest = replace_once(manifest, f"{prefix}Game<'_>::native_{name}",
+                                 f"{prefix}legacy::Game<'_>::legacy_{name}")
+    updated["horizon-mixin.toml"] = manifest
+
+
+def apply(bundle: Path, *, revision: str | None = None) -> None:
+    hashes = SOURCE_HASHES | F00125F_BUNDLE_SHA256 if revision == F00125F_REVISION else SOURCE_HASHES
+    originals = {}
+    for name, expected in hashes.items():
+        path = bundle / name
+        raw = path.read_bytes()
+        if path.is_symlink() or path.is_junction() or hashlib.sha256(raw).hexdigest() != expected:
+            raise ValueError(f"Unexpected JEI for Horizon 0.1.0 source: {name}")
+        originals[name] = raw.decode("utf-8")
+    updated = {
+        "glue.rs": adapt_glue(originals["glue.rs"]),
+        "runtime.rs": adapt_runtime(originals["runtime.rs"]),
+    }
+    if revision == F00125F_REVISION:
+        adapt_f00125f_bundle(originals, updated)
     for name, source in updated.items():
         (bundle / name).write_text(source, encoding="utf-8", newline="\n")

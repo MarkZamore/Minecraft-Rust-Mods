@@ -311,7 +311,7 @@ def overlaps(records):
     }
 
 
-def prepare_plan_input(row, source, destination):
+def prepare_plan_input(row, source, destination, horizon_revision):
     data = source.read_bytes()
     if len(data) != row["file"]["size"] or sha256(data) != row["file"]["sha256"]:
         raise ValueError(f"Unchecked native bundle for planning: {row['id']}")
@@ -336,20 +336,20 @@ def prepare_plan_input(row, source, destination):
                     # exact source pin in this disposable copy for the probe.
                     text = payload.decode("utf-8")
                     needle = r'(?m)^(\s*horizon_revision\s*=\s*")' + pins[1] + r'(")'
-                    text, count = re.subn(needle, lambda match: match[1] + HORIZON_REVISION + match[2], text)
+                    text, count = re.subn(needle, lambda match: match[1] + horizon_revision + match[2], text)
                     if count != 1:
                         raise ValueError(f"Cannot establish repin for {row['id']}")
                     payload = text.encode("utf-8")
                 output.write_bytes(payload)
 
 
-def probe_case(work, workspace, mixins, rows, env):
+def probe_case(work, workspace, mixins, rows, env, horizon_revision):
     with tempfile.TemporaryDirectory(dir=work) as directory:
         case = pathlib.Path(directory)
         inputs = case / "mods"
         inputs.mkdir()
         for row in rows:
-            prepare_plan_input(row, work / "archives" / (row["file"]["sha256"] + ".hnmod"), inputs)
+            prepare_plan_input(row, work / "archives" / (row["file"]["sha256"] + ".hnmod"), inputs, horizon_revision)
         run = subprocess.run([str(mixins), "plan", "--workspace", str(workspace), "--mods", str(inputs),
                               "--out", str(case / "plan.json")], capture_output=True, encoding="utf-8",
                              env=env, timeout=180, check=False)
@@ -412,7 +412,8 @@ def main():
 
     input_bytes = LOCK.read_bytes()
     lock = json.loads(input_bytes)
-    if lock["horizonRevision"] != HORIZON_REVISION or lock["schemaVersion"] != 1:
+    horizon_revision = lock["horizonRevision"]
+    if not re.fullmatch(r"[a-f0-9]{40}", horizon_revision) or lock["schemaVersion"] != 1:
         raise ValueError("Wrong native game revision or lock schema")
     if args.command == "plan":
         workspace = args.workspace.resolve(strict=True)
@@ -425,7 +426,7 @@ def main():
                 env["GIT_DIR"] = str(args.revision_git_dir.resolve(strict=True))
             revision = subprocess.run(["git", "-C", str(workspace), "rev-parse", "HEAD"], env=env,
                                       capture_output=True, text=True, check=True).stdout.strip()
-        if revision != HORIZON_REVISION:
+        if revision != horizon_revision:
             raise ValueError("Wrong prepared Horizon revision")
         rows = {row["id"]: row for row in lock["projects"] if row["kind"] == "native-mod"}
         cases = [case.split(",") for case in args.case]
@@ -435,7 +436,7 @@ def main():
         def run_case(case):
             try:
                 return probe_case(args.work.resolve(strict=True), workspace, args.mixins.resolve(strict=True),
-                                  [rows[mod_id] for mod_id in case], env)
+                                  [rows[mod_id] for mod_id in case], env, horizon_revision)
             except (ValueError, OSError, subprocess.TimeoutExpired) as error:
                 return {"mods": case, "harnessError": str(error)}
         results = []
@@ -443,7 +444,7 @@ def main():
             for result in workers.map(run_case, cases):
                 results.append(result)
                 print(json.dumps(result, ensure_ascii=False), flush=True)
-        write_json(args.result, {"schemaVersion": 1, "horizonRevision": HORIZON_REVISION, "cases": results})
+        write_json(args.result, {"schemaVersion": 1, "horizonRevision": horizon_revision, "cases": results})
         return any("harnessError" in case for case in results)
     args.work.mkdir(parents=True, exist_ok=True)
     cache = args.work / "archives"
@@ -470,7 +471,7 @@ def main():
     failures.sort(key=lambda record: record["id"])
     write_json(args.work / "archive-inspection.json", {
         "schemaVersion": 1,
-        "horizonRevision": HORIZON_REVISION,
+        "horizonRevision": horizon_revision,
         "verified": records,
         "failed": failures,
         "overlaps": overlaps(records),

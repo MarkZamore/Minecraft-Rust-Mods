@@ -26,6 +26,7 @@ HORIZON_VERSION = "nightly-2026-11-07-2ebf00a"
 RUST = "1.98.1"
 MIXINS_REPO = "https://github.com/horizon-rust/horizon-mixins"
 MIXINS_REVISION = "e8cd0aa38cffef49cb2e088ef716baa107148c02"
+WINDOWS_TARGET = "x86_64-pc-windows-msvc"
 EXE = ".exe" if os.name == "nt" else ""
 ATLAS_RUNTIME_SHA256 = "58d3a1bdd2d6ce7bb840d96cb727dc261a0d8fdb8e11e912e16c29c7f4171dac"
 
@@ -51,11 +52,18 @@ def run(args, env, *, capture=False):
 
 def build_recipe_sha():
     sources = [RECIPE, TOOLS / "orbital_controls.py", TOOLS / "orbital_world_guard.py", TOOLS / "physics_title_compat.py", TOOLS / "jei_compat.py", TOOLS / "spider_compat.py", TOOLS / "server_seed_compat.py",
-               TOOLS / "multiplayer_warning.py", *(TOOLS / "orbital_compat").rglob("*")]
+               TOOLS / "multiplayer_warning.py", TOOLS / "legacy_native_hooks.py", TOOLS / "legacy_native_hooks.rs",
+               TOOLS / "materialize_game_modules.rs", TOOLS / "mixins_tool.py",
+               TOOLS / "mixins-contained-rust-paths.patch",
+               TOOLS / "direct_hook_relocations.py",
+               TOOLS / "tectonic_compat.py",
+               TOOLS / "camera_compat.py", TOOLS / "inventory_compat.py", TOOLS / "placement_input_compat.py",
+               TOOLS / "elytra_compat.py", TOOLS / "negotiated_native_mods.py", TOOLS / "legacy_payload_commit.rs",
+               *(TOOLS / "orbital_compat").rglob("*")]
     files = {}
     for path in sources:
         if path.is_symlink() or path.is_junction():
-            raise ValueError(f"Linked file in Orbital compatibility recipe: {path.name}")
+            raise ValueError(f"Linked file in native build recipe: {path.name}")
         if path.is_file() and "__pycache__" not in path.parts:
             files[path.relative_to(ROOT).as_posix()] = sha(path)
     return hashlib.sha256(json.dumps(files, sort_keys=True).encode("ascii")).hexdigest()
@@ -129,6 +137,8 @@ def patch_server_atlas(bundle):
 
 
 def unpack_inputs(rows, archives, work, revision):
+    from legacy_native_hooks import REVISION, route_bundle_source, route_manifest
+
     native_bundles = work / "mixins-input"
     native_bundles.mkdir()
     content = work / "content"
@@ -173,13 +183,16 @@ def unpack_inputs(rows, archives, work, revision):
             patch_server_atlas(bundle)
         if row["id"] == "horizon_physics":
             from physics_title_compat import apply as apply_physics_title
-            apply_physics_title(bundle)
+            apply_physics_title(bundle, revision=revision)
         if row["id"] == "orbital":
             from orbital_compat import apply
-            apply(bundle)
+            apply(bundle, revision=revision)
         if row["id"] == "jei":
             from jei_compat import apply as apply_jei
-            apply_jei(bundle)
+            apply_jei(bundle, revision=revision)
+        if row["id"] == "elytratrails":
+            from elytra_compat import apply as apply_elytra
+            apply_elytra(bundle, revision=revision)
         manifest = bundle / "horizon-mixin.toml"
         text = manifest.read_text(encoding="utf-8")
         parsed = tomllib.loads(text)
@@ -190,6 +203,19 @@ def unpack_inputs(rows, archives, work, revision):
         text, count = revision_line.subn(lambda match: f'{match[1]}"{revision}"', text)
         if count != 1:
             raise ValueError(f"Cannot bind {row['id']} to the selected probe revision")
+        if revision == REVISION:
+            try:
+                text = route_manifest(text)
+                if row["id"] == "tectonic_horizon":
+                    from tectonic_compat import route_manifest as route_tectonic
+                    text = route_tectonic(text)
+                for source in bundle.rglob("*.rs"):
+                    original = source.read_text(encoding="utf-8")
+                    patched = route_bundle_source(original)
+                    if patched != original:
+                        source.write_text(patched, encoding="utf-8", newline="\n")
+            except ValueError as error:
+                raise ValueError(f"{row['id']} {row['version']}: {error}") from error
         manifest.write_text(text, encoding="utf-8", newline="\n")
     return native_bundles
 
@@ -236,8 +262,8 @@ def tree_hash(root):
 
 
 def restore_partial_source(base, work, revision):
-    from multiplayer_warning import EDITION_ACTION, PACK_ACTION, TITLE
-    from server_seed_compat import SOURCE, adapt
+    from multiplayer_warning import EDITION_ACTION, PACK_ACTION, SET_MODE_ACTION, SET_MODE_EDITION_ACTION, TITLE
+    from server_seed_compat import OFFICIAL_SOURCE, SOURCE, adapt, adapt_official
 
     source = work / "source"
     if (work.is_symlink() or work.is_junction() or not work.is_dir()
@@ -270,14 +296,49 @@ def restore_partial_source(base, work, revision):
         known = None
         if name == SOURCE:
             known = adapt(original.decode("utf-8")).encode("utf-8")
+        elif name == OFFICIAL_SOURCE:
+            known = adapt_official(original)
         elif name == TITLE and original.count(EDITION_ACTION) == 1:
             known = original.replace(EDITION_ACTION, PACK_ACTION.encode("utf-8"))
+        elif name == TITLE and original.count(SET_MODE_EDITION_ACTION) == 1:
+            known = original.replace(SET_MODE_EDITION_ACTION, SET_MODE_ACTION.encode("utf-8"))
         if known is None or (source / name).read_bytes() != known:
             raise ValueError(f"Resume source contains an unreviewed change: {name}")
         changes[name] = original
 
     for name, original in changes.items():
         (source / name).write_bytes(original)
+
+
+def inject_latest_packaged_content(stage):
+    from legacy_native_hooks import replace_once
+
+    game = stage / "crates/horizon-client/src/game.rs"
+    mods = stage / "crates/horizon-client/src/game/modding/mods/mod.rs"
+    selection = stage / "crates/horizon-mod-package/src/selection.rs"
+    game_text = replace_once(game.read_text(encoding="utf-8"),
+        "    options.mods.native = Arc::new(native);",
+        '''    let installed = std::env::current_exe()?.with_file_name("horizon-mods");
+    let mut packaged = horizon_mod_package::find(&installed);
+    packaged.retain(|path| path.is_file());
+    packaged.append(&mut options.mods.dev);
+    options.mods.dev = packaged;
+    options.mods.native = Arc::new(native);''')
+    mods_text = replace_once(mods.read_text(encoding="utf-8"),
+        "            Ok(_) if source.content_only => {\n                content_mods.push(",
+        '            Ok(_) if source.content_only => {\n'
+        '                log::info!("LANMinecraft content mod accepted: {} {}", m.id, m.version);\n'
+        '                content_mods.push(')
+    selection_text = replace_once(selection.read_text(encoding="utf-8"),
+        '''    let mut paths = find(&game_dir.join(DIR));
+    paths.extend(find(&game_dir.join(NATIVE_DIR)));
+    paths.retain(|path| !dev.contains(path));
+    paths.extend(dev.iter().cloned());''',
+        '''    let mut paths = dev.to_vec();
+    paths.extend(find(&game_dir.join(DIR)).into_iter().filter(|path| !dev.contains(path)));
+    paths.extend(find(&game_dir.join(NATIVE_DIR)).into_iter().filter(|path| !dev.contains(path)));''')
+    for path, contents in ((game, game_text), (mods, mods_text), (selection, selection_text)):
+        path.write_text(contents, encoding="utf-8", newline="\n")
 
 
 def inject_packaged_content(stage):
@@ -325,17 +386,34 @@ def inject_packaged_content(stage):
     hooks.write_text(source.replace(anchor, replacement), encoding="utf-8", newline="\n")
 
 
-def build_runtime(stage, package, output, env):
+def build_runtime(stage, package, output, env, target_arguments):
     run(["cargo", "build", "--locked", "--offline", "--release", "--manifest-path", stage / "Cargo.toml",
-         "-p", package, "--bin", "horizon-client"], env)
-    target = Path(env["CARGO_TARGET_DIR"]) / "release"
+         "-p", package, "--bin", "horizon-client", *target_arguments], env)
+    target = Path(env["CARGO_TARGET_DIR"])
+    if target_arguments:
+        target /= WINDOWS_TARGET
     output.mkdir(exist_ok=True)
     executable = output / ("horizon-client" + EXE)
     pending = executable.with_suffix(".pending")
     if pending.exists():
         raise ValueError("Unexpected pending client from a previous build")
-    shutil.copyfile(target / executable.name, pending)
+    shutil.copyfile(target / "release" / executable.name, pending)
     pending.replace(executable)
+
+
+def materialize_game_modules(source, env):
+    # Rust discovers these modules through OUT_DIR. The mixin planner reads source without Cargo.
+    name = "lanminecraft_materialize_modules"
+    crate = source / "crates/horizon-mod-api-gen"
+    entry = crate / "examples" / (name + ".rs")
+    entry.parent.mkdir(exist_ok=True)
+    with entry.open("xb") as file:
+        file.write((TOOLS / "materialize_game_modules.rs").read_bytes())
+    try:
+        run(["cargo", "run", "--manifest-path", crate / "Cargo.toml", "--locked", "--offline",
+             "--release", "--example", name, "--", source.resolve()], env)
+    finally:
+        entry.unlink()
 
 
 def apply_mixins(source, bundles, stage, mixins, env):
@@ -351,6 +429,7 @@ def apply_mixins(source, bundles, stage, mixins, env):
 
 
 def execute(args):
+    from legacy_native_hooks import REVISION, prepare_source as prepare_legacy_hooks, prepare_wheel
     from multiplayer_warning import prepare_source as prepare_multiplayer_menu, verify_prepared_source
 
     input_bytes = INPUT_LOCK.read_bytes()
@@ -388,12 +467,17 @@ def execute(args):
         from server_seed_compat import prepare_source as prepare_server_policy
         prepare_server_policy(source)
         prepare_multiplayer_menu(source)
+        if lock["horizonRevision"] == REVISION:
+            prepare_legacy_hooks(source)
         if "horizon_physics" in ids:
             from physics_title_compat import prepare_source as prepare_physics_source
             prepare_physics_source(source)
         if "spider_man" in ids:
             from spider_compat import prepare_source as prepare_spider_source
             prepare_spider_source(source)
+        if lock["horizonRevision"] == REVISION and "tectonic_horizon" in ids:
+            from tectonic_compat import prepare_source as prepare_tectonic_source
+            prepare_tectonic_source(source)
         if "jei" in ids:
             from jei_compat import prepare_source as prepare_jei_source
             prepare_jei_source(source)
@@ -401,55 +485,91 @@ def execute(args):
             from orbital_compat import prepare_source as prepare_orbital_source
             from orbital_controls import apply as apply_orbital_controls
             from orbital_world_guard import apply as apply_orbital_world_guard
-            prepare_orbital_source(source)
+            prepare_orbital_source(source, revision=lock["horizonRevision"])
+            orbital = rows["orbital"]
+            if lock["horizonRevision"] == REVISION and orbital["version"] == "0.5.17":
+                from orbital_compat import prepare_latest_source as prepare_latest_orbital
+                prepare_latest_orbital(source)
             apply_orbital_controls(source)
             apply_orbital_world_guard(source)
+        if lock["horizonRevision"] == REVISION:
+            prepare_wheel(source)
     env = os.environ.copy()
     env.pop("HORIZON_MOD_API_INJECTIONS", None)
+    latest = lock["horizonRevision"] == REVISION
+    if latest:
+        from mixins_tool import REVISION as pinned_mixins_revision
+        version_name = "nightly-2026-11-19-f00125f"
+        nightly = "2026-11-19 f00125f"
+        rust_version = "1.99.1"
+        mixins_revision = pinned_mixins_revision
+        package = "horizon-game"
+        target_arguments = ["--target", WINDOWS_TARGET]
+    else:
+        version_name, nightly = HORIZON_VERSION, "2026-11-07 2ebf00a"
+        rust_version, mixins_revision = RUST, MIXINS_REVISION
+        package = "horizon-client"
+        target_arguments = []
     env.update(CARGO_TARGET_DIR=str(args.target), RUSTFLAGS="-C target-feature=+crt-static",
-               HORIZON_VERSION=HORIZON_VERSION, HORIZON_NIGHTLY="2026-11-07 2ebf00a")
+               HORIZON_VERSION=version_name, HORIZON_NIGHTLY=nightly)
     version = run(["rustc", "--version"], env, capture=True).stdout.split()
-    if version[1] != RUST:
-        raise ValueError(f"The reviewed toolchain uses Rust {RUST}")
-    mixins = args.mixins_root / "bin" / ("horizon-mixins" + EXE)
-    if not mixins.is_file():
-        run(["cargo", "install", "--locked", "--git", MIXINS_REPO, "--rev", MIXINS_REVISION,
-             "--root", args.mixins_root, "horizon-mixins-cli"], env)
-    installed = tomllib.loads((args.mixins_root / ".crates.toml").read_text(encoding="utf-8"))["v1"]
-    if not any(package.startswith("horizon-mixins-cli ") and package.endswith(f"#{MIXINS_REVISION})")
-               and mixins.name in executables for package, executables in installed.items()):
-        raise ValueError("The cached horizon-mixins tool comes from a different revision")
+    if version[1] != rust_version:
+        raise ValueError(f"The reviewed toolchain uses Rust {rust_version}")
+    if latest:
+        from mixins_tool import sdk_tool
+        mixins, sdk_identity = sdk_tool(source, args.mixins_root, EXE, env)
+    else:
+        mixins = args.mixins_root / "bin" / ("horizon-mixins" + EXE)
+        if not mixins.is_file():
+            run(["cargo", "install", "--locked", "--git", MIXINS_REPO, "--rev", mixins_revision,
+                 "--root", args.mixins_root, "horizon-mixins-cli"], env)
+        installed = tomllib.loads((args.mixins_root / ".crates.toml").read_text(encoding="utf-8"))["v1"]
+        if not any(tool.startswith("horizon-mixins-cli ") and tool.endswith(f"#{mixins_revision})")
+                   and mixins.name in executables for tool, executables in installed.items()):
+            raise ValueError("The cached horizon-mixins tool comes from a different revision")
     stage = args.work / "stage"
     evidence = {"schemaVersion": 1, "inputLockSha256": sha(INPUT_LOCK), "horizonRevision": lock["horizonRevision"],
-                "steamOverlayRecipeSha256": recipe, "mixinsRevision": MIXINS_REVISION, "mixinsSha256": sha(mixins),
-                "conflictDecisionsSha256": sha(DECISIONS), "buildRecipeSha256": build_recipe_sha(), "rust": RUST,
-                "rustFlags": env["RUSTFLAGS"], "ids": ids, "package": "horizon-client"}
+                "steamOverlayRecipeSha256": recipe, "mixinsRevision": mixins_revision, "mixinsSha256": sha(mixins),
+                "conflictDecisionsSha256": sha(DECISIONS), "buildRecipeSha256": build_recipe_sha(), "rust": rust_version,
+                "rustFlags": env["RUSTFLAGS"], "ids": ids, "package": package}
+    if latest:
+        evidence["mixinsTool"] = sdk_identity
     if args.build_prepared:
         prepared = load(args.work / "build.json")
         if (any(prepared[key] != value for key, value in evidence.items()) or
                 prepared["stageTreeSha256"] != tree_hash(stage) or
-                prepared["contentTreeSha256"] != tree_hash(args.work / "content")):
+                prepared["contentTreeSha256"] != tree_hash(args.work / "content") or
+                (latest and prepared["compiledNativeTreeSha256"] != tree_hash(args.work / "compiled-native"))):
             raise ValueError("The source or content differs from the verified prepared stage")
         evidence["mixins"] = prepared["mixins"]
     else:
         bundles = unpack_inputs(selected, args.archives, args.work, lock["horizonRevision"])
+        if latest:
+            materialize_game_modules(source, env)
         evidence["mixins"] = apply_mixins(source, bundles, stage, mixins, env)
-        inject_packaged_content(stage)
+        if latest:
+            inject_latest_packaged_content(stage)
+            from negotiated_native_mods import install_source as install_native_mods, stage_packages
+            install_native_mods(stage, selected)
+            stage_packages(args.work, selected, mixins_revision)
+        else:
+            inject_packaged_content(stage)
         verify_downloaded_lock(source / "Cargo.lock", stage / "Cargo.lock")
     evidence["cargoLockSha256"] = sha(stage / "Cargo.lock")
+    if latest:
+        evidence["compiledNativeTreeSha256"] = tree_hash(args.work / "compiled-native")
     evidence["multiplayerMenuActionSha256"] = verify_prepared_source(stage)
-    package = evidence["package"]
     build = args.build or args.build_prepared
     post_build = stage / "native-post-build.json"
     if args.check or build:
         run(["cargo", "check", "--locked", "--offline", "--release", "--manifest-path", stage / "Cargo.toml",
-             "-p", package, "--bin", "horizon-client"], env)
+             "-p", package, "--bin", "horizon-client", *target_arguments], env)
         evidence["compileCheck"] = True
     if build:
         if post_build.is_file() and load(post_build):
             raise ValueError("Selected mods require post-build execution; review their exact scripts before a release build")
         output = args.work / "runtime"
-        build_runtime(stage, package, output, env)
+        build_runtime(stage, package, output, env, target_arguments)
         evidence["clientSha256"] = sha(output / ("horizon-client" + EXE))
     else:
         evidence["stageTreeSha256"] = tree_hash(stage)

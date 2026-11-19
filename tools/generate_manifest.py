@@ -11,7 +11,7 @@ import tempfile
 import zipfile
 
 from inspect_mods import content_file
-from multiplayer_warning import PACK_ACTION_SHA256
+from multiplayer_warning import expected_action_sha256
 from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
 from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE, presentation, verify_environment_evidence
 
@@ -57,7 +57,8 @@ def accepted_build(candidate):
     if (approval["receiptSha256"] != sha(path) or build["compileCheck"] is not True or
             build["inputLockSha256"] != sha(INPUT_LOCK) or build["conflictDecisionsSha256"] != sha(DECISIONS) or
             build["buildRecipeSha256"] != build_recipe_sha() or
-            build.get("multiplayerMenuActionSha256") != PACK_ACTION_SHA256 or selection.get("schemaVersion") != 1 or
+            build.get("multiplayerMenuActionSha256") != expected_action_sha256(build["horizonRevision"]) or
+            selection.get("schemaVersion") != 1 or
             selection.get("inputLockSha256") != sha(INPUT_LOCK) or selection.get("ids") != build["ids"]):
         raise ValueError("Build receipt does not match the accepted mod inputs and build")
     return build, approval

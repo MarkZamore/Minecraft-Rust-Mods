@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import zipfile
@@ -56,31 +57,66 @@ def main():
     for name, data in (("sway.rs", sway), ("shader.rs", shader)):
         if hashlib.sha256(data).hexdigest() != recipe.SOURCE_HASHES[name]:
             raise ValueError(f"Unexpected Physics source: {name}")
-    sway = recipe.adapt_sway(sway.decode("utf-8"))
-    shader = shader.decode("utf-8").replace("    displaced: bool,\n)", "    displaced: bool,\n    api: horizon_shader_api::Api,\n)")
-    shader = shader.replace("    vertex: bool,\n    displaced: bool,", "    vertex_flags: (bool, bool),")
-    shader = shader.replace("shader_source(source, tags, materials, vertex, displaced)", "shader_source(source, tags, materials, vertex_flags, api)")
     gfx = workspace / "crates/horizon-client-render/src/gfx"
     material_raw = (gfx / "native_material.rs").read_bytes()
-    if hashlib.sha256(material_raw).hexdigest() != recipe.MATERIAL_SHA256:
+    material_sha = hashlib.sha256(material_raw).hexdigest()
+    latest = material_sha == recipe.LATEST_MATERIAL_SHA256
+    if not latest and material_sha != recipe.MATERIAL_SHA256:
         raise ValueError("Unexpected Horizon material source")
+    adapt_sway = recipe.adapt_latest_sway if latest else recipe.adapt_sway
+    sway = adapt_sway(sway.decode("utf-8"))
+    shader = recipe.adapt_shader(shader.decode("utf-8"), latest=latest)
     material = material_raw.decode("utf-8")
     constants = material[material.index('const PREFIX:'):material.index('/// The surface target')]
     constants = constants[:constants.index('/// What the material\'s displaced pipeline')] + constants[constants.index('/// terrain.wgsl\'s terrain section'):]
+    if latest:
+        constants += material[material.index('const LIT_MARKS:'):material.index("/// The terrain shader for the pack")]
     body = material[material.index('fn shader_source('):material.index('/// The material\'s naga module')]
     body = body.replace('fn shader_source(', 'pub fn shader_source(', 1)
     prefix = (gfx / "wgsl_prefix.rs").read_text(encoding="utf-8").split("#[cfg(test)]")[0]
-    prefix = prefix.replace('include_str!("../terrain.wgsl")', 'include_str!(r"' + str(gfx.parent / "terrain.wgsl") + '")')
+    def absolute_include(match):
+        path = (gfx / match[1]).resolve(strict=True)
+        path.relative_to(workspace)
+        return f'include_str!(r"{path}")'
+
+    prefix = re.sub(r'include_str!\("(\.\./[^"]+)"\)', absolute_include, prefix)
     displacement = (gfx / "displace.rs").read_text(encoding="utf-8")
     displacement = displacement[displacement.index('pub const RELIEF:'):displacement.index('pub const RELIEF:') + len(displacement)]
     # These two const strings are before the renderer's following Rust types.
     end = displacement.index('\n";', displacement.index('pub const GRID:')) + len('\n";')
     displacement = displacement[:end]
     post = (gfx / "native_post.rs").read_text(encoding="utf-8")
-    post = post[post.index('pub fn line_helpers('):post.index('/// 0.2\'s decoding copy:')]
+    line_end = "/// The decoding copy:" if latest else "/// 0.2's decoding copy:"
+    post = post[post.index('pub fn line_helpers('):post.index(line_end)]
     source = Path(__file__).with_name("PhysicsShaderCompatTests.rs").read_text(encoding="utf-8")
+    gamma = '"return horizon_physics_surface(in.layer, in.position, in.light, in.lightmap, in.hp_open, vec4(horizon_line_out(out.rgb), out.a));"'
+    if latest:
+        looks = (gfx / "looks.rs").read_text(encoding="utf-8")
+        fixture = {
+            "API_IMPORT": "",
+            "LOOKS": looks[looks.index("pub const LOOK_WGSL:"):looks.index("/// A mesh's quad", looks.index("pub const LOOK_WGSL:"))],
+            "COLOR_CASES": '[(false, "gamma"), (true, "linear")]',
+            "MANIFEST_VARIANT": 'if color { sway::BUILTIN_MANIFEST.to_owned() + "\\n[frame]\\nblend = \\"linear\\"\\n" } else { sway::BUILTIN_MANIFEST.to_owned() }',
+            "FLAGS": "(false, false, stage.shaded_tint(), stage.light_source(), stage.lit_tint())",
+            "MATERIAL_INPUT": "stage.source.clone() + LOOK_WGSL",
+            "EXPECTED": ('if color { "return vec4(horizon_line_in(hp_gamma.rgb), hp_gamma.a);" } else { ' + gamma + " }"),
+            "CHECK_GAMMA": "!color",
+            "PATCH_COLOR": ", color",
+        }
+    else:
+        fixture = {
+            "API_IMPORT": "use horizon_shader_api::Api;",
+            "LOOKS": "",
+            "COLOR_CASES": '[(Api::V0_1, "0.1"), (Api::V0_2, "0.2")]',
+            "MANIFEST_VARIANT": r'sway::BUILTIN_MANIFEST.replace("api = \"0.1\"", &format!("api = \"{name}\""))',
+            "FLAGS": "(false, false)",
+            "MATERIAL_INPUT": "stage.source.clone()",
+            "EXPECTED": gamma,
+            "CHECK_GAMMA": "color == Api::V0_2",
+            "PATCH_COLOR": "",
+        }
     for key, value in {"SWAY": sway, "SHADER": shader, "PREFIX": prefix, "DISPLACE": displacement,
-                       "LINE": post, "MATERIAL": constants + body}.items():
+                       "LINE": post, "MATERIAL": constants + body, **fixture}.items():
         source = source.replace("/* " + key + " */", value)
     (work / "src").mkdir(exist_ok=True)
     (work / "src/main.rs").write_text(source, encoding="utf-8")
@@ -100,7 +136,8 @@ naga = { path = ''' + json.dumps(str(naga).replace("\\", "/")) + ''' }
     env.pop("RUSTFLAGS", None)
     env["CARGO_TARGET_DIR"] = str(work / "target")
     try:
-        result = subprocess.run(["cargo", "run", "--offline", "--manifest-path", str(work / "Cargo.toml")],
+        cargo = ["cargo", "+1.99.1"] if latest else ["cargo"]
+        result = subprocess.run([*cargo, "run", "--offline", "--manifest-path", str(work / "Cargo.toml")],
                                 text=True, encoding="utf-8", capture_output=True, env=env)
         if result.returncode:
             print(result.stderr[-12000:])
@@ -108,11 +145,11 @@ naga = { path = ''' + json.dumps(str(naga).replace("\\", "/")) + ''' }
         print(result.stdout)
         (work / "result.json").write_text(json.dumps({
             "status": "PASS", "summary": result.stdout.strip(), "actualGPU": "NOT RUN",
-            "shaderSourceSha256": recipe.MATERIAL_SHA256,
+            "shaderSourceSha256": material_sha,
             "swaySourceSha256": recipe.SOURCE_HASHES["sway.rs"],
             "recipeSha256": hashlib.sha256(Path(recipe.__file__).read_bytes()).hexdigest(),
             "cargoLockSha256": hashlib.sha256((work / "Cargo.lock").read_bytes()).hexdigest(),
-            "naga": "30.0.1 (author's third_party/naga patch)", "api": ["0.1", "0.2"],
+            "naga": "30.0.1 (author's third_party/naga patch)", "api": ["gamma", "linear"] if latest else ["0.1", "0.2"],
         }, indent=2) + "\n", encoding="utf-8")
     finally:
         cleanup_generated(work)

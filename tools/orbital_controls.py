@@ -4,13 +4,16 @@ import hashlib
 
 
 SETTINGS = "crates/horizon-client-render/src/settings.rs"
-SETTINGS_SHA256 = "02c85ee6ec89e807e6f7fb6c9d8e5d611e7deafcff7bc70358d69710bced7419"
+SETTINGS_SHA256 = {
+    "02c85ee6ec89e807e6f7fb6c9d8e5d611e7deafcff7bc70358d69710bced7419",
+    "28b134798a22f7803422b13362d1527f7c3340346859acdded88d69206484eed",
+}
 
 
 def apply(stage):
     path = stage / SETTINGS
     original = path.read_bytes()
-    if hashlib.sha256(original).hexdigest() != SETTINGS_SHA256:
+    if hashlib.sha256(original).hexdigest() not in SETTINGS_SHA256:
         raise ValueError(f"Orbital controls overlay source has changed: {SETTINGS}")
     source = original.decode("utf-8")
     changes = (

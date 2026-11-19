@@ -6,6 +6,10 @@ from pathlib import Path
 
 SOURCE = "crates/horizon-client/src/game/world_loading.rs"
 SOURCE_SHA256 = "dd00d259b4b8115ffd7c07c7c2f0ac6923ca6a6cbc882fe72e53f8ae33c9fee9"
+WORLD_SOURCE = "crates/horizon-client/src/game/world/world_loading.rs"
+WORLD_SOURCE_SHA256 = "d691848d0fedf80125241125d6ffda7b108d7840000aaa086c3ba6bd978fc6ef"
+BACKUP_SOURCE = "crates/horizon-client/src/title/world_management.rs"
+BACKUP_SOURCE_SHA256 = "a75f390ceec6b3311b627a0680d3144a3a4c871eb4eda8c939e8f2e137760e56"
 LOCK = "        let session_lock = horizon_client::save::SessionLock::acquire(&save_root)?;\n"
 EARLY = "        let create = create.as_ref();\n"
 REQUEST = "pub(super) struct WorldRequest {"
@@ -80,16 +84,26 @@ CHECK = '''        // Integrated servers set options.dedicated for compatibility
 '''
 
 
-def patch(raw: bytes) -> bytes:
-    if hashlib.sha256(raw).hexdigest() != SOURCE_SHA256:
+def patch(raw: bytes, *, split_world: bool = False) -> bytes:
+    expected = WORLD_SOURCE_SHA256 if split_world else SOURCE_SHA256
+    if hashlib.sha256(raw).hexdigest() != expected:
         raise ValueError("Horizon world-loading source changed before the Orbital save guard")
     source = raw.decode("utf-8")
     if source.count(LOCK) != 1 or source.count(REQUEST) != 1 or source.count(EARLY) != 1:
         raise ValueError("Horizon world-loading anchors changed")
-    source = source.replace(REQUEST, GUARD + REQUEST).replace(EARLY, EARLY + CHECK)
+    guard = GUARD
+    if split_world:
+        guard = guard.replace("let size = world_management::backup", "let (_, size) = world_management::backup")
+    source = source.replace(REQUEST, guard + REQUEST).replace(EARLY, EARLY + CHECK)
     return source.encode("utf-8")
 
 
 def apply(game_source: Path) -> None:
     target = game_source / SOURCE
-    target.write_bytes(patch(target.read_bytes()))
+    split_world = not target.exists()
+    if split_world:
+        target = game_source / WORLD_SOURCE
+        backup = game_source / BACKUP_SOURCE
+        if hashlib.sha256(backup.read_bytes()).hexdigest() != BACKUP_SOURCE_SHA256:
+            raise ValueError("Horizon world backup changed before the Orbital save guard")
+    target.write_bytes(patch(target.read_bytes(), split_world=split_world))
