@@ -207,7 +207,8 @@ def verify_backup_acceptance(report, build):
 def verify_server_policy_acceptance(report, build, *, base_repo=None):
     if base_repo is None:
         raise ValueError("Server Escape acceptance requires the explicit pinned --base-repo checkout")
-    from native_notice_acceptance import source_proof
+    from native_notice_acceptance import shared_modules, source_proof
+    base_repo = pathlib.Path(base_repo).resolve(strict=True)
     proof = source_proof(base_repo, build, published=True)
     arguments = report.get("launchArguments", [])
     harness_flags = {"--control", "--control-socket", "--frames", "--world-frames", "--benchmark",
@@ -217,8 +218,7 @@ def verify_server_policy_acceptance(report, build, *, base_repo=None):
             report.get("buildReceiptSha256") != load(ROOT / "tools/build-lock.json")["receiptSha256"] or
             report.get("nativeRuntime") != load(ROOT / "portable-pack.json")["nativeRuntime"] or
             report.get("status") != "PASS" or len(arguments) != 6 or report.get("fixtureRemoved") is not True or
-            report.get("desktopKeyProtocol") != "edition-server-list-qa/checkpoint-v1" or
-            report.get("desktopKeyHelperSha256") != proof["desktopKeyHelperSha256"] or
+            report.get("nativeTitleKeyHelperSha256") != proof["desktopKeyHelperSha256"] or
             report.get("processExitCodes") != [0] * len(arguments) or
             report.get("ordinaryLaunch") is not True or
             any(not run or any(arg.split("=", 1)[0] in harness_flags for arg in run) for run in arguments)):
@@ -231,10 +231,14 @@ def verify_server_policy_acceptance(report, build, *, base_repo=None):
             not re.fullmatch(r"[0-9a-f]{64}", before) or
             manual.get("afterSha256") != before):
         raise ValueError("Release needs no automatic public rows and byte-preserved manual servers.dat through restart")
-    verify_saved_server_views(report)
+    with shared_modules(base_repo):
+        title_keys = module_at(base_repo / "tools/server_list_qa.py")
+        if report.get("nativeTitleKeyProtocol") != title_keys.TITLE_KEY_ROUTE:
+            raise ValueError("Server Escape must pass through native title keyboard dispatch")
+        verify_saved_server_views(report, title_keys.verify_native_title_keys)
 
 
-def verify_saved_server_views(report):
+def verify_saved_server_views(report, verify_native_title_keys):
     """Require actual UI observations for both views, not just an empty new file."""
     from smoke_server_policy import EXISTING_OPTIONS
 
@@ -298,27 +302,8 @@ def verify_saved_server_views(report):
                     observation.get("savedButtonEnabled") is not (mode == "steam") or
                     observation.get("serversDatSha256") != expected_sha):
                 raise ValueError("Server UI changed its view, hid saved rows or rewrote NBT during an action")
-        verify_server_desktop_key(actual.get("desktopKeys", []), index + 1, run["arguments"][0])
-
-
-def verify_server_desktop_key(events, run, executable):
-    def positive(value):
-        return isinstance(value, int) and not isinstance(value, bool) and value > 0
-
-    if not isinstance(events, list) or len(events) != 1:
-        raise ValueError("Each ordinary server-view run needs its real desktop Escape action")
-    request, ack = events[0].get("request", {}), events[0].get("acknowledgement", {})
-    created, performed = request.get("createdUnixMs"), ack.get("performedUnixMs")
-    if (request.get("id") != f"run-{run}-key-1" or request.get("action") != "press_key" or
-            request.get("key") != "Escape" or type(request.get("run")) is not int or request["run"] != run or
-            not positive(request.get("processId")) or request.get("timeoutMs") != 120_000 or
-            pathlib.PureWindowsPath(request.get("executable", "")) != pathlib.PureWindowsPath(executable) or
-            request.get("title") != presentation()["name"] or not positive(created) or not positive(performed) or
-            not created <= performed <= created + 120_000 or ack.get("status") != "PASS" or
-            ack.get("id") != request["id"] or not positive(ack.get("processId")) or
-            ack["processId"] != request["processId"] or
-            ack.get("key") != "Escape"):
-        raise ValueError("Desktop Escape was not acknowledged in time for this exact owned client/window/run")
+        verify_native_title_keys(actual.get("nativeTitleKeys"), index + 1, run["arguments"][0],
+                                 presentation()["name"], ("escape",))
 
 
 def describe(candidate, *, base_repo=None):

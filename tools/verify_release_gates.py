@@ -144,15 +144,15 @@ def verify(candidate, base_repo):
            lambda value: value["legacyUpgrade"].update(afterSha256="0" * 64, bytePreserved=False))
     reject("Manual unknown NBT fields were lost", server_check, server_policy,
            lambda value: value["manualRestart"].update(unknownFieldsPreserved=False))
-    reject("Server Escape has no actual desktop acknowledgement", server_check, server_policy,
-           lambda value: value["runs"][0]["serverView"].update(desktopKeys=[]))
+    reject("Server Escape has no native title dispatch acknowledgement", server_check, server_policy,
+           lambda value: value["runs"][0]["serverView"].update(nativeTitleKeys=[]))
     reject("Server Escape was serviced by another unaccepted helper source", server_check, server_policy,
-           lambda value: value.update(desktopKeyHelperSha256="0" * 64))
+           lambda value: value.update(nativeTitleKeyHelperSha256="0" * 64))
     reject("Server Escape acknowledgement belongs to another process", server_check, server_policy,
-           lambda value: value["runs"][0]["serverView"]["desktopKeys"][0]["acknowledgement"].update(processId=0))
+           lambda value: value["runs"][0]["serverView"]["nativeTitleKeys"][0]["acknowledgement"].update(processId=0))
     reject("Server Escape acknowledgement arrived after the owned checkpoint expired", server_check, server_policy,
-           lambda value: value["runs"][0]["serverView"]["desktopKeys"][0]["acknowledgement"].update(
-               performedUnixMs=value["runs"][0]["serverView"]["desktopKeys"][0]["request"]["createdUnixMs"] + 120_001))
+           lambda value: value["runs"][0]["serverView"]["nativeTitleKeys"][0].update(
+               receivedUnixMs=value["runs"][0]["serverView"]["nativeTitleKeys"][0]["request"]["createdUnixMs"] + 120_001))
     reject("Native notice fullscreen was not observed", notice_check, native_notices,
            lambda value: value["checks"].update(actualFullscreenVisibleNotice="NOT RUN"))
     reject("Native notice heartbeat belongs to another process", notice_check, native_notices,

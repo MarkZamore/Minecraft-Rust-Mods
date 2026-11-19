@@ -164,7 +164,7 @@ def wait_ui(control, predicate, label, seconds=30):
         time.sleep(0.08)
 
 
-def server_view(control, file, expected_names, desktop_keys):
+def server_view(control, file, expected_names, native_keys):
     """Observe actual native view buttons/rows; never click a server or join it."""
     initial = file.read_bytes() if file.exists() else None
     options = file.with_name("options.txt")
@@ -235,19 +235,17 @@ def server_view(control, file, expected_names, desktop_keys):
     open_multiplayer("reopen-after-back")
     control("click", "saved-servers")
     snapshot("saved-before-escape", "saved")
-    # The ordinary title screen intentionally rejects native control `key`.
-    # A real desktop input action must target this owned client's window.
-    desktop_keys.press("Escape")
+    native_keys.press("escape")
     title()
     unchanged()
     open_multiplayer("reopen-after-escape")
     return {"status": "PASS", "expectedSavedRows": list(expected_names), "observations": observed,
             "backToTitle": True, "escapeToTitle": True, "bytePreserved": True,
-            "desktopKeys": desktop_keys.evidence, "multiplayerEntries": multiplayer_entries}
+            "nativeTitleKeys": native_keys.evidence, "multiplayerEntries": multiplayer_entries}
 
 
-def ordinary_launch(client, controller, resources, qa, game, index, action, desktop_keys_class,
-                    key_requests, expected_title):
+def ordinary_launch(client, controller, resources, qa, game, index, action, native_keys_class,
+                    expected_title):
     endpoint = qa / f"control-{index}.json"
     log = qa / f"client-{index}.log"
     if endpoint.exists() or log.exists():
@@ -294,8 +292,8 @@ def ordinary_launch(client, controller, resources, qa, game, index, action, desk
             if any(row.get("id") == "continue" for row in ui["widgets"]):
                 smoke_startup.exercise(control, qa)
             servers = control("servers")["servers"]
-            desktop_keys = desktop_keys_class(key_requests, process, client, expected_title, index)
-            observed = action(control, desktop_keys)
+            native_keys = native_keys_class(control, process, client, expected_title, index)
+            observed = action(control, native_keys)
             control("quit", timeout=20)
             if process.wait(timeout=45) != 0:
                 raise RuntimeError(f"Client exited with code {process.returncode}; see {log}")
@@ -356,20 +354,16 @@ def verify(args):
     descriptor = load(args.candidate / "portable-pack.json")
     environment = environment_policy(args.candidate)
     presentation = load(args.candidate / "native/presentation.json")
-    desktop_helper = args.base_repo / "tools/server_list_qa.py"
-    ordinary(desktop_helper, directory=False)
-    desktop_helper_hash = sha(desktop_helper)
-    # Share Edition's tested real-desktop input handshake rather than invent a
-    # second protocol. Importing the helper does not execute its CLI or a client.
+    title_key_helper = args.base_repo / "tools/server_list_qa.py"
+    ordinary(title_key_helper, directory=False)
+    title_key_helper_hash = sha(title_key_helper)
+    # Share Edition's native title dispatch evidence against its pinned source.
     sys.path.insert(0, str(args.base_repo / "tools"))
     try:
-        desktop_keys_class = module_at(desktop_helper).DesktopKeys
+        title_keys = module_at(title_key_helper)
     finally:
         sys.path.pop(0)
     qa, owner = new_qa(args.qa, args.run_owner)
-    key_requests = args.ui_key_requests or qa / "desktop-keys"
-    if not key_requests.is_relative_to(qa) or key_requests.exists():
-        raise ValueError("Use a new desktop-key request directory inside this fresh QA output")
     report = {"schemaVersion": 1, "status": "RUNNING", "clientSha256": client_hash,
               **environment, "environmentApplications": [],
               "nativeRuntime": descriptor["nativeRuntime"], "buildReceiptSha256": sha(receipt_file),
@@ -377,8 +371,8 @@ def verify(args):
               "methodology": "Six ordinary starts; fresh, reconstructed legacy and custom manual NBT byte comparison",
               "ordinaryLaunch": True, "launchArguments": [], "processExitCodes": [],
               "controlVia": "technical horizon-extras.txt agentControl:true; HORIZON_CONTROL endpoint",
-              "desktopKeyProtocol": "edition-server-list-qa/checkpoint-v1",
-              "desktopKeyHelperSha256": desktop_helper_hash,
+              "nativeTitleKeyProtocol": title_keys.TITLE_KEY_ROUTE,
+              "nativeTitleKeyHelperSha256": title_key_helper_hash,
               "runs": []}
     game = qa / "game"
     try:
@@ -388,8 +382,8 @@ def verify(args):
 
         def run(index, names):
             result = ordinary_launch(client_file, args.controller, args.resources, qa, game, index,
-                                     lambda control, desktop_keys: server_view(control, file, names, desktop_keys),
-                                     desktop_keys_class, key_requests, presentation["name"])
+                                     lambda control, native_keys: server_view(control, file, names, native_keys),
+                                     title_keys.NativeTitleKeys, presentation["name"])
             report["runs"].append(result)
             report["launchArguments"].append(result["arguments"])
             report["processExitCodes"].append(result["exitCode"])
@@ -479,8 +473,8 @@ def verify(args):
             "reopenDefaultsSteam": True, "bytesUnchanged": True,
         }
         if (sha(client_file) != client_hash or sha(receipt_file) != report["buildReceiptSha256"]
-                or sha(desktop_helper) != desktop_helper_hash):
-            raise ValueError("The accepted client, build receipt or desktop-key helper changed during the policy probe")
+                or sha(title_key_helper) != title_key_helper_hash):
+            raise ValueError("The accepted client, build receipt or native title key helper changed during the policy probe")
         report["status"] = "PASS"
     except BaseException as error:
         report["status"] = "FAIL"
@@ -508,8 +502,6 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("base-repo", "candidate", "controller", "resources", "qa"):
         parser.add_argument("--" + name, required=True, type=lambda value: Path(os.path.abspath(value)))
-    parser.add_argument("--ui-key-requests", type=lambda value: Path(os.path.abspath(value)),
-                        help="new request directory inside --qa; defaults to qa/desktop-keys")
     parser.add_argument("--run-owner", help="optional exact owner check against the active RUN.json")
     args = parser.parse_args()
     print(json.dumps(verify(args), ensure_ascii=False, indent=2))
