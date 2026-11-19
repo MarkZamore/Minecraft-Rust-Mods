@@ -325,10 +325,21 @@ def inject_latest_packaged_content(stage):
     options.mods.dev = packaged;
     options.mods.native = Arc::new(native);''')
     mods_text = replace_once(mods.read_text(encoding="utf-8"),
+        "        let candidate = ContentMod {\n            id: m.id.clone(),",
+        "        let has_files = !content.is_empty();\n        let candidate = ContentMod {\n            id: m.id.clone(),")
+    mods_text = replace_once(mods_text,
         "            Ok(_) if source.content_only => {\n                content_mods.push(",
         '            Ok(_) if source.content_only => {\n'
         '                log::info!("LANMinecraft content mod accepted: {} {}", m.id, m.version);\n'
         '                content_mods.push(')
+    mods_text = replace_once(mods_text,
+        '            Ok(_) => {}\n            Err(e) => log::warn!("Horizon: mod {} content not loaded: {e}", m.id),',
+        '            Ok(_) => {\n'
+        '                if has_files {\n'
+        '                    log::info!("LANMinecraft native mod content accepted: {} {}", m.id, m.version);\n'
+        '                }\n'
+        '            }\n'
+        '            Err(e) => log::warn!("Horizon: mod {} content not loaded: {e}", m.id),')
     selection_text = replace_once(selection.read_text(encoding="utf-8"),
         '''    let mut paths = find(&game_dir.join(DIR));
     paths.extend(find(&game_dir.join(NATIVE_DIR)));

@@ -18,7 +18,7 @@ from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE
 
 
 WORLD = "RustModsSmoke"
-CONTENT = re.compile(r"LANMinecraft content mod accepted: ([A-Za-z0-9_-]+) ([^\s]+)")
+CONTENT = re.compile(r"LANMinecraft (?:content mod|native mod content) accepted: ([A-Za-z0-9_-]+) ([^\s]+)")
 NATIVE = re.compile(r"LANMinecraft native mod registered: ([A-Za-z0-9_-]+)")
 TECTONIC_PATH = re.compile(r"^\[Tectonic-Horizon\] (.+?): .+; using defaults$", re.MULTILINE)
 CONTENT_ITEMS = {"deepbore_quarry": "deepbore_quarry:quarry",
@@ -121,8 +121,9 @@ def smoke(args):
         control("options", "mods")
         widgets = control("ui")
         if args.startup_only and smoke_orbital.ID in expected_native:
+            label = f"Orbital Laser {projects[smoke_orbital.ID]['version']}"
             for _ in range(12):
-                row = next((row for row in widgets["widgets"] if "Orbital Laser 0.5.9" in (row.get("label") or "")), None)
+                row = next((row for row in widgets["widgets"] if label in (row.get("label") or "")), None)
                 if row is not None:
                     widgets["orbitalRow"] = row
                     break
@@ -130,7 +131,7 @@ def smoke(args):
                 control("scroll-at", str(width / 2), str(height / 2), "-5")
                 widgets = control("ui")
             else:
-                raise ValueError("Orbital Laser 0.5.9 did not appear on the Windows Mods page")
+                raise ValueError(f"{label} did not appear on the Windows Mods page")
         control("click", "done")
         if args.startup_only:
             return None, widgets, None
@@ -222,11 +223,13 @@ def smoke(args):
         resources = args.resources if standalone is None else args.cache / "resources"
         if not args.startup_only:
             pause_menu = run_with_environment(client, args.controller, resources, args.qa, 3, pause_loopback)
+        smoke_environment_launches = environment_launches.copy()
         if args.previous_qa is not None:
             migration = smoke_previous_world.verify(run_with_environment, client, args.controller, resources,
                                                     args.previous_qa, standalone, expected_title)
             write(args.qa / "previous-world-migration.json", {
-                **migration, **environment, "environmentApplications": environment_launches,
+                **migration, **environment,
+                "environmentApplications": environment_launches[len(smoke_environment_launches):],
             })
     finally:
         for name, value in old_environment.items():
@@ -281,11 +284,11 @@ def smoke(args):
         probes.append({"id": "veinminer", "status": "PASS", "observation": f"/veinminer status replied {veinminer!r}."})
     write(args.qa / "native-probes.json", {
         "schemaVersion": 1, "clientSha256": receipt["clientSha256"], "results": probes,
-        **environment, "environmentApplications": environment_launches,
+        **environment, "environmentApplications": smoke_environment_launches,
     })
     write(args.qa / "smoke.json", {
         "schemaVersion": 1, "clientSha256": receipt["clientSha256"],
-        **environment, "environmentApplications": environment_launches,
+        **environment, "environmentApplications": smoke_environment_launches,
         "mode": "startup-menu" if args.startup_only else "gameplay",
         "reusedQaDirectory": args.retry_startup,
         "gameplay": "NOT RUN" if args.startup_only else "PASS",

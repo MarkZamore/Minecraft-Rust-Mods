@@ -97,9 +97,11 @@ class Client:
         return self.endpoint.is_file()
 
     def __call__(self, *args, timeout=120):
-        reply = subprocess.run([str(self.controller), "--socket", str(self.endpoint), *map(str, args)],
-                               cwd=self.game, capture_output=True, encoding="utf-8",
-                               check=True, timeout=timeout)
+        reply = subprocess.run([str(self.controller), "--socket", str(self.endpoint),
+                                "--timeout", str(max(1, int(timeout))), *map(str, args)],
+                               cwd=self.game, capture_output=True, encoding="utf-8", timeout=timeout + 5)
+        if reply.returncode:
+            raise RuntimeError(f"{args!r} failed for {self.root.name}: {reply.stderr.strip() or reply.stdout.strip()}")
         value = json.loads(reply.stdout)
         if isinstance(value, dict) and "error" in value:
             raise RuntimeError(value["error"])
@@ -550,12 +552,10 @@ def orbital(host, guest, concurrent_effects=False):
     else:
         guest("wait", "90")
     during = {"host": frame(host, "strike"), "guest": frame(guest, "strike")}
-    guest("wait", "460", timeout=150)
-    changed = smoke_orbital.sample(host, points)
-    if any(a == b for a, b in zip(expected, changed, strict=True)):
-        raise AssertionError(f"Guest Orbital did not change server terrain: {changed}")
-    until(lambda: smoke_orbital.sample(guest, points) == changed,
-          "Server terrain edits did not reach guest", 20)
+    changed = smoke_orbital.wait_for_crater(host, points, expected)
+    guest_changed = smoke_orbital.wait_for_crater(guest, points, expected)
+    if guest_changed != changed:
+        raise AssertionError(f"Guest terrain does not match server terrain: {guest_changed!r} != {changed!r}")
     tail = host.log.read_bytes()[log_offset:].decode("utf-8", errors="replace")
     applied = [line for line in tail.splitlines() if "[mod orbital] remote visual applied" in line]
     if not applied:
