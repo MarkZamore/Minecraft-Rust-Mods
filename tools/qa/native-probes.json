@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
+  "results": [
+    {
+      "id": "dynamic_fps_for_rust",
+      "status": "PASS",
+      "observation": "The client created game/config/dynamic-fps-for-rust.json with focused_fps and idle_fps."
+    },
+    {
+      "id": "veinminer",
+      "status": "PASS",
+      "observation": "/veinminer status replied 'Veinminer: on'."
+    }
+  ],
+  "environmentPolicy": "pack-presentation-defaults-v1",
+  "environmentDefaults": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "environmentApplications": [
+    {
+      "index": 1,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "bootstrap"
+    },
+    {
+      "index": 2,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "bootstrap"
+    },
+    {
+      "index": 3,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "direct-client",
+      "effectiveEnvironmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "environmentDefaultOrigins": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "default"
+      }
+    }
+  ]
+}

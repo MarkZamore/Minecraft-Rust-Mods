@@ -1,0 +1,68 @@
+{
+  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
+  "oldManifestRevision": "580f83cc07700d3e1cd38152bcdba99cd92d5488",
+  "oldClientSha256": "bc6d6378636f5737b3d3efea5802ce78d22fe30a391563f2d4c1b4e459eec068",
+  "oldBlocks": [
+    "deepbore_quarry:quarry",
+    "wayfarer_stones:wayfarer_stone",
+    "wayfarer_stones:wayfarer_stone_top",
+    "minecraft:gold_block"
+  ],
+  "newBlocks": [
+    "minecraft:air",
+    "minecraft:air",
+    "minecraft:air",
+    "minecraft:gold_block"
+  ],
+  "points": [
+    [
+      -2,
+      120,
+      -7
+    ],
+    [
+      0,
+      120,
+      -7
+    ],
+    [
+      0,
+      121,
+      -7
+    ],
+    [
+      2,
+      120,
+      -7
+    ]
+  ],
+  "backupMembersVerified": 30,
+  "backupSha256": "68e8e2d7482f6433f36bcd3c150a1e304988cc0cda09d9139e9582290a43985c",
+  "backupSizeBytes": 8422445,
+  "backupsAfterReopen": 1,
+  "environmentPolicy": "pack-presentation-defaults-v1",
+  "environmentDefaults": {
+    "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+  },
+  "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+  "environmentApplications": [
+    {
+      "index": 5,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "bootstrap"
+    },
+    {
+      "index": 6,
+      "environmentPolicy": "pack-presentation-defaults-v1",
+      "environmentDefaults": {
+        "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
+      },
+      "presentationSha256": "b10a11ecd70a00a76b5ca61105e9688ea810c834f22d75f9e06fec8ed0899e76",
+      "environmentApplication": "bootstrap"
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "inputLockSha256": "e4a958c04934b2354b324cf7fee9a0b0082dfc258002940bf65f82d83a8c1503",
-  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
-  "steamOverlayRecipeSha256": "4decabee42e09fa5a66f7279a87e4f5e3cffda5a47e85fbac839506a1645fed0",
-  "mixinsRevision": "e8cd0aa38cffef49cb2e088ef716baa107148c02",
-  "mixinsSha256": "ad910673c669a724b79341f532b731a367eef6ad31f30c76760092b46bbc31da",
-  "conflictDecisionsSha256": "f76a3178535913ab94b8076efa507162de5fdf954e7e0e54e1e944956bd0fc9a",
-  "buildRecipeSha256": "ff277f2e6a8ca10e9852a130469cf1d8e0065354b26cb381e993aacfef178eb5",
-  "rust": "1.98.1",
+  "inputLockSha256": "f3ae29d211e4f7582ad06b635e9d12f520938d0dafe8d520014c869e8c4217e3",
+  "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
+  "steamOverlayRecipeSha256": "7220b810fa25b84bc43a5c9ae94ba611bc9b6da951e7e53fb7f2145c18af2b98",
+  "mixinsRevision": "e59da9094f0c2fdda6c627fe9eff22dec6a906f0",
+  "mixinsSha256": "ebefd69135a5e2d3d7c45b65738b70d7d11f138e5e1b1879162f216c5535523e",
+  "conflictDecisionsSha256": "cd97f092d9e0a56cee3d71f22b1d99e3feec2c7ca969d76437566eac66b72be9",
+  "buildRecipeSha256": "e55e08cc81c775f61605fed366a589d4dbb88648ac668133fe74d2f5d9c84443",
+  "rust": "1.99.1",
   "rustFlags": "-C target-feature=+crt-static",
   "ids": [
     "accurate_block_placement",
@@ -48,16 +48,23 @@
     "waypoints",
     "zoom"
   ],
-  "package": "horizon-client",
+  "package": "horizon-game",
+  "mixinsTool": {
+    "revision": "e59da9094f0c2fdda6c627fe9eff22dec6a906f0",
+    "archiveSha256": "5ee6da27c822fc3c1b8258618b8de68356dbee8df8f7dc0b7493b8d96620710d",
+    "horizonPatchSha256": "52eaeef7cac10d894066635dc46b12f76d877416317f06eaf385f176de5e1c35",
+    "modulePathPatchSha256": "69090d4d3f0d8d84166e89cb26cac5994b0989a6fc7f263ef53ba868380f1bcb"
+  },
   "mixins": {
-    "injections": 275,
-    "modules": 74,
+    "injections": 269,
+    "modules": 73,
     "crates": 3,
     "bridges": 0,
     "states": 0
   },
-  "cargoLockSha256": "865f43f3c2cfc3c405c26e19e68ffa3a1cd3179bcad8f15591cd3c48b93a743c",
-  "multiplayerMenuActionSha256": "a3806de38ed8ed8efd53780932bb2cb216232f5a42850d020662394c48907b9d",
+  "cargoLockSha256": "dc92391c7d29908d86a6cbbec1bf17444149e4cd542ab31238caad16df0863e7",
+  "compiledNativeTreeSha256": "d1ac3a7a78762237be459a73733bd30fec86920256e61413ab5b0e8b929eba7a",
+  "multiplayerMenuActionSha256": "cd37c4c2718696f595f1efe4459a1cb85276cb8310d38cc05bc88939e022a20b",
   "compileCheck": true,
-  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16"
+  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a"
 }

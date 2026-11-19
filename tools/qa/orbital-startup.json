@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
+  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -44,12 +44,16 @@
   "mode": "gameplay",
   "reusedQaDirectory": false,
   "gameplay": "PASS",
-  "previousWorldMigration": "NOT RUN",
-  "previewSha256": "d8c70a19087898f12ed85271af3103a5a4513fa48a7ac460c02dc4c9eb4fb2f1",
+  "previousWorldMigration": "PASS",
+  "previewSha256": "c3c7f4a69e4298ae6ac2a6e99c80137a5e41fab902b7f877dc1acb2173b37c02",
   "loadedContent": [
     [
       "orbital",
-      "0.5.9"
+      "0.5.17"
+    ],
+    [
+      "zoom",
+      "3.0.3"
     ]
   ],
   "registeredNative": [
@@ -86,200 +90,112 @@
     "status_effect_hud",
     "tectonic_horizon",
     "toggle_sprint",
-    "waypoints",
-    "zoom"
+    "waypoints"
+  ],
+  "nativePackageContent": [
+    [
+      "orbital",
+      "0.5.17"
+    ],
+    [
+      "skins_3d",
+      "2.0.0"
+    ]
   ],
   "nativeNeedingDirectProbes": [
     "dynamic_fps_for_rust",
     "veinminer"
   ],
   "modsPage": {
-    "frame": 313,
+    "frame": 416,
     "gui_size": [
-      427.0,
-      240.0
+      480.0,
+      270.0
     ],
     "screen": "title",
     "widgets": [
       {
         "bounds": [
-          58.0,
-          37.0,
-          310.0,
+          141.0,
+          6.0,
+          50.0,
           20.0
         ],
         "enabled": true,
-        "id": "browse-mods",
+        "id": "a-z",
         "kind": "button",
-        "label": "Browse Mods..."
+        "label": "A-Z"
       },
       {
         "bounds": [
-          58.0,
-          62.0,
+          188.0,
+          212.0,
+          82.0,
+          20.0
+        ],
+        "enabled": false,
+        "id": "homepage",
+        "kind": "button",
+        "label": "Homepage"
+      },
+      {
+        "bounds": [
+          272.0,
+          212.0,
+          82.0,
+          20.0
+        ],
+        "enabled": false,
+        "id": "issues",
+        "kind": "button",
+        "label": "Issues"
+      },
+      {
+        "bounds": [
+          356.0,
+          212.0,
+          82.0,
+          20.0
+        ],
+        "enabled": false,
+        "id": "config",
+        "kind": "button",
+        "label": "Config"
+      },
+      {
+        "bounds": [
+          88.0,
+          243.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "appleskin-0-1-3",
+        "id": "open-mods-folder",
         "kind": "button",
-        "label": "AppleSkin 0.1.3: ON"
+        "label": "Open Mods Folder"
       },
       {
         "bounds": [
-          218.0,
-          62.0,
+          242.0,
+          243.0,
           150.0,
           20.0
         ],
         "enabled": true,
-        "id": "settings",
+        "id": "back",
         "kind": "button",
-        "label": "Settings"
+        "label": "Back"
       },
       {
         "bounds": [
-          58.0,
-          87.0,
-          150.0,
+          41.0,
+          6.0,
+          96.0,
           20.0
         ],
         "enabled": true,
-        "id": "accurate-block-placement-1-0-0",
-        "kind": "button",
-        "label": "Accurate Block Placement 1.0.0: ON"
-      },
-      {
-        "bounds": [
-          218.0,
-          87.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "settings-2",
-        "kind": "button",
-        "label": "Settings"
-      },
-      {
-        "bounds": [
-          58.0,
-          112.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "armor-status-1-0-0",
-        "kind": "button",
-        "label": "Armor Status 1.0.0: ON"
-      },
-      {
-        "bounds": [
-          218.0,
-          112.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "settings-3",
-        "kind": "button",
-        "label": "Settings"
-      },
-      {
-        "bounds": [
-          58.0,
-          137.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "armor-hud-1-0-0",
-        "kind": "button",
-        "label": "Armor HUD 1.0.0: ON"
-      },
-      {
-        "bounds": [
-          218.0,
-          137.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "settings-4",
-        "kind": "button",
-        "label": "Settings"
-      },
-      {
-        "bounds": [
-          58.0,
-          162.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "blockscope-0-3-1",
-        "kind": "button",
-        "label": "Blockscope 0.3.1: ON"
-      },
-      {
-        "bounds": [
-          218.0,
-          162.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "settings-5",
-        "kind": "button",
-        "label": "Settings"
-      },
-      {
-        "bounds": [
-          58.0,
-          187.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "chatheads-0-1-1",
-        "kind": "button",
-        "label": "ChatHeads 0.1.1: ON"
-      },
-      {
-        "bounds": [
-          218.0,
-          187.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "settings-6",
-        "kind": "button",
-        "label": "Settings"
-      },
-      {
-        "bounds": [
-          59.0,
-          213.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "open-mod-folder",
-        "kind": "button",
-        "label": "Open Mod Folder"
-      },
-      {
-        "bounds": [
-          217.0,
-          213.0,
-          150.0,
-          20.0
-        ],
-        "enabled": true,
-        "id": "done",
-        "kind": "button",
-        "label": "Done"
+        "id": "field-0",
+        "kind": "field"
       }
     ]
   },
@@ -289,7 +205,7 @@
         "commands": true,
         "corrupted": false,
         "folder": "RustModsSmoke",
-        "last_played": 1795000360725,
+        "last_played": 1795127531932,
         "mode": "survival",
         "name": "RustModsSmoke",
         "version": "26.3"
@@ -310,11 +226,11 @@
     },
     "input": {
       "counts": {
-        "agent": 108,
+        "agent": 107,
         "game": 0,
         "user": 0
       },
-      "events": 108,
+      "events": 107,
       "last_origin": "agent",
       "last_user_age_s": null,
       "recording": null,
@@ -333,16 +249,16 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        11,
+        9,
         137,
-        -12
+        19
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        11.5,
+        9.5,
         138.62000000476837,
-        -11.5
+        19.69999998807907
       ],
       "fall_flying": false,
       "flying": true,
@@ -354,12 +270,13 @@
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        11.5,
+        9.5,
         137.0,
-        -11.5
+        19.69999998807907
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
+      "shield_cooldown_shown": 0.0,
       "sneaking": false,
       "sprinting": false,
       "velocity": [
@@ -379,11 +296,11 @@
     "selected": 1,
     "sleeping": null,
     "swings": 0,
-    "ticks": 1124,
+    "ticks": 1433,
     "time": {
       "day": 1,
-      "day_time": 30018,
-      "time_of_day": 6018
+      "day_time": 30022,
+      "time_of_day": 6022
     },
     "using": null,
     "weather": {
@@ -406,11 +323,11 @@
     },
     "input": {
       "counts": {
-        "agent": 20,
+        "agent": 22,
         "game": 0,
         "user": 0
       },
-      "events": 20,
+      "events": 22,
       "last_origin": "agent",
       "last_user_age_s": null,
       "recording": null,
@@ -429,33 +346,34 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        11,
+        9,
         137,
-        -12
+        19
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        11.5,
+        9.5,
         138.62000000476837,
-        -11.5
+        19.69999998807907
       ],
       "fall_flying": false,
       "flying": true,
       "food": 20,
-      "fov_modifier": 1.0968711376190186,
+      "fov_modifier": 1.0980713367462158,
       "health": 20.0,
       "hurt_time": 0,
       "on_ground": false,
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        11.5,
+        9.5,
         137.0,
-        -11.5
+        19.69999998807907
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
+      "shield_cooldown_shown": 0.0,
       "sneaking": false,
       "sprinting": false,
       "velocity": [
@@ -475,11 +393,11 @@
     "selected": 1,
     "sleeping": null,
     "swings": 0,
-    "ticks": 18,
+    "ticks": 24,
     "time": {
       "day": 1,
-      "day_time": 30024,
-      "time_of_day": 6024
+      "day_time": 30037,
+      "time_of_day": 6037
     },
     "using": null,
     "weather": {
@@ -488,7 +406,7 @@
     },
     "world": "RustModsSmoke"
   },
-  "bootstrapSha256": "ace261a88a6a5438ede83e9571be2d1189ec7d950948d751460071af446b0c6d",
+  "bootstrapSha256": "9ad41d8b96070c55a04487f6e015d4431b0110e1b6b949ee0a871a963c6969c9",
   "windowTitle": "Minecraft Rust Mods",
   "persistedModItems": [
     "orbital:laser_designator"
@@ -499,9 +417,9 @@
     "after": "Player Reporting",
     "returnedToGame": true,
     "loopback": "PASS",
-    "localPort": 60584,
+    "localPort": 56810,
     "publicationChat": [
-      "This world is now open to LAN. The port number is 60584"
+      "This world is now open to LAN. The port number is 56810"
     ],
     "liveSteamPublication": "NOT RUN"
   },
@@ -511,25 +429,25 @@
     "runtimeRoundTrip": "PASS"
   },
   "timeToTitleSeconds": [
-    25.26,
-    6.06
+    48.42,
+    18.06
   ],
   "orbitalLaser": {
     "target": [
-      3,
+      1,
       116,
-      0
+      31
     ],
     "fixture": [
       [
-        3,
+        1,
         116,
-        0
+        31
       ],
       [
-        4,
+        2,
         113,
-        0
+        31
       ]
     ],
     "blocksBefore": [
@@ -550,49 +468,49 @@
       "gpu": "Intel(R) Arc(TM) B390 GPU",
       "backend": "Vulkan",
       "size": [
-        2560,
-        1440
+        1920,
+        1080
       ]
     },
     "frames": {
       "wheel": {
         "file": "orbital-wheel.png",
-        "sha256": "4d4d27eb88d854f6687e3f9673d67530453f07f1776baba539c1610dbdda29b1",
+        "sha256": "4689373881b96b44ea394289618402d710b48d54e5279ecaa9cd9778d9cd222d",
         "size": [
-          2560,
-          1440
+          1920,
+          1080
         ]
       },
       "baseline": {
         "file": "orbital-baseline.png",
-        "sha256": "dc2eef5371af066ce46d5f2f2020864cf63c5464e8fe6a4ac51dbe99c1091001",
+        "sha256": "e27d1d13c2e6b4615ba729772f1c1c8cf649e04f8507a610701de253f259a508",
         "size": [
-          2560,
-          1440
+          1920,
+          1080
         ]
       },
       "plasma": {
         "file": "orbital-plasma.png",
-        "sha256": "0fd68c84e7b112a33394e34f4e2e48587e4082c7951d3d4ee663a0cfc94a3939",
+        "sha256": "9951aa3133297a163fc46ce90cbdfec4eabf74e72f122a7f1a3c8f170cb26c43",
         "size": [
-          2560,
-          1440
+          1920,
+          1080
         ]
       },
       "hurricane": {
         "file": "orbital-hurricane.png",
-        "sha256": "7efc26f5a01fe8c5f1973fd7329d79ad5cca9c18a0cd905341f05f9f78d849d2",
+        "sha256": "e019d054d92299ab6bd6eb3526b1b004a03d7d0bf93b904961cf0d100fb896d0",
         "size": [
-          2560,
-          1440
+          1920,
+          1080
         ]
       },
       "crater": {
         "file": "orbital-crater.png",
-        "sha256": "058a9b50d066d04d282d38196f4c15b8cbba0a7e9f1576e1be621cd801c1faa2",
+        "sha256": "69a581176501d8e7629d4c8c81a116ee09652d9bc291d8bd23f78b073b22e421",
         "size": [
-          2560,
-          1440
+          1920,
+          1080
         ]
       }
     },
@@ -613,25 +531,25 @@
       {
         "laser": "plasma",
         "target": [
-          3,
+          1,
           116,
-          0
+          31
         ]
       },
       {
         "laser": "hurricane",
         "target": [
-          3,
+          1,
           116,
-          0
+          31
         ]
       },
       {
         "laser": "plasma",
         "target": [
-          3,
+          1,
           116,
-          0
+          31
         ]
       }
     ],
@@ -665,7 +583,7 @@
     ],
     "physicsQuickSetup": {
       "action": "Skip Setup",
-      "frameSha256": "14e597c4cee4ac7e2bd4941dbe3df784eadaaf2edd98c397d7a42a7e094bb69d"
+      "frameSha256": "35752fd8881122ed9e320d402ff9da267e29c8cd9e62828465f10afca972e38e"
     },
     "titleMouse": [
       "language",
@@ -690,6 +608,19 @@
         "system",
         "off"
       ]
+    }
+  },
+  "zoom": {
+    "key": "key.keyboard.z",
+    "baselineFov": 1.0,
+    "zoomFov": 0.16666671633720398,
+    "wheelFov": 0.13333335518836975,
+    "releasedFov": 0.9999999403953552,
+    "hotbarUnchanged": true,
+    "settingsRoundTrip": {
+      "level": "6",
+      "smooth": "true",
+      "sensitivity": "false"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "PASS",
-  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
+  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -43,24 +43,24 @@
   "world": "RustModsSmoke",
   "firstOpenBackup": "PASS",
   "reopenWithoutDuplicate": "PASS",
-  "sourceFilesSha256": "427ba499692099f5fb1b2c8eb61a0397ccbcb6ddaa0943804f99d14d4a9ef85a",
-  "sourceFilesVerified": 32,
-  "sourceSizeBytes": 12429543,
+  "sourceFilesSha256": "cbb70870207558097e55a0f097810d0d32fcb2196ebe1d079ead2a77f8d7dde5",
+  "sourceFilesVerified": 37,
+  "sourceSizeBytes": 12568357,
   "excludedSourceFiles": [
     "session.lock",
     ".lanminecraft-rust-mods-orbital-v1"
   ],
   "backup": {
-    "name": "2026-11-18_16-15-49_RustModsSmoke.zip",
-    "sizeBytes": 9240117,
-    "sha256": "648fc8d82ef1bc77d144b22170181676acda082267d2ac0d7e8dd3e1b0a020e6"
+    "name": "2026-11-20_03-33-45_RustModsSmoke.zip",
+    "sizeBytes": 9322930,
+    "sha256": "5b3a75910a686594be1f1fc23f91416cd8a9fcf9caa87f74e6632fa70b1dbe73"
   },
-  "backupMembersVerified": 32,
+  "backupMembersVerified": 37,
   "existingBackupFilesPreserved": 0,
   "newBackupsAfterReopen": 1,
   "markerRecreatedZeroBytes": true,
   "personalSettingsPreserved": 9,
-  "personalSettingsSha256": "a1055347dac1b4c6e277f0e84060f609ce8a07c482eea494aa002e0e3d7116af",
+  "personalSettingsSha256": "a48cb7570a03275eadfdebf478a9bb88d12c055283a850d4fb0a35e3ca14353a",
   "historicalRemovedRegistryMigration": "NOT RUN",
   "scope": "First-open guard and exact backup bytes; historical removed blocks were not tested."
 }
