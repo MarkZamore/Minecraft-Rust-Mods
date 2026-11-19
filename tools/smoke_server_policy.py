@@ -14,7 +14,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import shutil
 import struct
 import subprocess
 import sys
@@ -23,6 +22,7 @@ import time
 from native_build import load, module_at, sha, write
 from native_qa_environment import environment_policy, prepare_client_environment
 from smoke_backup_guard import ordinary
+from smoke_multiplayer import cleanup_game
 import smoke_startup
 
 
@@ -325,20 +325,12 @@ def new_qa(qa, run_owner):
     return qa, registration["owner"]
 
 
-def cleanup_profile(game, qa):
+def cleanup_profile(game, qa, resources):
     if game.parent != qa or game.name != "game":
         raise ValueError("Refusing cleanup outside this probe's new technical game directory")
     ordinary(qa, directory=True)
     ordinary(game, directory=True)
-    target = Path("\\\\?\\" + str(game)) if os.name == "nt" else game
-    for folder, directories, files in os.walk(target, topdown=True, followlinks=False):
-        for name in directories:
-            ordinary(Path(folder) / name, directory=True)
-        for name in files:
-            ordinary(Path(folder) / name, directory=False)
-    # The only directory removed is the profile created after new_qa refused
-    # every existing destination. Shared resources and candidate files stay out.
-    shutil.rmtree(target)
+    cleanup_game(game, qa, resources)
 
 
 def verify(args):
@@ -486,7 +478,7 @@ def verify(args):
         # and this compact receipt for the run owner's audit.
         try:
             if game.exists():
-                cleanup_profile(game, qa)
+                cleanup_profile(game, qa, args.resources)
             report["fixtureRemoved"] = True
         except Exception as error:
             report["status"] = "FAIL"
