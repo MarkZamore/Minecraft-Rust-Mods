@@ -170,6 +170,10 @@ def verify_native_notices(report, candidate, build, base_repo, *, published=True
             before.get("registeredNative") != sorted(smoke["registeredNative"]) or
             before.get("loadedContent") != sorted(smoke["loadedContent"])):
         raise ValueError("Native notices did not retain the accepted Mods inventory")
+    native_content = smoke.get("nativePackageContent")
+    if report.get("schemaVersion") == 2 and (not isinstance(native_content, list) or
+            before.get("nativePackageContent") != sorted(native_content)):
+        raise ValueError("Native notices did not retain the accepted compiled native package content")
     with shared_modules(base_repo) as contract:
         overlay = load(base_repo / "tools/overlay-receipt.json")
         arguments = (report, files, execution_context(candidate, build, proof), name)

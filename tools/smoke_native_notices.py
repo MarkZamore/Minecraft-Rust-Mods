@@ -38,7 +38,7 @@ def main():
     args = parser.parse_args()
     from generate_manifest import accepted_build
     from native_qa_environment import environment_policy
-    from smoke_runtime import CONTENT, NATIVE
+    from smoke_runtime import CONTENT, NATIVE, NATIVE_CONTENT
     import smoke_startup
     build, _ = accepted_build(args.candidate)
     proof = source_proof(args.base_repo, build, published=False)
@@ -50,7 +50,8 @@ def main():
     if smoke.get("clientSha256") != build["clientSha256"] or smoke.get("gameplay") != "PASS":
         raise ValueError("First save the exact Mods client's complete gameplay report")
     expected = sorted(smoke["registeredNative"])
-    expected_content = sorted(smoke["loadedContent"])
+    expected_content = set(map(tuple, smoke["loadedContent"]))
+    expected_native_content = set(map(tuple, smoke["nativePackageContent"]))
     inventories = []
     visible_widgets = []
 
@@ -73,11 +74,15 @@ def main():
             raise AssertionError("Native notices did not open the reviewed Mods screen")
         log = (session.qa / "client.log").read_text(encoding="utf-8", errors="replace")
         registered = sorted(set(NATIVE.findall(log)))
-        content = sorted([list(row) for row in set(CONTENT.findall(log))])
-        if registered != expected or content != expected_content:
+        native_content = set(NATIVE_CONTENT.findall(log))
+        # Orbital's asset companion now arrives from its compiled native package.
+        # Other native packages can also carry assets without a separate catalog entry.
+        content = set(CONTENT.findall(log)) | (native_content & expected_content)
+        if registered != expected or content != expected_content or native_content != expected_native_content:
             raise AssertionError("Native notices changed the accepted Mods inventory")
         # Fullscreen can expose more rows without changing the actual mod set.
-        evidence = {"registeredNative": registered, "loadedContent": content}
+        evidence = {"registeredNative": registered, "loadedContent": list(map(list, sorted(content))),
+                    "nativePackageContent": list(map(list, sorted(native_content)))}
         inventories.append(evidence)
         visible_widgets.append(ids)
         session.control("click", close)
