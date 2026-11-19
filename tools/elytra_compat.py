@@ -1,4 +1,4 @@
-"""Move ElytraTrails 0.1.1 colour synchronization onto Horizon's typed payloads."""
+"""Move ElytraTrails colour synchronization onto Horizon's typed payloads."""
 
 from hashlib import sha256
 from pathlib import Path
@@ -6,12 +6,18 @@ import re
 
 
 REVISION = "f00125f61f794aaa3d4e950d301f353b35b6ee3d"
-SOURCE_HASHES = {
+ORIGINAL_SOURCE_HASHES = {
     "core.rs": "70478db211731135132551b8a521b980770b4cdabd7ceb1c313126379b0438e0",
     "horizon-mixin.toml": "3853438480f6d93667d7cc4968b3367187a201e25946a251447040a0329624d4",
     "net.rs": "1db56cf608df7c6d8048b2665eeefce35098ea92609a398ffd09564610ea1c0e",
     "net_from_client.rs": "56dad1316e3beb7f2da17ab528b51d1a6f59083cfee042ca9e804da8847b2714",
     "net_from_server.rs": "e38dec3c739e4b2e79e8c21c94f0390642dce76435c45e4e02d2ef949457848e",
+}
+UPDATED_SOURCE_HASHES = {
+    **ORIGINAL_SOURCE_HASHES,
+    "core.rs": "14db7dd07d3022468e83fb88b5d3759b99505cefd5026ed0a7f1884e95a68adb",
+    "horizon-mixin.toml": "11a01cf04a1b4098839b43a2483f3a5927da55e023b094e36944f0c31618a90a",
+    "net.rs": "4b73786dfeab0bcd94e62cb63739ed183a403a1e0b2ab640ebb2523f8233beb4",
 }
 
 PAYLOAD_IMPORTS = """use mod_api::{
@@ -125,17 +131,26 @@ def replace_once(text: str, old: str, new: str) -> str:
     return text.replace(old, new)
 
 
-def verified_source(bundle: Path, name: str) -> str:
+def source_revision(bundle: Path) -> dict[str, str]:
+    fingerprint = sha256((bundle / "core.rs").read_bytes()).hexdigest()
+    for sources in (ORIGINAL_SOURCE_HASHES, UPDATED_SOURCE_HASHES):
+        if fingerprint == sources["core.rs"]:
+            return sources
+    raise ValueError("Unexpected ElytraTrails core revision")
+
+
+def verified_source(bundle: Path, name: str, sources: dict[str, str]) -> str:
     raw = (bundle / name).read_bytes()
-    if sha256(raw).hexdigest() != SOURCE_HASHES[name]:
-        raise ValueError(f"Unexpected ElytraTrails 0.1.1 input: {name}")
+    if sha256(raw).hexdigest() != sources[name]:
+        raise ValueError(f"Unexpected ElytraTrails input for the selected version: {name}")
     return raw.decode("utf-8")
 
 
 def apply(bundle: Path, *, revision: str) -> None:
     if revision != REVISION:
         return
-    originals = {name: verified_source(bundle, name) for name in SOURCE_HASHES}
+    sources = source_revision(bundle)
+    originals = {name: verified_source(bundle, name, sources) for name in sources}
     manifest = originals["horizon-mixin.toml"]
     for name in ("net_from_client", "net_from_server"):
         pattern = rf'(?ms)^\[\[injection\]\]\nid = "{name}"\n.*?(?=^\[\[|\Z)'
@@ -152,7 +167,19 @@ def apply(bundle: Path, *, revision: str) -> None:
 
     start = network.index("    pub(super) fn elytratrails_server_message(")
     end = network.index("    pub(super) fn elytratrails_net_tick(", start)
-    network = network[:start] + """    pub(super) fn elytratrails_server_tick(&mut self) {
+    prune_disconnected = ""
+    if sources is UPDATED_SOURCE_HASHES:
+        prune_disconnected = """        if self.lan.is_some() {
+            let own = self.elytratrails_own_uuid();
+            let present: HashSet<u128> = self.native_server_players().iter().map(|player| player.uuid()).collect();
+            with_net(|net| {
+                let before = net.server.len();
+                net.server.retain(|uuid, _| *uuid == own || present.contains(uuid));
+                net.dirty |= net.server.len() != before;
+            });
+        }
+"""
+    network = network[:start] + "    pub(super) fn elytratrails_server_tick(&mut self) {\n" + prune_disconnected + """\
         let Some(token) = SEND_TABLE.get() else { return; };
         if !with_net(|net| std::mem::take(&mut net.dirty)) {
             return;
@@ -174,7 +201,7 @@ def apply(bundle: Path, *, revision: str) -> None:
 
 def package_source(bundle: Path) -> str:
     """Return the actual registered types and handlers without injected Game methods."""
-    colours = verified_source(bundle, "core.rs")
+    colours = verified_source(bundle, "core.rs", source_revision(bundle))
     palette = []
     for name in ("COLORS", "PATTERNS"):
         line = re.findall(rf"(?m)^pub const {name}: \[&str; \d+\] = \[.*\];$", colours)
@@ -185,6 +212,7 @@ def package_source(bundle: Path) -> str:
     if network.count(TYPED_PAYLOADS) != 1:
         raise ValueError("ElytraTrails package source does not match its registered typed adapter")
     registered = network[:network.index("pub fn style_of(")]
+    registered = registered.replace("use std::collections::{HashMap, HashSet};\n", "use std::collections::HashMap;\n", 1)
     registered = replace_once(registered, "use crate::game::Game;\n", "")
     registered = replace_once(registered, "use crate::game::official_elytratrails as m;\n",
                               "mod m {\n    " + "\n    ".join(palette) + "\n}\n")
