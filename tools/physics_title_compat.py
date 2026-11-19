@@ -16,6 +16,18 @@ SOURCE_HASHES = {
     "world.rs": "4483c442c28fc20f492b8a92c692771ed93b1a07ec72ca4639e334c90a505a39",
 }
 
+PHYSICS_0_20_7_HASHES = {
+    **SOURCE_HASHES,
+    "bobber.rs": "243e0f648c340996aa70cef7df15594875a84860f9dca25ca65f4dc664e35dd2",
+    "explode.rs": "b3a4ecc16d1c7a5ccfb18ee1310eb7cb096e8bdde4563e58b2ffcd6d72666560",
+    "fishing.rs": "d205ccf92e72ac6927bdff44807070d759abdf2d481b5abe9841096e18efcfe3",
+    "horizon-mixin.toml": "e9e108d85b109bae7d0a6012eeb1e61574b88329e8f4003d917dc65f434f1641",
+    "runtime.rs": "ce78dc4d1c7a79d7b97718a48d0f6291f3e65e5e4e29fc5d17f4380a5f7c3a4f",
+    "shader.rs": "825a5c783af32790cbc6cdb730f7243ab8583ac0f94794690baabd2f2f74b3e1",
+    "sway.rs": "57c0381d8ec84a5f84a351d4d2a40344af5d2a19a14d3d314fad690f76929e33",
+    "world.rs": "05b7fa7117d71ab3517a12a09e877da7caa835fd05a07d46a0c8b418b265e903",
+}
+
 MATERIAL_SOURCE = "crates/horizon-client-render/src/gfx/native_material.rs"
 MATERIAL_SHA256 = "23dffc59507996590944df8ea51585fa290430f30a18d4580dea9add1c7a537d"
 LATEST_REVISION = "f00125f61f794aaa3d4e950d301f353b35b6ee3d"
@@ -113,6 +125,64 @@ def adapt_latest_sway(source: str) -> str:
     return port_snow_dimension(source[:start] + patch + source[end:])
 
 
+def adapt_0_20_7_shader(source: str) -> str:
+    source = replace_once(source, "&horizon_shader_api::check::CheckedStage", "(&str, &str)")
+    source = replace_once(source, "    vertex: bool,\n    displaced: bool,\n    api: horizon_shader_api::Api,",
+                          "    inputs: (bool, bool, bool, bool, bool),\n    linear: bool,")
+    source = replace_once(source, "let source = stage.source.as_str();", "let (source, file) = stage;")
+    source = replace_once(source, "shader_source(source, tags, materials, (vertex, displaced), api)",
+                          "shader_source(source, tags, materials, inputs, linear)")
+    source = replace_once(source, "sway::patch(rest, source)", "sway::patch(rest, source, linear)")
+    return replace_once(source, 'format!("{}: {}", stage.file, e.emit_to_string(&text))',
+                        'format!("{file}: {}", e.emit_to_string(&text))')
+
+
+def adapt_0_20_7_sway(source: str) -> str:
+    start = source.index("pub fn patch(entries: &str, source: &str) -> Option<String> {")
+    end = source.index("// ---------------------------------------------------------------------------------------------", start)
+    # f001 carries per-corner look/AO and converts material output at the final
+    # return. Keep the author's wave/color function, including side faces and
+    # bobber lift, and only adapt the entry points of the pinned material host.
+    patch = r'''pub fn patch(entries: &str, source: &str, linear: bool) -> Option<String> {
+    const AT: &str = "let pos = horizon_material_displace(position + origin.xyz, uv, layer, color, light, look, ao);";
+    const FIELD: &str = "    @location(14) @interpolate(flat) normal: vec3<f32>,";
+    const RET: &str = "    var out = horizon_material_out(pos, uv, layer, color, vec2<f32>(light), look, ao);";
+    const SIG: &str = "    light: vec2<f32>, look: vec2<u32>, ao: f32) -> HorizonMaterialOut {";
+    const BASE: &str = "    out.base = pos;";
+    const GRID_CALL: &str = "var out = horizon_material_out(p.position, p.uv, p.layer, p.color, p.light, p.look, p.ao);";
+    const GAMMA_OUT: &str = "return vec4(horizon_line_out(out.rgb), out.a);";
+    for anchor in [AT, FIELD, RET, SIG, BASE] {
+        if entries.matches(anchor).count() != 1 {
+            return None;
+        }
+    }
+    let s = current()?;
+    let shade = source.contains(BUILTIN_MARK) && entries.matches(GAMMA_OUT).count() == 1;
+    let w = wgsl_with(&s, shade)?;
+    let mut patched = entries
+        .replace(AT, "let pos = horizon_material_displace(position + origin.xyz, uv, layer, color, light, look, ao)\n        + horizon_physics_sway(position + origin.xyz, position, uv, layer);")
+        .replace(FIELD, "    @location(15) hp_open: f32,\n    @location(14) @interpolate(flat) normal: vec3<f32>,")
+        .replace(RET, "    var out = horizon_material_out(pos, uv, layer, color, vec2<f32>(light), look, ao, horizon_physics_open(position, layer));")
+        .replace(SIG, "    light: vec2<f32>, look: vec2<u32>, ao: f32, hp_open: f32) -> HorizonMaterialOut {")
+        .replace(BASE, "    out.base = pos;\n    out.hp_open = hp_open;")
+        .replace(GRID_CALL, "var out = horizon_material_out(p.position, p.uv, p.layer, p.color, p.light, p.look, p.ao, 0.0);");
+    if shade && linear {
+        patched = patched.replace(GAMMA_OUT,
+            "let hp_gamma = horizon_physics_surface(in.layer, in.position, in.light, in.lightmap, in.hp_open, vec4(horizon_encode(out.rgb), out.a));\n    return vec4(horizon_line_in(hp_gamma.rgb), hp_gamma.a);");
+    } else if shade {
+        patched = patched.replace(GAMMA_OUT,
+            "return horizon_physics_surface(in.layer, in.position, in.light, in.lightmap, in.hp_open, vec4(horizon_line_out(out.rgb), out.a));");
+    }
+    Some(format!("{patched}\n// Horizon Physics: waves, water and swaying plants\n{w}"))
+}
+
+
+'''
+    result = source[:start] + patch + source[end:]
+    result = replace_once(result, 'api = \\"0.1\\"', 'api = \\"0.2\\"')
+    return port_snow_dimension(result)
+
+
 def prepare_source(workspace: Path) -> None:
     path = workspace / MATERIAL_SOURCE
     raw = path.read_bytes()
@@ -132,6 +202,11 @@ def prepare_source(workspace: Path) -> None:
         raise ValueError("Horizon material shader source changed before the Physics compatibility port")
     source = replace_once(source, before, after)
     if digest == LATEST_MATERIAL_SHA256:
+        source = replace_once(source, "    (source, file): (&str, &str),\n",
+                              "    stage: (&str, &str),\n")
+        source = replace_once(source, "    let text = shader_source(source, tags, materials, inputs, linear);",
+                              "    let (source, file) = stage;\n"
+                              "    let text = shader_source(source, tags, materials, inputs, linear);")
         prepare_latest_particles(workspace)
     path.write_text(source, encoding="utf-8", newline="\n")
 
@@ -162,11 +237,18 @@ def prepare_latest_particles(workspace: Path) -> None:
 
 def apply(bundle: Path, *, revision: str | None = None) -> None:
     latest = revision == LATEST_REVISION
+    manifest_digest = sha256((bundle / "horizon-mixin.toml").read_bytes()).hexdigest()
+    if manifest_digest == PHYSICS_0_20_7_HASHES["horizon-mixin.toml"]:
+        if not latest:
+            raise ValueError("PhysicsModHorizon 0.20.7 port requires the pinned f001 Horizon revision")
+        hashes, version = PHYSICS_0_20_7_HASHES, "0.20.7"
+    else:
+        hashes, version = SOURCE_HASHES, "0.18.0"
     originals = {}
-    for name, expected in SOURCE_HASHES.items():
+    for name, expected in hashes.items():
         source = (bundle / name).read_bytes()
         if sha256(source).hexdigest() != expected:
-            raise ValueError(f"Unexpected PhysicsModHorizon 0.18.0 source: {name}")
+            raise ValueError(f"Unexpected PhysicsModHorizon {version} source: {name}")
         originals[name] = source.decode("utf-8")
 
     manifest = originals["horizon-mixin.toml"]
@@ -191,7 +273,17 @@ def apply(bundle: Path, *, revision: str | None = None) -> None:
   { name = "linear", ty = "bool", value = "linear" },''' if latest else
         '''  { name = "vertex_flags", ty = "(bool, bool)", value = "vertex_flags" },
   { name = "api", ty = "horizon_shader_api::Api", value = "api" },''')
-    shader_hook = replace_once(manifest[start:end], shader_bindings, bindings)
+    shader_hook = manifest[start:end]
+    if version == "0.20.7":
+        shader_hook = replace_once(
+            shader_hook, '{ name = "stage", ty = "&horizon_shader_api::check::CheckedStage", value = "stage" }',
+            '{ name = "stage", ty = "(&str, &str)", value = "stage" }',
+        )
+        shader_hook = replace_once(shader_hook, shader_bindings + '\n  { name = "api", ty = "horizon_shader_api::Api", value = "api" },',
+            '''  { name = "inputs", ty = "(bool, bool, bool, bool, bool)", value = "inputs" },
+  { name = "linear", ty = "bool", value = "linear" },''')
+    else:
+        shader_hook = replace_once(shader_hook, shader_bindings, bindings)
     manifest = manifest[:start] + shader_hook + manifest[end:]
     if latest:
         manifest = replace_once(manifest,
@@ -200,8 +292,12 @@ def apply(bundle: Path, *, revision: str | None = None) -> None:
         manifest = replace_once(manifest, '  { name = "_hide_splash", ty = "bool", value = "hide_splash" },',
             '''  { name = "_hide_splash", ty = "bool", value = "hide_splash" },
   { name = "phases", ty = "&mut dyn FnMut(crate::screen_draw::RenderPhase, &mut HudBatch)", value = "&mut *phases" },''')
-    shader = adapt_shader(originals["shader.rs"], latest=latest)
-    sway = adapt_latest_sway(originals["sway.rs"]) if latest else adapt_sway(originals["sway.rs"])
+    if version == "0.20.7":
+        shader = adapt_0_20_7_shader(originals["shader.rs"])
+        sway = adapt_0_20_7_sway(originals["sway.rs"])
+    else:
+        shader = adapt_shader(originals["shader.rs"], latest=latest)
+        sway = adapt_latest_sway(originals["sway.rs"]) if latest else adapt_sway(originals["sway.rs"])
     replacements = {"horizon-mixin.toml": manifest, "shader.rs": shader,
                     "sway.rs": sway}
     if latest:

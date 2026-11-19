@@ -35,9 +35,7 @@ fn main() {
         let tentative = format!("{material}{tentative}");
         naga::front::wgsl::parse_str(&tentative)
             .unwrap_or_else(|e| panic!("{name}/patch: {}", e.emit_to_string(&tentative)));
-        let std::ops::ControlFlow::Break(patched) = horizon_physics_shader(&material, &[], &[], flags, color) else {
-            panic!("Physics hook did not return the patched terrain");
-        };
+        /* HOOK */
         assert!(patched.contains("HORIZON_PHYSICS_SHADE: bool = true"), "{name}: water look disabled");
         assert_eq!(patched.matches(expected).count(), 1, "{name}: gamma output wrapped once");
         assert!(patched.contains("horizon_line_in(albedo.rgb)"), "{name}: author's input retained");

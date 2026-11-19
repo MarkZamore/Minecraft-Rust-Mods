@@ -49,13 +49,18 @@ def main():
         "createdUtc": created.isoformat(), "expectedMiB": 250,
         "deleteBy": (created + timedelta(days=1)).date().isoformat(), "results": ["result.json"],
     }, indent=2) + "\n", encoding="utf-8")
-    if hashlib.sha256(args.archive.read_bytes()).hexdigest() != "213f6264a20bed7fef64f12f539d0b2364f710857a3acaa351b96e78b3239dc1":
+    archive_sha = hashlib.sha256(args.archive.read_bytes()).hexdigest()
+    if archive_sha == "213f6264a20bed7fef64f12f539d0b2364f710857a3acaa351b96e78b3239dc1":
+        version, hashes = "0.18.0", recipe.SOURCE_HASHES
+    elif archive_sha == "8eeba82ac0e7755298269fd328679473720a9894cfe10df5c8e3aaf88f59c34c":
+        version, hashes = "0.20.7", recipe.PHYSICS_0_20_7_HASHES
+    else:
         raise ValueError("Unexpected Physics archive")
     with zipfile.ZipFile(args.archive) as archive:
         sway = archive.read("mixins/horizon_physics/sway.rs")
         shader = archive.read("mixins/horizon_physics/shader.rs")
     for name, data in (("sway.rs", sway), ("shader.rs", shader)):
-        if hashlib.sha256(data).hexdigest() != recipe.SOURCE_HASHES[name]:
+        if hashlib.sha256(data).hexdigest() != hashes[name]:
             raise ValueError(f"Unexpected Physics source: {name}")
     gfx = workspace / "crates/horizon-client-render/src/gfx"
     material_raw = (gfx / "native_material.rs").read_bytes()
@@ -63,9 +68,15 @@ def main():
     latest = material_sha == recipe.LATEST_MATERIAL_SHA256
     if not latest and material_sha != recipe.MATERIAL_SHA256:
         raise ValueError("Unexpected Horizon material source")
-    adapt_sway = recipe.adapt_latest_sway if latest else recipe.adapt_sway
-    sway = adapt_sway(sway.decode("utf-8"))
-    shader = recipe.adapt_shader(shader.decode("utf-8"), latest=latest)
+    if version == "0.20.7":
+        if not latest:
+            raise ValueError("Physics 0.20.7 requires the pinned f001 Naga host")
+        sway = recipe.adapt_0_20_7_sway(sway.decode("utf-8"))
+        shader = recipe.adapt_0_20_7_shader(shader.decode("utf-8"))
+    else:
+        adapt_sway = recipe.adapt_latest_sway if latest else recipe.adapt_sway
+        sway = adapt_sway(sway.decode("utf-8"))
+        shader = recipe.adapt_shader(shader.decode("utf-8"), latest=latest)
     material = material_raw.decode("utf-8")
     constants = material[material.index('const PREFIX:'):material.index('/// The surface target')]
     constants = constants[:constants.index('/// What the material\'s displaced pipeline')] + constants[constants.index('/// terrain.wgsl\'s terrain section'):]
@@ -115,6 +126,21 @@ def main():
             "CHECK_GAMMA": "color == Api::V0_2",
             "PATCH_COLOR": "",
         }
+    if version == "0.20.7":
+        fixture["HOOK"] = '''let std::ops::ControlFlow::Break(Ok(module)) =
+            horizon_physics_shader((&material, &stage.file), &[], &[], flags, color) else {
+            panic!("Physics hook did not parse the patched terrain");
+        };
+        assert!(module.functions.iter().any(|(_, function)| function.name.as_deref() == Some("horizon_physics_surface")),
+            "{name}: the live module fell back to the unpatched shader");
+        naga::valid::Validator::new(naga::valid::ValidationFlags::all(), naga::valid::Capabilities::all())
+            .validate(&module).unwrap_or_else(|error| panic!("{name}/module: {error}"));
+        assert!(tentative.contains("water_open"), "{name}: authored side-face water styling missing");
+        let patched = tentative;'''
+    else:
+        fixture["HOOK"] = '''let std::ops::ControlFlow::Break(patched) = horizon_physics_shader(&material, &[], &[], flags, color) else {
+            panic!("Physics hook did not return the patched terrain");
+        };'''
     for key, value in {"SWAY": sway, "SHADER": shader, "PREFIX": prefix, "DISPLACE": displacement,
                        "LINE": post, "MATERIAL": constants + body, **fixture}.items():
         source = source.replace("/* " + key + " */", value)
@@ -146,7 +172,7 @@ naga = { path = ''' + json.dumps(str(naga).replace("\\", "/")) + ''' }
         (work / "result.json").write_text(json.dumps({
             "status": "PASS", "summary": result.stdout.strip(), "actualGPU": "NOT RUN",
             "shaderSourceSha256": material_sha,
-            "swaySourceSha256": recipe.SOURCE_HASHES["sway.rs"],
+            "swaySourceSha256": hashes["sway.rs"], "physicsVersion": version, "archiveSha256": archive_sha,
             "recipeSha256": hashlib.sha256(Path(recipe.__file__).read_bytes()).hexdigest(),
             "cargoLockSha256": hashlib.sha256((work / "Cargo.lock").read_bytes()).hexdigest(),
             "naga": "30.0.1 (author's third_party/naga patch)", "api": ["gamma", "linear"] if latest else ["0.1", "0.2"],
