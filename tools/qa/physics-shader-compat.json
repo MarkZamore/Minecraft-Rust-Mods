@@ -1,15 +1,32 @@
 {
   "status": "PASS",
-  "summary": "API 0.1: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS\nAPI 0.2: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS",
+  "summary": "API gamma: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS\nAPI linear: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS",
   "actualGPU": "NOT RUN",
-  "shaderSourceSha256": "23dffc59507996590944df8ea51585fa290430f30a18d4580dea9add1c7a537d",
-  "swaySourceSha256": "434d1577162330f64212e1298c4aba3ca5d5f9481331b666eb02eceddc3e7dfa",
-  "recipeSha256": "91be6447ae72753a77ee5e01cfc8f8baa0273e9a066b105f55c6185e23523c6e",
+  "shaderSourceSha256": "cbc7ba9bcb4ae8c31c37b75f8b4fc48fd24d3fd9a8b69079b7cef8b15e658d2b",
+  "swaySourceSha256": "57c0381d8ec84a5f84a351d4d2a40344af5d2a19a14d3d314fad690f76929e33",
+  "physicsVersion": "0.20.7",
+  "archiveSha256": "8eeba82ac0e7755298269fd328679473720a9894cfe10df5c8e3aaf88f59c34c",
+  "recipeSha256": "01ba967d99aeee8aabdc8189a9087345bfcdd064970acca12f440328e595f631",
   "cargoLockSha256": "ab6894c50a0c7d8316b15461a74e45946abec87cfbd958ca7a137a99c6d0b7e4",
   "naga": "30.0.1 (author's third_party/naga patch)",
   "api": [
-    "0.1",
-    "0.2"
+    "gamma",
+    "linear"
   ],
-  "scope": "Exact shader_source and production Physics helper, original and patched shader parse+validation on both APIs; real GPU NOT RUN"
+  "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
+  "previousApiProof": {
+    "status": "PASS",
+    "summary": "API 0.1: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS\nAPI 0.2: original+Physics WGSL parse/validation PASS; gamma boundary/waves/third-party gate PASS",
+    "actualGPU": "NOT RUN",
+    "shaderSourceSha256": "23dffc59507996590944df8ea51585fa290430f30a18d4580dea9add1c7a537d",
+    "swaySourceSha256": "434d1577162330f64212e1298c4aba3ca5d5f9481331b666eb02eceddc3e7dfa",
+    "recipeSha256": "91be6447ae72753a77ee5e01cfc8f8baa0273e9a066b105f55c6185e23523c6e",
+    "cargoLockSha256": "ab6894c50a0c7d8316b15461a74e45946abec87cfbd958ca7a137a99c6d0b7e4",
+    "naga": "30.0.1 (author's third_party/naga patch)",
+    "api": [
+      "0.1",
+      "0.2"
+    ],
+    "scope": "Exact shader_source and production Physics helper, original and patched shader parse+validation on both APIs; real GPU NOT RUN"
+  }
 }
