@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import stat
 import subprocess
 import time
 
@@ -607,6 +608,35 @@ def exact_client(args):
     return actual, revision
 
 
+def cleanup_game(game, qa, resources):
+    if not game.is_dir():
+        return
+    if game.is_symlink() or game.is_junction() or not game.resolve().is_relative_to(qa):
+        raise RuntimeError("Refusing cleanup outside this QA directory")
+    links = []
+    resources = resources.resolve(strict=True)
+    for directory, folders, files in os.walk(game):
+        for name in [*folders, *files]:
+            path = Path(directory) / name
+            if name.casefold() == ".git" or path.is_symlink():
+                raise RuntimeError("Refusing cleanup of linked or source data")
+            if not path.lstat().st_file_attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT:
+                continue
+            # Horizon uses junctions to reuse immutable prepared resources.
+            # Remove only the owned cache junction itself, without walking it.
+            parts = path.relative_to(game).parts
+            if (not path.is_junction() or name not in folders
+                    or len(parts) < 4 or parts[:2] != (".horizon-cache", "mod-content")
+                    or re.fullmatch(r"[0-9a-f]{16}", parts[2]) is None
+                    or path.resolve(strict=True) != resources.joinpath(*parts[3:])):
+                raise RuntimeError(f"Refusing cleanup of an unexpected QA junction: {path}")
+            folders.remove(name)
+            links.append(path)
+    for link in links:
+        link.rmdir()
+    shutil.rmtree("\\\\?\\" + str(game))
+
+
 def run(args):
     candidate, qa = args.candidate, args.qa
     if args.common_only and args.concurrent_effects:
@@ -716,15 +746,7 @@ def run(args):
         # game directories after processes have exited. No links are followed.
         try:
             for name in ("host", "guest"):
-                game = qa / name / "game"
-                if game.is_dir():
-                    if game.is_symlink() or game.is_junction() or not game.resolve().is_relative_to(qa):
-                        raise RuntimeError("Refusing cleanup outside this QA directory")
-                    for directory, dirs, files in os.walk(game):
-                        if ".git" in dirs or any((Path(directory) / n).is_symlink()
-                                                  or (Path(directory) / n).is_junction() for n in dirs + files):
-                            raise RuntimeError("Refusing cleanup of linked/source data")
-                    shutil.rmtree("\\\\?\\" + str(game))
+                cleanup_game(qa / name / "game", qa, args.resources)
             report["disposableWorldsRemoved"] = True
         except BaseException as error:
             report["result"] = "FAIL"

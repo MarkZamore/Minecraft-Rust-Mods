@@ -132,14 +132,18 @@ def smoke(args):
                 widgets = control("ui")
             else:
                 raise ValueError(f"{label} did not appear on the Windows Mods page")
-        control("click", "done")
+        close = next((row for row in widgets["widgets"]
+                      if row["id"] in {"back", "done"} and row["enabled"]), None)
+        if close is None:
+            raise ValueError("The rendered Mods page has no enabled Back or Done control")
+        control("click", close["id"])
         if args.startup_only:
             return None, widgets, None
         control("open", WORLD, "137248", "creative")
         control("wait-for", "loaded", "--timeout", "90")
         for item in registered_items:
             control("give", item, "1")
-        control("wait", "4")
+        smoke_orbital.wait_for_world_ticks(control, 4)
         observe_registered_items(control)
         veinminer = control("command", "/veinminer status")["chat"]
         if veinminer != ["Veinminer: on"]:

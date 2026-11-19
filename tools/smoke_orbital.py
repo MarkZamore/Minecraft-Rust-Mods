@@ -73,6 +73,19 @@ def wait_for_crater(control, points, before, timeout=120):
     raise ValueError(f"Terrain-on Plasma did not carve both sampled layers within {timeout} seconds: {after!r}")
 
 
+def wait_for_world_ticks(control, count, timeout=90):
+    # Initial material pipelines may spend over ten seconds without ticking
+    # after the controller's loaded condition becomes true.
+    initial = control("state")["ticks"]
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        state = control("state", timeout=max(1, deadline - time.monotonic()))
+        if state["ticks"] >= initial + count:
+            return
+        time.sleep(0.25)
+    raise TimeoutError(f"The rendered world did not advance {count} ticks within {timeout} seconds")
+
+
 def camera(control, target):
     x, y, z = target
     # Use the long-range Designator ray, outside vanilla block-interaction range.
@@ -83,7 +96,7 @@ def hold_designator(control):
     control("mouse", "right", "down")
     try:
         # The designator requires 14 whole game ticks to acquire a target.
-        control("wait", "20")
+        wait_for_world_ticks(control, 20)
     finally:
         control("mouse", "right", "up")
 
@@ -149,7 +162,7 @@ def exercise(control, qa):
     if not renderer or not renderer["backend"]:
         raise ValueError("Orbital Laser QA requires the actual Windows renderer")
     command(control, "/orbital give", "Orbital Laser Designator added to your inventory")
-    control("wait", "4")
+    wait_for_world_ticks(control, 4)
     item_present(control)
     control("select", DESIGNATOR)
 
