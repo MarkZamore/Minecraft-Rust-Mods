@@ -25,6 +25,8 @@ TECTONIC_PATH = re.compile(r"^\[Tectonic-Horizon\] (.+?): .+; using defaults$", 
 CONTENT_ITEMS = {"deepbore_quarry": "deepbore_quarry:quarry",
                  "wayfarer_stones": "wayfarer_stones:wayfarer_stone"}
 TECTONIC_ENV = "TECTONIC_HORIZON_CONFIG"
+ZOOM_SETTINGS = {"level": "6", "smooth": "true", "sensitivity": "false"}
+ZOOM_KEY = "key.zoom.zoom:key.keyboard.z"
 
 
 def options(path):
@@ -33,29 +35,30 @@ def options(path):
 
 
 def zoom_round_trip(control):
-    original = control("state")["player"]
-    control("look", str(original["yaw"]), "-85")
+    control("wait-for", "screen", "playing", "--timeout", "90")
+    smoke_orbital.wait_for_world_ticks(control, 15)
     width, height = control("ui")["gui_size"]
     first = control("state")
     baseline = first["player"]["fov_modifier"]
+    key = "key.keyboard.z"
     try:
-        control("key", "z", "down")
+        control("key", key, "down")
         smoke_orbital.wait_for_world_ticks(control, 20)
         zoom = control("state")["player"]["fov_modifier"]
         control("scroll-at", str(width / 2), str(height / 2), "1")
         smoke_orbital.wait_for_world_ticks(control, 20)
         wheel = control("state")
     finally:
-        control("key", "z", "up")
-        control("look", str(original["yaw"]), str(original["pitch"]))
+        control("key", key, "up")
     smoke_orbital.wait_for_world_ticks(control, 20)
     released = control("state")["player"]["fov_modifier"]
     wheel_fov = wheel["player"]["fov_modifier"]
-    if (not 0 < wheel_fov < zoom * 0.95 or not zoom < baseline * 0.4 or
-            abs(released - baseline) > baseline * 0.05 or wheel["selected"] != first["selected"]):
-        raise ValueError("Zoom did not change and restore FOV or consumed the wrong hotbar input")
-    return {"key": "z", "baselineFov": baseline, "zoomFov": zoom, "wheelFov": wheel_fov,
-            "releasedFov": released, "hotbarUnchanged": True}
+    evidence = {"key": key, "baselineFov": baseline, "zoomFov": zoom, "wheelFov": wheel_fov,
+                "releasedFov": released, "hotbarUnchanged": wheel["selected"] == first["selected"]}
+    if (baseline <= 0 or abs(zoom / baseline - 1 / 6) > 0.02 or abs(wheel_fov / baseline - 1 / 7.5) > 0.02
+            or wheel_fov >= zoom or abs(released / baseline - 1) > 0.05 or not evidence["hotbarUnchanged"]):
+        raise ValueError(f"Zoom did not change and restore FOV or consumed the wrong hotbar input: {evidence}")
+    return evidence
 
 
 def smoke(args):
@@ -108,6 +111,14 @@ def smoke(args):
     game_options.write_text(seed + "invertYMouse:true\nsoundCategory_voice:0.0\n" +
                             "".join(f"{key}:{value}\n" for key, value in preset.items()),
                             encoding="utf-8", newline="\n")
+    verify_zoom = not args.startup_only and any(mod_id == "zoom" for mod_id, _ in expected_content)
+    if verify_zoom:
+        # Use the previous native author's settings and binding in this fresh QA profile.
+        zoom_settings = game / "horizon-mods/.horizon-mod-data/zoom"
+        zoom_settings.mkdir(parents=True)
+        for name, value in ZOOM_SETTINGS.items():
+            (zoom_settings / name).write_text(value, encoding="ascii")
+        (game / "horizon-mods.txt").write_text(ZOOM_KEY + "\n", encoding="ascii")
     preview = args.qa / "preview.png"
     standalone = None
     expected_title = None
@@ -173,7 +184,7 @@ def smoke(args):
             control("give", item, "1")
         smoke_orbital.wait_for_world_ticks(control, 4)
         observe_registered_items(control)
-        if any(mod_id == "zoom" for mod_id, _ in expected_content):
+        if verify_zoom:
             zoom_evidence = zoom_round_trip(control)
         veinminer = control("command", "/veinminer status")["chat"]
         if veinminer != ["Veinminer: on"]:
@@ -310,6 +321,11 @@ def smoke(args):
         raise ValueError("The exact game did not retain the supported controls preset")
     if actual_options.get("invertYMouse") != "true":
         raise ValueError("The exact game did not retain the unrelated controls-test option")
+    if verify_zoom:
+        actual_zoom = {name: (zoom_settings / name).read_text(encoding="ascii").strip() for name in ZOOM_SETTINGS}
+        if actual_zoom != ZOOM_SETTINGS or ZOOM_KEY not in (game / "horizon-mods.txt").read_text(encoding="utf-8").splitlines():
+            raise ValueError("The new client changed the previous Zoom settings or binding")
+        zoom_evidence["settingsRoundTrip"] = actual_zoom
     fps_path = args.qa / "game/config/dynamic-fps-for-rust.json"
     probes = []
     if fps_path.is_file():

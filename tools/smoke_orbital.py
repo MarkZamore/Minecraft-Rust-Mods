@@ -44,9 +44,17 @@ def wait_client_message(control, expected, timeout=30):
         time.sleep(0.1)
 
 
-def item_present(control):
-    if control("inventory")["counts"].get(DESIGNATOR) != 1:
-        raise ValueError("The Orbital Laser Designator was not registered or did not survive saving")
+def item_present(control, timeout=30):
+    deadline = time.monotonic() + timeout
+    count = 0
+    while time.monotonic() < deadline:
+        count = control("inventory", timeout=max(1, deadline - time.monotonic()))["counts"].get(DESIGNATOR, 0)
+        if count == 1:
+            return
+        if count > 1:
+            break
+        time.sleep(0.25)
+    raise ValueError(f"Expected exactly one Orbital Laser Designator in the synchronized inventory, found {count}")
 
 
 def sample(control, points):
@@ -182,8 +190,12 @@ def exercise(control, qa):
     camera_z = z + 72
     control("command", f"fill {x - 2} {camera_y - 1} {camera_z - 2} "
             f"{x + 2} {camera_y - 1} {camera_z + 2} minecraft:smooth_stone")
+    control("command", f"fill {x - 2} {camera_y} {camera_z - 2} "
+            f"{x + 2} {camera_y + 3} {camera_z + 2} minecraft:air")
     control("tp", str(x + 0.5), str(camera_y), str(camera_z + 0.5))
     control("wait-for", "loaded", "--timeout", "90")
+    # The long-range ray must hit the gold fixture, even when a tree grew in front of it.
+    control("command", f"fill {x} {y} {z + 1} {x} {camera_y + 2} {camera_z - 1} minecraft:air")
     control("wait", "20")
     if sample(control, points) != fixture_blocks:
         raise ValueError("Orbital terrain fixture could not be prepared")

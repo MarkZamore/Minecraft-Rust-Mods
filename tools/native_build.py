@@ -321,6 +321,35 @@ def restore_partial_source(base, work, revision):
         (source / name).write_bytes(original)
 
 
+def inject_latest_packaged_wasm(stage):
+    from legacy_native_hooks import replace_once
+
+    host = stage / "crates/horizon-mod-host/src/loading.rs"
+    source = replace_once(host.read_text(encoding="utf-8"),
+        '''        |native, launch| {
+            let mut wasm =
+                horizon_mod_wasm::load_installed(launch, &horizon_client::logging::player_dir());''',
+        '''        |native, launch| {
+            // Startup already holds the game lease. Load bundled code with the
+            // other selected code before the client attaches package assets.
+            let mut launch = launch.clone();
+            if let Ok(exe) = std::env::current_exe() {
+                let mut bundled = horizon_mod_package::find(&exe.with_file_name("horizon-mods"));
+                bundled.retain(|path| {
+                    std::fs::symlink_metadata(path).is_ok_and(|entry| entry.is_file())
+                        && !launch.context.dev_mods.contains(path)
+                        && horizon_mod_package::Package::read(path).is_ok_and(|package| {
+                            package.manifest.wasm.is_some() && !package.is_native()
+                        })
+                });
+                bundled.append(&mut launch.context.dev_mods);
+                launch.context.dev_mods = bundled;
+            }
+            let mut wasm =
+                horizon_mod_wasm::load_installed(&launch, &horizon_client::logging::player_dir());''')
+    host.write_text(source, encoding="utf-8", newline="\n")
+
+
 def inject_latest_packaged_content(stage):
     from legacy_native_hooks import replace_once
 
@@ -575,6 +604,7 @@ def execute(args):
             materialize_game_modules(source, env)
         evidence["mixins"] = apply_mixins(source, bundles, stage, mixins, env)
         if latest:
+            inject_latest_packaged_wasm(stage)
             inject_latest_packaged_content(stage)
             from negotiated_native_mods import install_source as install_native_mods, stage_packages
             if any(row.get("nativePackage") == "source-hmod" for row in selected):
