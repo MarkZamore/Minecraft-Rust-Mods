@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "PASS",
-  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
+  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -103,77 +103,77 @@
     "executable": "native/launch-rust-edition.exe",
     "platform": "windows-x64",
     "adapter": "portable-native",
-    "version": "nightly-2026-11-07-2ebf00a-mods-r1"
+    "version": "nightly-2026-11-19-f00125f-mods-r1"
   },
-  "buildReceiptSha256": "0472db3510c934a368e8b13af0f31977af150d17673bfe2008d6bb412b39e57d",
-  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
-  "runOwner": "horizon",
+  "buildReceiptSha256": "f3bc3f7b6a9d8f618cf9c8d618a5440c1e0eeac7e1d77ddba1c561a8b230c4ea",
+  "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
+  "runOwner": "root",
   "methodology": "Six ordinary starts; fresh, reconstructed legacy and custom manual NBT byte comparison",
   "ordinaryLaunch": true,
   "launchArguments": [
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--name",
       "RustServerPolicyQA"
     ],
     [
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
       "--resources",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
       "--game-dir",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--home",
-      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+      "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
       "--name",
       "RustServerPolicyQA"
     ]
@@ -187,19 +187,19 @@
     0
   ],
   "controlVia": "technical horizon-extras.txt agentControl:true; HORIZON_CONTROL endpoint",
-  "desktopKeyProtocol": "edition-server-list-qa/checkpoint-v1",
-  "desktopKeyHelperSha256": "2374f614ae425d7aa8267ab0c337aaddb7e5e6b1e91df994884be9094c8b9e88",
+  "nativeTitleKeyProtocol": "horizon-agent-control/title-key-v1",
+  "nativeTitleKeyHelperSha256": "a9d7b99e954d4ff3dc82793c98b33388fe1d966a7ec3ad71f5d20235a26ee4de",
   "runs": [
     {
       "servers": [],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -298,38 +298,25 @@
         "backToTitle": true,
         "escapeToTitle": true,
         "bytePreserved": true,
-        "desktopKeys": [
+        "nativeTitleKeys": [
           {
             "request": {
               "id": "run-1-key-1",
-              "action": "press_key",
-              "key": "Escape",
-              "processId": 4600,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "key": "escape",
+              "processId": 8396,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 1,
-              "createdUnixMs": 1795000884763,
+              "createdUnixMs": 1795127750890,
               "timeoutMs": 120000
             },
             "acknowledgement": {
-              "id": "run-1-key-1",
-              "key": "Escape",
-              "processId": 4600,
-              "status": "PASS",
-              "performedUnixMs": 1795000885083,
-              "hwnd": 20906590,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
-              "title": "Minecraft Rust Mods",
-              "screenshot": "run-1-key-1.before.png",
-              "screenshotSha256": "6b33f2e60b86af01bda8b02d9a659a7a56e016c6560056af4fc599627e3ec869",
-              "capturedUnixMs": 1795000885081,
-              "clientBounds": [
-                62,
-                107,
-                2622,
-                1547
-              ]
-            }
+              "key": "escape",
+              "processId": 8396,
+              "requestId": "run-1-key-1",
+              "route": "horizon-agent-control/title-key-v1"
+            },
+            "receivedUnixMs": 1795127750924
           }
         ],
         "multiplayerEntries": [
@@ -384,13 +371,13 @@
     {
       "servers": [],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -489,38 +476,25 @@
         "backToTitle": true,
         "escapeToTitle": true,
         "bytePreserved": true,
-        "desktopKeys": [
+        "nativeTitleKeys": [
           {
             "request": {
               "id": "run-2-key-1",
-              "action": "press_key",
-              "key": "Escape",
-              "processId": 32260,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "key": "escape",
+              "processId": 22264,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 2,
-              "createdUnixMs": 1795000887422,
+              "createdUnixMs": 1795127758568,
               "timeoutMs": 120000
             },
             "acknowledgement": {
-              "id": "run-2-key-1",
-              "key": "Escape",
-              "processId": 32260,
-              "status": "PASS",
-              "performedUnixMs": 1795000887715,
-              "hwnd": 57673138,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
-              "title": "Minecraft Rust Mods",
-              "screenshot": "run-2-key-1.before.png",
-              "screenshotSha256": "0703dafa505f3892fd016ba6c38216f79c59d64e947050265e17ae0831a74913",
-              "capturedUnixMs": 1795000887711,
-              "clientBounds": [
-                111,
-                156,
-                2671,
-                1596
-              ]
-            }
+              "key": "escape",
+              "processId": 22264,
+              "requestId": "run-2-key-1",
+              "route": "horizon-agent-control/title-key-v1"
+            },
+            "receivedUnixMs": 1795127758602
           }
         ],
         "multiplayerEntries": [
@@ -584,13 +558,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -704,38 +678,25 @@
         "backToTitle": true,
         "escapeToTitle": true,
         "bytePreserved": true,
-        "desktopKeys": [
+        "nativeTitleKeys": [
           {
             "request": {
               "id": "run-3-key-1",
-              "action": "press_key",
-              "key": "Escape",
-              "processId": 18208,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "key": "escape",
+              "processId": 25820,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 3,
-              "createdUnixMs": 1795000889965,
+              "createdUnixMs": 1795127766157,
               "timeoutMs": 120000
             },
             "acknowledgement": {
-              "id": "run-3-key-1",
-              "key": "Escape",
-              "processId": 18208,
-              "status": "PASS",
-              "performedUnixMs": 1795000890268,
-              "hwnd": 42403206,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
-              "title": "Minecraft Rust Mods",
-              "screenshot": "run-3-key-1.before.png",
-              "screenshotSha256": "5a60362c8914d71e3d187d120e12190a720221879f2591e6ff2222f69dbe4099",
-              "capturedUnixMs": 1795000890264,
-              "clientBounds": [
-                160,
-                205,
-                2720,
-                1645
-              ]
-            }
+              "key": "escape",
+              "processId": 25820,
+              "requestId": "run-3-key-1",
+              "route": "horizon-agent-control/title-key-v1"
+            },
+            "receivedUnixMs": 1795127766190
           }
         ],
         "multiplayerEntries": [
@@ -799,13 +760,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -919,38 +880,25 @@
         "backToTitle": true,
         "escapeToTitle": true,
         "bytePreserved": true,
-        "desktopKeys": [
+        "nativeTitleKeys": [
           {
             "request": {
               "id": "run-4-key-1",
-              "action": "press_key",
-              "key": "Escape",
-              "processId": 32152,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "key": "escape",
+              "processId": 25372,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 4,
-              "createdUnixMs": 1795000892513,
+              "createdUnixMs": 1795127773545,
               "timeoutMs": 120000
             },
             "acknowledgement": {
-              "id": "run-4-key-1",
-              "key": "Escape",
-              "processId": 32152,
-              "status": "PASS",
-              "performedUnixMs": 1795000892791,
-              "hwnd": 7537764,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
-              "title": "Minecraft Rust Mods",
-              "screenshot": "run-4-key-1.before.png",
-              "screenshotSha256": "5f5237987c2af1654da0fa9fae8057266e2d678f27c4bddaa47e6f70936c5eb7",
-              "capturedUnixMs": 1795000892789,
-              "clientBounds": [
-                209,
-                254,
-                2769,
-                1694
-              ]
-            }
+              "key": "escape",
+              "processId": 25372,
+              "requestId": "run-4-key-1",
+              "route": "horizon-agent-control/title-key-v1"
+            },
+            "receivedUnixMs": 1795127773580
           }
         ],
         "multiplayerEntries": [
@@ -1010,13 +958,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -1125,38 +1073,25 @@
         "backToTitle": true,
         "escapeToTitle": true,
         "bytePreserved": true,
-        "desktopKeys": [
+        "nativeTitleKeys": [
           {
             "request": {
               "id": "run-5-key-1",
-              "action": "press_key",
-              "key": "Escape",
-              "processId": 23556,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "key": "escape",
+              "processId": 24284,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 5,
-              "createdUnixMs": 1795000895079,
+              "createdUnixMs": 1795127782012,
               "timeoutMs": 120000
             },
             "acknowledgement": {
-              "id": "run-5-key-1",
-              "key": "Escape",
-              "processId": 23556,
-              "status": "PASS",
-              "performedUnixMs": 1795000895361,
-              "hwnd": 21168734,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
-              "title": "Minecraft Rust Mods",
-              "screenshot": "run-5-key-1.before.png",
-              "screenshotSha256": "c4d26c03e36af9d23edaf71364ac12ade8713224eefd101de2d4551cd36e4a79",
-              "capturedUnixMs": 1795000895357,
-              "clientBounds": [
-                258,
-                303,
-                2818,
-                1743
-              ]
-            }
+              "key": "escape",
+              "processId": 24284,
+              "requestId": "run-5-key-1",
+              "route": "horizon-agent-control/title-key-v1"
+            },
+            "receivedUnixMs": 1795127782045
           }
         ],
         "multiplayerEntries": [
@@ -1216,13 +1151,13 @@
         }
       ],
       "arguments": [
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
         "--resources",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\native-cache\\resources",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\common-cache\\resources",
         "--game-dir",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--home",
-        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-servers\\game",
+        "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-server-policy\\game",
         "--name",
         "RustServerPolicyQA"
       ],
@@ -1331,38 +1266,25 @@
         "backToTitle": true,
         "escapeToTitle": true,
         "bytePreserved": true,
-        "desktopKeys": [
+        "nativeTitleKeys": [
           {
             "request": {
               "id": "run-6-key-1",
-              "action": "press_key",
-              "key": "Escape",
-              "processId": 8488,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
+              "key": "escape",
+              "processId": 28416,
+              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\rust-pack-release-f00125f\\mods-release-fixed\\native\\horizon-client.exe",
               "title": "Minecraft Rust Mods",
               "run": 6,
-              "createdUnixMs": 1795000897622,
+              "createdUnixMs": 1795127790144,
               "timeoutMs": 120000
             },
             "acknowledgement": {
-              "id": "run-6-key-1",
-              "key": "Escape",
-              "processId": 8488,
-              "status": "PASS",
-              "performedUnixMs": 1795000897900,
-              "hwnd": 7668836,
-              "executable": "C:\\Users\\Oscar\\Documents\\LANMinecraft\\artifacts\\agent-runs\\roboto-horizon-542\\mods-candidate\\native\\horizon-client.exe",
-              "title": "Minecraft Rust Mods",
-              "screenshot": "run-6-key-1.before.png",
-              "screenshotSha256": "e39c2600c3c062a3e51fabdc590e5f8adf821f58a2d78ecfedd3b9eacf33858f",
-              "capturedUnixMs": 1795000897882,
-              "clientBounds": [
-                307,
-                352,
-                2867,
-                1792
-              ]
-            }
+              "key": "escape",
+              "processId": 28416,
+              "requestId": "run-6-key-1",
+              "route": "horizon-agent-control/title-key-v1"
+            },
+            "receivedUnixMs": 1795127790171
           }
         ],
         "multiplayerEntries": [
