@@ -479,7 +479,7 @@ def execute(args):
         prepare_server_policy(source)
         prepare_multiplayer_menu(source)
         if lock["horizonRevision"] == REVISION:
-            prepare_legacy_hooks(source)
+            prepare_legacy_hooks(source, [row["id"] for row in selected if row["kind"] == "native-mod"])
         if "horizon_physics" in ids:
             from physics_title_compat import prepare_source as prepare_physics_source
             prepare_physics_source(source)

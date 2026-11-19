@@ -272,10 +272,15 @@ def jei(guest):
     until(lambda: guest("state")["gamemode"] == "creative", "JEI Creative check did not restore Creative")
 
     def give_toggle():
+        path = guest.game / "horizon-mods/.horizon-mod-data/jei/give"
+        before = path.is_file() and path.read_text(encoding="utf-8").strip() == "true"
+        expected = "false" if before else "true"
+        message = f"Click gives items: {'OFF' if before else 'ON'}"
         guest.typed_command("/jei give")
-        return until(lambda: next((line for line in visible_messages(guest, 5)
-                                   if "Click gives items: " in line), None),
-                     "JEI did not report its click-give setting").endswith("ON")
+        until(lambda: path.is_file() and path.read_text(encoding="utf-8").strip() == expected
+              and next((line for line in visible_messages(guest, 5) if "Click gives items: " in line), None) == message,
+              "JEI did not persist and report its click-give setting")
+        return not before
 
     # A real click provides CursorMoved but also activates the item. Turn on
     # JEI's own creative click-give mode in this disposable profile so that

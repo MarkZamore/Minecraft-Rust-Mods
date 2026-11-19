@@ -84,7 +84,11 @@ def replace_once(source, before, after):
     return source.replace(before, after)
 
 
-def prepare_source(workspace: Path) -> None:
+def prepare_source(workspace: Path, setting_owners: list[str]) -> None:
+    if len(setting_owners) != len(set(setting_owners)) or any(
+        re.fullmatch(r"[a-z0-9_]+", owner) is None for owner in setting_owners
+    ):
+        raise ValueError("Invalid legacy settings owner in the verified native selection")
     originals = {}
     bridge = workspace / BRIDGE
     if bridge.exists() or bridge.is_symlink():
@@ -195,15 +199,21 @@ def prepare_source(workspace: Path) -> None:
     for name, source in originals.items():
         (workspace / name).write_text(source, encoding="utf-8", newline="\n")
     bridge.parent.mkdir(parents=True, exist_ok=True)
-    bridge.write_bytes(Path(__file__).with_suffix(".rs").read_bytes())
+    owners = ", ".join(f'"{owner}"' for owner in sorted(setting_owners))
+    bridge_source = Path(__file__).with_suffix(".rs").read_text(encoding="utf-8")
+    bridge.write_text(replace_once(bridge_source, "const LEGACY_SETTINGS_OWNERS: &[&str] = &[];",
+                                   f"const LEGACY_SETTINGS_OWNERS: &[&str] = &[{owners}];"),
+                      encoding="utf-8", newline="\n")
 
 
 def prepare_wheel(workspace: Path) -> None:
     paths = {
         GAME: (
             "98769993cbeb7f8f40eecfbc7843d820ce729a7c7e7f7c83c4168e75a65e20c0",
-            # The same verified Edition source after the Creative JEI patch.
+            "497b9f928a626f2f21b24943f60828e2905e5e5c0391477250bfde7cac899bdf",
+            # The same exact Edition versions after the Creative JEI patch.
             "153b4325027d9e15b9a0b088ac9921f061f3fec2f07d5013ad219061608fab91",
+            "5ddbee87cb6041c904eb812353c130fdc6b7d9b0eca12ea12bf6822d66487c5b",
         ),
         INPUT: ("92776b00326eb210f2ceaf908312113596c0456a89cf3f1dd87b249fd5295d9c",),
     }

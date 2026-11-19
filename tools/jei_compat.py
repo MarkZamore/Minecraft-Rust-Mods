@@ -42,14 +42,20 @@ IME = CLIENT + "game/interface/ime.rs"
 # Official f00125f sources, with game.rs after the pinned Edition overlay.
 # The shared legacy hooks do not replace these files.
 F00125F_HOST_SHA256 = {
-    CLIENT + "game.rs": "98769993cbeb7f8f40eecfbc7843d820ce729a7c7e7f7c83c4168e75a65e20c0",
+    CLIENT + "game.rs": (
+        "98769993cbeb7f8f40eecfbc7843d820ce729a7c7e7f7c83c4168e75a65e20c0",
+        "497b9f928a626f2f21b24943f60828e2905e5e5c0391477250bfde7cac899bdf",
+    ),
     CREATIVE_SCREEN: "14a02a728479d2cf8517c93a074f69e91ad879a48d47acfb9f26f5a5b835fa02",
     PLAY_KEYS: "6192bed85215a9cb0922007ad42341424ee6599353a0ce589c17906fc30bc9ff",
     MODDING_PANEL: "b21bdd244033884de58e66fc85831cada48d7333345d05957e3761a88cc5cc22",
     MODDING_RECIPES: "af0eb0b65a71f1fc9ec7f627f76b0a2004ee04c639ba34a9c950c6086cad1a4f",
     FOCUSED_TEXT: "298a216847601e5c16e6786d035160bdce881d4337b03788bde7db1747f5362f",
     PAD_MENU: "b886b3cbd970bd9e235253e307529e5596cfa768e246b902543800c1f0777c5b",
-    RUNTIME_CONTROL: "c5a2f6e4ce0218101f172a06fea9a34d810280ffaadc5bf22621122f198b5ab9",
+    RUNTIME_CONTROL: (
+        "c5a2f6e4ce0218101f172a06fea9a34d810280ffaadc5bf22621122f198b5ab9",
+        "da9fc811b15579ee2de60e2fa84d85f02178b9ced961e158ab02a3b8749a2501",
+    ),
     IME: "826f626cf82c854869aa8c06b3e000777176f48a6c70bcbbd95ff58c787104d4",
 }
 
@@ -211,14 +217,15 @@ def verify_text_routing(control: str, ime: str, creative_ime: str) -> None:
         raise ValueError("Horizon Creative IME field priority changed")
 
 
-def read_host_files(workspace: Path, hashes: dict[str, str]) -> dict[str, str]:
+def read_host_files(workspace: Path, hashes: dict[str, str | tuple[str, ...]]) -> dict[str, str]:
     originals = {}
     for name, expected in hashes.items():
         path = workspace / name
         if path.is_symlink() or path.is_junction():
             raise ValueError(f"Horizon native panel source must be an ordinary file: {name}")
         raw = path.read_bytes()
-        if hashlib.sha256(raw).hexdigest() != expected:
+        allowed = expected if isinstance(expected, tuple) else (expected,)
+        if hashlib.sha256(raw).hexdigest() not in allowed:
             raise ValueError(f"Horizon native panel source changed before JEI creative port: {name}")
         originals[name] = raw.decode("utf-8")
     return originals
@@ -369,7 +376,6 @@ def adapt_f00125f_glue(source: str) -> str:
 use mod_api::{Stack as NativeStack, __private::{item_key, item_key_id}};''')
     for before, after in (
         ("native_known_recipes()", "known_recipes()"),
-        ("native_setting(", "setting("),
         ("native_give(", "recipe_give("),
         ("native_place_recipe(", "place_recipe("),
     ):
@@ -436,8 +442,6 @@ fn to_native(stacks: Vec<Stack>) -> Result<Vec<NativeStack>, String> {
 
 def adapt_f00125f_bundle(originals: dict[str, str], updated: dict[str, str]) -> None:
     updated["glue.rs"] = adapt_f00125f_glue(updated["glue.rs"])
-    for name in ("command.rs", "settings.rs", "click.rs"):
-        updated[name] = originals[name].replace("native_setting(", "setting(").replace("native_set_setting(", "set_setting(")
     for name in ("event.rs", "horizon-mixin.toml"):
         updated[name] = replace_once(originals[name], "native_hooks::NativePanelEvent", "native_hooks::PanelEvent")
     prefix = "horizon_client::game::native_hooks::"

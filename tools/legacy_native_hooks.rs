@@ -5,6 +5,18 @@
 
 use super::*;
 
+const LEGACY_SETTINGS_OWNERS: &[&str] = &[];
+
+fn legacy_setting_key(key: &str) -> bool {
+    if key.is_empty() || key.ends_with('.')
+        || !key.bytes().all(|byte| byte.is_ascii_alphanumeric() || b"._-".contains(&byte)) {
+        return false;
+    }
+    let stem = key.split('.').next().unwrap_or_default().to_ascii_lowercase();
+    !matches!(stem.as_str(), "con" | "prn" | "aux" | "nul")
+        && !(stem.len() == 4 && matches!(&stem[..3], "com" | "lpt") && stem.as_bytes()[3].is_ascii_digit())
+}
+
 pub(in crate::game) struct NativeMod {
     pub id: String,
     pub title: String,
@@ -118,12 +130,27 @@ impl Game<'_> {
             && self.book.is_none()
     }
 
+    fn legacy_setting_dir(&self, mod_id: &str, key: &str) -> Option<std::path::PathBuf> {
+        if LEGACY_SETTINGS_OWNERS.binary_search(&mod_id).is_err() || !legacy_setting_key(key)
+            || mod_api::content::crash::current_native_mod().is_some_and(|owner| owner != mod_id) {
+            return None;
+        }
+        Some(self.native_data_dir(mod_id))
+    }
+
+    // The shipped source overlays used per-key files before typed settings
+    // existed. Preserve their files without changing the typed host's registry.
     pub(in crate::game) fn native_setting(&self, mod_id: &str, key: &str) -> Option<String> {
-        self.setting(mod_id, key)
+        let directory = self.legacy_setting_dir(mod_id, key)?;
+        horizon_world::native_load_context::read_setting(&directory, key)
     }
 
     pub(in crate::game) fn native_set_setting(&self, mod_id: &str, key: &str, value: &str) {
-        self.set_setting(mod_id, key, value);
+        let Some(directory) = self.legacy_setting_dir(mod_id, key) else { return; };
+        if let Err(error) = std::fs::create_dir_all(&directory)
+            .and_then(|()| std::fs::write(directory.join(key), value)) {
+            log::warn!("Could not save {mod_id} setting {key}: {error}");
+        }
     }
 
     pub(in crate::game) fn legacy_text_width(&self, text: &str) -> f32 {
