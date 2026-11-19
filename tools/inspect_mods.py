@@ -67,6 +67,12 @@ def project_page(source):
     return source
 
 
+def archive_suffix(project):
+    if project.get("nativePackage") == "source-hmod" and project["kind"] == "native-mod":
+        return ".hmod"
+    return MOD_KINDS[project["kind"]]
+
+
 def validate_asset(project, version):
     file = version["file"]
     url = urllib.parse.urlsplit(file["url"])
@@ -75,7 +81,7 @@ def validate_asset(project, version):
             url.query or url.fragment or not HEX256.fullmatch(file["sha256"]) or
             type(file["size"]) is not int or not 0 < file["size"] <= MAX_ASSET):
         raise ValueError(f"Invalid registry file for {project['id']} {version['version']}")
-    suffix = MOD_KINDS.get(project["kind"])
+    suffix = archive_suffix(project) if project["kind"] in MOD_KINDS else None
     if suffix is not None and not file["name"].endswith(suffix):
         raise ValueError(f"Wrong extension for {project['id']} {version['version']}")
     if bool(project.get("key")) != bool(file.get("signature")):
@@ -140,7 +146,7 @@ def lock_registry(raw):
                         versions[0])
         projects.append({
             **{key: project[key] for key in ("id", "kind", "name", "license", "source", "authors", "key",
-                                            "officialRelease", "contentCompanion")
+                                            "officialRelease", "contentCompanion", "nativePackage", "wasmRevision")
                if key in project},
             "websiteUrl": project_page(project["source"]),
             **selected,
@@ -213,12 +219,50 @@ def checked_content_manifest(archive, expected):
         raise ValueError("Content manifest mismatch: capabilities")
     if "manifestSha256" in expected and sha256(data) != expected["manifestSha256"]:
         raise ValueError("Content manifest differs from the official bundled bytes")
+    return manifest
 
 
 def content_file(row):
     if row["kind"] == "mod":
         return row["file"]
     return row.get("contentCompanion", {}).get("file")
+
+
+def describe_release_archive(path, size, digest):
+    if (not 0 < size <= MAX_ASSET or not HEX256.fullmatch(digest) or path.is_symlink()
+            or path.is_junction() or not path.is_file() or path.stat().st_size != size):
+        raise ValueError("Expected an ordinary release archive with its pinned size and SHA-256")
+    with path.open("rb") as stream:
+        if hashlib.file_digest(stream, "sha256").hexdigest() != digest:
+            raise ValueError("Author release archive SHA-256 differs from the pin")
+        stream.seek(0)
+        with zipfile.ZipFile(stream) as archive:
+            validate_members(archive)
+            names = set(archive.namelist())
+            legacy = "horizon-native.json" in names
+            name = "horizon-native.json" if legacy else "horizon-mod.toml"
+            if archive.getinfo(name).file_size > 32 * 1024 * 1024:
+                raise ValueError("The author manifest exceeds Horizon's 32 MiB limit")
+            raw = archive.read(name).decode("utf-8")
+            if legacy:
+                manifest = json.loads(raw)
+                kind = "legacy-native-mixins"
+            else:
+                manifest = tomllib.loads(raw)
+                modules = any(name.lower().endswith(".wasm") for name in names)
+                kind = "native-source-package" if "native" in manifest else (
+                    "wasm-package" if "wasm" in manifest or modules else "content-package")
+            if not ID.fullmatch(manifest.get("id", "")) or not isinstance(manifest.get("version"), str):
+                raise ValueError("The author package has no valid mod ID and version")
+            return {
+                "schemaVersion": 1, "kind": kind, "sizeBytes": size, "sha256": digest,
+                "manifest": manifest,
+                "mixinsManifests": sorted(name for name in names if name.endswith("horizon-mixin.toml")),
+                "hasNativeCrate": "Cargo.toml" in names and "src/lib.rs" in names,
+                "wasmFiles": sorted(name for name in names if name.lower().endswith(".wasm")),
+                "licenseFiles": sorted(name for name in names if pathlib.PurePosixPath(name).name.upper()
+                                       .startswith(("LICENSE", "COPYING", "NOTICE"))),
+            }
 
 
 def selected_ids(path, input_bytes):
@@ -236,8 +280,24 @@ def read_archive(row, path):
         names = set(archive.namelist())
         licenses = sorted(name for name in names if
                           pathlib.PurePosixPath(name).name.upper().startswith(("LICENSE", "COPYING", "NOTICE")))
+        if row.get("nativePackage") == "source-hmod":
+            manifest = checked_content_manifest(archive, {**row, "api": "0.2"})
+            pins = NATIVE_API.fullmatch(row["api"])
+            declared = manifest.get("native", {})
+            if (row["kind"] != "native-mod" or pins is None or declared.get("horizon") != pins[1]
+                    or declared.get("mixins") != pins[2] or declared.get("game") != row["game"]
+                    or not {"Cargo.toml", "src/lib.rs"} <= names or "mod.wasm" in names):
+                raise ValueError("Native source package differs from its reviewed engine and SDK metadata")
+            return {"licenses": licenses, "manifestFormat": "source-hmod", "mixins": []}
         if row["kind"] == "mod":
-            checked_content_manifest(archive, row)
+            manifest = checked_content_manifest(archive, row)
+            if "wasmRevision" in row:
+                revision = row["wasmRevision"]
+                uses = json.loads(archive.read("uses.json"))
+                if (not re.fullmatch(r"[a-f0-9]{40}", revision) or uses.get("schema") != 1
+                        or uses.get("made_for") != revision or manifest.get("native") is not None
+                        or hashlib.sha512(archive.read("mod.wasm")).hexdigest() != manifest.get("wasm", {}).get("sha512")):
+                    raise ValueError("WASM package differs from its exact author ABI and module pins")
             return {"licenses": licenses, "wasm": "mod.wasm" in names,
                     "namespaces": sorted({name.split("/")[1] for name in names
                         if name.startswith(("assets/", "data/")) and name.count("/") >= 2})}
@@ -277,7 +337,7 @@ def read_archive(row, path):
 
 def inspect(row, cache, openssl):
     file = row["file"]
-    path = cache / (file["sha256"] + MOD_KINDS[row["kind"]])
+    path = cache / (file["sha256"] + archive_suffix(row))
     if path.is_symlink() or path.is_junction():
         raise ValueError("Linked archive in candidate cache")
     data = path.read_bytes() if path.is_file() else read_https(file["url"], file["size"])
@@ -316,6 +376,11 @@ def prepare_plan_input(row, source, destination, horizon_revision):
     if len(data) != row["file"]["size"] or sha256(data) != row["file"]["sha256"]:
         raise ValueError(f"Unchecked native bundle for planning: {row['id']}")
     report = read_archive(row, source)
+    if report.get("manifestFormat") == "source-hmod":
+        from modern_native_stage import stage_bundle
+        bundle = destination / row["id"]
+        stage_bundle(row, source, bundle, horizon_revision)
+        return
     pins = NATIVE_API.fullmatch(row["api"])
     with zipfile.ZipFile(source) as archive:
         for bundle in report["mixins"]:
@@ -349,7 +414,8 @@ def probe_case(work, workspace, mixins, rows, env, horizon_revision):
         inputs = case / "mods"
         inputs.mkdir()
         for row in rows:
-            prepare_plan_input(row, work / "archives" / (row["file"]["sha256"] + ".hnmod"), inputs, horizon_revision)
+            prepare_plan_input(row, work / "archives" / (row["file"]["sha256"] + archive_suffix(row)),
+                               inputs, horizon_revision)
         run = subprocess.run([str(mixins), "plan", "--workspace", str(workspace), "--mods", str(inputs),
                               "--out", str(case / "plan.json")], capture_output=True, encoding="utf-8",
                              env=env, timeout=180, check=False)
@@ -386,6 +452,11 @@ def main():
     check.add_argument("--openssl", required=True)
     check.add_argument("--include-broken", action="store_true")
     check.add_argument("--selection", type=pathlib.Path, help="Inspect only the selected pack inputs")
+    check.add_argument("--input-lock", type=pathlib.Path, default=LOCK, help="Use a separate reviewed input proposal")
+    describe = subcommands.add_parser("describe", help="Describe an exact author release archive without running it")
+    describe.add_argument("--archive", type=pathlib.Path, required=True)
+    describe.add_argument("--size", type=int, required=True)
+    describe.add_argument("--sha256", required=True)
     plan = subcommands.add_parser("plan")
     plan.add_argument("--work", type=pathlib.Path, required=True)
     plan.add_argument("--workspace", type=pathlib.Path, required=True)
@@ -396,7 +467,12 @@ def main():
     plan.add_argument("--candidate-singles", action="store_true")
     plan.add_argument("--jobs", type=int, choices=(1, 2), default=1)
     plan.add_argument("--result", type=pathlib.Path, required=True)
+    plan.add_argument("--input-lock", type=pathlib.Path, default=LOCK, help="Use a separate reviewed input proposal")
     args = parser.parse_args()
+
+    if args.command == "describe":
+        print(json.dumps(describe_release_archive(args.archive, args.size, args.sha256), indent=2, default=str))
+        return
 
     if args.command == "lock":
         if not args.registry_file.exists():
@@ -410,7 +486,7 @@ def main():
         print(dict(collections.Counter(row["eligibility"] for row in lock["projects"])))
         return
 
-    input_bytes = LOCK.read_bytes()
+    input_bytes = args.input_lock.read_bytes()
     lock = json.loads(input_bytes)
     horizon_revision = lock["horizonRevision"]
     if not re.fullmatch(r"[a-f0-9]{40}", horizon_revision) or lock["schemaVersion"] != 1:

@@ -10,7 +10,7 @@ import urllib.error
 import urllib.parse
 import zipfile
 
-from inspect_mods import LOCK, MOD_KINDS, ROOT, read_archive, read_https, selected_ids, sha256, write_json
+from inspect_mods import LOCK, ROOT, archive_suffix, read_archive, read_https, selected_ids, sha256, write_json
 
 
 LICENSE_LOCK = ROOT / "tools/mod-license-lock.json"
@@ -88,7 +88,7 @@ def is_license(data, declared):
 
 
 def archive_path(row, cache):
-    return cache / (row["file"]["sha256"] + MOD_KINDS[row["kind"]])
+    return cache / (row["file"]["sha256"] + archive_suffix(row))
 
 
 def checked_archive(row, cache):

@@ -18,7 +18,8 @@ from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE
 
 
 WORLD = "RustModsSmoke"
-CONTENT = re.compile(r"LANMinecraft (?:content mod|native mod content) accepted: ([A-Za-z0-9_-]+) ([^\s]+)")
+CONTENT = re.compile(r"LANMinecraft content mod accepted: ([A-Za-z0-9_-]+) ([^\s]+)")
+NATIVE_CONTENT = re.compile(r"LANMinecraft native mod content accepted: ([A-Za-z0-9_-]+) ([^\s]+)")
 NATIVE = re.compile(r"LANMinecraft native mod registered: ([A-Za-z0-9_-]+)")
 TECTONIC_PATH = re.compile(r"^\[Tectonic-Horizon\] (.+?): .+; using defaults$", re.MULTILINE)
 CONTENT_ITEMS = {"deepbore_quarry": "deepbore_quarry:quarry",
@@ -29,6 +30,32 @@ TECTONIC_ENV = "TECTONIC_HORIZON_CONFIG"
 def options(path):
     lines = path.read_text(encoding="utf-8").splitlines()
     return dict(line.split(":", 1) for line in lines if ":" in line and not line.startswith("#"))
+
+
+def zoom_round_trip(control):
+    original = control("state")["player"]
+    control("look", str(original["yaw"]), "-85")
+    width, height = control("ui")["gui_size"]
+    first = control("state")
+    baseline = first["player"]["fov_modifier"]
+    try:
+        control("key", "z", "down")
+        smoke_orbital.wait_for_world_ticks(control, 20)
+        zoom = control("state")["player"]["fov_modifier"]
+        control("scroll-at", str(width / 2), str(height / 2), "1")
+        smoke_orbital.wait_for_world_ticks(control, 20)
+        wheel = control("state")
+    finally:
+        control("key", "z", "up")
+        control("look", str(original["yaw"]), str(original["pitch"]))
+    smoke_orbital.wait_for_world_ticks(control, 20)
+    released = control("state")["player"]["fov_modifier"]
+    wheel_fov = wheel["player"]["fov_modifier"]
+    if (not 0 < wheel_fov < zoom * 0.95 or not zoom < baseline * 0.4 or
+            abs(released - baseline) > baseline * 0.05 or wheel["selected"] != first["selected"]):
+        raise ValueError("Zoom did not change and restore FOV or consumed the wrong hotbar input")
+    return {"key": "z", "baselineFov": baseline, "zoomFov": zoom, "wheelFov": wheel_fov,
+            "releasedFov": released, "hotbarUnchanged": True}
 
 
 def smoke(args):
@@ -47,6 +74,7 @@ def smoke(args):
     registered_items = [CONTENT_ITEMS[mod] for mod, _ in sorted(expected_content) if mod in CONTENT_ITEMS]
     orbital_evidence = None
     startup_evidence = None
+    zoom_evidence = None
     sys.path.insert(0, str(args.base_repo / "tools"))
     try:
         base = module_at(args.base_repo / "tools/smoke_runtime.py")
@@ -115,7 +143,7 @@ def smoke(args):
         control("screenshot", str(preview))
 
     def create(control):
-        nonlocal orbital_evidence, startup_evidence
+        nonlocal orbital_evidence, startup_evidence, zoom_evidence
         if "horizon_physics" in expected_native:
             startup_evidence = smoke_startup.exercise(control, args.qa)
         control("options", "mods")
@@ -145,6 +173,8 @@ def smoke(args):
             control("give", item, "1")
         smoke_orbital.wait_for_world_ticks(control, 4)
         observe_registered_items(control)
+        if any(mod_id == "zoom" for mod_id, _ in expected_content):
+            zoom_evidence = zoom_round_trip(control)
         veinminer = control("command", "/veinminer status")["chat"]
         if veinminer != ["Veinminer: on"]:
             raise ValueError("Veinminer did not answer its status command")
@@ -249,6 +279,7 @@ def smoke(args):
         if not same_player or not same_position:
             raise ValueError("Reopening the modded world did not preserve the test state")
     loaded_content = set()
+    native_package_content = set()
     registered_native = set()
     logs = []
     for index in (1, 2):
@@ -258,7 +289,12 @@ def smoke(args):
             config_paths = {Path(path) for path in TECTONIC_PATH.findall(log)}
             if external_config.name in log or config_paths != {instance_config}:
                 raise ValueError("Tectonic did not use the game-local configuration when an inherited override was supplied")
-        content = set(CONTENT.findall(log))
+        native_content = set(NATIVE_CONTENT.findall(log))
+        if any(mod_id not in expected_native or projects[mod_id]["version"] != version
+               for mod_id, version in native_content):
+            raise ValueError(f"Unexpected compiled native package content in run {index}: {native_content}")
+        native_package_content.update(native_content)
+        content = set(CONTENT.findall(log)) | (native_content & expected_content)
         if content != expected_content:
             raise ValueError(f"Content load mismatch in run {index}: missing {expected_content - content}, extra {content - expected_content}")
         loaded_content.update(content)
@@ -299,6 +335,7 @@ def smoke(args):
         "previousWorldMigration": "PASS" if args.previous_qa is not None else "NOT RUN",
         "previewSha256": None if args.startup_only else sha(preview),
         "loadedContent": sorted(loaded_content), "registeredNative": sorted(registered_native),
+        "nativePackageContent": sorted(native_package_content),
         "nativeNeedingDirectProbes": sorted(expected_native - registered_native),
         "modsPage": widgets, "worldsOnReopen": worlds, "firstState": before, "reopenedState": after,
         "bootstrapSha256": sha(standalone[0]) if standalone else None, "windowTitle": expected_title,
@@ -309,6 +346,7 @@ def smoke(args):
         "timeToTitleSeconds": title_times,
         **({"orbitalLaser": orbital_evidence} if orbital_evidence is not None else {}),
         **({"startupMouse": startup_evidence} if startup_evidence is not None else {}),
+        **({"zoom": zoom_evidence} if zoom_evidence is not None else {}),
     })
 
 

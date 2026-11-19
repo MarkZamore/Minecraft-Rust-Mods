@@ -14,7 +14,7 @@ import textwrap
 import tomllib
 import zipfile
 
-from inspect_mods import MOD_KINDS, read_archive, selected_ids, validate_members
+from inspect_mods import archive_suffix, read_archive, selected_ids, validate_members
 
 
 TOOLS = Path(__file__).resolve().parent
@@ -46,18 +46,21 @@ def write(path, value):
         file.write("\n")
 
 
-def run(args, env, *, capture=False):
-    return subprocess.run(args, check=True, env=env, text=True, encoding="utf-8", capture_output=capture)
+def run(args, env, *, capture=False, cwd=None):
+    return subprocess.run(args, check=True, env=env, cwd=cwd, text=True, encoding="utf-8", capture_output=capture)
 
 
 def build_recipe_sha():
     sources = [RECIPE, TOOLS / "orbital_controls.py", TOOLS / "orbital_world_guard.py", TOOLS / "physics_title_compat.py", TOOLS / "jei_compat.py", TOOLS / "spider_compat.py", TOOLS / "server_seed_compat.py",
+               TOOLS / "jei_021_compat.py",
                TOOLS / "multiplayer_warning.py", TOOLS / "legacy_native_hooks.py", TOOLS / "legacy_native_hooks.rs",
                TOOLS / "materialize_game_modules.rs", TOOLS / "mixins_tool.py",
                TOOLS / "mixins-contained-rust-paths.patch",
                TOOLS / "direct_hook_relocations.py",
                TOOLS / "tectonic_compat.py",
                TOOLS / "camera_compat.py", TOOLS / "inventory_compat.py", TOOLS / "placement_input_compat.py",
+               TOOLS / "right_harvest_compat.py",
+               TOOLS / "modern_native_compat.py", TOOLS / "modern_native_stage.py",
                TOOLS / "elytra_compat.py", TOOLS / "negotiated_native_mods.py", TOOLS / "legacy_payload_commit.rs",
                *(TOOLS / "orbital_compat").rglob("*")]
     files = {}
@@ -145,40 +148,43 @@ def unpack_inputs(rows, archives, work, revision):
     content.mkdir()
     for row in rows:
         file = row["file"]
-        path = archives / (file["sha256"] + MOD_KINDS[row["kind"]])
+        path = archives / (file["sha256"] + archive_suffix(row))
         if path.is_symlink() or path.is_junction() or path.stat().st_size != file["size"] or sha(path) != file["sha256"]:
             raise ValueError(f"Archive changed after provenance verification: {row['id']}")
-        read_archive(row, path)
+        report = read_archive(row, path)
         if row["kind"] == "mod":
-            with zipfile.ZipFile(path) as archive:
-                if "mod.wasm" in archive.namelist():
-                    raise ValueError(f"{row['id']} needs the WebAssembly runtime removed by this Horizon revision")
+            if report["wasm"] and (revision != REVISION or row.get("wasmRevision") != revision):
+                raise ValueError(f"{row['id']} does not have a WASM package pinned to this Horizon revision")
             shutil.copyfile(path, content / (row["id"] + ".hmod"))
             continue
 
         prefix = f"mixins/{row['id']}/"
         bundle = native_bundles / row["id"]
-        bundle.mkdir()
-        with zipfile.ZipFile(path) as archive:
-            validate_members(archive)
-            if companion := row.get("contentCompanion"):
-                package = content / (row["id"] + ".hmod")
-                with package.open("xb") as output:
-                    write_content_companion(archive, output)
-                expected = companion["file"]
-                if package.stat().st_size != expected["size"] or sha(package) != expected["sha256"]:
-                    raise ValueError(f"Derived content companion differs from its lock: {row['id']}")
-            for member in archive.infolist():
-                if member.is_dir() or not member.filename.startswith(prefix):
-                    continue
-                relative = member.filename[len(prefix):]
-                parts = relative.split("/")
-                if any(PureWindowsPath(part).is_reserved() or part.endswith((".", " ")) for part in parts):
-                    raise ValueError(f"Reserved Windows bundle path: {relative}")
-                target = bundle.joinpath(*parts)
-                target.parent.mkdir(parents=True, exist_ok=True)
-                with archive.open(member) as source, target.open("xb") as dest:
-                    shutil.copyfileobj(source, dest)
+        if report.get("manifestFormat") == "source-hmod":
+            from modern_native_stage import TYPED_FOLDER, stage_bundle
+            stage_bundle(row, path, bundle, revision)
+        else:
+            bundle.mkdir()
+            with zipfile.ZipFile(path) as archive:
+                validate_members(archive)
+                if companion := row.get("contentCompanion"):
+                    package = content / (row["id"] + ".hmod")
+                    with package.open("xb") as output:
+                        write_content_companion(archive, output)
+                    expected = companion["file"]
+                    if package.stat().st_size != expected["size"] or sha(package) != expected["sha256"]:
+                        raise ValueError(f"Derived content companion differs from its lock: {row['id']}")
+                for member in archive.infolist():
+                    if member.is_dir() or not member.filename.startswith(prefix):
+                        continue
+                    relative = member.filename[len(prefix):]
+                    parts = relative.split("/")
+                    if any(PureWindowsPath(part).is_reserved() or part.endswith((".", " ")) for part in parts):
+                        raise ValueError(f"Reserved Windows bundle path: {relative}")
+                    target = bundle.joinpath(*parts)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    with archive.open(member) as source, target.open("xb") as dest:
+                        shutil.copyfileobj(source, dest)
         if row["id"] == "server_browser":
             patch_server_atlas(bundle)
         if row["id"] == "horizon_physics":
@@ -193,6 +199,9 @@ def unpack_inputs(rows, archives, work, revision):
         if row["id"] == "elytratrails":
             from elytra_compat import apply as apply_elytra
             apply_elytra(bundle, revision=revision)
+        if row["id"] == "rightharvest":
+            from right_harvest_compat import apply as apply_right_harvest
+            apply_right_harvest(bundle, revision=revision, version=row["version"])
         manifest = bundle / "horizon-mixin.toml"
         text = manifest.read_text(encoding="utf-8")
         parsed = tomllib.loads(text)
@@ -210,6 +219,8 @@ def unpack_inputs(rows, archives, work, revision):
                     from tectonic_compat import route_manifest as route_tectonic
                     text = route_tectonic(text)
                 for source in bundle.rglob("*.rs"):
+                    if report.get("manifestFormat") == "source-hmod" and source.is_relative_to(bundle / TYPED_FOLDER):
+                        continue
                     original = source.read_text(encoding="utf-8")
                     patched = route_bundle_source(original)
                     if patched != original:
@@ -335,6 +346,9 @@ def inject_latest_packaged_content(stage):
     mods_text = replace_once(mods_text,
         '            Ok(_) => {}\n            Err(e) => log::warn!("Horizon: mod {} content not loaded: {e}", m.id),',
         '            Ok(_) => {\n'
+        '                if sources.native.built().iter().any(|built| built.id == m.id) {\n'
+        '                    log::info!("LANMinecraft native mod registered: {}", m.id);\n'
+        '                }\n'
         '                if has_files {\n'
         '                    log::info!("LANMinecraft native mod content accepted: {} {}", m.id, m.version);\n'
         '                }\n'
@@ -399,7 +413,8 @@ def inject_packaged_content(stage):
 
 def build_runtime(stage, package, output, env, target_arguments):
     run(["cargo", "build", "--locked", "--offline", "--release", "--manifest-path", stage / "Cargo.toml",
-         "-p", package, "--bin", "horizon-client", *target_arguments], env)
+         "-p", package, "--bin", "horizon-client", *target_arguments], env,
+        cwd=stage if target_arguments else None)
     target = Path(env["CARGO_TARGET_DIR"])
     if target_arguments:
         target /= WINDOWS_TARGET
@@ -422,7 +437,7 @@ def materialize_game_modules(source, env):
         file.write((TOOLS / "materialize_game_modules.rs").read_bytes())
     try:
         run(["cargo", "run", "--manifest-path", crate / "Cargo.toml", "--locked", "--offline",
-             "--release", "--example", name, "--", source.resolve()], env)
+             "--release", "--example", name, "--", source.resolve()], env, cwd=source)
     finally:
         entry.unlink()
 
@@ -479,7 +494,8 @@ def execute(args):
         prepare_server_policy(source)
         prepare_multiplayer_menu(source)
         if lock["horizonRevision"] == REVISION:
-            prepare_legacy_hooks(source, [row["id"] for row in selected if row["kind"] == "native-mod"])
+            prepare_legacy_hooks(source, [row["id"] for row in selected
+                                          if row["kind"] == "native-mod" and not row.get("nativePackage")])
         if "horizon_physics" in ids:
             from physics_title_compat import prepare_source as prepare_physics_source
             prepare_physics_source(source)
@@ -561,8 +577,15 @@ def execute(args):
         if latest:
             inject_latest_packaged_content(stage)
             from negotiated_native_mods import install_source as install_native_mods, stage_packages
+            if any(row.get("nativePackage") == "source-hmod" for row in selected):
+                from modern_native_stage import install_compiled_crates, stage_runtime_packages
+                install_compiled_crates(stage, bundles, selected)
+                run(["cargo", "update", "--workspace", "--offline", "--manifest-path", stage / "Cargo.toml"], env,
+                    cwd=stage)
             install_native_mods(stage, selected)
             stage_packages(args.work, selected, mixins_revision)
+            if any(row.get("nativePackage") == "source-hmod" for row in selected):
+                stage_runtime_packages(args.work, selected)
         else:
             inject_packaged_content(stage)
         verify_downloaded_lock(source / "Cargo.lock", stage / "Cargo.lock")
@@ -573,8 +596,10 @@ def execute(args):
     build = args.build or args.build_prepared
     post_build = stage / "native-post-build.json"
     if args.check or build:
+        # Cargo resolves .cargo/config.toml from its working directory, even with --manifest-path.
         run(["cargo", "check", "--locked", "--offline", "--release", "--manifest-path", stage / "Cargo.toml",
-             "-p", package, "--bin", "horizon-client", *target_arguments], env)
+             "-p", package, "--bin", "horizon-client", *target_arguments], env,
+            cwd=stage if latest else None)
         evidence["compileCheck"] = True
     if build:
         if post_build.is_file() and load(post_build):

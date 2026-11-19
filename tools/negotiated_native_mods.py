@@ -27,10 +27,19 @@ OWNERS = {
     "elytratrails": "official_elytratrails_net::ElytraHooks",
     "orbital": "orbital_payloads::OrbitalPayloads",
 }
+SOURCE_PACKAGE_CRATES = {"skins_3d": "mod_skins_3d", "spider_man": "spider_man"}
 
 
 def install_source(stage: Path, selected: list[dict]) -> None:
-    records = [(row["id"], row["version"]) for row in selected if row["id"] in OWNERS]
+    records = []
+    for row in selected:
+        mod_id = row["id"]
+        if row.get("nativePackage") == "source-hmod":
+            if mod_id not in SOURCE_PACKAGE_CRATES or row.get("side") != "client":
+                raise ValueError(f"No reviewed compiled client hook entry for {mod_id}")
+            records.append((mod_id, row["version"], "Client", f"{SOURCE_PACKAGE_CRATES[mod_id]}::hooks()"))
+        elif mod_id in OWNERS:
+            records.append((mod_id, row["version"], "Both", f"Box::new(super::{OWNERS[mod_id]})"))
     if not records:
         return
     originals = {}
@@ -54,11 +63,11 @@ pub fn lanminecraft_builtin_mods() -> (Vec<mod_api::ModEntry>, &'static [mod_api
         "    let (mods, built) = horizon_client::entry::lanminecraft_builtin_mods();\n"
         "    horizon_mod_host::main_with(mods, &[], built, startup);")
     declarations = "".join(
-        f"        BuiltMod {{ id: {json.dumps(id)}, version: {json.dumps(version)}, side: mod_api::Side::Both }},\n"
-        for id, version in records)
+        f"        BuiltMod {{ id: {json.dumps(id)}, version: {json.dumps(version)}, side: mod_api::Side::{side} }},\n"
+        for id, version, side, _ in records)
     hooks = "".join(
-        f"        mod_api::ModEntry::new({json.dumps(id)}, Box::new(super::{OWNERS[id]})),\n"
-        for id, _ in records)
+        f"        mod_api::ModEntry::new({json.dumps(id)}, {entry}),\n"
+        for id, _, _, entry in records)
     registry = f'''use mod_api::__private::native::BuiltMod;
 
 pub(crate) fn entries() -> (Vec<mod_api::ModEntry>, &'static [BuiltMod]) {{
@@ -70,7 +79,7 @@ pub(crate) fn entries() -> (Vec<mod_api::ModEntry>, &'static [BuiltMod]) {{
 '''
     changed = {GAME + ".rs": game, ROOT_ENTRY: entry, HOST: host,
                EXTRAS + "/builtin_mods.rs": registry}
-    if any(id == "orbital" for id, _ in records):
+    if any(id == "orbital" for id, _, _, _ in records):
         add_orbital_delivery(changed, originals)
     for name, text in changed.items():
         path = stage / name

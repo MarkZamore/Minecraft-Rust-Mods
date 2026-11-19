@@ -45,7 +45,7 @@
 - **Motion Blur** — Размывает движущиеся объекты и при включённой настройке смягчает движение камеры. [GitHub](https://github.com/levzzz5154/horizon-motion-blur)
 - **PhysicsModHorizon** — Добавляет физику тел, волн, частиц и плащей. [GitHub](https://github.com/tariksabanuz/PhysicsModHorizon)
 - **3D Skins** — Делает пиксели внешнего слоя скина объёмными. [GitHub](https://github.com/umbx-dot/horizon-3d-skins)
-- **Zoom** — Приближает изображение с регулировкой колёсиком. [GitHub](https://github.com/horizon-rust/horizon-mods/tree/main/native/zoom)
+- **Zoom** — Приближает изображение с регулировкой колёсиком. [Horizon](https://playhorizon.dev/mods/zoom)
 
 ## Другие удобства
 

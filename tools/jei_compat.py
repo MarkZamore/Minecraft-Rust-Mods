@@ -453,6 +453,10 @@ def adapt_f00125f_bundle(originals: dict[str, str], updated: dict[str, str]) -> 
 
 
 def apply(bundle: Path, *, revision: str | None = None) -> None:
+    if revision == F00125F_REVISION:
+        from jei_021_compat import apply_if_selected
+        if apply_if_selected(bundle):
+            return
     hashes = SOURCE_HASHES | F00125F_BUNDLE_SHA256 if revision == F00125F_REVISION else SOURCE_HASHES
     originals = {}
     for name, expected in hashes.items():

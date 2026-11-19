@@ -1,4 +1,14 @@
 {
+  "authorUpdateAudit": {
+    "archivedRegistryCommit": "231b86cb47aadbd3cd1ef7b192b0b35e776186d8",
+    "availableUpdatesVerified": 11,
+    "currentRegistry": {
+      "generated": "2026-11-19T19:13:09Z",
+      "sha256": "33de015f2ac5716aa8690520d6fae5dc32b8060621cdaa8dbbd6ccee1ff6f294",
+      "url": "https://horizon-rust.github.io/horizon-mods/index.json"
+    },
+    "selectedModIds": 37
+  },
   "horizonHooks": 432,
   "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
   "minecraftVersion": "26.3",
@@ -507,26 +517,50 @@
       "websiteUrl": "https://github.com/Fernandes585/Compass-Enhanced"
     },
     {
-      "api": "native-1/9d979caa48a3bb58203319b9ea044db58c38e0d8/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
+      "api": "native-1/fdc87aecdbd116bf1e08adcd062fcbaea8c2e2ca/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
       "authors": [
         "tariksabanuz"
       ],
       "eligibility": "compile-probe",
       "file": {
-        "name": "connected_textures-0.1.2.hnmod",
-        "sha256": "e86d1d3fd92045737b90218de51c158b60519afc6618c063c87f64ca68d36adf",
-        "size": 10947,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/connected_textures-0.1.2/connected_textures-0.1.2.hnmod"
+        "name": "connected_textures-0.1.7.hnmod",
+        "sha256": "47fd568c4e2969122da80550efd9305b527484168541a6bbea44e1fdff16cab1",
+        "size": 13022,
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/connected_textures-0.1.7/connected_textures-0.1.7.hnmod"
       },
       "game": "26.3",
       "id": "connected_textures",
       "kind": "native-mod",
       "license": "MIT",
       "name": "ContinuityHorizon",
-      "otherVersions": [],
-      "reason": "Uses source pinned to 9d979caa48a3bb58203319b9ea044db58c38e0d8; test against the selected Nightly",
+      "officialRelease": {
+        "assetId": 728241780,
+        "id": 439404407,
+        "publishedAt": "2026-11-09T16:57:55Z",
+        "publisher": "horizon-rust/horizon-mods",
+        "tag": "connected_textures-0.1.7",
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/tag/connected_textures-0.1.7"
+      },
+      "otherVersions": [
+        {
+          "api": "native-1/9d979caa48a3bb58203319b9ea044db58c38e0d8/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
+          "eligibility": "compile-probe",
+          "file": {
+            "name": "connected_textures-0.1.2.hnmod",
+            "sha256": "e86d1d3fd92045737b90218de51c158b60519afc6618c063c87f64ca68d36adf",
+            "size": 10947,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/connected_textures-0.1.2/connected_textures-0.1.2.hnmod"
+          },
+          "game": "26.3",
+          "kind": "native-mod",
+          "reason": "Uses source pinned to 9d979caa48a3bb58203319b9ea044db58c38e0d8; test against the selected Nightly",
+          "source": "https://github.com/tariksabanuz/ContinuityHorizon",
+          "version": "0.1.2"
+        }
+      ],
+      "reason": "Verified official update pending the exact composed f00125f checks",
       "source": "https://github.com/tariksabanuz/ContinuityHorizon",
-      "version": "0.1.2",
+      "version": "0.1.7",
       "websiteUrl": "https://github.com/tariksabanuz/ContinuityHorizon"
     },
     {
@@ -837,13 +871,13 @@
       "authors": [
         "soufi"
       ],
-      "eligibility": "candidate",
+      "eligibility": "compile-probe",
       "file": {
-        "name": "elytratrails-0.1.1.hnmod",
-        "sha256": "feea003d336b3275be563c1a1ae7c4d455385d6c1b75712ef879861e121ba198",
-        "signature": "untrusted comment: signature from minisign secret key\nRUT6eNq4e5WfVKBjiTqR7gbjglmDfuhOIdATC/awPevLUyV9sM16EwDCZwn4VxOgfNuuN0TmYr2ibtINbtsiO5NM2H8yzVwmkAw=\ntrusted comment: timestamp:1793818562\tfile:elytratrails-0.1.1.hnmod\thashed\n+74DRK4ausg/UhM7gcmF5VgafBkcLHJ8TmIk2V1dRk/h+9rMuNhLV7YIeCnplg8BOstJUuBRauVxNkcn9uEnAw==",
-        "size": 13451,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/elytratrails-0.1.1/elytratrails-0.1.1.hnmod"
+        "name": "elytratrails-0.1.2.hnmod",
+        "sha256": "ad6758f1ff0fa1b50750764bf2eb1f78ea94af8ecc84d75a7cc6ec5dcffb31a6",
+        "signature": "untrusted comment: signature from minisign secret key\nRUT6eNq4e5WfVKcXvbtSBLrKVo7xIwhiDU8HWuu+fwnIUEW2rftVNxgM85wXqFBifP4sLdEwkzPGs3IhqJIt8xrx9V5oyiQGqQE=\ntrusted comment: timestamp:1793888825\tfile:elytratrails-0.1.2.hnmod\thashed\n+ZO1qtw4aC7wLLskQA9Qg3wYRMqlITduNU194dJ3+2RhGRCgQi4kup09WDL8tlMPtd32Og23omxxx/lBYEtfAg==",
+        "size": 13570,
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/elytratrails-0.1.2/elytratrails-0.1.2.hnmod"
       },
       "game": "26.3",
       "hooks": 8,
@@ -852,10 +886,36 @@
       "kind": "native-mod",
       "license": "MIT",
       "name": "ElytraTrails",
-      "otherVersions": [],
-      "reason": "Declares supported hook API or the exact Horizon revision",
+      "officialRelease": {
+        "assetId": 720053595,
+        "id": 437429693,
+        "publishedAt": "2026-11-07T08:05:01Z",
+        "publisher": "horizon-rust/horizon-mods",
+        "tag": "elytratrails-0.1.2",
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/tag/elytratrails-0.1.2"
+      },
+      "otherVersions": [
+        {
+          "api": "native-1/02c8607ee8ebd216f2f535c1eb7b62b572830df2/cb1ad23022392d88f006cf94cbf6552a73f5df12",
+          "eligibility": "candidate",
+          "file": {
+            "name": "elytratrails-0.1.1.hnmod",
+            "sha256": "feea003d336b3275be563c1a1ae7c4d455385d6c1b75712ef879861e121ba198",
+            "signature": "untrusted comment: signature from minisign secret key\nRUT6eNq4e5WfVKBjiTqR7gbjglmDfuhOIdATC/awPevLUyV9sM16EwDCZwn4VxOgfNuuN0TmYr2ibtINbtsiO5NM2H8yzVwmkAw=\ntrusted comment: timestamp:1793818562\tfile:elytratrails-0.1.1.hnmod\thashed\n+74DRK4ausg/UhM7gcmF5VgafBkcLHJ8TmIk2V1dRk/h+9rMuNhLV7YIeCnplg8BOstJUuBRauVxNkcn9uEnAw==",
+            "size": 13451,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/elytratrails-0.1.1/elytratrails-0.1.1.hnmod"
+          },
+          "game": "26.3",
+          "hooks": 8,
+          "kind": "native-mod",
+          "reason": "Declares supported hook API or the exact Horizon revision",
+          "source": "https://github.com/soufied/ElytraTrails-Horizon",
+          "version": "0.1.1"
+        }
+      ],
+      "reason": "Verified official update pending the exact composed f00125f checks",
       "source": "https://github.com/soufied/ElytraTrails-Horizon",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "websiteUrl": "https://github.com/soufied/ElytraTrails-Horizon"
     },
     {
@@ -1243,23 +1303,46 @@
       "websiteUrl": "https://github.com/taxtii/hitbox_plus.git"
     },
     {
-      "api": "native-1/6475f62f3c834b7489e1816bf47f47ea5eb2b879/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
+      "api": "native-1/fdc87aecdbd116bf1e08adcd062fcbaea8c2e2ca/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
       "authors": [
         "tariksabanuz"
       ],
       "eligibility": "compile-probe",
       "file": {
-        "name": "horizon_physics-0.18.0.hnmod",
-        "sha256": "213f6264a20bed7fef64f12f539d0b2364f710857a3acaa351b96e78b3239dc1",
-        "size": 140413,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/horizon_physics-0.18.0/horizon_physics-0.18.0.hnmod"
+        "name": "horizon_physics-0.20.7.hnmod",
+        "sha256": "8eeba82ac0e7755298269fd328679473720a9894cfe10df5c8e3aaf88f59c34c",
+        "size": 146852,
+        "url": "https://github.com/tariksabanuz/PhysicsModHorizon/releases/download/v4.8/horizon_physics-0.20.7.hnmod"
       },
       "game": "26.3",
       "id": "horizon_physics",
       "kind": "native-mod",
       "license": "MIT",
       "name": "PhysicsModHorizon",
+      "officialRelease": {
+        "assetId": 726605633,
+        "id": 438836696,
+        "publishedAt": "2026-11-09T07:24:36Z",
+        "publisher": "tariksabanuz/PhysicsModHorizon",
+        "tag": "v4.8",
+        "url": "https://github.com/tariksabanuz/PhysicsModHorizon/releases/tag/v4.8"
+      },
       "otherVersions": [
+        {
+          "api": "native-1/6475f62f3c834b7489e1816bf47f47ea5eb2b879/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
+          "eligibility": "compile-probe",
+          "file": {
+            "name": "horizon_physics-0.18.0.hnmod",
+            "sha256": "213f6264a20bed7fef64f12f539d0b2364f710857a3acaa351b96e78b3239dc1",
+            "size": 140413,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/horizon_physics-0.18.0/horizon_physics-0.18.0.hnmod"
+          },
+          "game": "26.3",
+          "kind": "native-mod",
+          "reason": "Uses source pinned to 6475f62f3c834b7489e1816bf47f47ea5eb2b879; test against the selected Nightly",
+          "source": "https://github.com/tariksabanuz/PhysicsModHorizon",
+          "version": "0.18.0"
+        },
         {
           "api": "native-1/9d979caa48a3bb58203319b9ea044db58c38e0d8/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
           "eligibility": "compile-probe",
@@ -1274,23 +1357,23 @@
           "version": "0.15.1"
         }
       ],
-      "reason": "Uses source pinned to 6475f62f3c834b7489e1816bf47f47ea5eb2b879; test against the selected Nightly",
-      "source": "https://github.com/tariksabanuz/PhysicsModHorizon",
-      "version": "0.18.0",
+      "reason": "Verified official update pending the exact composed f00125f checks",
+      "source": "https://github.com/tariksabanuz/PhysicsModHorizon/commit/c530423d2a77972eda10d950e4a3356cffabad76",
+      "version": "0.20.7",
       "websiteUrl": "https://github.com/tariksabanuz/PhysicsModHorizon"
     },
     {
-      "api": "native-1/67dad0d1a5adca139b426c8114e74a33b376ba64/e8cd0aa38cffef49cb2e088ef716baa107148c02",
+      "api": "native-1/9f42064c11efe7ef3e5ed2baad7ddc2a3b36eea0/5a64af938ec86b00d53d16a408aabc0038fb3e57",
       "authors": [
         "keksi2k"
       ],
       "eligibility": "compile-probe",
       "file": {
-        "name": "horizonmatica-0.2.0.hnmod",
-        "sha256": "5afe38269722867cb60b9b7cc1ba9efa2efb998580eae2949ab7f7e5399ebb7b",
-        "signature": "untrusted comment: signature from minisign secret key\r\nRUS+BRoCJslNCEWE8zNb6tQ44aUFyzfzbB8nRghjhfhf5s5NQSRSKgo9YknwdPAX5WtloUfJNMMHFNzl6WaK9yHBLeeNBHU4ggo=\r\ntrusted comment: timestamp:1793803241\tfile:horizonmatica-0.2.0.hnmod\thashed\r\n85Peoj95TjmdBwJ2xoerobEzqhmT6RNT2m+4RaaKtbParx/MnEXYmXpEw5XqYzw8Z/u1+trBQULwmNuY8MWKAQ==",
-        "size": 142553,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/horizonmatica-0.2.0/horizonmatica-0.2.0.hnmod"
+        "name": "horizonmatica-0.3.3.hnmod",
+        "sha256": "b689878c7cddbb021e914d5094233e49352ba4f0676cf30cca3c45873074fbdc",
+        "signature": "untrusted comment: signature from minisign secret key\r\nRUS+BRoCJslNCCdhq2kf1mKbtk2DD6GIiIuxZ2RF+MV+vAb4uJPffbRMdjVodDiZuXLdNo0khUfivssj08FDX1vPCiIy7vnFjQI=\r\ntrusted comment: timestamp:1794767646\tfile:horizonmatica-0.3.3.hnmod\thashed\r\nbii9skDcfSjnVmxJYVEfEZrAWXlxvs/6T9Lk0u5v65pJKx59NtNmadc6TV4kIADcozmr76PA5tuIlVgdcPXnDw==\r\n",
+        "size": 151675,
+        "url": "https://github.com/keksi2k/horizonmatica/releases/download/v0.3.3/horizonmatica-0.3.3.hnmod"
       },
       "game": "26.3",
       "id": "horizonmatica",
@@ -1298,7 +1381,35 @@
       "kind": "native-mod",
       "license": "MIT",
       "name": "Horizonmatica",
+      "officialRelease": {
+        "assetId": 751947617,
+        "id": 446274461,
+        "publishedAt": "2026-11-15T18:35:00Z",
+        "signature": {
+          "id": 751947615,
+          "sha256": "eb02c413893dce84b74a3c6b7dadfb0e1f5f10bad0922ab6a2b200fc4d78b7e9",
+          "size": 324
+        },
+        "tag": "v0.3.3",
+        "url": "https://github.com/keksi2k/horizonmatica/releases/tag/v0.3.3"
+      },
       "otherVersions": [
+        {
+          "api": "native-1/67dad0d1a5adca139b426c8114e74a33b376ba64/e8cd0aa38cffef49cb2e088ef716baa107148c02",
+          "eligibility": "compile-probe",
+          "file": {
+            "name": "horizonmatica-0.2.0.hnmod",
+            "sha256": "5afe38269722867cb60b9b7cc1ba9efa2efb998580eae2949ab7f7e5399ebb7b",
+            "signature": "untrusted comment: signature from minisign secret key\r\nRUS+BRoCJslNCEWE8zNb6tQ44aUFyzfzbB8nRghjhfhf5s5NQSRSKgo9YknwdPAX5WtloUfJNMMHFNzl6WaK9yHBLeeNBHU4ggo=\r\ntrusted comment: timestamp:1793803241\tfile:horizonmatica-0.2.0.hnmod\thashed\r\n85Peoj95TjmdBwJ2xoerobEzqhmT6RNT2m+4RaaKtbParx/MnEXYmXpEw5XqYzw8Z/u1+trBQULwmNuY8MWKAQ==",
+            "size": 142553,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/horizonmatica-0.2.0/horizonmatica-0.2.0.hnmod"
+          },
+          "game": "26.3",
+          "kind": "native-mod",
+          "reason": "Uses source pinned to 67dad0d1a5adca139b426c8114e74a33b376ba64; test against the selected Nightly",
+          "source": "https://github.com/keksi2k/horizonmatica",
+          "version": "0.2.0"
+        },
         {
           "api": "native-1/c9d474dd9116e84c243f8992d75c11314df56f06/a2af5c0dd4117d51ecd70066ba7a00b4a2c10dab",
           "eligibility": "compile-probe",
@@ -1314,9 +1425,9 @@
           "version": "0.1.1"
         }
       ],
-      "reason": "Uses source pinned to 67dad0d1a5adca139b426c8114e74a33b376ba64; test against the selected Nightly",
-      "source": "https://github.com/keksi2k/horizonmatica",
-      "version": "0.2.0",
+      "reason": "Verified official update pending the exact composed f00125f checks",
+      "source": "https://github.com/keksi2k/horizonmatica/commit/ed87f968003cbbf2f56e0816712625eac357ea30",
+      "version": "0.3.3",
       "websiteUrl": "https://github.com/keksi2k/horizonmatica"
     },
     {
@@ -1459,29 +1570,88 @@
       "websiteUrl": "https://github.com/Joeypc6/Jade-Horizon"
     },
     {
-      "api": "native-1/1da354b67a509812c4141b67de2affd6de65c342/0d6b103c70633d8fd9443d8d0acd3aadaacedb06",
+      "api": "native-1/6560641ba51a452f6bc2407baa4eb1b3be517ca8/e8cd0aa38cffef49cb2e088ef716baa107148c02",
       "authors": [
         "enderliker"
       ],
-      "eligibility": "candidate",
+      "eligibility": "compile-probe",
       "file": {
-        "name": "jei-0.1.0.hnmod",
-        "sha256": "c5590e0d4618d435fc0c56abcc9cdabf253be694710068a3dd4643ac25466b5b",
-        "signature": "untrusted comment: signature from minisign secret key\nRURqzx718YYz/AZEFNcRh0lQFAgg8JsladNTOULcWqBnZFoFoApH0UvoQQkTk8wC/LfZpfJkrn7XRzSUOPUOfudUebBSHHdVYQ0=\ntrusted comment: jei 0.1.0 for Horizon 26.3\nOqC3JuFFGuGNdxATsGIvM20nrld1ME2ks3tI2hfaMX2s5bCgwYjieUDk7FbDQD8zxd3KHqOYaUTz6T+njgUNCw==",
-        "size": 15835,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/jei-0.1.0/jei-0.1.0.hnmod"
+        "name": "jei-0.2.1.hnmod",
+        "sha256": "d0a840069ff9fb877021829584df72441928a9283feb27df30d244837bc7f2af",
+        "signature": "untrusted comment: signature from minisign secret key\nRURqzx718YYz/IMTqxXLr0yxt8BI4Ot8qWMwFObx9H5UjLTNtGMPzIIKcY3ZxSvKiIjsHXRUfYKnU6rgwOf5AF0Oo5iS+gS6KwE=\ntrusted comment: jei 0.2.1 for Horizon 26.3\nwv3EhNQzQNHc43Xn0SirRtN5QHxE9jtuEgbRgyMfwIFL7rFvpsZYQGVVsKjZ6NQElq+5smbXNCOgWIGDI1YaDA==\n",
+        "size": 31495,
+        "url": "https://github.com/enderliker/horizon-jei/releases/download/v0.2.1/jei-0.2.1.hnmod"
       },
       "game": "26.3",
-      "hooks": 2,
+      "hooks": 313,
       "id": "jei",
       "key": "RWRqzx718YYz/OHRM+pAnFWlDv8Rrgar5C4NszQg3EKJWQZWNel5Sslf",
       "kind": "native-mod",
       "license": "MIT",
       "name": "JEI for Horizon",
-      "otherVersions": [],
-      "reason": "Declares supported hook API or the exact Horizon revision",
-      "source": "https://github.com/enderliker/horizon-jei",
-      "version": "0.1.0",
+      "officialRelease": {
+        "assetId": 724808505,
+        "id": 438433545,
+        "publishedAt": "2026-11-08T18:24:26Z",
+        "signature": {
+          "id": 724808506,
+          "sha256": "c90394203e1b36dee2055a2a3806932a00f94280c6f377c02cc70b9882891649",
+          "size": 288
+        },
+        "tag": "v0.2.1",
+        "url": "https://github.com/enderliker/horizon-jei/releases/tag/v0.2.1"
+      },
+      "otherVersions": [
+        {
+          "api": "native-1/9f42064c11efe7ef3e5ed2baad7ddc2a3b36eea0/e8cd0aa38cffef49cb2e088ef716baa107148c02",
+          "eligibility": "port-required",
+          "file": {
+            "name": "jei-0.3.0.hnmod",
+            "sha256": "2fe152d8cfab82a2aa460b58c712d9ed09de6cb18242fde843e37979968bda25",
+            "signature": "untrusted comment: signature from minisign secret key\nRURqzx718YYz/BnV/P1MjxmplleQ6IYg5C+ACESG3/FXB1HyID2IPpYtmHBb2+iJKX2fRLkXe8lrI5WHwsFiuOqamvbFt85Xkg4=\ntrusted comment: jei 0.3.0 for Horizon 26.3\np4x4Za4dTGJp+rSqG3kHJ4lv9uyefSCFxILNijERuhbGjI+dZFq+B3lF3x+aunZhsP2EQlNRnD6YkpjQ4sGxAQ==\n",
+            "size": 102425,
+            "url": "https://github.com/enderliker/horizon-jei/releases/download/v0.3.0/jei-0.3.0.hnmod"
+          },
+          "game": "26.3",
+          "hooks": 411,
+          "kind": "native-mod",
+          "officialRelease": {
+            "assetId": 748391765,
+            "id": 445503736,
+            "publishedAt": "2026-11-14T18:30:22Z",
+            "signature": {
+              "id": 748391766,
+              "sha256": "788e10fcb9ef36943dfa12486e2e5aae76be23caa9430885aa47a3fc4597e3dc",
+              "size": 288
+            },
+            "tag": "v0.3.0",
+            "url": "https://github.com/enderliker/horizon-jei/releases/tag/v0.3.0"
+          },
+          "reason": "Removed hook catalog and module paths; author Kit recipe overlay still needs f001 typed stack and UI port",
+          "source": "https://github.com/enderliker/horizon-jei/commit/03f0b4c7d3b59a345bd53b12bdf0f8c09b95bbb3",
+          "version": "0.3.0"
+        },
+        {
+          "api": "native-1/1da354b67a509812c4141b67de2affd6de65c342/0d6b103c70633d8fd9443d8d0acd3aadaacedb06",
+          "eligibility": "candidate",
+          "file": {
+            "name": "jei-0.1.0.hnmod",
+            "sha256": "c5590e0d4618d435fc0c56abcc9cdabf253be694710068a3dd4643ac25466b5b",
+            "signature": "untrusted comment: signature from minisign secret key\nRURqzx718YYz/AZEFNcRh0lQFAgg8JsladNTOULcWqBnZFoFoApH0UvoQQkTk8wC/LfZpfJkrn7XRzSUOPUOfudUebBSHHdVYQ0=\ntrusted comment: jei 0.1.0 for Horizon 26.3\nOqC3JuFFGuGNdxATsGIvM20nrld1ME2ks3tI2hfaMX2s5bCgwYjieUDk7FbDQD8zxd3KHqOYaUTz6T+njgUNCw==",
+            "size": 15835,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/jei-0.1.0/jei-0.1.0.hnmod"
+          },
+          "game": "26.3",
+          "hooks": 2,
+          "kind": "native-mod",
+          "reason": "Declares supported hook API or the exact Horizon revision",
+          "source": "https://github.com/enderliker/horizon-jei",
+          "version": "0.1.0"
+        }
+      ],
+      "reason": "Verified official update pending the exact composed f00125f checks",
+      "source": "https://github.com/enderliker/horizon-jei/commit/96c6defdf275e501150848b1601dd2ca46e8c298",
+      "version": "0.2.1",
       "websiteUrl": "https://github.com/enderliker/horizon-jei"
     },
     {
@@ -1833,23 +2003,46 @@
       "websiteUrl": "https://github.com/horizon-rust/horizon-mods/tree/main/native/recipes"
     },
     {
-      "api": "native-1/9d979caa48a3bb58203319b9ea044db58c38e0d8/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
+      "api": "native-1/fdc87aecdbd116bf1e08adcd062fcbaea8c2e2ca/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
       "authors": [
         "tariksabanuz"
       ],
       "eligibility": "compile-probe",
       "file": {
-        "name": "resourcify-0.1.1.hnmod",
-        "sha256": "a6611819c9401dc7370dece7453cdda2356747f2a34c32940bf82ccd6abdcf53",
-        "size": 29316,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/resourcify-0.1.1/resourcify-0.1.1.hnmod"
+        "name": "resourcify-0.1.2.hnmod",
+        "sha256": "3afe8dd3d2ada0cfd1932e1675283f68ee202152c26281aac1e8787b3707aad9",
+        "size": 29309,
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/resourcify-0.1.2/resourcify-0.1.2.hnmod"
       },
       "game": "26.3",
       "id": "resourcify",
       "kind": "native-mod",
       "license": "MIT",
       "name": "ResourcifyHorizon",
+      "officialRelease": {
+        "assetId": 728088544,
+        "id": 439348508,
+        "publishedAt": "2026-11-09T16:06:54Z",
+        "publisher": "horizon-rust/horizon-mods",
+        "tag": "resourcify-0.1.2",
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/tag/resourcify-0.1.2"
+      },
       "otherVersions": [
+        {
+          "api": "native-1/9d979caa48a3bb58203319b9ea044db58c38e0d8/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
+          "eligibility": "compile-probe",
+          "file": {
+            "name": "resourcify-0.1.1.hnmod",
+            "sha256": "a6611819c9401dc7370dece7453cdda2356747f2a34c32940bf82ccd6abdcf53",
+            "size": 29316,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/resourcify-0.1.1/resourcify-0.1.1.hnmod"
+          },
+          "game": "26.3",
+          "kind": "native-mod",
+          "reason": "Uses source pinned to 9d979caa48a3bb58203319b9ea044db58c38e0d8; test against the selected Nightly",
+          "source": "https://github.com/tariksabanuz/ResourcifyHorizon",
+          "version": "0.1.1"
+        },
         {
           "api": "native-1/9d979caa48a3bb58203319b9ea044db58c38e0d8/d9c83d7096b7ea5b83678da2efdfd6161f74997e",
           "eligibility": "compile-probe",
@@ -1864,9 +2057,9 @@
           "version": "0.1.0"
         }
       ],
-      "reason": "Uses source pinned to 9d979caa48a3bb58203319b9ea044db58c38e0d8; test against the selected Nightly",
+      "reason": "Verified official update pending the exact composed f00125f checks",
       "source": "https://github.com/tariksabanuz/ResourcifyHorizon",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "websiteUrl": "https://github.com/tariksabanuz/ResourcifyHorizon"
     },
     {
@@ -1895,24 +2088,48 @@
       "websiteUrl": "https://github.com/AyanoKaito/horizon-right-click-crops"
     },
     {
-      "api": "native-1/4aa6854a886183440256f4f4a4a9d1ed853227a1/a2af5c0dd4117d51ecd70066ba7a00b4a2c10dab",
+      "api": "native-1/fdc87aecdbd116bf1e08adcd062fcbaea8c2e2ca/e8cd0aa38cffef49cb2e088ef716baa107148c02",
       "authors": [
         "Domanffe"
       ],
-      "eligibility": "candidate",
+      "eligibility": "compile-probe",
       "file": {
-        "name": "rightharvest-0.1.1.hnmod",
-        "sha256": "2f70f3a5abaca35f1ff8df7b198f0fd616eacaa5229f5113f75935e16f50255b",
-        "size": 3856,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/rightharvest-0.1.1/rightharvest-0.1.1.hnmod"
+        "name": "rightharvest-0.2.1.hnmod",
+        "sha256": "a0a08b57100ceee2bab1d7b687867408d3526eb0c6da5c928ac4e50f9601d4b4",
+        "size": 3853,
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/rightharvest-0.2.1/rightharvest-0.2.1.hnmod"
       },
       "game": "26.3",
-      "hooks": 2,
+      "hooks": 21,
       "id": "rightharvest",
       "kind": "native-mod",
       "license": "MIT",
       "name": "RightClickHarvest",
+      "officialRelease": {
+        "assetId": 747353838,
+        "id": 445264823,
+        "publishedAt": "2026-11-14T12:00:50Z",
+        "publisher": "horizon-rust/horizon-mods",
+        "tag": "rightharvest-0.2.1",
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/tag/rightharvest-0.2.1"
+      },
       "otherVersions": [
+        {
+          "api": "native-1/4aa6854a886183440256f4f4a4a9d1ed853227a1/a2af5c0dd4117d51ecd70066ba7a00b4a2c10dab",
+          "eligibility": "candidate",
+          "file": {
+            "name": "rightharvest-0.1.1.hnmod",
+            "sha256": "2f70f3a5abaca35f1ff8df7b198f0fd616eacaa5229f5113f75935e16f50255b",
+            "size": 3856,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/rightharvest-0.1.1/rightharvest-0.1.1.hnmod"
+          },
+          "game": "26.3",
+          "hooks": 2,
+          "kind": "native-mod",
+          "reason": "Declares supported hook API or the exact Horizon revision",
+          "source": "https://github.com/Domanffe/rightharvest",
+          "version": "0.1.1"
+        },
         {
           "api": "native-1/a46ce6898bd72016e061aaec1afc1375b384deac/3f99a5c60dfa311cc365524c44ae2fd799bfa1de",
           "eligibility": "compile-probe",
@@ -1927,9 +2144,9 @@
           "version": "0.1.0"
         }
       ],
-      "reason": "Declares supported hook API or the exact Horizon revision",
+      "reason": "Verified official update pending the exact composed f00125f checks",
       "source": "https://github.com/Domanffe/rightharvest",
-      "version": "0.1.1",
+      "version": "0.2.1",
       "websiteUrl": "https://github.com/Domanffe/rightharvest"
     },
     {
@@ -2030,17 +2247,20 @@
       "websiteUrl": "https://github.com/vstxx/shulkerpeek"
     },
     {
-      "api": "native-1/294448014fba585f8d5d09dd8886f482493b6417/ddd9700b21997c95d95ac6ee5ecafe3830cf622a",
+      "api": "native-1/0b14f8acfd97fa2c750e42795249dcc981178ca4/e59da9094f0c2fdda6c627fe9eff22dec6a906f0",
       "authors": [
         "_idom_"
       ],
+      "capabilities": [
+        "registries"
+      ],
       "eligibility": "compile-probe",
       "file": {
-        "name": "skins_3d-1.0.1.hnmod",
-        "sha256": "c9d618c4bedaa92c9373d7363b182eff9f4723889dcb5ba8a877c78ffc0fb6ae",
-        "signature": "untrusted comment: signature from minisign secret key\r\nRUT9Ujo/oCprPNTOokDM8JeIMRDlcc/O1BsND0UNQzPl9RO81svhFlu2yiSfc+uaeR9fARo8pJeE2Mw/+zvPKqb8awVQUHjozAM=\r\ntrusted comment: timestamp:1793812703\tfile:skins_3d-1.0.1.hnmod\thashed\r\nz9cSZKR27HkOB6zuxDSkT9Bz4GHtm3WaQpy9VkZ5aPTs0TZgtgF4qp/ijHPUJP2jRpJl/fWYwAhEl0A2UrK5Aw==",
-        "size": 8854,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/skins_3d-1.0.1/skins_3d-1.0.1.hnmod"
+        "name": "skins_3d-2.0.0.hmod",
+        "sha256": "02c7daaab772cd9e3d6a6d247b65afba379ccf0b3dc7f36f11fbe18984426a91",
+        "signature": "untrusted comment: signature from minisign secret key\r\nRUT9Ujo/oCprPBDrD/PO88c2B6MEMg+PDr1EmpPkSgJIUksHFMlU7cMJx5fb6942JBIQdHIZQLfFcKy7DWrh5JZ3tGV0bchjBQM=\r\ntrusted comment: timestamp:1795017007\tfile:skins_3d-2.0.0.hmod\thashed\r\ns7u09CIKaPDBVf7lGsX0REH7wLGFwtARnWfwgNJmVYenJnLbTxEZukxosElUYdvrXnx//YIriZ53DmcNoA4sCw==\r\n",
+        "size": 16430,
+        "url": "https://github.com/umbx-dot/horizon-3d-skins/releases/download/v2.0.0/skins_3d-2.0.0.hmod"
       },
       "game": "26.3",
       "id": "skins_3d",
@@ -2048,10 +2268,37 @@
       "kind": "native-mod",
       "license": "MIT",
       "name": "3D Skins",
-      "otherVersions": [],
-      "reason": "Uses source pinned to 294448014fba585f8d5d09dd8886f482493b6417; test against the selected Nightly",
-      "source": "https://github.com/umbx-dot/horizon-3d-skins",
-      "version": "1.0.1",
+      "nativePackage": "source-hmod",
+      "officialRelease": {
+        "assetId": 763992447,
+        "id": 450208440,
+        "publishedAt": "2026-11-18T15:50:48Z",
+        "publisher": "umbx-dot/horizon-3d-skins",
+        "tag": "v2.0.0",
+        "url": "https://github.com/umbx-dot/horizon-3d-skins/releases/tag/v2.0.0"
+      },
+      "otherVersions": [
+        {
+          "api": "native-1/294448014fba585f8d5d09dd8886f482493b6417/ddd9700b21997c95d95ac6ee5ecafe3830cf622a",
+          "eligibility": "compile-probe",
+          "file": {
+            "name": "skins_3d-1.0.1.hnmod",
+            "sha256": "c9d618c4bedaa92c9373d7363b182eff9f4723889dcb5ba8a877c78ffc0fb6ae",
+            "signature": "untrusted comment: signature from minisign secret key\r\nRUT9Ujo/oCprPNTOokDM8JeIMRDlcc/O1BsND0UNQzPl9RO81svhFlu2yiSfc+uaeR9fARo8pJeE2Mw/+zvPKqb8awVQUHjozAM=\r\ntrusted comment: timestamp:1793812703\tfile:skins_3d-1.0.1.hnmod\thashed\r\nz9cSZKR27HkOB6zuxDSkT9Bz4GHtm3WaQpy9VkZ5aPTs0TZgtgF4qp/ijHPUJP2jRpJl/fWYwAhEl0A2UrK5Aw==",
+            "size": 8854,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/skins_3d-1.0.1/skins_3d-1.0.1.hnmod"
+          },
+          "game": "26.3",
+          "kind": "native-mod",
+          "reason": "Uses source pinned to 294448014fba585f8d5d09dd8886f482493b6417; test against the selected Nightly",
+          "source": "https://github.com/umbx-dot/horizon-3d-skins",
+          "version": "1.0.1"
+        }
+      ],
+      "reason": "Verified official update pending the exact composed f00125f checks",
+      "side": "client",
+      "source": "https://github.com/umbx-dot/horizon-3d-skins/commit/39fbf8653d520d27ae0de20b514761045027f08b",
+      "version": "2.0.0",
       "websiteUrl": "https://github.com/umbx-dot/horizon-3d-skins"
     },
     {
@@ -2129,26 +2376,55 @@
       "websiteUrl": "https://github.com/Demerobit/Speedrun-Timer-Horizon-Rust-Minecraft"
     },
     {
-      "api": "native-1/294448014fba585f8d5d09dd8886f482493b6417/ddd9700b21997c95d95ac6ee5ecafe3830cf622a",
+      "api": "native-1/0b14f8acfd97fa2c750e42795249dcc981178ca4/e59da9094f0c2fdda6c627fe9eff22dec6a906f0",
       "authors": [
         "wyddy7"
       ],
+      "capabilities": [
+        "registries"
+      ],
       "eligibility": "compile-probe",
       "file": {
-        "name": "spider_man-0.2.0.hnmod",
-        "sha256": "06eefe89fa0f05cfdc6b331b38497d16b4dbc82931581940e127be081055cec8",
-        "size": 56047,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/spider_man-0.2.0/spider_man-0.2.0.hnmod"
+        "name": "spider_man-0.2.5.hmod",
+        "sha256": "45840d869f7e264ad38774f85643529ded71153f30b50835b24a7aa23bd054ea",
+        "size": 59041,
+        "url": "https://github.com/wyddy7/minecraft-spider-man-rust/releases/download/v0.2.5/spider_man-0.2.5.hmod"
       },
       "game": "26.3",
       "id": "spider_man",
       "kind": "native-mod",
       "license": "MIT",
       "name": "Spider-Man",
-      "otherVersions": [],
-      "reason": "Uses source pinned to 294448014fba585f8d5d09dd8886f482493b6417; test against the selected Nightly",
-      "source": "https://github.com/wyddy7/minecraft-spider-man-rust",
-      "version": "0.2.0",
+      "nativePackage": "source-hmod",
+      "officialRelease": {
+        "assetId": 763199006,
+        "id": 449911183,
+        "publishedAt": "2026-11-18T11:49:17Z",
+        "publisher": "wyddy7/minecraft-spider-man-rust",
+        "tag": "v0.2.5",
+        "url": "https://github.com/wyddy7/minecraft-spider-man-rust/releases/tag/v0.2.5"
+      },
+      "otherVersions": [
+        {
+          "api": "native-1/294448014fba585f8d5d09dd8886f482493b6417/ddd9700b21997c95d95ac6ee5ecafe3830cf622a",
+          "eligibility": "compile-probe",
+          "file": {
+            "name": "spider_man-0.2.0.hnmod",
+            "sha256": "06eefe89fa0f05cfdc6b331b38497d16b4dbc82931581940e127be081055cec8",
+            "size": 56047,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/spider_man-0.2.0/spider_man-0.2.0.hnmod"
+          },
+          "game": "26.3",
+          "kind": "native-mod",
+          "reason": "Uses source pinned to 294448014fba585f8d5d09dd8886f482493b6417; test against the selected Nightly",
+          "source": "https://github.com/wyddy7/minecraft-spider-man-rust",
+          "version": "0.2.0"
+        }
+      ],
+      "reason": "Verified official update pending the exact composed f00125f checks",
+      "side": "client",
+      "source": "https://github.com/wyddy7/minecraft-spider-man-rust/commit/c273357ac2562967c5dbd49e0c567bf3754ea76c",
+      "version": "0.2.5",
       "websiteUrl": "https://github.com/wyddy7/minecraft-spider-man-rust"
     },
     {
@@ -2475,26 +2751,49 @@
       "websiteUrl": "https://github.com/Lauch2/horizon-waymap-mod"
     },
     {
-      "api": "native-1/c9d474dd9116e84c243f8992d75c11314df56f06/0d6b103c70633d8fd9443d8d0acd3aadaacedb06",
+      "api": "native-1/fdc87aecdbd116bf1e08adcd062fcbaea8c2e2ca/5a64af938ec86b00d53d16a408aabc0038fb3e57",
       "authors": [
         "Nirokx"
       ],
       "eligibility": "compile-probe",
       "file": {
-        "name": "waypoints-1.0.0.hnmod",
-        "sha256": "9c0e670f1205c23fed0fe0b0eaf8f0b90a01f3cbb883a8eee445ebc03f4d90a4",
-        "size": 19006,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/waypoints-1.0.0/waypoints-1.0.0.hnmod"
+        "name": "waypoints-1.1.2.hnmod",
+        "sha256": "4711867eec156f313f1648aa9757593c5b3bdda1d4b987d5eaeb72367ee58a21",
+        "size": 22357,
+        "url": "https://github.com/Nirokx/horizon-waypoints/releases/download/v1.1.2/waypoints-1.1.2.hnmod"
       },
       "game": "26.3",
       "id": "waypoints",
       "kind": "native-mod",
       "license": "MIT",
       "name": "Waypoints",
-      "otherVersions": [],
-      "reason": "Uses source pinned to c9d474dd9116e84c243f8992d75c11314df56f06; test against the selected Nightly",
-      "source": "https://github.com/Nirokx/horizon-waypoints",
-      "version": "1.0.0",
+      "officialRelease": {
+        "assetId": 736487905,
+        "id": 442056518,
+        "publishedAt": "2026-11-11T18:19:52Z",
+        "tag": "v1.1.2",
+        "url": "https://github.com/Nirokx/horizon-waypoints/releases/tag/v1.1.2"
+      },
+      "otherVersions": [
+        {
+          "api": "native-1/c9d474dd9116e84c243f8992d75c11314df56f06/0d6b103c70633d8fd9443d8d0acd3aadaacedb06",
+          "eligibility": "compile-probe",
+          "file": {
+            "name": "waypoints-1.0.0.hnmod",
+            "sha256": "9c0e670f1205c23fed0fe0b0eaf8f0b90a01f3cbb883a8eee445ebc03f4d90a4",
+            "size": 19006,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/waypoints-1.0.0/waypoints-1.0.0.hnmod"
+          },
+          "game": "26.3",
+          "kind": "native-mod",
+          "reason": "Uses source pinned to c9d474dd9116e84c243f8992d75c11314df56f06; test against the selected Nightly",
+          "source": "https://github.com/Nirokx/horizon-waypoints",
+          "version": "1.0.0"
+        }
+      ],
+      "reason": "Verified official update pending the exact composed f00125f checks",
+      "source": "https://github.com/Nirokx/horizon-waypoints/commit/40c5644d395c1849cbc1587a971f8266afc7f6e4",
+      "version": "1.1.2",
       "websiteUrl": "https://github.com/Nirokx/horizon-waypoints"
     },
     {
@@ -2623,27 +2922,56 @@
       "websiteUrl": "https://github.com/RealCat1st/XToXrayRust"
     },
     {
-      "api": "native-1/6f8c7a0e5d531d3834c4d0be4659a1db8e7e5c2a/0d6b103c70633d8fd9443d8d0acd3aadaacedb06",
+      "api": "0.2",
       "authors": [
         "Horizon"
       ],
-      "eligibility": "candidate",
+      "capabilities": [
+        "registries"
+      ],
+      "eligibility": "compile-probe",
       "file": {
-        "name": "zoom-2.0.0.hnmod",
-        "sha256": "49fa2d7d635225c53304fbf1477606c0677eb23d94dac75b730f6c3ba065f127",
-        "size": 5886,
-        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/zoom-2.0.0/zoom-2.0.0.hnmod"
+        "name": "zoom-3.0.3.hmod",
+        "sha256": "53935d0af3307bbe8fa5057103a62b13a8cb6a69431b3058f3981b9c1313d348",
+        "size": 2880581,
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/download/zoom-3.0.3/zoom-3.0.3.hmod"
       },
       "game": "26.3",
-      "hooks": 1,
       "id": "zoom",
-      "kind": "native-mod",
+      "kind": "mod",
       "license": "MIT",
       "name": "Zoom",
-      "otherVersions": [],
-      "reason": "Declares supported hook API or the exact Horizon revision",
-      "source": "https://github.com/horizon-rust/horizon-mods/tree/main/native/zoom",
-      "version": "2.0.0",
+      "officialRelease": {
+        "assetId": 768369491,
+        "id": 451597952,
+        "publishedAt": "2026-11-19T16:16:50Z",
+        "publisher": "horizon-rust/horizon-mods",
+        "tag": "zoom-3.0.3",
+        "url": "https://github.com/horizon-rust/horizon-mods/releases/tag/zoom-3.0.3"
+      },
+      "otherVersions": [
+        {
+          "api": "native-1/6f8c7a0e5d531d3834c4d0be4659a1db8e7e5c2a/0d6b103c70633d8fd9443d8d0acd3aadaacedb06",
+          "eligibility": "candidate",
+          "file": {
+            "name": "zoom-2.0.0.hnmod",
+            "sha256": "49fa2d7d635225c53304fbf1477606c0677eb23d94dac75b730f6c3ba065f127",
+            "size": 5886,
+            "url": "https://github.com/horizon-rust/horizon-mods/releases/download/zoom-2.0.0/zoom-2.0.0.hnmod"
+          },
+          "game": "26.3",
+          "hooks": 1,
+          "kind": "native-mod",
+          "reason": "Declares supported hook API or the exact Horizon revision",
+          "source": "https://github.com/horizon-rust/horizon-mods/tree/main/native/zoom",
+          "version": "2.0.0"
+        }
+      ],
+      "reason": "Verified official update pending the exact composed f00125f checks",
+      "side": "client",
+      "source": "https://github.com/horizon-rust/horizon-mods/commit/afa36342466fd79cdc7705fb24de2e8b050a78fa",
+      "version": "3.0.3",
+      "wasmRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
       "websiteUrl": "https://github.com/horizon-rust/horizon-mods/tree/main/native/zoom"
     }
   ],

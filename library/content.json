@@ -7,8 +7,8 @@
   "showNativeProject": false,
   "nativeProject": {
     "name": "Horizon",
-    "version": "Nightly 2026-11-07",
-    "revision": "2ebf00a0281c592f79191e76fce0e7d522c6f425"
+    "version": "Nightly 2026-11-19",
+    "revision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d"
   },
   "libraryIds": [],
   "parents": {}

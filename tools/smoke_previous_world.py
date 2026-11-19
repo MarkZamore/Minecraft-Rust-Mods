@@ -1,10 +1,10 @@
 """Verify the Orbital update's first-open backup against a prior public smoke world."""
 
 import hashlib
+import time
 from zipfile import ZipFile
 
 from native_build import load, sha
-from smoke_orbital import sample
 
 
 WORLD = "RustModsBeforeOrbital"
@@ -40,6 +40,28 @@ def check_backup(backup, expected):
                     raise ValueError(f"The backup changed the prior world's {name}")
 
 
+def wait_for_blocks(control, points, required, timeout=90):
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        blocks = []
+        for point in points:
+            coordinates = tuple(map(str, point))
+            observed = control("block", *coordinates, timeout=max(1, deadline - time.monotonic()))
+            if observed["loaded"]:
+                blocks.append(observed["block"])
+                continue
+            # An omitted all-air section can remain unloaded on the client
+            # even after its column and the authoritative world are ready.
+            check = control("command", f"execute if block {' '.join(coordinates)} minecraft:air",
+                            timeout=max(1, deadline - time.monotonic()))
+            blocks.append("minecraft:air" if "Test passed" in check["chat"] else None)
+        if None not in blocks and all(expected is None or actual == expected
+                                      for actual, expected in zip(blocks, required, strict=True)):
+            return blocks
+        time.sleep(0.25)
+    raise ValueError(f"The prior world's block samples did not settle: required {required!r}")
+
+
 def verify(run_client, client, controller, resources, qa, standalone, title):
     game = qa / "game"
     world = game / "saves" / WORLD
@@ -59,9 +81,7 @@ def verify(run_client, client, controller, resources, qa, standalone, title):
             raise ValueError("The prior world was backed up before it was first opened")
         control("open", WORLD)
         control("wait-for", "loaded", "--timeout", "90")
-        blocks = sample(control, points)
-        if blocks[-1] != BLOCKS[-1]:
-            raise ValueError("The vanilla block alongside the removed mods did not survive the update")
+        blocks = wait_for_blocks(control, points, [None] * (len(BLOCKS) - 1) + BLOCKS[-1:])
         backups = list(backup_dir.glob("*.zip"))
         if len(backups) != 1 or not marker.is_file():
             raise ValueError("First open must create one backup and its migration marker")
@@ -75,13 +95,12 @@ def verify(run_client, client, controller, resources, qa, standalone, title):
     def second(control):
         control("open", WORLD)
         control("wait-for", "loaded", "--timeout", "90")
-        if sample(control, points) != after:
-            raise ValueError("The prior world's updated block samples did not survive reopening")
+        wait_for_blocks(control, points, after)
         if list(backup_dir.glob("*.zip")) != [backup] or sha(backup) != digest:
             raise ValueError("Reopening the migrated world changed or duplicated its backup")
 
     run_client(client, controller, resources, qa, 6, second, standalone, title)
-    return {"oldManifestRevision": PREVIOUS_RELEASE, "oldClientSha256": PREVIOUS_CLIENT,
+    return {"clientSha256": sha(client), "oldManifestRevision": PREVIOUS_RELEASE, "oldClientSha256": PREVIOUS_CLIENT,
             "oldBlocks": BLOCKS, "newBlocks": after, "points": points,
             "backupMembersVerified": len(expected), "backupSha256": digest,
             "backupSizeBytes": backup.stat().st_size, "backupsAfterReopen": 1}
