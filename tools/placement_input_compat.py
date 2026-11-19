@@ -27,6 +27,15 @@ def route_source(text: str) -> str:
             r"\1game.options_from_title = true;",
         )
     if "b.placement_state(level, ticks, &ctx)" in text:
+        # Horizonmatica 0.3.3 also checks whether a placement is possible
+        # without consuming the returned position or block state.
+        availability = "game.with_level(|b, level, ticks| b.placement_state(level, ticks, &ctx)).is_some()"
+        if availability in text:
+            text = replace_once(
+                text,
+                re.escape(availability),
+                "game.with_level(|b, level, ticks| b.placement_preview(level, ticks, &ctx)).is_some()",
+            )
         text = replace_once(
             text,
             r"b\.placement_state\(level, ticks, &ctx\)",
