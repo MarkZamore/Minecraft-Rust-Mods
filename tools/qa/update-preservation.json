@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "status": "PASS",
-  "clientSha256": "87e1f19ca8010bd00362446545ab799bfdbe572f68c2ef532259fca417150b16",
-  "horizonRevision": "2ebf00a0281c592f79191e76fce0e7d522c6f425",
+  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
+  "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
   "realFinalBaseline": "PASS",
-  "gateSourceSha256": "d9ce7f84b8e3ead9252d50ce33b93283c8c42125e3584d237d700c2960747e0b",
-  "verificationSourceSha256": "499da2f278958e6eba01c0e44152bb4cb1ecfbbf3900726bd6a6464bbbee7d13",
+  "gateSourceSha256": "45a5c504ded237cadb2f6c550d0fc95f343bf93ad893306d377d872b8f2a80dc",
+  "verificationSourceSha256": "1f56fb3bf3096ddfafe7cc47b10d7cd1ccc9d663e53c82ac8ec3b1b38c1de650",
   "sourceReceipts": {
-    "orbital-startup.json": "85b568df6ff6c7c167c919c66f6dfb555137d322ea6ed1bbdedc2275ff977f77",
-    "multiplayer.json": "e6c30cee4c15f7258a342e81387fc11f00bd95445a099b111b9b217e610a52b2",
-    "backup-guard.json": "e71b80a0783663fc797faef6b8c21fe23a7ad5371df23c97b6cf76c404bd7bc0",
-    "server-policy.json": "11ee89dd7e966a0e216670f4566bf7ced872c2dd2d9f419dcf20ccee53e77f72",
-    "native-notices.json": "d045ff0df8c673d40e116a5211c2e3fca0f694a67754deccef18950c5c0bab6c",
-    "launcher-notices-support.json": "c5123573ff9c6427f0aff3e673c69a80d549ee1cd5488b2d6450e16ba52991e4"
+    "orbital-startup.json": "55cbc3275c2b720f76fb939b782bc5ccaa966b22fca2c2208dbd7b04bb792f01",
+    "multiplayer.json": "86b6bc5d3d9238015b90f51083fb6f4e68c6ea302d1c7ba2022166fead7ca410",
+    "backup-guard.json": "5b41d4df7849566d5623013cb74b6a71af3d82c4a5f843d2cdc17b7e57c7bf1f",
+    "server-policy.json": "e0c3fe66afba715e1e3af1e51204f05cd9a2db41f62d7b3a39184a8ff784f602",
+    "native-notices.json": "43712de1ded2c92fdca1c036604b2265ac55207d94de59313a46ba5fb4e9f5ef",
+    "launcher-notices-support.json": "f6865aef0c9c32dc08598e4a93a0761519cd98313dd8550a09b7ec8593f1ba59"
   },
   "rejectionChecks": [
     {
@@ -186,9 +186,9 @@
       "rejectedWith": "Release needs no automatic public rows and byte-preserved manual servers.dat through restart"
     },
     {
-      "case": "Server Escape has no actual desktop acknowledgement",
+      "case": "Server Escape has no native title dispatch acknowledgement",
       "status": "PASS",
-      "rejectedWith": "Each ordinary server-view run needs its real desktop Escape action"
+      "rejectedWith": "The client did not acknowledge the expected title key sequence"
     },
     {
       "case": "Server Escape was serviced by another unaccepted helper source",
@@ -198,12 +198,12 @@
     {
       "case": "Server Escape acknowledgement belongs to another process",
       "status": "PASS",
-      "rejectedWith": "Desktop Escape was not acknowledged in time for this exact owned client/window/run"
+      "rejectedWith": "Title key was not acknowledged by the exact owned native client"
     },
     {
       "case": "Server Escape acknowledgement arrived after the owned checkpoint expired",
       "status": "PASS",
-      "rejectedWith": "Desktop Escape was not acknowledged in time for this exact owned client/window/run"
+      "rejectedWith": "Title key was not acknowledged by the exact owned native client"
     },
     {
       "case": "Native notice fullscreen was not observed",
