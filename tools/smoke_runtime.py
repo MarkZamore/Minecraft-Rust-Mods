@@ -21,6 +21,7 @@ WORLD = "RustModsSmoke"
 CONTENT = re.compile(r"LANMinecraft content mod accepted: ([A-Za-z0-9_-]+) ([^\s]+)")
 NATIVE_CONTENT = re.compile(r"LANMinecraft native mod content accepted: ([A-Za-z0-9_-]+) ([^\s]+)")
 NATIVE = re.compile(r"LANMinecraft native mod registered: ([A-Za-z0-9_-]+)")
+WASM_STARTED = re.compile(r"Horizon: wasm mods loaded \((\d+)\):")
 TECTONIC_PATH = re.compile(r"^\[Tectonic-Horizon\] (.+?): .+; using defaults$", re.MULTILINE)
 CONTENT_ITEMS = {"deepbore_quarry": "deepbore_quarry:quarry",
                  "wayfarer_stones": "wayfarer_stones:wayfarer_stone"}
@@ -71,6 +72,8 @@ def smoke(args):
     projects = {row["id"]: row for row in load(INPUT_LOCK)["projects"]}
     expected_content = {(project, projects[project]["version"]) for project in receipt["ids"]
                         if content_file(projects[project]) is not None}
+    expected_wasm_count = sum(projects[project].get("wasmRevision") == receipt["horizonRevision"]
+                              for project, _ in expected_content)
     expected_native = {project for project in receipt["ids"] if projects[project]["kind"] == "native-mod"}
     if args.previous_qa is not None and smoke_orbital.ID not in expected_native:
         raise ValueError("The prior-world smoke test requires the Orbital update candidate")
@@ -296,6 +299,9 @@ def smoke(args):
     for index in (1, 2):
         log = (args.qa / f"client-{index}.log").read_text(encoding="utf-8", errors="replace")
         logs.append(log)
+        observed_wasm = list(map(int, WASM_STARTED.findall(log)))
+        if observed_wasm != ([expected_wasm_count] if expected_wasm_count else []):
+            raise ValueError(f"WASM runtime start mismatch in run {index}: {observed_wasm}, expected {expected_wasm_count}")
         if external_config is not None:
             config_paths = {Path(path) for path in TECTONIC_PATH.findall(log)}
             if external_config.name in log or config_paths != {instance_config}:
