@@ -23,10 +23,17 @@ def windows_cleanup_path(path):
     return Path("\\\\?\\" + absolute)
 
 
-def long_path_cleanup(remove_fixture):
+def fixture_cleanup(remove_fixture, retry_file_lock, resources):
+    from smoke_multiplayer import cleanup_game
+
     def cleanup(path, qa):
-        # The original implementation still checks the exact parent, allowed
-        # fixture name and every link, and owns the bounded file-lock retry.
+        if path.name == "game":
+            if path.parent.resolve() != qa.resolve():
+                raise ValueError("Refusing cleanup outside the owned Mods notice fixture")
+            # The shared Mods guard recognizes only its own cache junctions to
+            # the independently verified bootstrap resources. It removes the
+            # junction entries without following them into that shared cache.
+            return retry_file_lock(lambda: cleanup_game(path, qa, resources), timeout=5)
         return remove_fixture(windows_cleanup_path(path), windows_cleanup_path(qa))
     return cleanup
 
@@ -105,7 +112,8 @@ def main():
             shared = module_at(args.base_repo / "tools/native_notices_qa.py", "_mods_notice_qa")
             shared.execution_context = context
             shared.check_mods = check_mods
-            shared.remove_fixture = long_path_cleanup(shared.remove_fixture)
+            shared.remove_fixture = fixture_cleanup(shared.remove_fixture, shared.retry_file_lock,
+                                                   args.cache / "resources")
             original_session = shared.Session
 
             class ModsSession(original_session):

@@ -76,7 +76,8 @@ def execution_context(candidate, build, proof):
         "bootstrapLockSha256": proof["bootstrapLockSha256"],
         "modsNoticeAdapterSha256": canonical_sha({name: sha(ROOT / name) for name in
             ("tools/native_notice_acceptance.py", "tools/smoke_native_notices.py", "tools/stage_mod_pack.py",
-             "tools/native_qa_environment.py", "launcher/environment-defaults.json")}),
+             "tools/native_qa_environment.py", "tools/smoke_runtime.py", "tools/smoke_multiplayer.py",
+             "launcher/environment-defaults.json")}),
     }
 
 
