@@ -339,6 +339,7 @@ def verify_terrain(host, clients, ability, mode, points, before, deadline):
     actual = {}
     changed = []
     previous = None
+    probe_timeouts = 0
 
     def observed():
         nonlocal previous
@@ -358,14 +359,29 @@ def verify_terrain(host, clients, ability, mode, points, before, deadline):
                       if now != before[index] and (not probe.after or now in probe.after)]
         return stable and len(changed) >= ability.changed_count
 
+    def verified():
+        nonlocal probe_timeouts
+        if not observed():
+            return None
+        try:
+            for point, block in zip(points, actual["actor"], strict=True):
+                orbital.command(host, f"execute if block {coordinates(point)} {block}", "Test passed")
+        except RuntimeError as error:
+            # A busy integrated server can complete the read-only command after
+            # its controller timeout. Require fresh agreement and a real reply.
+            if ("the integrated server stopped or did not answer within 10 s" not in str(error)
+                    or host("state", timeout=15)["screen"] != "playing"):
+                raise
+            probe_timeouts += 1
+            return None
+        return True
+
     try:
-        until(observed, "Actor and observer did not agree on the expected terrain change", deadline)
+        until(verified, "The clients and server did not confirm the expected terrain change", deadline)
     except TimeoutError as error:
         raise TimeoutError(f"{error}: before={before!r}, after={actual!r}, matching={changed!r}") from error
-    for point, block in zip(points, actual["actor"], strict=True):
-        orbital.command(host, f"execute if block {coordinates(point)} {block}", "Test passed")
     return {"positions": points, "before": before, "after": actual, "serverBlockChecks": len(points),
-            "stableAgreementSamples": 2,
+            "stableAgreementSamples": 2, "serverProbeTimeouts": probe_timeouts,
             "allowedAfter": [probe.after for probe in ability.probes],
             "matchingChangedIndices": changed,
             "minimumChanged": ability.changed_count if mode == "on" else 0}
