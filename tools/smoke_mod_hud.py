@@ -139,6 +139,30 @@ def capture_root(path):
     return path
 
 
+def wait_for_world_draw(control, timeout=90):
+    from smoke_multiplayer import until
+
+    first_frame = None
+
+    def visible_terrain():
+        nonlocal first_frame
+        status = control("status", timeout=15)
+        renderer = status.get("renderer") or {}
+        if (status["screen"] != "playing" or not renderer.get("backend")
+                or renderer.get("drawn_sections", 0) <= 0 or renderer.get("section_draw_calls", 0) <= 0):
+            first_frame = None
+            return None
+        # The game can report Playing and advance world ticks while the Physics
+        # resource reload still replaces its world with the Mojang progress UI.
+        # Require terrain in successive observations of actual rendered frames.
+        frame = status["frames"]
+        if first_frame is None:
+            first_frame = frame
+        return renderer if frame > first_frame else None
+
+    return until(visible_terrain, "The HUD fixture did not render the loaded terrain", timeout)
+
+
 def capture(args):
     from smoke_multiplayer import Client, cleanup_game, until
 
@@ -162,9 +186,11 @@ def capture(args):
             client("command", "time set noon")
             client("command", "weather clear")
             smoke_orbital.wait_for_world_ticks(client, 12)
-            report["renderer"] = client("status")["renderer"]
-            if not report["renderer"] or not report["renderer"]["backend"]:
-                raise ValueError("Expected the actual rendered Horizon client")
+            x, y, z = client("state")["player"]["position"]
+            # A randomly oriented spawn can face empty sky. Keep one terrain-
+            # facing camera for the closed wheel, open wheel and inventory.
+            client("look-at", x, y - 6.0, z + 6.0)
+            report["renderer"] = wait_for_world_draw(client)
             closed = smoke_orbital.photograph(client, qa, "closed")
             client("key", f"key.keyboard.{smoke_orbital.WHEEL_KEY}", "tap")
             client("wait-for", "screen", "mod", "--timeout", "10")
