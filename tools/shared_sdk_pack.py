@@ -15,6 +15,7 @@ from negotiated_native_mods import EXTRAS, GAME, SOURCE_SHA256, TRANSACTIONS, TR
 from multiplayer_warning import TITLE, TITLE_TESTS, SET_MODE_ACTION, SET_MODE_EDITION_ACTION
 import multiplayer_warning
 import orbital_compat
+from orbital_compat.payload_ingress import SOURCE_SHA256 as PAYLOAD_INGRESS_SOURCES
 import orbital_controls
 import orbital_world_guard
 from orbital_controls import SETTINGS
@@ -61,7 +62,7 @@ crates/horizon-client/src/title.rs
 crates/horizon-client/src/vanillagen.rs
 crates/horizon-mod-package/src/mod_list.rs
 crates/horizon-official-servers/src/lib.rs
-""".split())
+""".split()) | frozenset(PAYLOAD_INGRESS_SOURCES)
 
 # Only the installer-verified, pack-local native record can enable old hook
 # settings. Profiles with a shared client, but no native mods, keep base behavior.

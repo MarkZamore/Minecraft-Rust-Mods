@@ -3,7 +3,7 @@
 import hashlib
 from pathlib import Path
 
-from . import atlas_latest, tsunami_terrain, worldeater_port
+from . import atlas_latest, payload_ingress, tsunami_terrain, worldeater_port
 from . import (
     RECIPE, adapt_engine, adapt_hint_glue, adapt_post, adapt_typed_commands,
     adapt_visual_glue, add_wire_modules, replace, section,
@@ -60,6 +60,7 @@ def prepare_source(stage: Path) -> None:
     render = checked_source(render_path, RENDER_SHA256)
     motion_path = stage / MOTION_SOURCE
     motion = checked_source(motion_path, (MOTION_SHA256,))
+    payload_ingress.prepare_source(stage)
     for before, after in (
         ("    mod_tickets: ModTickets,", "    mod_tickets: ModTickets,\n"
          "    transient_forced: FxHashMap<(i32, i32), FxHashSet<&'static str>>,"),
