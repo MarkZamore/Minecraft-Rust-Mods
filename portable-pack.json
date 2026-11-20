@@ -5,6 +5,2749 @@
     "executable": "native/launch-rust-edition.exe",
     "platform": "windows-x64",
     "adapter": "portable-native",
-    "version": "nightly-2026-11-19-f00125f-mods-r2"
+    "version": "nightly-2026-11-19-f00125f-mods-r2",
+    "sharedRuntime": {
+      "platform": "windows-x64",
+      "source": {
+        "owner": "MarkZamore",
+        "repo": "Minecraft-Rust-Edition",
+        "tag": "shared-runtime-f00125f-r1"
+      },
+      "id": "horizon-windows-x64",
+      "version": "nightly-2026-11-19-f00125f-sdk-r1",
+      "schemaVersion": 1,
+      "files": [
+        {
+          "path": "native/DXC-LICENSE-LLVM.txt",
+          "sizeBytes": 1979,
+          "sha256": "729615317e28dd03907e46f0fc3b5e88f7853cee61d1a1471d2749335516b46f"
+        },
+        {
+          "path": "native/DXC-LICENSE-MS.txt",
+          "sizeBytes": 13163,
+          "sha256": "734f72f239fe7b07b4c7203f294c1a7ce27095687278bab7e56d630d7c672963"
+        },
+        {
+          "path": "native/DXC-NOTICE.txt",
+          "sizeBytes": 768,
+          "sha256": "9d0b93537d6d0c2450efad4eb746904e1c77acab859d74ed362431b87df86c70"
+        },
+        {
+          "path": "native/LICENSE",
+          "sizeBytes": 7817,
+          "sha256": "7d3a95e5e06978064ed3f8e2b7c8f845e7fd8a405294727cc708f94cb83b8059"
+        },
+        {
+          "path": "native/LICENSES/COPYRIGHT-library.html",
+          "sizeBytes": 1499465,
+          "sha256": "5647be074c8edf7339fd863055923a8fc80bc5610a8d4661ec3b767b9d392c27"
+        },
+        {
+          "path": "native/LICENSES/GCC-COPYING.RUNTIME",
+          "sizeBytes": 3324,
+          "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74"
+        },
+        {
+          "path": "native/LICENSES/GPL-3.0.txt",
+          "sizeBytes": 35149,
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        },
+        {
+          "path": "native/LICENSES/MIT.txt",
+          "sizeBytes": 1255,
+          "sha256": "0b60b28d153796544720e9d68df0997b6289ca2db67359102d2b8e61e57f455e"
+        },
+        {
+          "path": "native/LICENSES/Rust-APACHE.txt",
+          "sizeBytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "native/LICENSES/Rust-MIT.txt",
+          "sizeBytes": 1068,
+          "sha256": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+        },
+        {
+          "path": "native/LICENSES/WinLibs-runtime-NOTICE.md",
+          "sizeBytes": 1737,
+          "sha256": "34a1bd1e2e52a88f6a6a803f8eeb90c27ba6a2c2fa9c8d5a65b7637178937afd"
+        },
+        {
+          "path": "native/LICENSES/Winpthreads-COPYING.txt",
+          "sizeBytes": 2883,
+          "sha256": "63263614cdd29f2f93cba85e992f041b31f9fc7b4033692f31269489a8a1b177"
+        },
+        {
+          "path": "native/THIRD_PARTY_NOTICES.md",
+          "sizeBytes": 26928,
+          "sha256": "6a55cb6f34ef8cddfc4d894e2839d66b66bba70ac3811a3385cbdf0725d7146d"
+        },
+        {
+          "path": "native/crates/horizon-prepare/Cargo.toml",
+          "sizeBytes": 729,
+          "sha256": "ed75740fe477660f90a87207108f5ab059e464b46c085ecfa1dc581f0ec0ccf1"
+        },
+        {
+          "path": "native/crates/horizon-prepare/build.rs",
+          "sizeBytes": 1517,
+          "sha256": "70b4d73a908c68f879340636f68f5232603a984bbc67542e8a965c8ef4903ff0"
+        },
+        {
+          "path": "native/crates/horizon-prepare/output-versions.txt",
+          "sizeBytes": 544,
+          "sha256": "14f1c16f353b291d7c4e29250c6c76baebfb355e27136b3269d2a5a85b9f410a"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/artifacts.rs",
+          "sizeBytes": 98971,
+          "sha256": "0a877fef6dc87f26f0fbcb7239301c3348a52aa8757679174231771320f17741"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/check.rs",
+          "sizeBytes": 12148,
+          "sha256": "f5ecff78e65d014f138a3e32f7bcc4e4c7ed93278fd0ca5c641a783f4bcd2ac7"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/exporters.rs",
+          "sizeBytes": 8927,
+          "sha256": "70dd4a0618db35115545ef941a221994ed75dd1254fdcbf7c5f9bb106246417b"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/files.rs",
+          "sizeBytes": 6791,
+          "sha256": "2accc112c2666c6897632da3e2490f56be409007a0fba8563a00f4587ba2106b"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/inventory.rs",
+          "sizeBytes": 6597,
+          "sha256": "baf20608eb7cea4a252635991f65f7659e19b4d25916c9915b7b30e93715cfe1"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/java.rs",
+          "sizeBytes": 24055,
+          "sha256": "00a99486292d385e6643d0f69f2349c6f277ba9f2708f80cf3f297ec85227de6"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/launch_api.rs",
+          "sizeBytes": 4577,
+          "sha256": "bde5e6c94bd635ddeaa112e79cf9b35ac2d3ffab98d558b30177f1883b7d783e"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/lib.rs",
+          "sizeBytes": 80315,
+          "sha256": "3edd9bfa0563e134fd51173a3b9c92669e28b04250d13ec568c86feb676d3d05"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/main.rs",
+          "sizeBytes": 16677,
+          "sha256": "7551b808a9eae224978302218d8615724bf62bfcdb15ee797826632c4a7bc767"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/pool.rs",
+          "sizeBytes": 5523,
+          "sha256": "e7b22bd937720fc73586820f2ea69a259f0e88ae0b56a4426f811be345566bca"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/pyjson.rs",
+          "sizeBytes": 18764,
+          "sha256": "a4ae8c93d3621f6690a1c1208abeae78225a18ad5a350377e2e67dacd3037c4a"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/sounds.rs",
+          "sizeBytes": 41620,
+          "sha256": "2a35c1ad529d8d3f270773f5bdeb3acfafd84873860e89668372e62a7472b8d3"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/survival.rs",
+          "sizeBytes": 5669,
+          "sha256": "1a77900d9941a10703dfa74648eba16d58551c6981dc9ee05ec7f9f96f3f6c5f"
+        },
+        {
+          "path": "native/crates/horizon-prepare/src/worker.rs",
+          "sizeBytes": 2752,
+          "sha256": "01b94fb600b2cf8109915e513332db93e7e4a052125f8b7752d195c1ed3d8e00"
+        },
+        {
+          "path": "native/crates/horizon-prepare/tests/java_selection.rs",
+          "sizeBytes": 5748,
+          "sha256": "4ae857687e00ec08370859d371b6356a3736815f8f8a76c23262e37e7c67e814"
+        },
+        {
+          "path": "native/crates/horizon-prepare/tests/support/java_probe.rs",
+          "sizeBytes": 800,
+          "sha256": "80f7b123943dc5385c2a4f9fd481bab5115b9a610080c36a2cbc5c6ef0a2ed36"
+        },
+        {
+          "path": "native/dxcompiler.dll",
+          "sizeBytes": 22274872,
+          "sha256": "0689e2fee0a1c9df8662a59680469f24e2a3ad7ce6bbbcc9284f7a83172bfc59"
+        },
+        {
+          "path": "native/exporters/client/dev/horizonlab/parity/PrepareWorker.class",
+          "sizeBytes": 8081,
+          "sha256": "ef61448529e33752136f62feb14263101b9ce2aef3cda8e22c574ae7d9ec199d"
+        },
+        {
+          "path": "native/exporters/client/dev/horizonlab/parity/VanillaBlockStateBindingOracle.class",
+          "sizeBytes": 10934,
+          "sha256": "afc619f3df763e56d574fe087152b13129ca90422c023fa29de9c1f309cad52f"
+        },
+        {
+          "path": "native/exporters/client/dev/horizonlab/parity/VanillaCuboidModelOracle.class",
+          "sizeBytes": 11807,
+          "sha256": "739eee6c69711b75892fdd6da53b82e0c9ce9c0b29f57667a9926bb8ba8f964e"
+        },
+        {
+          "path": "native/exporters/client/dev/horizonlab/parity/VanillaEntityModelExporter.class",
+          "sizeBytes": 5349,
+          "sha256": "1877a1a331f9313fcfdebfcbfd6c554568a85030e78c3164424720b416df4c45"
+        },
+        {
+          "path": "native/exporters/client/dev/horizonlab/parity/VanillaMobDataExporter$OneBlock.class",
+          "sizeBytes": 2523,
+          "sha256": "6282dcdfec075cd77fbf6a1246fa896087c7f897db60d4adbe268812bbf10a11"
+        },
+        {
+          "path": "native/exporters/client/dev/horizonlab/parity/VanillaMobDataExporter.class",
+          "sizeBytes": 16539,
+          "sha256": "32d149bd2a03c4032ff5815bb254a2a4adf1353f9fd56377b21598c7b5246ebe"
+        },
+        {
+          "path": "native/exporters/manifest.json",
+          "sizeBytes": 10552,
+          "sha256": "5206fefe9e78a46d200716be68df2a49b640c24005d81a9443f4f5395fd3b452"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/ParityData.class",
+          "sizeBytes": 10836,
+          "sha256": "8da8ba11e63501d440afbf1fba18bbb14ee8ff5fd36dcfc9a541f4764e095349"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/PrepareWorker.class",
+          "sizeBytes": 8081,
+          "sha256": "ef61448529e33752136f62feb14263101b9ce2aef3cda8e22c574ae7d9ec199d"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockBehaviourExporter.class",
+          "sizeBytes": 14145,
+          "sha256": "56541d9630c086d45ffebd0fbf83cc9e9fbe879936db28e1b439ad88a6971ad7"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$ClientWorld.class",
+          "sizeBytes": 7576,
+          "sha256": "44caf273c1c72e254bc62d9c9a46aa0a6b40227743fe0b1eaba7ff32fc05eaf8"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Data.class",
+          "sizeBytes": 6093,
+          "sha256": "2b3a572b52dfa86bee8057ccc730626934d7f4535647b5cadb20356b01046ecb"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Flying.class",
+          "sizeBytes": 1861,
+          "sha256": "bc00ffb816c6ef7fd723d3cd09f5d238dcf87194a9ac6146d4d5f4331409dc2e"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Human.class",
+          "sizeBytes": 2048,
+          "sha256": "e8639175b34cd36d232b9a1ff9ca01b6e1b25ea61246975fc1f39b261791eba0"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Item.class",
+          "sizeBytes": 1372,
+          "sha256": "7a26a6e0c9cf7a92671471a98d8dfdce0baf0a796b1d5eadeee3a2b7687c7daf"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Living.class",
+          "sizeBytes": 1871,
+          "sha256": "4ae8354852d52072f01b0d8771d4785f90081f6da72d149b5dbe0bdca34dde7d"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Occupant.class",
+          "sizeBytes": 1667,
+          "sha256": "4f5b126bacd25dfd3f3cb34220ed13bb40e8c5371517de70bfe1adcc5acceedc"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Other.class",
+          "sizeBytes": 1365,
+          "sha256": "a65d944c4fc979c721f61688364399ff5e5257e684048b449c0ebb9375f3a9b0"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Reptile.class",
+          "sizeBytes": 1872,
+          "sha256": "95e60c94f4476fb83b1847cdf68299ccaa253b6593b2faad24ac849c99dd6dec"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Rules.class",
+          "sizeBytes": 1273,
+          "sha256": "b729b6006f7c66e3277db47677e8d3f5f2d0430a70ca500763e69c726482f50c"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Server.class",
+          "sizeBytes": 3435,
+          "sha256": "177fab067be17a23f9691330f0a93f1048e77cfe4e8d2a49d95b04f0649fe4d6"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$ServerWorld.class",
+          "sizeBytes": 4378,
+          "sha256": "11a5abd507bd8e0bae68cdc9e6c7cffedaf3e7ed3e8fed218ac74cde6e5e2775"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Sources.class",
+          "sizeBytes": 935,
+          "sha256": "9b300d5dd22c4431e32334f2b6d7df4d5e0fadd2aacf33d7fa923b604df63d03"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Stop.class",
+          "sizeBytes": 371,
+          "sha256": "34cbc4c0f1f41d28c91a3a3b39a79838eb0b7f6e3a78bd9c39f05ff10a2545e5"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Tnt.class",
+          "sizeBytes": 1369,
+          "sha256": "7e39be0919134890adf8c07732da62185b44cd2c725813a63af6d41e6c1bb581"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle$Undead.class",
+          "sizeBytes": 1871,
+          "sha256": "4d256c6e7b923a5c6751bbdf73cb799a70e71a9f2262b12968ce81accece53f4"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockLandingOracle.class",
+          "sizeBytes": 14646,
+          "sha256": "ffa62b52866aa1f863f6c9c709c199158339e224be938d3e2d03ce8f2e61fd9f"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockPropertiesOracle.class",
+          "sizeBytes": 11759,
+          "sha256": "5b7bdefbf12d5ca3a52b1cc26a79142b2144dd4bec0cefe5570a6f38ae9a264f"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockStateCodecOracle.class",
+          "sizeBytes": 6429,
+          "sha256": "4ed77dd8a4b1601e1d14975f1cec93f7dd202cf97c959bb7d231e929684a66bc"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockSupportOracle.class",
+          "sizeBytes": 6914,
+          "sha256": "b0a5111e405fcbba80d49beba365a7084326fa0b8d3160008538e2dc110563d9"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockSurvivalOracle$Stop.class",
+          "sizeBytes": 374,
+          "sha256": "7961d771f84af728dadb3a385089e7553218775d20778cd525aa6e8b478f7bb0"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaBlockSurvivalOracle.class",
+          "sizeBytes": 15088,
+          "sha256": "af2908ae37f5e0e5c922535594bf932090e5988ac1b0f2a18f22be6575d45845"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaCollisionOracle$Input.class",
+          "sizeBytes": 1075,
+          "sha256": "3f76dc89d79ca21b434f5353a7f6b8dbfb118bb2e63b3940a808267fb964419e"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaCollisionOracle.class",
+          "sizeBytes": 19244,
+          "sha256": "17322429a13f3a688d5c8c7a35e6ebdaa68db7102e772ee9601d5c3691898068"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaCommandParseOracle$Src.class",
+          "sizeBytes": 4673,
+          "sha256": "dac94a699b32897442f832d329f7861c0936b2c339c21726aa9ed755ce20c18d"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaCommandParseOracle.class",
+          "sizeBytes": 33939,
+          "sha256": "a6a637ebacb41a7287143aaa2579a16876ef5250c31448b365366a3155ea2a2e"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaCreativeTabsExporter.class",
+          "sizeBytes": 9015,
+          "sha256": "360d6c036a7a6a48ce105e71f638695f4c0d87c3fa74553e717ab30c231d367f"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDamageSourceOracle$Data.class",
+          "sizeBytes": 1491,
+          "sha256": "65183ce0a1b996f0c36121e47efe8ef3fc222ecd70f2cbd7e5f83a8419708824"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDamageSourceOracle$Human.class",
+          "sizeBytes": 2402,
+          "sha256": "bfb95d6d3efd5177db6b9912bd00867d81e41faa1ea284f3f4f94e5f392f0d4a"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDamageSourceOracle$Living.class",
+          "sizeBytes": 1942,
+          "sha256": "8971c68dae8ea6bbdaaf182d410852230af93190933f35900ed9099452935a23"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDamageSourceOracle$Other.class",
+          "sizeBytes": 1925,
+          "sha256": "094dc14fd7daa9c47828df6c0dbd0ae9f102e23bf640a6340b7629b79af5fdb1"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDamageSourceOracle$Source.class",
+          "sizeBytes": 2187,
+          "sha256": "84c4546e491f2392811095a47c939a0e4206191159ee7e93daf16a4825e47e86"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDamageSourceOracle$Stop.class",
+          "sizeBytes": 371,
+          "sha256": "c0fe55b18486acaaa89e579b0a634e8c6ccbfd87e68c924e0b6e21ad6bf7b5cf"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDamageSourceOracle.class",
+          "sizeBytes": 15711,
+          "sha256": "e211ca20da67cc76a1aa198074bff00d3fe50559aa6ed2d83728ccc1d6921d0a"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDataFixTablesExporter$1.class",
+          "sizeBytes": 1672,
+          "sha256": "e4c5ede7a25245ad294954bab3096970685773a265b6bd6501e5af290956c6e3"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDataFixTablesExporter$2.class",
+          "sizeBytes": 1319,
+          "sha256": "3bc092b07a5d7021fbfe265add3b1493443e15c911f2b64a2f60b05d1e29dd6e"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaDataFixTablesExporter.class",
+          "sizeBytes": 19042,
+          "sha256": "14d43ee0e4efbe8f8d049eb3b99ef1341668ad85e3ebb07bfb05d1f69953d6c0"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaEntityAttributeOracle.class",
+          "sizeBytes": 12276,
+          "sha256": "a205064dccb811f8e589859bcbe18307cc8e9c5d72e4532c2f00e8375908b8f7"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaEntityTypesExporter.class",
+          "sizeBytes": 3723,
+          "sha256": "76b3968607da6f28e252f0cf2ff73adff31449e58996dc9cae78bc667656979e"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaFaceVisibilityOracle.class",
+          "sizeBytes": 7956,
+          "sha256": "e6bb70ba5c067ebcd738ef669f7e5f8ca4c7c83ff224235072322866e1800d63"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaGameplayFactsExporter.class",
+          "sizeBytes": 9800,
+          "sha256": "ab8b448558db12fd521fbee572e833c922888974a867d89f76584166ad835a95"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaHeightmapOracle$1.class",
+          "sizeBytes": 559,
+          "sha256": "5f75c05593f2179f94e835eed8187d766763f08acd91c891c2aa19ac35a03792"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaHeightmapOracle$Chunk.class",
+          "sizeBytes": 2684,
+          "sha256": "d70ee47e1c563ff60f03bd64440897049f8c8d48cdf45180c1063a1bee85ed27"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaHeightmapOracle.class",
+          "sizeBytes": 14678,
+          "sha256": "3c1443cfacbefe8122d9ce99ccf68b538d0ddcced74d453a94c45b9ec345e1d8"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaMovementRegistryOracle$Actor.class",
+          "sizeBytes": 1164,
+          "sha256": "8a8722ab7899f205eb50c7c6cc2c6b1954ae479d262e47037680b7a4a5732130"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaMovementRegistryOracle$Level.class",
+          "sizeBytes": 2451,
+          "sha256": "5b2fb264bbde635bbd162c15a9aec280af43a27f15afd85a59f62b270bc8af18"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaMovementRegistryOracle$Stop.class",
+          "sizeBytes": 383,
+          "sha256": "aefe817d5e2a586785ffcd143d2945e994abff9ddad63a9bf66fde643a804a86"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaMovementRegistryOracle.class",
+          "sizeBytes": 13150,
+          "sha256": "fb452dd9cab474f794651cbb5e7282a8aaad6a64f07a84ee57249fbb7171fcb0"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaPlacementOracle$1.class",
+          "sizeBytes": 654,
+          "sha256": "a4f5d5b3e83c5df140c8626453484ba38f4b621acb9428b6b8536d36442118ff"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaPlacementOracle$Stop.class",
+          "sizeBytes": 362,
+          "sha256": "d1fa1a711d6b38c95ea650a55915741ca56750faec882010fac5ba179aa1aa56"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaPlacementOracle.class",
+          "sizeBytes": 13040,
+          "sha256": "c6d4df72015ecb3259ec195fe372b178af48ce7b86298c9fe1c270089493c256"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaPlayerHealthOracle$Actor.class",
+          "sizeBytes": 3257,
+          "sha256": "c189c8cf6f78cc57ebff5135a7c12e81bda0af678862a9f98a9b04a9e69f4c0b"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaPlayerHealthOracle$Data.class",
+          "sizeBytes": 1070,
+          "sha256": "bf3dddec3c8e41e259bebb5be2259beeb212c031d1fb931a858d64d38a0c2f42"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaPlayerHealthOracle$Stop.class",
+          "sizeBytes": 371,
+          "sha256": "f81ca9d7e9b1deade3498b4371389c26b6ddef390aa9f599ac39580751a9a4a9"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaPlayerHealthOracle.class",
+          "sizeBytes": 12499,
+          "sha256": "683fa2db2f4a25d10a855a11cad2a285cf46f889799481e2de4c7e1762f54d05"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$1.class",
+          "sizeBytes": 1915,
+          "sha256": "42fc62793649276219fbfc9841572582920bc057d6b960f1fe9de742cb8b9c05"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$2.class",
+          "sizeBytes": 1335,
+          "sha256": "beb323d0a8f406222e6a83a0f5ef2459ff7606304bbd7f50e8f1e742579b0b36"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$3.class",
+          "sizeBytes": 1733,
+          "sha256": "07e8294459d8cdead47a64a6b4db021393ac5a0f790409fbd10dcd6edf9995c8"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$Chunks$1.class",
+          "sizeBytes": 611,
+          "sha256": "722e7a71aa7112f56aa3775e1870e9d0c3758caa1d63805c683bffe1b7e5f4b3"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$Chunks.class",
+          "sizeBytes": 1834,
+          "sha256": "71633fb6840ed980b795f0c1ed93a105f7c53726c5796e921384bc88a6148d74"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$Stop.class",
+          "sizeBytes": 368,
+          "sha256": "269f8e9c3bd4a1d02fcfcc993c7470c9e14f18adfa86b1fb224f7e286232c44e"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$World$1.class",
+          "sizeBytes": 2035,
+          "sha256": "739f2ca06c772d1ed6b065694509a4efbb929324ecd3bc0dd3239e16cb5bbfc4"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$World$2.class",
+          "sizeBytes": 1772,
+          "sha256": "ccc5d1c7d0d8fb891db856ece8dac1ed8cdde7651bcb53a7457136dbb89ae21a"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$World.class",
+          "sizeBytes": 11689,
+          "sha256": "104984ef0c6ab5b42b40c661642fae7cdc45bd8224e4975856abad0b1d349d50"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle.class",
+          "sizeBytes": 16097,
+          "sha256": "280a14b3bd55f856e3c235ac755435917f6c02bfbeef1496f505f0c0760654ad"
+        },
+        {
+          "path": "native/exporters/server/dev/horizonlab/parity/VanillaStructureBlockExporter.class",
+          "sizeBytes": 4918,
+          "sha256": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6"
+        },
+        {
+          "path": "native/horizon-client.exe",
+          "sizeBytes": 53116,
+          "sha256": "5bc739ad57d615d1009eff6f2c47413a7305eb49c43ae0a764960bca56b7d60a"
+        },
+        {
+          "path": "native/horizon-prepare.exe",
+          "sizeBytes": 2347520,
+          "sha256": "5b4210072ca39a36e44415a84277faa7c249b114a02d5f556228d6c39fef3906"
+        },
+        {
+          "path": "native/horizon-wasm-std.wasm",
+          "sizeBytes": 652958,
+          "sha256": "3c647d91c7c943ffb65a31ec406392de328daa7a6d2779e44e71c3561068b7dc"
+        },
+        {
+          "path": "native/horizon_core.dll",
+          "sizeBytes": 5529943,
+          "sha256": "e64fbfcca13b26eb85c658148283eb8bba16a24bd666648c7becc7bf99a888ce"
+        },
+        {
+          "path": "native/horizon_engine_slots.dll",
+          "sizeBytes": 33744914,
+          "sha256": "56f46bd0d9d33769a2213540c4bf890b9b080612375cbf309c725eaa5d99845b"
+        },
+        {
+          "path": "native/horizon_mod_host.dll",
+          "sizeBytes": 138070797,
+          "sha256": "eb42db039ebb0a5b4a880e6f14b42b6f7fc8501becd494e170755fe1d0712830"
+        },
+        {
+          "path": "native/horizon_mod_runtime.dll",
+          "sizeBytes": 1074063,
+          "sha256": "fa703bbde12bdd8107d7a941e7c7e12f27de0bb835eb62a313c13b8ae1b54b16"
+        },
+        {
+          "path": "native/horizon_mod_wasm.dll",
+          "sizeBytes": 49495040,
+          "sha256": "4e96134902f8126e6f6bbdfb842b181bf13eba7d3f50c83ca9e069e8a00f349e"
+        },
+        {
+          "path": "native/launch-rust-edition.exe",
+          "sizeBytes": 2987008,
+          "sha256": "809fc2706f779246c621220cfe5f8c27d9d9532b7247c89efe242298a6c15e67"
+        },
+        {
+          "path": "native/libgcc_s_seh-1.dll",
+          "sizeBytes": 927027,
+          "sha256": "368488a9089e3d89b32a3609816fa40dd02fa4cdf480a2bc86e19c7bebdc8bda"
+        },
+        {
+          "path": "native/libwinpthread-1.dll",
+          "sizeBytes": 73549,
+          "sha256": "1b801c9280f6cad8cb2a026bfa48be8c4bea07a0dc78a820d1591f900ee76f0b"
+        },
+        {
+          "path": "native/mod_api.dll",
+          "sizeBytes": 5144869,
+          "sha256": "d5b934a78ede61a84e2479e1dd1c3b19418eb278e1be0fbd1dedf9357dcbaa0f"
+        },
+        {
+          "path": "native/mod_points.dll",
+          "sizeBytes": 36363978,
+          "sha256": "8d501d071dd916cde6d8c584af74d234a9d64da83f49aba720b2c60e50397aac"
+        },
+        {
+          "path": "native/mod_vocab.dll",
+          "sizeBytes": 48446052,
+          "sha256": "dde601e777470a2b76cad03d4e3a7e54999b8b1e5381bafdff6747551ab988a8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/AllayDanceTranscript.java",
+          "sizeBytes": 4072,
+          "sha256": "dec968181714dfc73a3d06254dadabda7a69d0cfd65016202bf98d7fa3a89a87"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/ComponentWireCapture.java",
+          "sizeBytes": 10277,
+          "sha256": "3091b1d2da52d4a369e5c3490b97c42a265994b84b05874d0aa956aea4dd1429"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/ElderCurseTranscript.java",
+          "sizeBytes": 2076,
+          "sha256": "ed9abda5bb2015f09c763719e7114c9ce821ced4553e6d4d16e45fea4eae018b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/EntityTranscript.java",
+          "sizeBytes": 9065,
+          "sha256": "5c747ae4a15c7fa61bebbe13b404679b6a7131382898f51c51a0e01f1978a05c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/GoatVoiceTranscript.java",
+          "sizeBytes": 3400,
+          "sha256": "565aaafdd0959a3ba7c92bb33b6fd758b2178cf609fa6ae17be1dce25790e861"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/KnockbackClient.java",
+          "sizeBytes": 28182,
+          "sha256": "94597e095e335bce52646c86b34722b8334ea834c08c1eedd72754c500892423"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/LevelEventTranscript.java",
+          "sizeBytes": 2280,
+          "sha256": "1de845c12e12e93f6ba6f480d8374b756d8a4c8eaca63c1f11fdc14b2f3ca46f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/LocatorBarClient.java",
+          "sizeBytes": 66906,
+          "sha256": "bdaa073e53523e3197f81e871d3f652941bca0c859a3521559a2a83ae08b0439"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/OfflineLanHost.java",
+          "sizeBytes": 1948,
+          "sha256": "15af71c5955c7065052c2fed4b248d007c74bdbd2886694d031c5b95b325d01a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/ParityData.java",
+          "sizeBytes": 6610,
+          "sha256": "3f8b2e0af7dde3ee2cc1c0dfca694aa3813ee305719f2af666e8f3c86d677d30"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/ParityFont.java",
+          "sizeBytes": 5954,
+          "sha256": "b08eb1b7a2efbaa2f959c63d93d879e6550d18c6c2cb4428bbaefc474377bfd6"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/PhasedTranscript.java",
+          "sizeBytes": 749,
+          "sha256": "40f715c4e2ca7c19b56a76eb3b4278bfe446cab47de3e7c9aca1e7bcba09231b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/PrepareWorker.java",
+          "sizeBytes": 3778,
+          "sha256": "14f2c13406d4a9de5ecd9c6f8adb888da956d548476ca6c53d83246b4bfb00f5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/RideTranscript.java",
+          "sizeBytes": 5548,
+          "sha256": "03c18e20bea720f5fc75072600a68ad5116948c383aea6a0ac21d9598223b4db"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/SecureChatClient.java",
+          "sizeBytes": 35880,
+          "sha256": "4d2c6f0773e1d004bfdf5fec764d7797e7a63c870053328049f78cbbb46ddec4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/SeedAgent.java",
+          "sizeBytes": 3595,
+          "sha256": "87ead71f3b0f573b7d47f4d7408aa5da3c03e4564850c0ba69d12678c6792ec4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/ServerPackClient.java",
+          "sizeBytes": 17772,
+          "sha256": "40d7091b8acde23657b9d115ca448c420cbd7dd7cfddb5741c9bb21e866b25e3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaActiveEffectTickOracle.java",
+          "sizeBytes": 20615,
+          "sha256": "39cddcf583f584529a0e0083080bd37168dd628d7a0f80ae0e2c628c1a979f5b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaActiveEffectsOracle.java",
+          "sizeBytes": 9014,
+          "sha256": "baee4b611988870b061fcd4feb0d1905a47350b7c995fca795a9020d666db9dd"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAllayInteractionStateOracle.java",
+          "sizeBytes": 7002,
+          "sha256": "2b5c3f498eda204d5a75396bb6c2dea5d19397975ae5cbe9daedcbe15148d6cc"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAmbientOracle.java",
+          "sizeBytes": 13159,
+          "sha256": "75a2b75c55c93a8ade919f80a00453e4c75e98b821b321557576263d51c9e0f0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAnchorOracle.java",
+          "sizeBytes": 3886,
+          "sha256": "04c44354f07f87f48145b9f5a6ef4ead68a70bddb2638d7c089ef91d90bac047"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaArrowContentsExpiryOracle.java",
+          "sizeBytes": 5005,
+          "sha256": "2363ed068c74c124a2e0fdb4ad24e69242ecbea9b3e9254f89663be1f1571753"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaArrowOracle.java",
+          "sizeBytes": 20145,
+          "sha256": "2ab8bd1631ab194bb25bc242cb3613e2b50151064fe3e95eace046ec4eced1ae"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAttributeHealthOracle.java",
+          "sizeBytes": 7838,
+          "sha256": "01d928ce1c30beb15fe6290651b7a8f888536dc8fbe86841ed4ebcd8d7b7e200"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAttributeMapQueriesOracle.java",
+          "sizeBytes": 9802,
+          "sha256": "560feb8fad13e8069ad95ac320640f8fb58ef079b5033d26386e74d3e3e472ce"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAttributeOracle.java",
+          "sizeBytes": 6482,
+          "sha256": "d3b5dc621e8131a94e17339bc84ea61de1b92d574c9df4fa9d9bb5dd1d7da906"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAttributeUpdatesOracle.java",
+          "sizeBytes": 22354,
+          "sha256": "86d7ea5c3e439db2c850f14372185ff695bacd6d6f63781be5550ef4083c54ca"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAudioAttributesOracle.java",
+          "sizeBytes": 6696,
+          "sha256": "9ecbb3cb124e633bf1b2b2f1e4bb31994d4c77a689d65b278e2eb6442da879f1"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaAutoJumpOracle.java",
+          "sizeBytes": 8718,
+          "sha256": "fed359fa7ec1d3d4330ab0bcff7fd163ca9925d484bdd95cb458d376d294f76f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBasicFeatureOracle.java",
+          "sizeBytes": 5923,
+          "sha256": "3b5939a9b1ef2dddd6e54a77a94928010b2a10ffbd1b77e7d45d146848548477"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBedPoiOracle.java",
+          "sizeBytes": 1285,
+          "sha256": "4f1471d6feee03dd99d278b4112f3468565d42d7ac17ab7e3c8280be80afdd51"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomeChunkOracle.java",
+          "sizeBytes": 5273,
+          "sha256": "403fad117921fc0c41038e90bd21e7ed28bd8c74488bbd060ae0eb0418a0b7d9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomeExport.java",
+          "sizeBytes": 1902,
+          "sha256": "884b6d6cdd34c27b8d6fac3dd7ee188cdd06535692e23b2e595905f687d97a11"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomeGenerationOracle.java",
+          "sizeBytes": 8473,
+          "sha256": "986b6c3645bccc3a3fe44ee6cb6053b2aaa5571634833e9a3e3569a7e6f76582"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomePlacementOracle.java",
+          "sizeBytes": 6605,
+          "sha256": "4c3f44954c1292a4531b80050c9b007e0695439a00b05f651f51b76137f39f76"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomeSourceCodecOracle.java",
+          "sizeBytes": 4340,
+          "sha256": "70ccedd2e205503879f4296bc6cd7c6aaa0f9667603d50df6440a14f43fe7a41"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomeSourceOracle.java",
+          "sizeBytes": 3145,
+          "sha256": "afdbd49944b0c2ec133f0fe419ef470cc8c20cc10d1c1d7907f25918e4582054"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomeTemperatureOracle.java",
+          "sizeBytes": 5158,
+          "sha256": "d42e72eb87adec1790b16343a12508bebddfe506df008c21c0b241d9a2d93850"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBiomeZoomOracle.java",
+          "sizeBytes": 2070,
+          "sha256": "3b7b67bf33d47393dc7af1d4dad0cca3692a001ce4b3aafce223bd15a0bec683"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockBehaviourExporter.java",
+          "sizeBytes": 12639,
+          "sha256": "d94af53657af2b6f0c6578b740450646411f0a542a7920dcbd0c3a8f2a7e07a7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockCollisionScanOracle.java",
+          "sizeBytes": 7348,
+          "sha256": "37ae6f5771a02d891b86e7d1e10c75f62030e037f027c68f5ebed5bf246f08ef"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockEntityAnimOracle.java",
+          "sizeBytes": 27070,
+          "sha256": "cf9a8ae35c391b3a3b2bda438f3aea8e5b8205fcdd8f174c338e1bd1bbb8b0ed"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockEntityRenderOracle.java",
+          "sizeBytes": 35205,
+          "sha256": "f0cdd6aea5054cff51a06889db928b20bbfb35611c0a48dc0ecb0b456f0ffc66"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockEntityStorageOracle.java",
+          "sizeBytes": 5686,
+          "sha256": "cb0cd2d1facd622df51ccfaa4c16311460ece94fbe666d5be092bda2196fef17"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockEntityTickerOracle.java",
+          "sizeBytes": 10524,
+          "sha256": "2d6a2268b773c55b03ae1493e4a5ccee9569b0da5ff3aa201e14e10d65867720"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockEventReadinessOracle.java",
+          "sizeBytes": 3386,
+          "sha256": "7009c4d3f42bf8ccbc5b081d1b4b457530820d73e4dfe5a2c8e810cb2749f043"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockLandingOracle.java",
+          "sizeBytes": 25080,
+          "sha256": "b1aa8e342aeca24d94b5d79a357c93ca142f3d39180bf299354a8e9894f8c1f8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockParticlesOracle.java",
+          "sizeBytes": 5405,
+          "sha256": "59b3e58139670a6303e9826290e8f243a8d599b9f1af20c7470355812a6ce54f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockPlacementOracle.java",
+          "sizeBytes": 9384,
+          "sha256": "3ddc0003df768ea4e84880fab01aa63ba1fe176bc47ad90beb63b107f86c3193"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockPropertiesOracle.java",
+          "sizeBytes": 5459,
+          "sha256": "91d8f1c1af607b7df702cac32dce114e32479f38ade34ab1d9acb7d17cca1717"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockPushOracle.java",
+          "sizeBytes": 4280,
+          "sha256": "323c5f8eed8fdc3562a69532da504a24f79a026a37d666cc6307646d911d8c17"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockStateBindingOracle.java",
+          "sizeBytes": 5734,
+          "sha256": "fca025d031d4abf4334ff32fb02b29efffc6416632bfcd60fc1a6c69ffa52fd8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockStateCodecOracle.java",
+          "sizeBytes": 3286,
+          "sha256": "b53793cd4402925a1e6e0f2a65ee9036032b3ae8d6bfe0e324dc4ed45dc0a197"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockStateModelOracle.java",
+          "sizeBytes": 3259,
+          "sha256": "a4ffc1005e62bf31cda4f9526ceef247d499978ee7f3f1e3365b1a3a78dde0cb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockSupportOracle.java",
+          "sizeBytes": 2856,
+          "sha256": "7dfcd31d2eb9add7e7ad160a8856696f4d976b5e0a3522a2d6461fad51038133"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockSurvivalOracle.java",
+          "sizeBytes": 8505,
+          "sha256": "b564737a6eb0b54d1f71642f86b9c185e5d5a3c2ee621e8e15d2d27e5aac52a6"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockTintOracle.java",
+          "sizeBytes": 1641,
+          "sha256": "4b5036b8089a938bb77a5f5b39e2d5fcea1743b7676be035ccc94c2d36a5aea1"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockTransformerOracle.java",
+          "sizeBytes": 6072,
+          "sha256": "6c531a4840da1dc64af6549cedb616056fc0930116e96728418494981ca70369"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockUpdateOracle.java",
+          "sizeBytes": 46053,
+          "sha256": "9d9e749363bd7f2d9073920284576db0784cdd271a319c1e4f3de53ea78d619d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockingItemDamageOracle.java",
+          "sizeBytes": 6536,
+          "sha256": "0ac1dcd3e2dcebd7d8834f8f53807d31bf29cfc4c2872e3e43059fc4fc01d00c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBlockingRulesOracle.java",
+          "sizeBytes": 3228,
+          "sha256": "6674b5f98d5cd6901048ab396ab29c152a446c8eb962b87a7729667db6bca658"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBoatAuthorityOracle.java",
+          "sizeBytes": 11981,
+          "sha256": "003aa9ccdf57fc4209b75c42157994c763451398038f3d67807649b14be6622d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBoatRiderOracle.java",
+          "sizeBytes": 6692,
+          "sha256": "6c062c88f3b360ea4fb7f24e5f56708bcefe790002ac16a4374ae890725ec5cd"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBreakingModelOracle.java",
+          "sizeBytes": 6004,
+          "sha256": "a2afbead22c59f631d61dedfc2757a145c4350c292b935fb5293c0b272bb0443"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBreezeHookOracle.java",
+          "sizeBytes": 4780,
+          "sha256": "2c808df887f61e80ba6f811bd5ef0b15cfff35ad55c1c3e8ac00695b6bcc46f4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBrewingFuelOracle.java",
+          "sizeBytes": 4562,
+          "sha256": "d9bd9d65b45350ab4b3d5e25a626709264f6daa80063ee2ce5c0869913c5e176"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBrewingOracle.java",
+          "sizeBytes": 8406,
+          "sha256": "98d3f86e2e7c52d5bcf4fd605de2cfd3716d6ca495bce62b98dff0d7c88ea7dc"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBulkSectionOracle.java",
+          "sizeBytes": 6421,
+          "sha256": "843d6fe5193b485582b2c89a6bb1329f66218935463063e472ca23de0e8d774c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaBundleWeightOracle.java",
+          "sizeBytes": 3739,
+          "sha256": "72193b5e7316c2d2662f33590f2e15af961018603018dd20cba39ebf97e43470"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCameraOracle.java",
+          "sizeBytes": 20203,
+          "sha256": "500a731027d74e394bb6f0252a178018ba2c8c066bcc383578bd97a013be2ba5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCanyonCarverOracle.java",
+          "sizeBytes": 3072,
+          "sha256": "cae6af356113ce2c3d7bfc27bc5bf6405f5d171180839a1489b0fa594bc1a6e5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCarvingGeometryOracle.java",
+          "sizeBytes": 3195,
+          "sha256": "5c5bb443d040cc2ff7f2478d235f02a79d5ceccc7f5e681a43e025c09963845e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCarvingMaskOracle.java",
+          "sizeBytes": 3175,
+          "sha256": "c07a99d916fb1af3600c409b27d694d1bbb02ad7b27e49a2b988f7739dc8dac8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCauldronOracle.java",
+          "sizeBytes": 8945,
+          "sha256": "30745c220516a6c3700f549fe86d59f9d443dfbbc1df4871e9b333c9a7e077ca"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCaveCarverOracle.java",
+          "sizeBytes": 3068,
+          "sha256": "470ba74811d90a7d4efb51021d2d0ddab0f13299b245df340a854d79a64267cf"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaChatScreenOracle.java",
+          "sizeBytes": 24022,
+          "sha256": "689b346ea933f864f002950597148dac4cb5a9f172be76c572959049e3822963"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaChestLoadOracle.java",
+          "sizeBytes": 2208,
+          "sha256": "15a2b92f8f6d20396ed02054967d443196f4342c0c755cda434654a38d080cd1"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaChestPairOracle.java",
+          "sizeBytes": 4819,
+          "sha256": "c3177d9065b51c1d18fe619e8e09caadd292bb4ec65afb6f59d02d5551844e20"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaChunkEntityOrderOracle.java",
+          "sizeBytes": 8275,
+          "sha256": "a9e41806895a3a525c1378b8b0f2d24bdab8177a257dd13629b27b1418691cf5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaChunkGenerationOracle.java",
+          "sizeBytes": 38187,
+          "sha256": "d34f29bee847d77f33595c589c4308249c8797673ec6e656e9563ac32603bd20"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaChunkStageOracle.java",
+          "sizeBytes": 6038,
+          "sha256": "11df218b4dce3ed819ae48231d845e11829d09bfb33ffd8dda37a477fef1980a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaChunkStatusOracle.java",
+          "sizeBytes": 2375,
+          "sha256": "93252aa56c2ba6d1297bbb1dd8284315b0ef4b7a6ca90f37141a39c2078d17a7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaClientArrowOracle.java",
+          "sizeBytes": 8469,
+          "sha256": "150994c01b8699874be9ab081482cf5424fb6dfd8dbc29d59069b0d789056eef"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaClientRedstonePreviewOracle.java",
+          "sizeBytes": 1928,
+          "sha256": "1cdffe38ff6a4a236fff9de958423da884df3ae74c7f61018ae455e162405d7c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaClimbingOracle.java",
+          "sizeBytes": 6074,
+          "sha256": "cd94dc64b8b8c0a84fae5ed1332fb4fca78014792a01b3ff711f9508309d9cf2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCloudRenderOracle.java",
+          "sizeBytes": 3268,
+          "sha256": "9dfcc298b0c738eb4662cfe7d7d53143f73d61879398acdb96f23fe61cc06698"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCollisionContextOracle.java",
+          "sizeBytes": 14802,
+          "sha256": "4d9757a1a0bbfa1c8a1b9133f27c993e44a29f2ef5a3703bbc74595f3078dfa8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCollisionOracle.java",
+          "sizeBytes": 14180,
+          "sha256": "c19891c68c6b1f1fad3d21b79c2040ff634f96c6dde8864b342ccfea7d40b6b3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCombatRulesOracle.java",
+          "sizeBytes": 3487,
+          "sha256": "fca4823402dbe6666f385a538e76c08d4ef9519abcc58c9334c6409b20df0604"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCommandExecOracle.java",
+          "sizeBytes": 106858,
+          "sha256": "b122b411cea4b9bc277aa1bb78bee3fceab65a49b994e189672fe1b8cbb89b3e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCommandParseOracle.java",
+          "sizeBytes": 25976,
+          "sha256": "f03857484c76c6f0a0eeb74e37401155e725ef4bb77ad4dda2b295b602c70caa"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCommandSuggestionsExporter.java",
+          "sizeBytes": 1916,
+          "sha256": "4254176f580a99a9061c021637647878dbef8e83257eb69c4d2abb1dffc4b38e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaComponentDurabilityOracle.java",
+          "sizeBytes": 6260,
+          "sha256": "babe62770d8aeb0fcfc94ed9c1355c87c282cf156db2e2df9b598cc79bb25566"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaComponentPatchOracle.java",
+          "sizeBytes": 4595,
+          "sha256": "cfe3644576376082564fd725f5afa8032913beebc2bb03d5bf4ef79151320a3b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaConsumableEmissionOracle.java",
+          "sizeBytes": 6627,
+          "sha256": "0ad7fc63fe631c4701947c17667fd245363d57a8386fd050eda285379a9e8b9a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaConsumableOracle.java",
+          "sizeBytes": 13339,
+          "sha256": "ebc39a7ad9eadc8aecf0f2dcc6241e0d46de8bb25b4d02cbc215e599d987f47d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaConsumeEffectOracle.java",
+          "sizeBytes": 7535,
+          "sha256": "8b75c64d0f7dbf848426a2a0734d9f5d1e5b9cddeadddc299a585d429b7cf64e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaContainerScreenOracle.java",
+          "sizeBytes": 10318,
+          "sha256": "bd0fac8323d8cd19d313c139de1a1cbeca4cdb40508f3a728cf400df816575db"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaContainerTitleOracle.java",
+          "sizeBytes": 4365,
+          "sha256": "73dc60f278c30c89211da32071b4505cd9ba4803cb358916b386b64b4fcb7c84"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaContextualCollisionAudit.java",
+          "sizeBytes": 4567,
+          "sha256": "025c9c0e1b7a17c585806e34d1f94eb9475a2b7824d831ab7f35ebb34b4a891b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaConversionTagsOracle.java",
+          "sizeBytes": 3264,
+          "sha256": "8418e178be849af00f2acd5f95c7c9d594e8ec7630f5fd8e64ba849868874150"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCoreOracle.java",
+          "sizeBytes": 10489,
+          "sha256": "bdcbbf3d01a6252280738b89238294f6cacd0e45079c028f2dae1dc11e7f0a3d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCrackFeedbackOracle.java",
+          "sizeBytes": 4326,
+          "sha256": "17d960c035d2cb614fe8d5d6632022b065f659937332b6a662f5501d692b6eeb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCreativeMiningOracle.java",
+          "sizeBytes": 3496,
+          "sha256": "f883870bc50fc72e30ba5a1d7c9272e06afb3bf10c1c34154a18e0e61adfcef5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCreativeSearchOracle.java",
+          "sizeBytes": 9965,
+          "sha256": "6c0eb2068dd32886a693d26404568e6279073de1509a881f879547dbea30aa09"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCreativeTabsExporter.java",
+          "sizeBytes": 5683,
+          "sha256": "864a27d44a62b5e59fb6638797a686bb394a511f980460e477325f9f75a206a3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCuboidModelOracle.java",
+          "sizeBytes": 5830,
+          "sha256": "e4650de6138c37f6278e2da5974663debddbbf5837900e078088bfec64517f0a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaCushionPlacementOracle.java",
+          "sizeBytes": 5301,
+          "sha256": "9a63e5925f244eaf30c822b6982eb6384bcb47beafc45ddaf073815faa7bf95a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDamageCatalogOracle.java",
+          "sizeBytes": 1805,
+          "sha256": "d194b3160197cad41194dfbdef2cd327f0e3f9beb7543a69e95af380c0707235"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDamageImmunityOracle.java",
+          "sizeBytes": 5963,
+          "sha256": "d2f698dca5e3b87f107242bcb7fd08bd1520c8232a4c50a45bd302652bc6c193"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDamageReductionOracle.java",
+          "sizeBytes": 7488,
+          "sha256": "5f56be70476af2291276a2d7425414c5a41b5dac810ab58122e6be620ba28874"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDamageSourceOracle.java",
+          "sizeBytes": 9000,
+          "sha256": "5c71f7bff309d0009ab1dba221a89fcc628fc58570c338e92ff2af0973744e3a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDataFixOracle.java",
+          "sizeBytes": 18546,
+          "sha256": "9b61779b46e902913ada2db92568a0ba662dcd72c7ee6d8bc5e805ce434d3013"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDataFixTablesExporter.java",
+          "sizeBytes": 15865,
+          "sha256": "c62558906c33d2329a91c9fe92c9681bc940eca24d9b6d36457db8324bcb0cde"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDecorationOracle.java",
+          "sizeBytes": 9025,
+          "sha256": "0e7f395282408e3cb9af59a463421e6113df73f796eeaaeef8d93f7862cb6b3c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDecorationRegionOracle.java",
+          "sizeBytes": 12456,
+          "sha256": "d067dd3a8ea1b131067427fe152aa60df8e6b60e8d65fdc46102496d399b987d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDensityOracle.java",
+          "sizeBytes": 43934,
+          "sha256": "6e2bbe17c957290a2be34cd8df493bb60a51bba00898b28d12ce4cd516cb9582"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDispenserOracle.java",
+          "sizeBytes": 68973,
+          "sha256": "38efb2bb52af86609d76ff98e745114ef1b2b06f59cd0edbbe0a6422fc4c19da"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDragonContactsOracle.java",
+          "sizeBytes": 4048,
+          "sha256": "70114e992d7f23ddba7bfe3a671edf7b3bf9d18ddc0ec866100a84eccfbf935b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDragonRenderOracle.java",
+          "sizeBytes": 2266,
+          "sha256": "d01d088a90ecec08965a11be85a9c368ddc3b5be72b9df58790dce99c3c1175d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaDynamicSupportOracle.java",
+          "sizeBytes": 5424,
+          "sha256": "b19c7542ddffd83eaed5c0877660f57a1ddcf02307422c9d9a311831b3b9de8a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEdgeBackoffOracle.java",
+          "sizeBytes": 3950,
+          "sha256": "6226cefc30a9ca691819c70da424d8dc30c599a862ab3b0d35b24617729a1d02"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEffectAttributeModifiersOracle.java",
+          "sizeBytes": 10546,
+          "sha256": "7738c22adc83648cc85a7544bcd94b1c270ec703a0ff3d40932f2aef9d0c6b70"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEffectNotificationsOracle.java",
+          "sizeBytes": 14097,
+          "sha256": "04f5a7cea61569ef36d6ec724bf23e7d362286f534919371832cee601e710a26"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEffectParticlesOracle.java",
+          "sizeBytes": 4560,
+          "sha256": "905f55318dd1850c76eb455966b3207488bfc6b187365dc3e75ae250fa71e005"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEffectSyncOracle.java",
+          "sizeBytes": 13733,
+          "sha256": "1cf8572fb56e52bb948a31dcce3d8e790a73f1640c40f9e582cc7f337024e796"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEmitterParticlesOracle.java",
+          "sizeBytes": 7882,
+          "sha256": "79012961310c8352d628dcf206b7e19bcf235dc9a2e32b2be4a8ee029df2da04"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEnchantDurabilityOracle.java",
+          "sizeBytes": 3424,
+          "sha256": "bf3271375dbb98e373bfefc91130682b1fa19e490a16866d6058cbff256e8d57"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEnchantingOracle.java",
+          "sizeBytes": 6290,
+          "sha256": "fe6f0b0283bd6eab9ebde64c64a2b9e84c370b6389f3d7214a5d7f488c020d38"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEnchantmentComponentsOracle.java",
+          "sizeBytes": 2416,
+          "sha256": "62497141f016a1d9c19e2c1a1315b5f2edd36ec51c4f75791e6131aeb78fa5d7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityAnimOracle.java",
+          "sizeBytes": 20875,
+          "sha256": "a0f508409145956b31bcff37db9381a9433dcb79ba26b71f2831d796ff9492ba"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityAttributeOracle.java",
+          "sizeBytes": 6065,
+          "sha256": "f363917969146bc47d74667db3f0d6ab33a03ba3150d3c503d3f0e3c1b6337e7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityCollisionOracle.java",
+          "sizeBytes": 4657,
+          "sha256": "e97dc2021f00a30a9343a21a52c1fb26ccef9595d62ef2105748daf993ba602f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityComponentsOracle.java",
+          "sizeBytes": 7032,
+          "sha256": "b31031c8015afa6f935ecbd916d8bd91b8c4341d17c88b7e5e4a03b2db394779"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityDeathLootOracle.java",
+          "sizeBytes": 20972,
+          "sha256": "0cdc54e990f74f531eff5c38b51e8fa56f6a91e38321e45edb31e37e7aef836f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityFluidOracle.java",
+          "sizeBytes": 13210,
+          "sha256": "df40f6ac658aa821b1b45d14dd420b9b89bd04c43a0ac063ab68edc0e7bf957c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityLookupOracle.java",
+          "sizeBytes": 2898,
+          "sha256": "e65ee3026daec330e2e891190e650c532f61c92b77410234b9764e91d0a27032"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityLookupOrderOracle.java",
+          "sizeBytes": 1824,
+          "sha256": "bfb86dc2d922de2a8f4e97b991756852feffeb0ca7a38faf83a7df6eb5c02246"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityModelExporter.java",
+          "sizeBytes": 3130,
+          "sha256": "bb6b7862efec4b91e6967f569a6730ee376dbcf8ffddd74f54be9c757b2033eb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityMoveOracle.java",
+          "sizeBytes": 10957,
+          "sha256": "24abe961841bf0a6737e25386daaa23ee523efd90097cd2f436a32197991e290"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityObstructionOracle.java",
+          "sizeBytes": 4542,
+          "sha256": "47998de5317b443b5537c4d3a9c395270eeb0c2527827306610bae8c954a5142"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityParticlesOracle.java",
+          "sizeBytes": 4676,
+          "sha256": "5dc6fca028cb32922024a5191d7e0a3e8b09971a2d9a7005a8e0579eb23a4ba4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntitySoundPacketOracle.java",
+          "sizeBytes": 9690,
+          "sha256": "1a133c4a6b56803e38df34b58634b94c4e5c9942a148a12398e0b93c30899533"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEntityTypesExporter.java",
+          "sizeBytes": 1989,
+          "sha256": "bf2fb175d5664aeb606f370135d0973f1d1cf71cdb93f7d6b27f3779bbfe07c8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEnvironmentAttributeModifierOracle.java",
+          "sizeBytes": 3939,
+          "sha256": "358e1364c8761ffe3dd88f12879f584e616d52e9f7557224b67ba8d102130151"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEnvironmentOracle.java",
+          "sizeBytes": 5423,
+          "sha256": "9e7fba67018de672a0ff10d6082c3c5adc15eb76a235418488cd063432d9ae6a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEnvironmentSystemOracle.java",
+          "sizeBytes": 8849,
+          "sha256": "8f1cd0c9f3c63ec9eb5419478ab6b7dc789fb53801702bd18ae44af1def542e4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaEnvironmentTimelineOracle.java",
+          "sizeBytes": 3937,
+          "sha256": "edc0c4d0cdb9d2aec65f349463dcb31685d9cd339b91dd36a4e91a43c8e84677"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaExplosionItemsOracle.java",
+          "sizeBytes": 4731,
+          "sha256": "7f4c54b093dd656b7f66dd14ffb9385aa56829d83b077e59bf5878b74b62adad"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaExtraItemsOracle.java",
+          "sizeBytes": 8503,
+          "sha256": "48c7a9970d772168e7f7361ae9754e3b99d665bc73826ba6ff69264ac97dd0bb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFaceSupportOracle.java",
+          "sizeBytes": 5336,
+          "sha256": "7ae9e49a052ed4bbdd8c8e47528fdc152130dc0016e799e2dcc34a57bfdbf2fe"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFaceVisibilityOracle.java",
+          "sizeBytes": 3999,
+          "sha256": "1d9e131040edc348a96571f56d711eb8c689d913b421511b215abee8ba0a8d0d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFallDamageOracle.java",
+          "sizeBytes": 5296,
+          "sha256": "797c0382fa85e561b26f911c6bf8579cbe5e939485e99340f4b90d0f29e32973"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFallingBlockOracle.java",
+          "sizeBytes": 6609,
+          "sha256": "ddca6a6baa7dac420294db4158ab80f67a2da2fdbe63abc30d85cf57963a31c7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFeatureCatalogOracle.java",
+          "sizeBytes": 10172,
+          "sha256": "2313b66465eebee01a60dd820550bc73fb3cde44e6c9a2e1e03dafb2b39eb32c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFeatureGraphOracle.java",
+          "sizeBytes": 6103,
+          "sha256": "004074dfd4e268db9a869e771c8ea1a59ac49d852fc2a034c549acc76dee26d3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFeaturePlacementOracle.java",
+          "sizeBytes": 3823,
+          "sha256": "91df1687dd87e10c8b23735be2491d9ef6e232b76b00d25e8f561b19947f8dbb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFeatureRegionOracle.java",
+          "sizeBytes": 21008,
+          "sha256": "1a0a9868c8d3565e9fd463e9ae330b017cc9efb485b95536f8e9abb2b273d2c0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFeatureSortOracle.java",
+          "sizeBytes": 2810,
+          "sha256": "24e86e8f619df9e615430f0e71f279bca11454f7eef476883b3b760855a1f879"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFillLayerOracle.java",
+          "sizeBytes": 5525,
+          "sha256": "a36490d76306eea51ca7439015ba2c7b2cbbd4124b8c1620a0cbabf795bff736"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFinalizeSpawnOracle.java",
+          "sizeBytes": 33690,
+          "sha256": "66c0897ebf685ef025c86c07f1db04efeade1d775fdfa88406370875c2427263"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFireStarterSoundOracle.java",
+          "sizeBytes": 5763,
+          "sha256": "382a34d6a9d49cb7288f53cf79e2a77f107787c10262dfb65e702ce0d3db9890"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFireworkTooltipOracle.java",
+          "sizeBytes": 1882,
+          "sha256": "24b923e52a0819f02207e78e57d16fb27be86d814d1baaa1801e1da9e02424e0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFirstPersonOracle.java",
+          "sizeBytes": 21965,
+          "sha256": "9a16464f2da6038df4d27413ba73589b52427ad75601fc7862db5d8025e899e2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFloatLogOracle.java",
+          "sizeBytes": 1713,
+          "sha256": "1229f106de4b5ab93f10eb51745536e2cce4d1884c3f8a368fd28503f3c6fefe"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFloatTextOracle.java",
+          "sizeBytes": 1231,
+          "sha256": "602634cfdfb70befca0e90c6ee9ed962d72aa34f929d8568743e1bb43d375f79"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFluidBoxOracle.java",
+          "sizeBytes": 4053,
+          "sha256": "0cf986ebcd2bfbcf8814079b56bea221700bdd370988e1dffa752e1b1ca20212"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFluidFlowOracle.java",
+          "sizeBytes": 4212,
+          "sha256": "2d71c2eaa8953ef310cbe8ada13a8cbb4487f8306614bc3a0b1df805d2d8872e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFluidOccupancyOracle.java",
+          "sizeBytes": 4765,
+          "sha256": "b5b2a9d673d3978f6481f8a4349532863bff0d0b18db3d8618fa69a9b1b190eb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFluidOracle.java",
+          "sizeBytes": 4525,
+          "sha256": "22f32ee7b4828326d5f1411e85f0d5d4171f9b8bf0c5bece47e75fa40d2c89b7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFluidShapeOracle.java",
+          "sizeBytes": 3237,
+          "sha256": "4662cc5efac2e8b01de96c60337fa44f502427d88cc33c5fa2f2f7c48f7a1d6d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFoodOracle.java",
+          "sizeBytes": 5627,
+          "sha256": "ab1500fc8a1e18e86ee8de9e1a5da101762c4f5af99a964fc2bfae53e5067360"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFoodPropertiesOracle.java",
+          "sizeBytes": 5570,
+          "sha256": "eaca4aef85ebd6bc9a56a04e129fb86e81b40724811979449499801a12bde105"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFoodStorageOracle.java",
+          "sizeBytes": 3721,
+          "sha256": "e5edf47d5010541b0e480b6e588a6dd5c002127d8c2f78935fd15bd0d29beda9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFrameLimiterOracle.java",
+          "sizeBytes": 7644,
+          "sha256": "baae955ebe4d0c4a2f45ac8b96612dedee3cdda0f2d8b0cc8ea1100980ad0dcd"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaFurnaceOracle.java",
+          "sizeBytes": 7836,
+          "sha256": "f2a79ec7ac8c5bfb375215e352837a96c560fbc5bb84f9ce75cc9371aa940900"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGallerySelectionOracle.java",
+          "sizeBytes": 11768,
+          "sha256": "785c610217edcab6ff4aaa4177492bf0dd323ff275468a0b46f393242d05af38"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGameLoopOracle.java",
+          "sizeBytes": 20241,
+          "sha256": "9487780b2c0b7441de1629ea140dcc76a586ce0b4cf4bf63d9c962bd2b6205aa"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGameplayFactsExporter.java",
+          "sizeBytes": 6003,
+          "sha256": "4f7a69725bcc271371203b0f269270f866c82a577567f51a22a2d62c245c5846"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGatewayCooldownOracle.java",
+          "sizeBytes": 3041,
+          "sha256": "a98282abee61d1ce684b250494a3d8b57c99db56bbfd4d84e217c01c50bcb023"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGatewayReplacementOracle.java",
+          "sizeBytes": 1325,
+          "sha256": "09befb6d8edb9a407de1b379af2b53c0debc9b959bf1e4de55e48797226b8d48"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGenerationTickOracle.java",
+          "sizeBytes": 4178,
+          "sha256": "5b1e6c13b2e943f53e623d3b3946eeb896feea7c3255e8dd06b93a85478c0335"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGeometryOracle.java",
+          "sizeBytes": 18853,
+          "sha256": "4078828355a6111ee6ebe9788469937dd1fb2797aea8f3a1bfd75d2f84c98311"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGhostRecipeOracle.java",
+          "sizeBytes": 8202,
+          "sha256": "818cabd404be37fddb7cdb0f4a389de829ae8706868f5da58b771a83cde63426"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaGroundStateOracle.java",
+          "sizeBytes": 4595,
+          "sha256": "c7a05704dd31378f87047254f4d214c67e39ea86dfbebc00f6a58d7ca36a4223"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaHeightProviderOracle.java",
+          "sizeBytes": 2194,
+          "sha256": "d8310fa44d9e687ae4147d177062be5b5b4aacbb2184ba00864f578d1188c703"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaHeightmapOracle.java",
+          "sizeBytes": 8862,
+          "sha256": "fbf6a4f4b82e764b8a7c4d41bd84428bd8f875c53d5499e264a0b76166369bb1"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaHeldDropOracle.java",
+          "sizeBytes": 7131,
+          "sha256": "d1395522459980ecf8b25662462873e287f6e89c76a4d313a7360e8a2851aacf"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaHeldItemStackOracle.java",
+          "sizeBytes": 3537,
+          "sha256": "853300dbe992289261fda9cf1dfd3453819c79e8f33b400775527ec3e22d3210"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaHelmetDamageOracle.java",
+          "sizeBytes": 7194,
+          "sha256": "4a4a3feff9be9f00131e2951c42e7a59c486f58fc66cf0a6ab057a580dcbed51"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaHotbarOracle.java",
+          "sizeBytes": 2425,
+          "sha256": "cd8b836bb2852e79c6a9861893968bfd171deb9b503fab288b0f1733e696273e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaHudOracle.java",
+          "sizeBytes": 43468,
+          "sha256": "bb1658e10f810c669288dbd3d1926aaacb5dccdb4d47d5988c719e98fb5f2bb3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaInlineObjectOracle.java",
+          "sizeBytes": 5087,
+          "sha256": "f5080b47e727a958b7ef9a5187b6230b2ef9d51a6b00715530e688daa3531fad"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaInteractionInputOracle.java",
+          "sizeBytes": 10279,
+          "sha256": "8322aed50b36237b7fff5da602eadd81a1a985fb2a64bb8b7574165c69525fca"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaInteractionShapeOracle.java",
+          "sizeBytes": 5644,
+          "sha256": "12866f1c68e261e80043c5df6b289c3c6d41106a2b6c4e4fd61372e940cdb725"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaInventoryPickupOracle.java",
+          "sizeBytes": 10259,
+          "sha256": "0933e95cfbff0ccfa05717b14b4f6ab5df95918618f140101c5248e55be8daae"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaInventoryTickOracle.java",
+          "sizeBytes": 6062,
+          "sha256": "54b9c52c3bbe2c567a3cbcbd9cb57753469f72b9267bb847bddff7436ab15bff"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaInventoryUseOracle.java",
+          "sizeBytes": 8595,
+          "sha256": "efc4e1ef74a90f41cf8063376524bdda4689ab4cee3afbab97ed0825c0cfbb75"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaInventoryUseStartOracle.java",
+          "sizeBytes": 10880,
+          "sha256": "88d7e922be30baeed149146808470e11184433ccaf21c4430937a181f3a97f51"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemAfterUseOracle.java",
+          "sizeBytes": 7331,
+          "sha256": "32b6729bbbf24240acee88ebe41bc2f43c57fb71aa71231032b7e3acff807b13"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemBlockingOracle.java",
+          "sizeBytes": 7957,
+          "sha256": "2119d37dd8e6b8ca1cebecac0ea4c8f39c014ce1b9aa477543da5834c58793f8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemCooldownsOracle.java",
+          "sizeBytes": 5501,
+          "sha256": "84d423ec51d0c3971b4014a545ac64c54e7635f2031dfeb00103278b08d54561"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemDurabilityOracle.java",
+          "sizeBytes": 4543,
+          "sha256": "47f62b08b657ccc3d63ca5f20a6d516808d9054c9544b383908e2fdf717f20da"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemModelOracle.java",
+          "sizeBytes": 31773,
+          "sha256": "59eaa4fc3221611f253d68eebff98f75b50d5dafd0ab867d55668a1b8d756586"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemParticlesOracle.java",
+          "sizeBytes": 5324,
+          "sha256": "11853a9189e1bfd6fd44d3623865e705c291ec85631a9025c0ccb77d136ce5f9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemResourcePropertiesOracle.java",
+          "sizeBytes": 2298,
+          "sha256": "1d72535943c9350457f9dd26513f63a88c7546d50230b92dde09b8efa6a00126"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemStackStorageOracle.java",
+          "sizeBytes": 6662,
+          "sha256": "2d97fdb7b637c5372c65bc4d3da6010a2d89e8d6435210d388aabd3fd30a3217"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemTemplateOracle.java",
+          "sizeBytes": 5330,
+          "sha256": "89c4ef9f46f53676e7f4615177f6860ec6a3b2dc190309d8e421bd702c7b69e2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemUseCatalogOracle.java",
+          "sizeBytes": 4759,
+          "sha256": "7e10f24ac82f16ad0088a6a2e065e13d7667e1285faf9d18932f88d5441db1c4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemUseLifecycleOracle.java",
+          "sizeBytes": 6831,
+          "sha256": "5aff296954600a561327ac1f920a497a4a3ef9c587507773c36b29e9ee9fa85a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemUseOracle.java",
+          "sizeBytes": 4605,
+          "sha256": "8ffbd30b3a2aae8f82290034cc782898113ab88fd8d04c6e6239a802221964c7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemUseStartOracle.java",
+          "sizeBytes": 8136,
+          "sha256": "2b56287bc90d23c90c90246618e0e19a7daf848a52ed3dd17781d15fe1ba2a45"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaItemWireOracle.java",
+          "sizeBytes": 7621,
+          "sha256": "8ef98acd8f834bed818eeace5c31e5e8391e843d66c6bfd08e0264e1178ef0c7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaJavaHashMapOracle.java",
+          "sizeBytes": 2269,
+          "sha256": "06f7b475f764d5077a3caaada8e5ae73615fa2976c3438a7e3330edbfce96083"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaJavaIdentityMapOracle.java",
+          "sizeBytes": 3676,
+          "sha256": "788e51c18509b9ddd7c244492068594b3c7165c4243f3fef61bc62a97d209b55"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLanAuthOracle.java",
+          "sizeBytes": 3676,
+          "sha256": "e306c8e6ab11f9d13f54e771cc87ce160d2cecca2ac576d400c041b65bbe26b5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLanOracle.java",
+          "sizeBytes": 2707,
+          "sha256": "2076e6521953470b993644361247a589ccb56e08231235995dd00f87dd2638f3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLateEntityPairOracle.java",
+          "sizeBytes": 5361,
+          "sha256": "1144f6e9a325c1757b07ff9e1aed454c88126d263211c45467af01cb2153d1f5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLavaCauldronItemOracle.java",
+          "sizeBytes": 5829,
+          "sha256": "bfb87251e01c76ad0729b0029e684cfac7811b91a887d3765df31b095a67b660"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLevelEnvironmentReadsOracle.java",
+          "sizeBytes": 9623,
+          "sha256": "e2a641513b0834887a6c1bbfc5787455b2a6fdd9cd1cb053aaad544ec67393d7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLevelShapeOracle.java",
+          "sizeBytes": 8316,
+          "sha256": "dd1cf85a1bad4e78aa0ff99b4a96d5ec373d68c4aa95f5ca728b46f4162ea56f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLiveAttributeUpdatesOracle.java",
+          "sizeBytes": 15510,
+          "sha256": "e0138af97e93d2722a4361174636f772160d47410d3365cfe577e04ed31ba894"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLiveAttributesOracle.java",
+          "sizeBytes": 9427,
+          "sha256": "1be1a2d8e05d62c4856bb327d7c82981cedf9cfb9db70aec5db85a255c485768"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingAirOracle.java",
+          "sizeBytes": 12570,
+          "sha256": "013db7902f20204c8f8634a5325fde63ec1eb0990c981cbf22766bac7e395e6b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingDamageOracle.java",
+          "sizeBytes": 7319,
+          "sha256": "664b1ca9e18868502c3c405edc60f2854f34a654b361b1bee916ae979901fc9a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingFallOracle.java",
+          "sizeBytes": 6205,
+          "sha256": "41ff249a193aa7af1485950460d74bda05dd256121dd9cf8907cce9fdc8ec5f9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingFluidOracle.java",
+          "sizeBytes": 16730,
+          "sha256": "426063e667718b168d2958dbd6e96ace52f0dd96a1a8128e7f7626385421a568"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingHealthOracle.java",
+          "sizeBytes": 5684,
+          "sha256": "97f12947162e8d5642332f1f503d5a2a0db6dd91e79fc0d56448f856ad935581"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingHurtOracle.java",
+          "sizeBytes": 12663,
+          "sha256": "054be1691733cdfc546b83563cc09ae5afd4bfe869be368663f0af50dc1df898"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingLandingOracle.java",
+          "sizeBytes": 12658,
+          "sha256": "a1202b31fa3c7390519735ccaf67b80973f12bb1fd425bacc169ecea4caef128"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLivingMotionOracle.java",
+          "sizeBytes": 6304,
+          "sha256": "d0b8c2d2e6c86bfc1e4f48eef4ec4b6892c742b124ba76f2e2b6051f72c6ae31"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLocalInputOracle.java",
+          "sizeBytes": 4074,
+          "sha256": "963dbd84f99d26540eb7660b00d32a952de745d8ada2dc530812a53af554a893"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLoomScreenOracle.java",
+          "sizeBytes": 15538,
+          "sha256": "a50dcdfd5649d4093a73e04584d4c002dfa868c3378319507ca81b30a61e7a64"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLootFillOracle.java",
+          "sizeBytes": 7742,
+          "sha256": "52066a67e892bcd1462727ed3fce5547f620ae7d04b29b12cebe40eb19ff3432"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaLoreTooltipOracle.java",
+          "sizeBytes": 2667,
+          "sha256": "bb811e17610710fcfd7f28e90a3b3c3829450053e6a8c56b6ed0171562c2b6fc"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMapSavedDataOracle.java",
+          "sizeBytes": 3488,
+          "sha256": "648a26e92b9f1dbcb0d9c04b80acb44db7254a9b4da3033a9cb89ded2c13d990"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMarkerParticlesOracle.java",
+          "sizeBytes": 19434,
+          "sha256": "c8b1cbf258db1b1c1335e987fa9d5dc9fd6dd637260ec7f4a829e53fee212e04"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMaterialConditionOracle.java",
+          "sizeBytes": 22322,
+          "sha256": "2f4f95017a7bf98d0f338cbf28ca71a38ba9246f0c13bbf5e405a1454030bbc7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMaterialExtensionOracle.java",
+          "sizeBytes": 6855,
+          "sha256": "0ba54dd32f019c98d263b31dcd779d9f27040b35b895c948c8d141b98293df5f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMaterialStageOracle.java",
+          "sizeBytes": 18872,
+          "sha256": "f7a2844d0adb56fd3aed3d72635f923635fa1841a72e80d3b50202dbd45712d2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMaterialSurfaceOracle.java",
+          "sizeBytes": 5589,
+          "sha256": "f86353b5507a49400a2b75e109899024cf0472ba0833e60f913db21ba5915aef"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMenuOracle.java",
+          "sizeBytes": 25709,
+          "sha256": "7d47996b8a4e5462cc27923cc3e4f53933d3a120719df4d75d4cae99636a32d7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMipmapOracle.java",
+          "sizeBytes": 3481,
+          "sha256": "fb100b4d6bd606615d6add99104701675f15a7608b7f9af1bc78f8ad722f9913"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobAiOracle.java",
+          "sizeBytes": 75201,
+          "sha256": "e11a56a1badbf9e780da8358704053bd88ad1bfb2c2de9e56d6ffb7163913d87"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobAirOracle.java",
+          "sizeBytes": 5148,
+          "sha256": "746eac512790c6501f1e146a91a053d42b12adce916e5b5d35a9713ee963b85d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobAttributeNbtOracle.java",
+          "sizeBytes": 8988,
+          "sha256": "961a34f873528c633e9fce3e7080cdae25178e08b03adf10089232c439c897f7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobAttributesOracle.java",
+          "sizeBytes": 5944,
+          "sha256": "4848664a20b09de9c184714fa0f6811aa2114301d39b5d1420335f13835300db"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobBreathingOracle.java",
+          "sizeBytes": 3361,
+          "sha256": "c86791e3b835b93fa48525b17cc8e2bcbb55e25d121071f93b9aa26f6b78d98d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobDataExporter.java",
+          "sizeBytes": 10147,
+          "sha256": "f5587a8b57c1a48e41f45966188d22edbf7db45575cf19842847460e4936a574"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobDiscardOracle.java",
+          "sizeBytes": 5079,
+          "sha256": "be949de5ca10f019161fbf16a2d1b7ede3f4be18182a13b712bffbb2ebd0fd6e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMobFallResetOracle.java",
+          "sizeBytes": 4035,
+          "sha256": "b3392b7b772a8b6310d11a1110f1ec6969578d24b55caa013f94204aff1a5144"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaModelBakingOracle.java",
+          "sizeBytes": 7140,
+          "sha256": "64881a7e3e21b70f0d702b90834ac6e9643fccd4fed5c108144c31197afec03a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaModelChoiceOracle.java",
+          "sizeBytes": 4152,
+          "sha256": "6119110b75203506db7754370cd11652fbd5cd925a527a1aec8d7e199010cd5d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaModelResolutionOracle.java",
+          "sizeBytes": 4093,
+          "sha256": "9632058ac0e9be962b0c8701d4092f29e885a8a19854f81307fffe6a172a2bf2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMovementEmissionOracle.java",
+          "sizeBytes": 7260,
+          "sha256": "51559caa381de6a6ba685332acbc77cec15119d075781fd3a02f773acbeba0a9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMovementRegistryOracle.java",
+          "sizeBytes": 7477,
+          "sha256": "0defb0c8f942c5101cc2dad00a0a3b0fbf69b14ddf1fe2d9786318670f3ffee3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMovementSupportOracle.java",
+          "sizeBytes": 5377,
+          "sha256": "b2366ec404c094115a3e6d66fb5ccf4f7c18782bdfce958158fba8a77896ef57"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMover.java",
+          "sizeBytes": 3520,
+          "sha256": "9a95c95da9d25c3f599d7af7c740ce138a827661bcfd35cca8a379be342ef169"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaMusicOracle.java",
+          "sizeBytes": 6910,
+          "sha256": "0c7ce0e45d67e96aefffeb5799d62ab8c5b27c9239e98a68452f8b73bb7cd6fc"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaNamedRandomChanceOracle.java",
+          "sizeBytes": 1991,
+          "sha256": "0d87fcaaab78ca98e08d43e39974999087444cd2243b45c8c112c104765a9d86"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaNativeEntityMovesOracle.java",
+          "sizeBytes": 1419,
+          "sha256": "ee347fbda0b93500dcf879a2b1dea409dcda0bb6089d0398db2af91e7d97e7e9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaNaturalSpawnOracle.java",
+          "sizeBytes": 60896,
+          "sha256": "93fa5a56303c1f0a66252a5f74a6eed4b64f6c07dd444ae8d498b558930b9d91"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaNbtPathReaderOracle.java",
+          "sizeBytes": 2520,
+          "sha256": "abeb8c0b1496501432b0007e42ed96d5ab834f79ddf6c57115c889c7f40db9e7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaNoiseOracle.java",
+          "sizeBytes": 11966,
+          "sha256": "6ababb4c2610f01414de98c0506a201a17920bd4f8afc88c6e957532ba665e68"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaObjectOpenMapOracle.java",
+          "sizeBytes": 5855,
+          "sha256": "2cf9c3209ff1358db49623f0a57a235d64f89a70e8a71321c4d2d7415ca71216"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaObjectOpenSetOracle.java",
+          "sizeBytes": 2256,
+          "sha256": "78285bb88f77dd8134a59f2ed2fb21df384642d05c018647ba428749cb080052"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaOpenedLootOracle.java",
+          "sizeBytes": 4071,
+          "sha256": "3db56b8e3afe8aed432472e5612d706483784c3da6262bd74a2b3602cfc7149d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaOptionsOracle.java",
+          "sizeBytes": 2770,
+          "sha256": "9df57b5c3051176a52c6e7f47d26e0f1465476e70839db18abcaf61fc633f7f1"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaOptionsTableExporter.java",
+          "sizeBytes": 6314,
+          "sha256": "bd263af117ded997b383582f23ea243290f410e3268229ba78eee03e2b2993cb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPackResourcesOracle.java",
+          "sizeBytes": 8921,
+          "sha256": "d5c578f605eedb9d1229b47a38ea2718e46848aee0f9bcbf389bfc9d2b933e85"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPackScreenOracle.java",
+          "sizeBytes": 24474,
+          "sha256": "71f42271cad115c4a151ec835e883d738e15b72411476433cb42e093ccf4589a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPackSelectionOracle.java",
+          "sizeBytes": 6031,
+          "sha256": "c29100d83bf289b1b27dc70a56af8845dc30c10dff77f745192b8ddac7339805"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPacketCodecOracle.java",
+          "sizeBytes": 8364,
+          "sha256": "893a302fea1867925f779c3cfd2b35869f0866ef0572093562f99dcc97de6207"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPalettedContainerOracle.java",
+          "sizeBytes": 5551,
+          "sha256": "ff340713b3bd71cf9dc85bf04e3f98615661c248541d615503552f0e2469f60e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaParticleProvidersOracle.java",
+          "sizeBytes": 21186,
+          "sha256": "65d50ff400d30389e3e163fef6d20b72ad12ba63521b83a2afcd2af65dcbfeea"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPickBlockDataOracle.java",
+          "sizeBytes": 4737,
+          "sha256": "5aa1fa9c85ad21b462eb74724c593227a6d6cafc71a92835aba19caae972a992"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPistonMovementOracle.java",
+          "sizeBytes": 3033,
+          "sha256": "681779cda2b0c61c9b4b2f6232cdf54cc4c4ad0f042f4d056854967221ceb338"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPistonPushOracle.java",
+          "sizeBytes": 6058,
+          "sha256": "985911c67df0aa773c6a1d13b5850743c31aa8e0d4dd49945f654aefa31f7ce1"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPistonShapeOracle.java",
+          "sizeBytes": 3720,
+          "sha256": "e5d4fb99f9adbd9c7a1f2bbbac48bba111bab83940bfb3396d9c2ba26c4dc57a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlaceRecipeOracle.java",
+          "sizeBytes": 6726,
+          "sha256": "37999e95569ffdaf8b2854973b15c02cdde0912613d9374b40a03e7ff9d1cf28"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlacementOracle.java",
+          "sizeBytes": 7573,
+          "sha256": "b09f9c824c9245beedf7470f91fe7ff0591411f217a98c09e83db52d5ef06be9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerBlockingOracle.java",
+          "sizeBytes": 5029,
+          "sha256": "c8c6a4afe9d953c851fe5c40d15e9133617074996db0267cf2c7e18c94a202cd"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerEquipmentOracle.java",
+          "sizeBytes": 6353,
+          "sha256": "f863fde1e7b4090b6ca74f253d8c65ac205007aed6949c0c436e766bf79fb7c3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerFoodOracle.java",
+          "sizeBytes": 4578,
+          "sha256": "98f7d76a609e0eec4b9d2e1dddd7d87c1d042a76064645802b7e95360936be8d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerHealthOracle.java",
+          "sizeBytes": 6624,
+          "sha256": "e33a4df14ecee0f9e649c435ce2291fb10442d8a6b101bff1c515c18b99e45dc"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerHurtOracle.java",
+          "sizeBytes": 14614,
+          "sha256": "df88eea9df25f7515c88f6ed2247bf0c0830648cfd3c0398686e9179d62f9adf"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerInventoryOracle.java",
+          "sizeBytes": 8354,
+          "sha256": "473da190021632cfe535a0749b522ec1d2a547c50960eb24a961f9a6a195d28d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerSyncOracle.java",
+          "sizeBytes": 6075,
+          "sha256": "c545dba61f4227e041957dde8de87068e13243f3ed117bbc297ea7671d3aa604"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPlayerTravelOracle.java",
+          "sizeBytes": 5340,
+          "sha256": "65ca7b01a17c5471f6bfced863022a4ff778c207b8bb45171c1284c3b52da51d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPortalBlastOracle.java",
+          "sizeBytes": 1788,
+          "sha256": "bc3e5d071b321a0523b7be31542616ab5227683e017e9cf7900617952519850e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPortalCooldownOracle.java",
+          "sizeBytes": 3040,
+          "sha256": "f9e2d0ddd8a7f0b030758e5d32e5db6e3d9e346e50145282222629e4281dd93e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPortalOracle.java",
+          "sizeBytes": 11766,
+          "sha256": "d317ed5476c7bc7c81c7e3383433c8535eae2ea5ed828584d5c6670882571391"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaPortalTicketsOracle.java",
+          "sizeBytes": 6839,
+          "sha256": "0a3e08d1ef584aa4a79786625d2a22270fd05a5d06ad9f919ba49db4136e1be0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaProtocolClient.java",
+          "sizeBytes": 71794,
+          "sha256": "c81ddbfb34d0e7aec77da9e6fb257601d65bcf9e00745a8174e67fec03691083"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaProtocolIdentifierOracle.java",
+          "sizeBytes": 1373,
+          "sha256": "26405c332a7f170112d6d6ce61a3e9b2debf59f67450d2c17df2b37e7a7e975c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaProtocolStringsOracle.java",
+          "sizeBytes": 1479,
+          "sha256": "f01b3b81cad2f79d4b7454e6c10c7db067a05fd2da66d25e4a4fc68a6b94da2f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRaidOracle.java",
+          "sizeBytes": 46998,
+          "sha256": "efe765b3ab8141bb06141d73eee7c3839ba7bcbc26107fa26a7168ce9a541d8d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRaiderCelebrationOracle.java",
+          "sizeBytes": 5092,
+          "sha256": "00d8c2adc3230f7f9ee6759aa1d18fbc7ab0eac4bf92411daf0ef333ad17a39a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRandomTickSectionsOracle.java",
+          "sizeBytes": 5614,
+          "sha256": "8dcdaf6cb3c5c01e0fa1ab6ee3d1f27a86724bef51e7ae89ab35fc106474b998"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRecipeBookOracle.java",
+          "sizeBytes": 9169,
+          "sha256": "e699b9c7432fd14251cb062d5013e2f81a7f96024ff989c4ea38993c0b5735f8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRecipeBookScreenOracle.java",
+          "sizeBytes": 21685,
+          "sha256": "e5169e09d3aaf19ee5644197dc52b9fac4330a01149ed279e33ada69b49a4f1f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRecipeBookViewOracle.java",
+          "sizeBytes": 11483,
+          "sha256": "84102f5800927315baa4190f0dc985c465a8bbebe17fe9162055518748ca50e7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRecipeOracle.java",
+          "sizeBytes": 8047,
+          "sha256": "5bb44b7e32587bbeb945e6cdd8c7f213a7a7ec195105eb8dc3613f864e6da62a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRedstoneCatalogOracle.java",
+          "sizeBytes": 26639,
+          "sha256": "a0fddf9f1f5ca5d73e19751c6341d27e77a9003938a10758defc84338c9f6604"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRedstonePersistenceOracle.java",
+          "sizeBytes": 5922,
+          "sha256": "9dc1abaceb21431ce8576ba2b47d15a47b85afff57633c825af2be1c791e968c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRegisteredEntityFluidOracle.java",
+          "sizeBytes": 1418,
+          "sha256": "dbbd6c71c2b9cd529db8016411e1e18a0e77174ea84eaad3c8aca0d6bdb6f09b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRegisteredPlayerCombatOracle.java",
+          "sizeBytes": 21936,
+          "sha256": "b693dfba16b4791fcbb93d8163de0744993bf98e5aa9499fa8daf95c54b62664"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRegistryCollisionScanOracle.java",
+          "sizeBytes": 13400,
+          "sha256": "7a94fe2848a19ca61d411f7de8647f234621387f5bf4bdb90f3ffc9f46811034"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRegistryFallRayOracle.java",
+          "sizeBytes": 8980,
+          "sha256": "1140946281269db93bcf68bc6e8b659639b0d302bacd40e71b9afa44910aa056"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRegistryFluidOracle.java",
+          "sizeBytes": 4031,
+          "sha256": "bd5881f14828f8ec373f22c078d5e86aca2cb29abedf9c6b9ba68ce9b3091338"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRemoteAttackOracle.java",
+          "sizeBytes": 8438,
+          "sha256": "454cc62d33404f50db50cf5070eed358bf6cbc7de1b29e4b63757ad7c54bea45"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaReplaceBlockOracle.java",
+          "sizeBytes": 5248,
+          "sha256": "02df79573bdb474561be56ff229616a9de6e3abf374a058c6e4a7f84367a9187"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRestitutionOracle.java",
+          "sizeBytes": 6737,
+          "sha256": "ad3e620f067138708dc6d18324500f1217b713e676ac5dc94815eca755ab9b8d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRetrogenDataOracle.java",
+          "sizeBytes": 3636,
+          "sha256": "12bb97f45c9b330660b91b3acc5d1be27882cfc33523c12744ece445a45f2505"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaRuleTestOracle.java",
+          "sizeBytes": 2296,
+          "sha256": "08f82c50cece75e85c549354252c652e233560ba89460458cb17a814f58b0a56"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaScatteredOreOracle.java",
+          "sizeBytes": 5705,
+          "sha256": "0a0b19b6f76a1c4efc6c3f2e0797d32b7751280cf98bb1eeb6b65e3f68c1813a"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSceneCollisionOracle.java",
+          "sizeBytes": 7403,
+          "sha256": "7209311ed2779c531f5a8f0737e6cc32195f51916e8997a2957c188a600fba20"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSceneMotionOracle.java",
+          "sizeBytes": 52401,
+          "sha256": "b317281551d5a3896a3cd13427042f8b95ba078e449c0a1bc03939c92601eb87"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaScoreboardOracle.java",
+          "sizeBytes": 23838,
+          "sha256": "b436097cfa6887712c6d9cb96d5bd57cffb72a9b8c8d7b7e1ba38c213212bc9d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaScreenBuildOracle.java",
+          "sizeBytes": 18699,
+          "sha256": "eaa0af82006be33d752e71c7c27b8ce7c3ff96d2ea8c5ed8b35459fd4c7544ea"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSculkOracle.java",
+          "sizeBytes": 43306,
+          "sha256": "c980b4f27a17b551154f14c688dd05469ad4b1b9a1165dcfc76dd66ad08c0b7c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSectionMeshOracle.java",
+          "sizeBytes": 22673,
+          "sha256": "117f64eab7e96d1f35caf5a3cc31bd2e822c4ec97e807005567a9719d91f844d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaServerAddressOracle.java",
+          "sizeBytes": 3869,
+          "sha256": "5228d4234ba97d7133dfa9408a84dd81eec1bb6741de5b2efbe18c0295ca2e15"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaServerFilesOracle.java",
+          "sizeBytes": 13609,
+          "sha256": "b1c33f08567102276b1a449bc9cb0c0196ecd5fe43f87cf2bc15bb025c90a8ad"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaServerPlayerCombatOracle.java",
+          "sizeBytes": 22449,
+          "sha256": "683e99bd269cd1b0d0aaf355050dd323db9dfc62622b4fae78240857a36b8d47"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaServerPlayerDamageOracle.java",
+          "sizeBytes": 9133,
+          "sha256": "7f6284b64d1c6d55e9a4313fd372e19509a996f7ff99db63ac1ee5ff1371ef30"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaServerPropertyNumbersOracle.java",
+          "sizeBytes": 2103,
+          "sha256": "860907cb6ac437b67360c9728e56f78fc06ff61323f579d2fe2265823e3bf739"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSheepDyeOracle.java",
+          "sizeBytes": 4569,
+          "sha256": "d94dbda8df2813357c306462a09017ea32759506903004f2c8e523dad8cd5307"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaShulkerBulletOracle.java",
+          "sizeBytes": 4404,
+          "sha256": "1cd9382e052bcbb6a4eedb07dce73080b0fafeb879ec749ecc64e72d5100e442"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaShulkerSpaceOracle.java",
+          "sizeBytes": 2856,
+          "sha256": "7b630af4bd60876a9a8f1bd25178561b79e3f0d1d9fd0ec72517d4dbe4b00e1b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSimpleBlockOracle.java",
+          "sizeBytes": 15790,
+          "sha256": "d21c52507ace829f271110185959d84099373a41ecc0df80dcf61b89c0fe7725"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSimpleContainerOracle.java",
+          "sizeBytes": 6383,
+          "sha256": "0c1e09115e555bbd2adf3a81bc14e6d49828302b1bc5f2480a9c15e79da2af67"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSituationalMusicOracle.java",
+          "sizeBytes": 7628,
+          "sha256": "5a5539ef3646010bbcb2965333dd94b2a0504cb481f5a788db8db0e945b84cbc"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSkinImageOracle.java",
+          "sizeBytes": 2139,
+          "sha256": "a0df1eebec50b65ec456db25cbc155894ea2a474ed3d6f47dc2c940964dba6f8"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSlotHoverOracle.java",
+          "sizeBytes": 2420,
+          "sha256": "4bd7aecc55cff38843a23ea38a9c35e4ce20b5f9866e9d98d48c2784d5df8c17"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSnbtUnicodeOracle.java",
+          "sizeBytes": 1427,
+          "sha256": "2797a914152e46ba8d06fd51ff623f6d67695eac19c7e5958476790afbe9b85c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSoundEngineOracle.java",
+          "sizeBytes": 8821,
+          "sha256": "4eee94b5acbef5b03b208b816204fd2c80faff7e9417b3a622b2b4fa5c151a5c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSoundEventOracle.java",
+          "sizeBytes": 5981,
+          "sha256": "936e26c733d82d7836fe3d0a0d7ec5e3d0d667931d68450df0d77702c93171e3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSoundRig.java",
+          "sizeBytes": 9077,
+          "sha256": "e8b004801ff10d1756aa90fec2e3d7f7753b94896aeb208b914fe21e1b4fbce9"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSourceSilenceOracle.java",
+          "sizeBytes": 9959,
+          "sha256": "2e0223c2e88a139d911ade91a3776ed626e2401bd86cb4195e83bcb2728590b5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSpawnRulesOracle.java",
+          "sizeBytes": 14481,
+          "sha256": "95ca9bc9309985ac126abce72daa8c08735a6500a47bca0921fcb3acbb8d7929"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSprintInputOracle.java",
+          "sizeBytes": 11981,
+          "sha256": "6b7dea75b2eeb11f11ec51965036962f91fe11948b0db928019e9710010b3171"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSpriteAnimationOracle.java",
+          "sizeBytes": 5405,
+          "sha256": "ae3aefc85a1cf9ad236b89f4b3bfb211a2c5722b7d0ecc64ae477d6054791c29"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSquidClientOracle.java",
+          "sizeBytes": 4255,
+          "sha256": "8a94a01a114dd540e6ec0d93d3b4af6722b449049d38f88768e394f2843b1774"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStackFoilOracle.java",
+          "sizeBytes": 2051,
+          "sha256": "a89c0464ff771f87e3b90a4f5d0eaa740a10b0dfbfcfd272cf7b539e4de021c3"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStackMiningOracle.java",
+          "sizeBytes": 2235,
+          "sha256": "8905d6e667a97c68927a3d51873d4a798ad56ffeab87386ce8e3841d46d377bd"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStackModelFlagsOracle.java",
+          "sizeBytes": 2053,
+          "sha256": "e9d30aa5bd5c42215fd4daea3c3c9f3283e09942f4d9280281ae3c70a4271734"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStateProviderOracle.java",
+          "sizeBytes": 12233,
+          "sha256": "36e4d94bb25dc9947cd268cedc47547b38e6e97a3e734695acc97d04005386c4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStatusEffectOracle.java",
+          "sizeBytes": 4723,
+          "sha256": "4dcfea7d216ae33d3a50adda71056ec8d77f42f854b93af4bcf871ad51cd033f"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStatusTickOracle.java",
+          "sizeBytes": 6826,
+          "sha256": "e19fc6350b513c2e7b4818eba81b0ccd91dac9ad36e89df8a17e720b8900bad2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSteppedInterpolationOracle.java",
+          "sizeBytes": 7919,
+          "sha256": "be9eac850125f27673c35fe8acdb2ce184fef23660070b90dec105f62880919b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStopSoundWireOracle.java",
+          "sizeBytes": 1619,
+          "sha256": "67dd4b9a19d9c17b87eea153ea5b549fc19f39dc12edf329662c3c6e6b3d207e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStorageMenuOracle.java",
+          "sizeBytes": 2782,
+          "sha256": "be0783ce20b797a32f6bf36ccfa63c2797ed91928c9704edd9cf3c5893d57541"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStoredConsumeOracle.java",
+          "sizeBytes": 11460,
+          "sha256": "5516b513e23cfbde3d9a3b1503950de9500e114c07f484505b011f3c9cb1a8bf"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStoredEffectAttributesOracle.java",
+          "sizeBytes": 9764,
+          "sha256": "ce70ace9616352f2ac0e11b34edfc73671e796323d5b9b490e764ea2e72ff985"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStoredEffectNotificationsOracle.java",
+          "sizeBytes": 7392,
+          "sha256": "fe9b11582bd5e37231ab3d0e5321378af1549bd7669191ae8eb97e4fba7bc25c"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStoredEnchantmentPatchOracle.java",
+          "sizeBytes": 1321,
+          "sha256": "288d0467d3e5f5d0b7f9c105f41e4992c26ad5891c306f7b37f169b3dbf42cc4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStructureBlockExporter.java",
+          "sizeBytes": 2921,
+          "sha256": "bf369f61b198e40a9e467cfa34f9b0a71ffcce08ac9968978d0fa3c2b32892fb"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStructureDensityOracle.java",
+          "sizeBytes": 2885,
+          "sha256": "ed737cd3cf4578ba6a59c73c3cc0a968dd00200ad0515ab7b3796ffa39b4e52d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStructurePlacementOracle.java",
+          "sizeBytes": 20842,
+          "sha256": "f3f64f6da357e6c57061f02e2b21082b2e7dbc49ad0dfcae5473cefa34459c60"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaStructureStartOracle.java",
+          "sizeBytes": 12654,
+          "sha256": "af9de962c0b64ccf0639e161126c48b6aeab166de702e13924bb709542a8e8d6"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSubtitleOracle.java",
+          "sizeBytes": 11140,
+          "sha256": "6ad5ba2621c12648abd7dea3b4d5b085b3e92443937cd4bd36d951bc8bb29dd7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSuffocationOracle.java",
+          "sizeBytes": 5971,
+          "sha256": "326bf10f4fe189f6279ae6551527b3a817bd7edcd34943998d464d40d9997e57"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSulfurPortalBlastOracle.java",
+          "sizeBytes": 1794,
+          "sha256": "e96bbacc820c80d08851ebf2f83eefb9978d87c07737f7222149ad307ac189c2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSwimmingOracle.java",
+          "sizeBytes": 5652,
+          "sha256": "3245059f7796496fbea0d5c009073c5d195ca4f6c156076857a95489d927dda0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSyncedBytesOracle.java",
+          "sizeBytes": 5478,
+          "sha256": "fc40eb932209c6db4368accf2b6a96a2c19432cb99dba29597b93d00ee4eef41"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaSyncedFloatsOracle.java",
+          "sizeBytes": 4732,
+          "sha256": "7ab5b7ea74cf9da37d39f3996363886558455441addd3b371d13cc3a4e6fc994"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTabListOracle.java",
+          "sizeBytes": 21732,
+          "sha256": "381bf85c9685bb0c0b838468df92e33864bd74789d26252304644be72139c57d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTagExport.java",
+          "sizeBytes": 677,
+          "sha256": "5b77b969a25fa99440aca475fee47812bb554d225618a38cac3dc50be65619de"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTeamRulesOracle.java",
+          "sizeBytes": 8615,
+          "sha256": "3b93a59fc706add8cf4930557db7df1b8cec5f9673783aa65c9b7ecd55aec4e0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTeleportConsumeOracle.java",
+          "sizeBytes": 7853,
+          "sha256": "38d3d722e5e101b7cd9929a9798cf57dffac7dfdc29464379f97bc75b3de3c7d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTerrainOracle.java",
+          "sizeBytes": 8870,
+          "sha256": "c7cd29fedb16d50a790f049bdb9d2ef5f5692c8010d6a8aca2540b9f30638275"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTextDisplayOracle.java",
+          "sizeBytes": 5564,
+          "sha256": "eb6ed12a274bd1833fdc490a7dc0d286e71e2d32725169e38a71eb44863b02b7"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTextDisplayRenderOracle.java",
+          "sizeBytes": 14937,
+          "sha256": "d74d61f608d0ac4564faad1aa26fa86a8aa904873aa0fa2b57880c89b82c6b93"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTextDisplayTransformOracle.java",
+          "sizeBytes": 3125,
+          "sha256": "6832df133ae97c67519fed839f1442833ab2bec46dd9892685975a9183c33028"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTickDataOracle.java",
+          "sizeBytes": 5936,
+          "sha256": "ae4c0266254c9b931f07741520ce75e4bad41809557fe21999044b16069e74af"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTickOracle.java",
+          "sizeBytes": 9005,
+          "sha256": "1f44273aebf24d2c824c0bdddf3d3218984bc5cd802abdc590bd2508921d71f6"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTickScript.java",
+          "sizeBytes": 14564,
+          "sha256": "98893075109220610bd9baea2011682c5adc10454d7c9a4a7df3843139656643"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTitleDebugOracle.java",
+          "sizeBytes": 1963,
+          "sha256": "24b655ad01d2af89ba2c61d033b6e0f50ab056606f23cd24fb622cb272f45dd0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaToggleKeysOracle.java",
+          "sizeBytes": 5334,
+          "sha256": "4e7fd2348337393b2b67ce95a3e76f7e8a4d48314b7228ee4da6ec4b95e8b7e5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTooltipDisplayOracle.java",
+          "sizeBytes": 2785,
+          "sha256": "19d7f6715b17601ac5f33eb35d79a986fcd567de642784baec72a9e545537d14"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTradeComponentsOracle.java",
+          "sizeBytes": 5862,
+          "sha256": "cdb28620a10c37d1867389078956363bba8d9446e3ac49aa8e7f9887f96175c4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTradingOracle.java",
+          "sizeBytes": 34015,
+          "sha256": "9e37da24b3e326daf30c674ceb27e4dbd1fd02afc9f84f3273b408ceff882b1d"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTranslucencyOracle.java",
+          "sizeBytes": 3872,
+          "sha256": "1de3a76ea6e34f0f7b9d0a09b5568ebd1b4ea3484898d89bf5d6666924b0a83e"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaTreeFeatureOracle.java",
+          "sizeBytes": 13908,
+          "sha256": "0dabc5ee440a91e3413db83d4e7ca832fcb5a40dd5a7e4a30b9fa42d3469ebcd"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaUseFlagReactionOracle.java",
+          "sizeBytes": 9271,
+          "sha256": "c0b2e957eba10bf0289191a709173221eaa109db157086bb3163ef31b8d541a4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaUseRemainderOracle.java",
+          "sizeBytes": 5999,
+          "sha256": "e8de79397592630893964dad830aa0b70c8c3a97bef9275a49c093c00c5922fc"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaValueProviderOracle.java",
+          "sizeBytes": 2699,
+          "sha256": "25e833650d75854d8e0ada1e74a0380b975f60e926776fc7abac1aaa4e3f0fb2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaVehicleContainerOracle.java",
+          "sizeBytes": 5709,
+          "sha256": "83a06126eb08b49fe704e9168c2202d134adf3483d4e01989998d4d386e15acd"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaViewDirectionOracle.java",
+          "sizeBytes": 1928,
+          "sha256": "012b95846844b211551e905b2c20fd1f1106e3b96b09ea49391252a5ee0a5ab5"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaVillagerFarmingOracle.java",
+          "sizeBytes": 1507,
+          "sha256": "67a3381ee1d030f25d7ef04663be11d172299d26a35f35bf3b130b20661504c6"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaVillagerWitnessOracle.java",
+          "sizeBytes": 4266,
+          "sha256": "be53c9b746da91f019f5b354e7209a93cfdf19d66bc8117b143743b1f0fe34c0"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWaterSplashOracle.java",
+          "sizeBytes": 5803,
+          "sha256": "6f143e9753f7850ca4f3f62df547825f3746b6684f155779e9fcbde32e3f9110"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWeatherRenderOracle.java",
+          "sizeBytes": 5334,
+          "sha256": "35c4415957eb82ef709903ccf3e2317860603855debe6d5360f1189e18e6e9d4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWetFireOracle.java",
+          "sizeBytes": 10395,
+          "sha256": "75851d13ebc7c2ea3d69206f2de32eff715ce4f9cc89e40ded47e99f5dfb1dcf"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldBorderOracle.java",
+          "sizeBytes": 3643,
+          "sha256": "b3d39587ebdfc531717e2854fc0a35bf7e856f85dbdb3e6c560ae0ecfdc637be"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldBorderRenderOracle.java",
+          "sizeBytes": 15219,
+          "sha256": "9dad8a9ec4e3729a59d4597f43a5a5f012c8581505778356b64c52d86b8c880b"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldOptionsOracle.java",
+          "sizeBytes": 2976,
+          "sha256": "b6d0810006a7f65ce9bdc8f567f8bd49ae024dbccb915dbf1bbc2755d46a0529"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldOracle.java",
+          "sizeBytes": 14545,
+          "sha256": "862b681722783b0cc3edbec321ee45c5376a00f1ab567e167ca450015ae868be"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldRayOracle.java",
+          "sizeBytes": 8222,
+          "sha256": "51a1a195b8cfb37ded190a712b649f95ea132633067d866211f4f42d2d5b7da4"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldSpawnOracle.java",
+          "sizeBytes": 3519,
+          "sha256": "f56db07105a2377bf392449554afa9db444d9a86a538e2fe334144a2804f7fa2"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldSpawnPacketOracle.java",
+          "sizeBytes": 2328,
+          "sha256": "910ac222f643424a400b08158aadee9bcf675a0598c55c011316e0e98184c1d1"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldgenOracle.java",
+          "sizeBytes": 38429,
+          "sha256": "b5fdf8ad8d03d14efb7ff681764d5081574cdaf4caa22a5b8948a882c9770e82"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaWorldgenRandomOracle.java",
+          "sizeBytes": 4170,
+          "sha256": "a3a7f368b8d72ea48f5397ffbdcfcb1c7a2a3d39458ad3e40cb5272c9c7b15ec"
+        },
+        {
+          "path": "native/mods/horizon/src/test/java/dev/horizonlab/parity/VanillaZombieCureSoundOracle.java",
+          "sizeBytes": 3424,
+          "sha256": "9e79e2305ec1f420e2657a2670296dfb8457400ad844658acb41847e6ffd5da1"
+        },
+        {
+          "path": "native/research-lock.json",
+          "sizeBytes": 3619,
+          "sha256": "cd3be807506f2c06c9c1e3ae099189d1c0ce5a4ead5c6e60ef199305bf100da3"
+        },
+        {
+          "path": "native/runtime-family.json",
+          "sizeBytes": 165,
+          "sha256": "3b425db673ab9e69aad5f419d6dc1139b58ccfd2ff146a5f4171a724ba565a8e"
+        },
+        {
+          "path": "native/std-f903e3d16df36da5.dll",
+          "sizeBytes": 5282430,
+          "sha256": "d0ad56bc27113cc091fa75f4a73824c9a5d92f64adb0083c8eb1e21c60c33324"
+        },
+        {
+          "path": "native/steam_api64.dll",
+          "sizeBytes": 317080,
+          "sha256": "eb17909a76668cf9ae0b92a618a34a50f6c73d3a6787cb4dd8ce36a8b10bfb75"
+        },
+        {
+          "path": "native/third_party/e4steam/LICENSE",
+          "sizeBytes": 11339,
+          "sha256": "4b6cef4f8f9a16cc15680ec9d7d23d95c9fdd270331610eefd86c7522c975b36"
+        },
+        {
+          "path": "native/third_party/e4steam/NOTICE",
+          "sizeBytes": 500,
+          "sha256": "fa00512d6574d078e308a49fbb2490b72582b6b3165e262277f35d0c91d6b0cd"
+        },
+        {
+          "path": "native/third_party/e4steam/THIRD_PARTY_NOTICES.md",
+          "sizeBytes": 1488,
+          "sha256": "1011adee2a94441b3a412e67e5f95d78d63af63bed523fe9b4aab5d1a79f43ce"
+        },
+        {
+          "path": "native/third_party/libmimalloc-sys/LICENSE.txt",
+          "sizeBytes": 1055,
+          "sha256": "a08554fab028af3af047e8588d32d019662c1b1bf07959a195a2f75fe340726b"
+        },
+        {
+          "path": "native/third_party/libmimalloc-sys/c_src/mimalloc/v3/LICENSE",
+          "sizeBytes": 1096,
+          "sha256": "82ade5d7d9b029044b5fbbc326207fc47c2d44ee4dd71e8a559c36d728217de9"
+        },
+        {
+          "path": "native/third_party/naga/LICENSE.APACHE",
+          "sizeBytes": 10173,
+          "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9"
+        },
+        {
+          "path": "native/third_party/naga/LICENSE.MIT",
+          "sizeBytes": 1078,
+          "sha256": "dc0d97139e8205818c703741c7be7cb3b96888bd5917b8d6fc6133731e403c21"
+        },
+        {
+          "path": "native/third_party/rust/NOTICE.txt",
+          "sizeBytes": 981,
+          "sha256": "d3dd53a19eea48c8e5ae7412e76e795c7a892f9995f2db643f2afcf5bf59d22c"
+        },
+        {
+          "path": "native/third_party/rust/artwork-lock.json",
+          "sizeBytes": 1097,
+          "sha256": "17d0d1acb22bc67c67b749bf5584fc8ca1c6e18d6a1bf34d52690b5da8d374fc"
+        },
+        {
+          "path": "native/third_party/rust/rust-logo.svg",
+          "sizeBytes": 3297,
+          "sha256": "9a9549ea02d34dec3a610b8299f1b8121c7b10b14a44d3baec46ba15e9a06ca2"
+        },
+        {
+          "path": "native/third_party/wgpu-hal/LICENSE.APACHE",
+          "sizeBytes": 10173,
+          "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9"
+        },
+        {
+          "path": "native/third_party/wgpu-hal/LICENSE.MIT",
+          "sizeBytes": 1078,
+          "sha256": "dc0d97139e8205818c703741c7be7cb3b96888bd5917b8d6fc6133731e403c21"
+        }
+      ],
+      "archive": {
+        "name": "native-runtime-84ceb9ff7ead347990bd747e0a19aaaf3aa38ba4cd2083380422f6ad3d0f64a1.zip",
+        "sizeBytes": 117941328,
+        "sha256": "84ceb9ff7ead347990bd747e0a19aaaf3aa38ba4cd2083380422f6ad3d0f64a1"
+      }
+    }
   }
 }

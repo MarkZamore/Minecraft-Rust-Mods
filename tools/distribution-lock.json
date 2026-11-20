@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "receiptSha256": "ee236d1fca44dfd13c5a456ba2c67eb86d1c2b21cf00592fabebf9387775b9b2",
+  "receiptSha256": "2f6037c287c3fb6b3ff8dffcad2fe0e3e54fc68673d9cdd9039bb09703d268c2",
   "files": {
     "configureddefaults/options.txt": {
       "sizeBytes": 13,
@@ -26,6 +26,14 @@
       "sizeBytes": 7817,
       "sha256": "7d3a95e5e06978064ed3f8e2b7c8f845e7fd8a405294727cc708f94cb83b8059"
     },
+    "native/LICENSES/COPYRIGHT-library.html": {
+      "sizeBytes": 1499465,
+      "sha256": "5647be074c8edf7339fd863055923a8fc80bc5610a8d4661ec3b767b9d392c27"
+    },
+    "native/LICENSES/GCC-COPYING.RUNTIME": {
+      "sizeBytes": 3324,
+      "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74"
+    },
     "native/LICENSES/GPL-3.0.txt": {
       "sizeBytes": 35149,
       "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
@@ -33,6 +41,22 @@
     "native/LICENSES/MIT.txt": {
       "sizeBytes": 1255,
       "sha256": "0b60b28d153796544720e9d68df0997b6289ca2db67359102d2b8e61e57f455e"
+    },
+    "native/LICENSES/Rust-APACHE.txt": {
+      "sizeBytes": 9723,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "native/LICENSES/Rust-MIT.txt": {
+      "sizeBytes": 1068,
+      "sha256": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+    },
+    "native/LICENSES/WinLibs-runtime-NOTICE.md": {
+      "sizeBytes": 1737,
+      "sha256": "34a1bd1e2e52a88f6a6a803f8eeb90c27ba6a2c2fa9c8d5a65b7637178937afd"
+    },
+    "native/LICENSES/Winpthreads-COPYING.txt": {
+      "sizeBytes": 2883,
+      "sha256": "63263614cdd29f2f93cba85e992f041b31f9fc7b4033692f31269489a8a1b177"
     },
     "native/THIRD_PARTY_NOTICES.md": {
       "sizeBytes": 26928,
@@ -117,6 +141,10 @@
     "native/dxcompiler.dll": {
       "sizeBytes": 22274872,
       "sha256": "0689e2fee0a1c9df8662a59680469f24e2a3ad7ce6bbbcc9284f7a83172bfc59"
+    },
+    "native/elytratrails.dll": {
+      "sizeBytes": 272505,
+      "sha256": "07b0494e723ff0e2f79d987417ab1f55e458bcf091288c45751350cb8bcaa03e"
     },
     "native/exporters/client/dev/horizonlab/parity/PrepareWorker.class": {
       "sizeBytes": 8081,
@@ -423,12 +451,8 @@
       "sha256": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6"
     },
     "native/horizon-client.exe": {
-      "sizeBytes": 176749568,
-      "sha256": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3"
-    },
-    "native/horizon-mods/orbital.hmod": {
-      "sizeBytes": 63880128,
-      "sha256": "a752c3423cf547b45fee43bb59963ee3807c32cd7b9e2dcb5f61eb7b6dc9db14"
+      "sizeBytes": 53116,
+      "sha256": "5bc739ad57d615d1009eff6f2c47413a7305eb49c43ae0a764960bca56b7d60a"
     },
     "native/horizon-mods/zoom.hmod": {
       "sizeBytes": 2880581,
@@ -440,7 +464,7 @@
     },
     "native/horizon-native-mods/elytratrails/horizon-mod.toml": {
       "sizeBytes": 261,
-      "sha256": "9d4aab9999b5ef3d547c0fe6e4492c9f77fb9f29d98ae9669018103e592fa1e9"
+      "sha256": "29e562c85cbfaf60963925736ce3875d432937528b1c59da1c912cb5b36ef4c9"
     },
     "native/horizon-native-mods/elytratrails/src/lib.rs": {
       "sizeBytes": 3796,
@@ -4076,7 +4100,7 @@
     },
     "native/horizon-native-mods/orbital/horizon-mod.toml": {
       "sizeBytes": 370,
-      "sha256": "dde716cfdff39c13259ec5b37c669ff6de957f7bcb89147ac929b7c8647e0d44"
+      "sha256": "d11635e91bcf4db3f76965691362f99c7d49a4e796f718e5fe24fe7f9349dada"
     },
     "native/horizon-native-mods/orbital/src/lib.rs": {
       "sizeBytes": 2013,
@@ -4096,7 +4120,7 @@
     },
     "native/horizon-native-mods/skins_3d/horizon-mod.toml": {
       "sizeBytes": 372,
-      "sha256": "45558ec1365d18641382933130b73a9385420672ff63a6a6bb8a34b80198740a"
+      "sha256": "580ac7672c23d6059f48c57f5d1b3000e56e3c200f1a856a454dc55fde03f2b9"
     },
     "native/horizon-native-mods/skins_3d/icon.png": {
       "sizeBytes": 1555,
@@ -4120,7 +4144,7 @@
     },
     "native/horizon-native-mods/spider_man/horizon-mod.toml": {
       "sizeBytes": 326,
-      "sha256": "eb0edfe6bf78702d0e945ffa449e97c7a549e76c5efcc085564382bf5c184711"
+      "sha256": "d548b728adac9de09db3592562594cd106e4459519be9ce3433e14d25f81c88e"
     },
     "native/horizon-native-mods/spider_man/src/lib.rs": {
       "sizeBytes": 6362,
@@ -4134,9 +4158,57 @@
       "sizeBytes": 652958,
       "sha256": "3c647d91c7c943ffb65a31ec406392de328daa7a6d2779e44e71c3561068b7dc"
     },
+    "native/horizon_core.dll": {
+      "sizeBytes": 5529943,
+      "sha256": "e64fbfcca13b26eb85c658148283eb8bba16a24bd666648c7becc7bf99a888ce"
+    },
+    "native/horizon_engine_slots.dll": {
+      "sizeBytes": 33744914,
+      "sha256": "56f46bd0d9d33769a2213540c4bf890b9b080612375cbf309c725eaa5d99845b"
+    },
+    "native/horizon_mod_host.dll": {
+      "sizeBytes": 138070797,
+      "sha256": "eb42db039ebb0a5b4a880e6f14b42b6f7fc8501becd494e170755fe1d0712830"
+    },
+    "native/horizon_mod_runtime.dll": {
+      "sizeBytes": 1074063,
+      "sha256": "fa703bbde12bdd8107d7a941e7c7e12f27de0bb835eb62a313c13b8ae1b54b16"
+    },
+    "native/horizon_mod_wasm.dll": {
+      "sizeBytes": 49495040,
+      "sha256": "4e96134902f8126e6f6bbdfb842b181bf13eba7d3f50c83ca9e069e8a00f349e"
+    },
+    "native/horizon_patch.dll": {
+      "sizeBytes": 27161983,
+      "sha256": "697c62349771ec7e1b449f4fee9e5293662345cc998f302b3399dd911f577c8a"
+    },
     "native/launch-rust-edition.exe": {
-      "sizeBytes": 2924544,
-      "sha256": "9ad41d8b96070c55a04487f6e015d4431b0110e1b6b949ee0a871a963c6969c9"
+      "sizeBytes": 2987008,
+      "sha256": "809fc2706f779246c621220cfe5f8c27d9d9532b7247c89efe242298a6c15e67"
+    },
+    "native/libgcc_s_seh-1.dll": {
+      "sizeBytes": 927027,
+      "sha256": "368488a9089e3d89b32a3609816fa40dd02fa4cdf480a2bc86e19c7bebdc8bda"
+    },
+    "native/libwinpthread-1.dll": {
+      "sizeBytes": 73549,
+      "sha256": "1b801c9280f6cad8cb2a026bfa48be8c4bea07a0dc78a820d1591f900ee76f0b"
+    },
+    "native/mod_api.dll": {
+      "sizeBytes": 5144869,
+      "sha256": "d5b934a78ede61a84e2479e1dd1c3b19418eb278e1be0fbd1dedf9357dcbaa0f"
+    },
+    "native/mod_points.dll": {
+      "sizeBytes": 36363978,
+      "sha256": "8d501d071dd916cde6d8c584af74d234a9d64da83f49aba720b2c60e50397aac"
+    },
+    "native/mod_skins_3d.dll": {
+      "sizeBytes": 155733,
+      "sha256": "d8949fa121f7ff5faccb168ce63ceccdfce64fc89148f32f32c7ee4d0abcf94e"
+    },
+    "native/mod_vocab.dll": {
+      "sizeBytes": 48446052,
+      "sha256": "dde601e777470a2b76cad03d4e3a7e54999b8b1e5381bafdff6747551ab988a8"
     },
     "native/mods/horizon/src/test/java/dev/horizonlab/parity/AllayDanceTranscript.java": {
       "sizeBytes": 4072,
@@ -5763,8 +5835,12 @@
       "sha256": "9e79e2305ec1f420e2657a2670296dfb8457400ad844658acb41847e6ffd5da1"
     },
     "native/native-mods.json": {
-      "sizeBytes": 5598,
-      "sha256": "db5876ecc806a330a4155823993952e99880ce25abb4d9640b496494c6015e02"
+      "sizeBytes": 2286,
+      "sha256": "04a60e6e45b8fc2a460246795d761d8146cb4426350fe8a080e60ff2082a76a2"
+    },
+    "native/orbital.dll": {
+      "sizeBytes": 103635,
+      "sha256": "96171dc8842499d867d9cfe2964ba8f929b637f7f7bfd04668e5877e1e44def8"
     },
     "native/presentation.json": {
       "sizeBytes": 200,
@@ -5773,6 +5849,18 @@
     "native/research-lock.json": {
       "sizeBytes": 3619,
       "sha256": "cd3be807506f2c06c9c1e3ae099189d1c0ce5a4ead5c6e60ef199305bf100da3"
+    },
+    "native/runtime-family.json": {
+      "sizeBytes": 165,
+      "sha256": "3b425db673ab9e69aad5f419d6dc1139b58ccfd2ff146a5f4171a724ba565a8e"
+    },
+    "native/spider_man.dll": {
+      "sizeBytes": 221888,
+      "sha256": "9b238005a23467526835c7d2c66313bf8efb8e2ea5344754449ddbf5ed9c4e15"
+    },
+    "native/std-f903e3d16df36da5.dll": {
+      "sizeBytes": 5282430,
+      "sha256": "d0ad56bc27113cc091fa75f4a73824c9a5d92f64adb0083c8eb1e21c60c33324"
     },
     "native/steam_api64.dll": {
       "sizeBytes": 317080,
@@ -5979,27 +6067,27 @@
       "sha256": "dc0d97139e8205818c703741c7be7cb3b96888bd5917b8d6fc6133731e403c21"
     },
     "portable-pack.json": {
-      "sizeBytes": 250,
-      "sha256": "d1350a1a32cb230026e7e4f72a48f0c95a66468c47bd8fabd9454a20f7464f02"
+      "sizeBytes": 130878,
+      "sha256": "4a6e5b9fe8e46ac45aaf4f9e3ff82a6938fa28a8bb47d90f01ea0651b4a63b96"
     }
   },
-  "bootstrapLockSha256": "592846fc2ee78d7d01ef096f03f50e413031d8a2a49669a175d25a3c65cf3acf",
+  "bootstrapLockSha256": "97f15eb8145843abac1e043d8c3eabbdc1d0b4a4a6dcb186c20d9058b60341dc",
   "library": {
     "content.json": {
       "sizeBytes": 1376,
       "sha256": "1609356957d97eb63d5ff84b771e2e86f03280f95a9fceceac8f7edb092dda5b"
     },
+    "loaded-mods.json": {
+      "sizeBytes": 371237,
+      "sha256": "0817aab848d23fa6f24c8c50d7bf24daf604a8b29495f6cf6c8bdefcf1784b6d"
+    },
     "mod-pages.json": {
       "sizeBytes": 2542,
       "sha256": "68b3e34901dbce7ba2707af83e8998c171965cd1c4fb85973019eb93d9fb63a5"
     },
-    "loaded-mods.json": {
-      "sizeBytes": 240118,
-      "sha256": "c87b3db81c9bc7bb16bdf66e9db8e961f814ec100272ea56b6b9848363518127"
-    },
     "preview.jpg": {
-      "sizeBytes": 1848550,
-      "sha256": "d9fc25c44542c902b582b1d95bdcf254374c619911200bdfdb9e6346869c86e7"
+      "sizeBytes": 1112909,
+      "sha256": "a22e124be3b4e5114f372b604397ee4aa302d2432e859592d978d1f6ec41dd52"
     }
   }
 }

@@ -1,24 +1,26 @@
 {
   "schemaVersion": 1,
-  "source": "https://github.com/MarkZamore/Minecraft-Rust-Edition/tree/bb2ce6f45a1fc0f9fca349fa67e78f03e3abb107/launcher/standalone",
-  "sourceRevision": "bb2ce6f45a1fc0f9fca349fa67e78f03e3abb107",
-  "sourceSha256": "4c1696a87e7f56fef072715637eea81f31c3432cd047ee3ce231b1defb23e69f",
+  "executable": {
+    "path": "native/launch-rust-edition.exe",
+    "sizeBytes": 2987008,
+    "sha256": "809fc2706f779246c621220cfe5f8c27d9d9532b7247c89efe242298a6c15e67"
+  },
   "sourceFiles": {
     "launcher/standalone/.cargo/config.toml": "b30e5a93f3ee1e18d93d09516eb08d9ccccdda15027615c61d58be7264185711",
     "launcher/standalone/Cargo.lock": "af53d08fb3af8937fc1d8c2ea07b5f0824c08a039b8d2b820bdd402f3d665ddd",
     "launcher/standalone/Cargo.toml": "c2f537080dc0210fdc04f3b2120d362dd0844f55f95248c017eba3289e2b31f3",
     "launcher/standalone/src/environment_defaults.rs": "c3e9ea529ae1c4926857f9eec614636a3a4f4f4c3b74c76fd0a3f5f1d190ec55",
-    "launcher/standalone/src/main.rs": "fc7110bfa5a7507a0f378b56bd5c3e151e345244da6dbcc02821d8f1d1692fd7",
+    "launcher/standalone/src/main.rs": "15500c9dcc873ec376d036f0524462e82371c86289a23ceb5dddb9e48aacdf20",
     "launcher/standalone/src/minecraft_inputs.rs": "784f468b02849d0d462f9222651cdef56967030d1adb49e0cb426cb8b4558363",
-    "launcher/standalone/src/prepared_data.rs": "3bbd23cb1f6ba2edce231756b8236745ca44b735a5c35370388acf2d44806f8e"
+    "launcher/standalone/src/prepared_data.rs": "3bbd23cb1f6ba2edce231756b8236745ca44b735a5c35370388acf2d44806f8e",
+    "launcher/standalone/src/shared_runtime.rs": "123c8c1dfa74c9884aadbe814e7381e6eba05e8a0f64ff635d7f31e21849054a"
   },
+  "sourceSha256": "b0128b6897af7028d7f31bf8a93af2b80c6a3ad223cd1600f8e883334ef460a6",
   "build": {
     "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
     "target": "x86_64-pc-windows-msvc",
     "rustflags": "-C target-feature=+crt-static",
     "profile": "release",
-    "sourceCommit": "bb2ce6f45a1fc0f9fca349fa67e78f03e3abb107"
-  },
-  "sha256": "9ad41d8b96070c55a04487f6e015d4431b0110e1b6b949ee0a871a963c6969c9",
-  "sizeBytes": 2924544
+    "sourceCommit": "d1285f0d14155b5403f54dd9bcb9fced6b90f9fb"
+  }
 }
