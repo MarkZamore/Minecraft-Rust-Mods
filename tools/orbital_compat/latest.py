@@ -202,7 +202,7 @@ def adapt_work(glue: str) -> str:
          "super::orbital_visual::from_server(game, &session, channel, data)"),
         ("        let (tag, offset, total) =", "        if kind == 12 {\n"
          "            if let Some(&first) = c.unacked.front() {\n"
-         "                let gone = wire::acknowledged(data, c.epoch, *first, c.unacked.len())?;\n"
+         "                let gone = wire::acknowledged(data, c.epoch, first, c.unacked.len())?;\n"
          "                if gone > 0 {\n"
          "                    c.unacked.drain(..gone);\n"
          "                    c.progress = Some(std::time::Instant::now());\n"
