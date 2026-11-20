@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "status": "PASS",
-  "clientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
+  "clientSha256": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3",
   "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
   "realFinalBaseline": "PASS",
-  "gateSourceSha256": "8bbcfe225a1208b8660db5d43a04cd19287364dbab9500a3fff2144b589b0649",
-  "verificationSourceSha256": "1f40df5ef55175a15ca7fc2ffbbc7f29393753809b348d5863e5298d5fcce7fd",
+  "gateSourceSha256": "f7d6b0c15db163ad99556baa9c3e11cdc75bdd0d3c880601543bd503a1a9e9c8",
+  "verificationSourceSha256": "e0b8a016ac5a41718f691cb3f95a74634dd8cebccc6a98ceece3f7f70e80aa27",
   "sourceReceipts": {
-    "orbital-startup.json": "7b64ef326ab596c154000f5a79993520660e931aea918b69daa87bad0bde8daf",
-    "multiplayer.json": "ec77eb058307e8ae96e0df8607e61872d38c484299b9ef463082c58068695b8f",
-    "backup-guard.json": "39142bab75fe6e606ceb4760eec69520c6ea9d87898f5177c8437a6208bb209f",
-    "server-policy.json": "4c3c2b044628770d3993bf30e5be9789c1c9888211cca0f14c5c68788f2d5f6d",
-    "native-notices.json": "c48c240f671ca2b693269cc4a103ae5c8858b40ead65ab3434b656a59ac8aef3",
+    "orbital-startup.json": "686190713278764acf721ffead556fed64de4f3ce3bf11c6372d3418e8d1bfb5",
+    "multiplayer.json": "6963734397b65b92885f25664e8d9a0049eaedcd568cdc24348f2780b19ba1f2",
+    "backup-guard.json": "8b91a037bec3f8c7ce27cc52292f777fe3293003ead7a50a71a4714ef9c862b2",
+    "server-policy.json": "024953c94ae6473ce04bbb6fa9b4ca6da7fd58632e40784ed2a6b464352b5a6f",
+    "native-notices.json": "1b691dc4a3c852b5eeac4fb897ce5180559071fa330c48057314d4605cfe36fa",
     "launcher-notices-support.json": "f6865aef0c9c32dc08598e4a93a0761519cd98313dd8550a09b7ec8593f1ba59"
   },
   "rejectionChecks": [
@@ -24,6 +24,31 @@
       "case": "Orbital pixel evidence belongs to a different frame",
       "status": "PASS",
       "rejectedWith": "The gameplay smoke report must verify pixels in its exact Orbital wheel frame"
+    },
+    {
+      "case": "Orbital terrain sampled before the strike completed",
+      "status": "PASS",
+      "rejectedWith": "Release needs verified Insert/R controls, Orbital rendering and persistent terrain edits"
+    },
+    {
+      "case": "Missing active Orbital ability",
+      "status": "PASS",
+      "rejectedWith": "Run the complete Orbital ability check for this exact candidate and mode"
+    },
+    {
+      "case": "Only diagnostic frames recorded the Orbital ability",
+      "status": "PASS",
+      "rejectedWith": "A client did not render a visible clean Orbital Plasma effect"
+    },
+    {
+      "case": "Observer did not render the Orbital shader",
+      "status": "PASS",
+      "rejectedWith": "Missing the remote rendered Orbital Plasma effect"
+    },
+    {
+      "case": "Observer's Orbital terrain contradicts the server",
+      "status": "PASS",
+      "rejectedWith": "The clients disagreed on Orbital Plasma terrain"
     },
     {
       "case": "Same-core gameplay predates the mandatory presentation policy",

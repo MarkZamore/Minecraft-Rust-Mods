@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "clientSha256": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3",
+  "controllerSha256": "35bc740d190b475e5187584db5c111b6d44e25a5709a8e27ac1bd0fc54d1d4ed",
+  "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
+  "orbitalVersion": "0.5.17",
+  "authorSource": "https://github.com/Stink-O/orbital-laser/tree/6311d5f9ba8610deeab35a3ef46b43b9ab7b01e8",
+  "seed": 137248,
+  "designatorSeed": 7,
+  "observer": false,
+  "requested": [
+    "plasma"
+  ],
+  "terrainModes": "off",
+  "castFrom": "host",
+  "requestedResolutionScale": 75,
+  "orbitalContentSha256": "a752c3423cf547b45fee43bb59963ee3807c32cd7b9e2dcb5f61eb7b6dc9db14",
+  "unavailableNative": {
+    "fold": "The Fold",
+    "earthquake": "The Earthquake"
+  },
+  "result": "PASS",
+  "abilities": {
+    "plasma": {
+      "status": "PASS",
+      "title": "Plasma",
+      "casts": {
+        "host": {
+          "status": "PASS",
+          "terrainModes": {
+            "off": {
+              "status": "PASS",
+              "expectedVisual": "cyan beam and branching lightning",
+              "expectedShader": 0,
+              "expectedTerrain": "fused obsidian, glass and magma crater",
+              "fixture": {
+                "aimBlock": [
+                  2,
+                  116,
+                  0
+                ],
+                "strikeBlock": [
+                  2,
+                  116,
+                  0
+                ],
+                "terrainCenter": [
+                  2,
+                  116,
+                  0
+                ],
+                "cameraPosition": [
+                  2.5,
+                  154,
+                  96.5
+                ],
+                "probes": [
+                  [
+                    2,
+                    116,
+                    0
+                  ],
+                  [
+                    3,
+                    113,
+                    0
+                  ],
+                  [
+                    0,
+                    111,
+                    1
+                  ]
+                ]
+              },
+              "phase": "complete",
+              "baseline": {
+                "actor": {
+                  "frame": {
+                    "file": "orbital-off-baseline.png",
+                    "sha256": "b6580e824c0e937f4bea222152544d02ff38115d6e23b50feb9d8a8371aaac5c",
+                    "size": [
+                      2560,
+                      1440
+                    ],
+                    "retained": {
+                      "file": "orbital-off-baseline.jpg",
+                      "sha256": "bca7c460e2baebec875a7b689df32a636ae2e95efcc5d891b18396459548e43b",
+                      "size": [
+                        768,
+                        432
+                      ]
+                    }
+                  },
+                  "idleFrame": {
+                    "file": "orbital-off-idle.png",
+                    "sha256": "fe8ecc5a3bd38818ad2fb24c138911edc4fba401dc1cfa329cbae50171db38b4",
+                    "size": [
+                      2560,
+                      1440
+                    ],
+                    "retained": {
+                      "file": "orbital-off-idle.jpg",
+                      "sha256": "ab52dfc56e6b8a0f57f10b3165724fef29b028dd3af97fd03db766c15493eda8",
+                      "size": [
+                        768,
+                        432
+                      ]
+                    }
+                  },
+                  "idleChange": 0.001875,
+                  "attempt": 1
+                }
+              },
+              "strike": {
+                "ability": "plasma",
+                "block": [
+                  2,
+                  116,
+                  0
+                ]
+              },
+              "estimatedStartTick": 226,
+              "frames": [
+                {
+                  "requestedSeconds": 4.7,
+                  "observedSeconds": 4.75,
+                  "diagnostic": false,
+                  "clients": {
+                    "actor": {
+                      "frame": {
+                        "file": "orbital-off-4.7s.png",
+                        "sha256": "904553abc8f79566b19e024a122f025eaf6471ebc604ab47417bcfb88bcc53dc",
+                        "size": [
+                          2560,
+                          1440
+                        ],
+                        "retained": {
+                          "file": "orbital-off-4.7s.jpg",
+                          "sha256": "3de937d47a7b8c5e2263486eb4c3bf3f0078fc0e2264221721f66c4fa09d2863",
+                          "size": [
+                            768,
+                            432
+                          ]
+                        }
+                      },
+                      "pixelChange": 0.9721354166666667
+                    }
+                  }
+                },
+                {
+                  "requestedSeconds": 8,
+                  "observedSeconds": 8.0,
+                  "diagnostic": false,
+                  "clients": {
+                    "actor": {
+                      "frame": {
+                        "file": "orbital-off-8s.png",
+                        "sha256": "d225a3a5e45b57e6d6e64787ccff050df81ec23caac1825dbce29476de239072",
+                        "size": [
+                          2560,
+                          1440
+                        ],
+                        "retained": {
+                          "file": "orbital-off-8s.jpg",
+                          "sha256": "f54f2311190c30efda3de40190c822b6778ad14de441e55aef95e85ed7e7cdfd",
+                          "size": [
+                            768,
+                            432
+                          ]
+                        }
+                      },
+                      "pixelChange": 0.9618055555555556
+                    }
+                  }
+                },
+                {
+                  "requestedSeconds": 15,
+                  "observedSeconds": 15.0,
+                  "diagnostic": false,
+                  "clients": {
+                    "actor": {
+                      "frame": {
+                        "file": "orbital-off-15s.png",
+                        "sha256": "51294837996e024b586be15a846cfe56fa0346e80be49b2ebb931d66ae444d0b",
+                        "size": [
+                          2560,
+                          1440
+                        ],
+                        "retained": {
+                          "file": "orbital-off-15s.jpg",
+                          "sha256": "fa2a3e96f7dddc5653f313210acc078e512bab18f02e3cb58f1094fe143e365e",
+                          "size": [
+                            768,
+                            432
+                          ]
+                        }
+                      },
+                      "pixelChange": 0.45140625
+                    }
+                  }
+                }
+              ],
+              "tickWait": {
+                "target": 806,
+                "lastTick": 806,
+                "screen": "playing",
+                "secondsWithoutAdvance": 0.0
+              },
+              "observedStrikeSeconds": 29.0,
+              "render": {
+                "actor": {
+                  "peakPixelChange": 0.9721354166666667,
+                  "threshold": 0.012,
+                  "shaderErrors": [],
+                  "endOfStrikeLogged": true
+                }
+              },
+              "renderErrors": [],
+              "terrain": {
+                "positions": [
+                  [
+                    2,
+                    116,
+                    0
+                  ],
+                  [
+                    3,
+                    113,
+                    0
+                  ],
+                  [
+                    0,
+                    111,
+                    1
+                  ]
+                ],
+                "before": [
+                  "minecraft:gold_block",
+                  "minecraft:stone",
+                  "minecraft:stone"
+                ],
+                "after": {
+                  "actor": [
+                    "minecraft:gold_block",
+                    "minecraft:stone",
+                    "minecraft:stone"
+                  ]
+                },
+                "serverBlockChecks": 3,
+                "stableAgreementSamples": 2,
+                "allowedAfter": [
+                  [
+                    "minecraft:air"
+                  ],
+                  [
+                    "minecraft:air"
+                  ],
+                  [
+                    "minecraft:air"
+                  ]
+                ],
+                "matchingChangedIndices": [],
+                "minimumChanged": 0
+              }
+            }
+          },
+          "renderer": {
+            "actor": {
+              "arena_bytes": 121634816,
+              "backend": "Vulkan",
+              "culled_sections": [
+                [
+                  0,
+                  0
+                ],
+                1.0
+              ],
+              "device_type": "integrated",
+              "drawn_sections": 0,
+              "driver": "Intel Corporation 101.8724",
+              "dynamic_resolution": false,
+              "gpu": "Intel(R) Arc(TM) B390 GPU",
+              "gpu_allocated_bytes": 480663808,
+              "gpu_culling": false,
+              "gpu_culling_auto": "watching",
+              "gpu_culling_mode": "off",
+              "gpu_culling_offer": "Offered",
+              "gpu_fading": null,
+              "gpu_frame": false,
+              "gpu_occluding": false,
+              "gpu_reserved_bytes": 612974656,
+              "packed_layout": [
+                true,
+                true
+              ],
+              "present_mode": "Fifo",
+              "resident_sections": 2492,
+              "resolution_scale": 75,
+              "section_draw_calls": 0,
+              "section_draws": 0,
+              "section_vertex_bytes": 49318368,
+              "size": [
+                2560,
+                1440
+              ],
+              "stats_lag": 0,
+              "uploaded_bytes": 85134336,
+              "vendor": "intel",
+              "vertex_bytes_split": [
+                49318368,
+                0
+              ]
+            }
+          },
+          "disposableWorldsRemoved": true
+        }
+      }
+    }
+  }
+}

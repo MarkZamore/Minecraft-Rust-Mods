@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "clientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
+  "clientSha256": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -45,7 +45,7 @@
   "reusedQaDirectory": false,
   "gameplay": "PASS",
   "previousWorldMigration": "NOT RUN",
-  "previewSha256": "00b7444bff23911d49a6ebee1063765a667ff729a487c06bdb33de32e243de8f",
+  "previewSha256": "fdd02839a478fa9479c4426ce18b9f504de6e81ef81af606c33d884d41ddc34d",
   "loadedContent": [
     [
       "orbital",
@@ -107,7 +107,7 @@
     "veinminer"
   ],
   "modsPage": {
-    "frame": 348,
+    "frame": 463,
     "gui_size": [
       427.0,
       240.0
@@ -205,7 +205,7 @@
         "commands": true,
         "corrupted": false,
         "folder": "RustModsSmoke",
-        "last_played": 1795172693626,
+        "last_played": 1795194528956,
         "mode": "survival",
         "name": "RustModsSmoke",
         "version": "26.3"
@@ -226,11 +226,11 @@
     },
     "input": {
       "counts": {
-        "agent": 107,
+        "agent": 111,
         "game": 0,
         "user": 0
       },
-      "events": 107,
+      "events": 111,
       "last_origin": "agent",
       "last_user_age_s": null,
       "recording": null,
@@ -249,30 +249,30 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        -2,
-        137,
-        -6
+        11,
+        128,
+        -7
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        -1.5,
-        138.62000000476837,
-        -5.300000011920929
+        11.916934707066396,
+        129.83512817751773,
+        -6.300000011920929
       ],
       "fall_flying": false,
       "flying": true,
       "food": 20,
-      "fov_modifier": 1.0999939441680908,
+      "fov_modifier": 1.0875000953674316,
       "health": 20.0,
       "hurt_time": 0,
       "on_ground": false,
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        -1.5,
-        137.0,
-        -5.300000011920929
+        11.916934707066396,
+        128.21512817274936,
+        -6.300000011920929
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
@@ -281,7 +281,7 @@
       "sprinting": false,
       "velocity": [
         0.0,
-        0.0,
+        -0.23386603075848855,
         0.0
       ],
       "xp": {
@@ -296,11 +296,11 @@
     "selected": 1,
     "sleeping": null,
     "swings": 0,
-    "ticks": 1289,
+    "ticks": 1291,
     "time": {
       "day": 1,
-      "day_time": 30014,
-      "time_of_day": 6014
+      "day_time": 30004,
+      "time_of_day": 6004
     },
     "using": null,
     "weather": {
@@ -323,11 +323,11 @@
     },
     "input": {
       "counts": {
-        "agent": 22,
+        "agent": 24,
         "game": 0,
         "user": 0
       },
-      "events": 22,
+      "events": 24,
       "last_origin": "agent",
       "last_user_age_s": null,
       "recording": null,
@@ -346,30 +346,30 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        -2,
-        137,
-        -6
+        11,
+        127,
+        -7
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        -1.5,
-        138.62000000476837,
-        -5.300000011920929
+        11.916934707066396,
+        129.60126214675924,
+        -6.300000011920929
       ],
       "fall_flying": false,
       "flying": true,
       "food": 20,
-      "fov_modifier": 1.0726486444473269,
+      "fov_modifier": 1.0999999046325684,
       "health": 20.0,
       "hurt_time": 0,
       "on_ground": false,
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        -1.5,
-        137.0,
-        -5.300000011920929
+        11.916934707066396,
+        127.98126214199088,
+        -6.300000011920929
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
@@ -393,11 +393,11 @@
     "selected": 1,
     "sleeping": null,
     "swings": 0,
-    "ticks": 17,
+    "ticks": 43,
     "time": {
       "day": 1,
-      "day_time": 30023,
-      "time_of_day": 6023
+      "day_time": 30062,
+      "time_of_day": 6062
     },
     "using": null,
     "weather": {
@@ -417,9 +417,9 @@
     "after": "Player Reporting",
     "returnedToGame": true,
     "loopback": "PASS",
-    "localPort": 53141,
+    "localPort": 61235,
     "publicationChat": [
-      "This world is now open to LAN. The port number is 53141"
+      "This world is now open to LAN. The port number is 61235"
     ],
     "liveSteamPublication": "NOT RUN"
   },
@@ -429,25 +429,25 @@
     "runtimeRoundTrip": "PASS"
   },
   "timeToTitleSeconds": [
-    15.5,
-    8.25
+    39.69,
+    15.34
   ],
   "orbitalLaser": {
     "target": [
-      -10,
-      116,
-      6
+      3,
+      118,
+      5
     ],
     "fixture": [
       [
-        -10,
-        116,
-        6
+        3,
+        118,
+        5
       ],
       [
-        -9,
-        113,
-        6
+        4,
+        115,
+        5
       ]
     ],
     "blocksBefore": [
@@ -459,6 +459,7 @@
       "minecraft:air"
     ],
     "terrainOffUnchanged": true,
+    "terrainOnNaturalCompletion": true,
     "controls": {
       "orbitalWheel": "insert",
       "horizonmaticaMoveMode": "n",
@@ -475,7 +476,7 @@
     "frames": {
       "wheel": {
         "file": "orbital-wheel.png",
-        "sha256": "8ca88b3d0e8df2dda28a5aef204584340c2acf2dda9af1943300c30fc7bc0e76",
+        "sha256": "062010bdeba36c52eb92393eb044a7a1b62fe19591d134938810adbd13b72283",
         "size": [
           2560,
           1440
@@ -483,7 +484,7 @@
       },
       "baseline": {
         "file": "orbital-baseline.png",
-        "sha256": "b32c9605d190dd965b88c808c4077fdb590ca45a45e542f2bbb75c12b85a566a",
+        "sha256": "1b83ff4d7867a904653adfa4b5fe0b85da3e3daac628444b585287ae4f5b8774",
         "size": [
           2560,
           1440
@@ -491,7 +492,7 @@
       },
       "plasma": {
         "file": "orbital-plasma.png",
-        "sha256": "085990248840413c55af1d06556a39b96545d5bd2550e1cd2ee8258b7ef8162e",
+        "sha256": "7b37913defa23a7c30aaa8cad438f28125915a48e05796cca3f15769fa566bc1",
         "size": [
           2560,
           1440
@@ -499,7 +500,7 @@
       },
       "hurricane": {
         "file": "orbital-hurricane.png",
-        "sha256": "ecd553e623ea9777848154fb135064d19e1d769ea627dd9f35db5a4d1c9d7603",
+        "sha256": "13e82f7aa470919b7a64e78b596bc1a6d39adccab053bc8aeea1f2820194304b",
         "size": [
           2560,
           1440
@@ -507,7 +508,7 @@
       },
       "crater": {
         "file": "orbital-crater.png",
-        "sha256": "b02716cd7447c6a03f137d8b4c0e63d119002f19516f315bfae9e598812120ff",
+        "sha256": "a507600637eeb7e6d11e1f3f9c971a68a921f3289024a13253875da488394740",
         "size": [
           2560,
           1440
@@ -523,7 +524,7 @@
             2560,
             1440
           ],
-          "sha256": "8ca88b3d0e8df2dda28a5aef204584340c2acf2dda9af1943300c30fc7bc0e76"
+          "sha256": "062010bdeba36c52eb92393eb044a7a1b62fe19591d134938810adbd13b72283"
         }
       },
       "checks": {
@@ -541,7 +542,7 @@
         },
         "topLeftHud": {
           "pass": true,
-          "brightNeutralPixels": 8652
+          "brightNeutralPixels": 8796
         }
       },
       "result": "PASS"
@@ -563,25 +564,25 @@
       {
         "laser": "plasma",
         "target": [
-          -10,
-          116,
-          6
+          3,
+          118,
+          5
         ]
       },
       {
         "laser": "hurricane",
         "target": [
-          -10,
-          116,
-          6
+          3,
+          118,
+          5
         ]
       },
       {
         "laser": "plasma",
         "target": [
-          -10,
-          116,
-          6
+          3,
+          118,
+          5
         ]
       }
     ],
@@ -645,9 +646,9 @@
   "zoom": {
     "key": "key.keyboard.z",
     "baselineFov": 1.0,
-    "zoomFov": 0.16666671633720398,
+    "zoomFov": 0.16666686534881592,
     "wheelFov": 0.13333335518836975,
-    "releasedFov": 0.9999997615814208,
+    "releasedFov": 1.0,
     "hotbarUnchanged": true,
     "settingsRoundTrip": {
       "level": "6",

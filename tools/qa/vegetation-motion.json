@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "result": "PASS",
+  "baselineClientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
+  "clientSha256": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3",
+  "origin": [
+    128,
+    180,
+    128
+  ],
+  "camera": {
+    "eye": [
+      128.5,
+      181.62000000476837,
+      128.5
+    ],
+    "yaw": 0.0,
+    "pitch": -3.052882432937622
+  },
+  "resolution": [
+    2560,
+    1440
+  ],
+  "renderer": {
+    "backend": "Vulkan",
+    "gpu": "Intel(R) Arc(TM) B390 GPU",
+    "driver": "Intel Corporation 101.8724",
+    "resolution_scale": 100
+  },
+  "shaderClockHz": 60,
+  "windowStartSeconds": [
+    4,
+    60,
+    300,
+    600
+  ],
+  "samplesPerWindow": 6,
+  "checks": {
+    "stationaryBlock": true,
+    "swayDisabled": true,
+    "leaves": true,
+    "grass": true
+  },
+  "plants": {
+    "leaves": {
+      "retainsMotion": true,
+      "beforeLateMedian": 0.06641,
+      "afterLateMedian": 0.00509
+    },
+    "grass": {
+      "retainsMotion": true,
+      "beforeLateMedian": 0.04525,
+      "afterLateMedian": 0.01575
+    }
+  },
+  "windows": {
+    "before": [
+      {
+        "startSeconds": 4.0,
+        "leaves": {
+          "medianChangedFraction": 0.00411,
+          "peakCentroidStepPixels": 0.0596
+        },
+        "grass": {
+          "medianChangedFraction": 0.01661,
+          "peakCentroidStepPixels": 0.2522
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 60.0,
+        "leaves": {
+          "medianChangedFraction": 0.00755,
+          "peakCentroidStepPixels": 0.1271
+        },
+        "grass": {
+          "medianChangedFraction": 0.02971,
+          "peakCentroidStepPixels": 0.6858
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 300.0,
+        "leaves": {
+          "medianChangedFraction": 0.02243,
+          "peakCentroidStepPixels": 0.2508
+        },
+        "grass": {
+          "medianChangedFraction": 0.02882,
+          "peakCentroidStepPixels": 0.4239
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 600.0,
+        "leaves": {
+          "medianChangedFraction": 0.06641,
+          "peakCentroidStepPixels": 0.4742
+        },
+        "grass": {
+          "medianChangedFraction": 0.04525,
+          "peakCentroidStepPixels": 0.3753
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      }
+    ],
+    "after": [
+      {
+        "startSeconds": 4.0,
+        "leaves": {
+          "medianChangedFraction": 0.00434,
+          "peakCentroidStepPixels": 0.0338
+        },
+        "grass": {
+          "medianChangedFraction": 0.01579,
+          "peakCentroidStepPixels": 0.2667
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 60.0,
+        "leaves": {
+          "medianChangedFraction": 0.00553,
+          "peakCentroidStepPixels": 0.0641
+        },
+        "grass": {
+          "medianChangedFraction": 0.01019,
+          "peakCentroidStepPixels": 0.4165
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 300.0,
+        "leaves": {
+          "medianChangedFraction": 0.00509,
+          "peakCentroidStepPixels": 0.0594
+        },
+        "grass": {
+          "medianChangedFraction": 0.01575,
+          "peakCentroidStepPixels": 0.3495
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 600.0,
+        "leaves": {
+          "medianChangedFraction": 0.004,
+          "peakCentroidStepPixels": 0.049
+        },
+        "grass": {
+          "medianChangedFraction": 0.01271,
+          "peakCentroidStepPixels": 0.3212
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      }
+    ],
+    "swayDisabled": [
+      {
+        "startSeconds": 4.0,
+        "leaves": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "grass": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 60.0,
+        "leaves": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "grass": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 300.0,
+        "leaves": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "grass": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      },
+      {
+        "startSeconds": 600.0,
+        "leaves": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "grass": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        },
+        "static": {
+          "medianChangedFraction": 0.0,
+          "peakCentroidStepPixels": 0.0
+        }
+      }
+    ]
+  }
+}

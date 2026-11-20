@@ -5,7 +5,7 @@
     "executable": "native/launch-rust-edition.exe",
     "platform": "windows-x64",
     "adapter": "portable-native",
-    "version": "nightly-2026-11-19-f00125f-mods-r1"
+    "version": "nightly-2026-11-19-f00125f-mods-r2"
   },
   "nativeFiles": {
     "native/DXC-LICENSE-LLVM.txt": "729615317e28dd03907e46f0fc3b5e88f7853cee61d1a1471d2749335516b46f",
@@ -111,7 +111,7 @@
     "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$World.class": "104984ef0c6ab5b42b40c661642fae7cdc45bd8224e4975856abad0b1d349d50",
     "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle.class": "280a14b3bd55f856e3c235ac755435917f6c02bfbeef1496f505f0c0760654ad",
     "native/exporters/server/dev/horizonlab/parity/VanillaStructureBlockExporter.class": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6",
-    "native/horizon-client.exe": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
+    "native/horizon-client.exe": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3",
     "native/horizon-mods/orbital.hmod": "a752c3423cf547b45fee43bb59963ee3807c32cd7b9e2dcb5f61eb7b6dc9db14",
     "native/horizon-mods/zoom.hmod": "53935d0af3307bbe8fa5057103a62b13a8cb6a69431b3058f3981b9c1313d348",
     "native/horizon-native-mods/elytratrails/Cargo.toml": "6574d0db1dfc41018ae104503eb7d71acaab000b022771b2fd945ef26ee47e56",
@@ -1025,7 +1025,7 @@
     "native/horizon-native-mods/orbital/assets/orbital/textures/item/worldeater_icon.png": "b3169e61755efe6e8727bd152fc88192ba0d7f2852ff5a3ede1376b8919130be",
     "native/horizon-native-mods/orbital/data/orbital/horizon/item/laser_designator.json": "1ba9416b9b31d65b50ffd7156766061ba95100fc79e9f9033ab7bf526fad2303",
     "native/horizon-native-mods/orbital/horizon-mod.toml": "dde716cfdff39c13259ec5b37c669ff6de957f7bcb89147ac929b7c8647e0d44",
-    "native/horizon-native-mods/orbital/src/lib.rs": "47f87d3ff73100601c5d3c4d4a9a2827437b46ef2612108a083d393098590249",
+    "native/horizon-native-mods/orbital/src/lib.rs": "487b11bad68f8f00b6707783fe68e6303a9cf6bebe04732b33a4613f1e35dfce",
     "native/horizon-native-mods/skins_3d/Cargo.toml": "b8421a20b9b0c3c512bc08c74c5b16917197e7179ae491a9be1e4ccdd0ccaf44",
     "native/horizon-native-mods/skins_3d/LICENSE": "14192bd91ef9c1ecfdd805fce8a6dbc6bd44a59b9b913a1becf7a99953ca06a2",
     "native/horizon-native-mods/skins_3d/assets/skins_3d/lang/en_us.json": "2ad64f551e52c984088d55c7fc0b6da117e67e324d5f8a2ca9d061b2ad4d88c8",

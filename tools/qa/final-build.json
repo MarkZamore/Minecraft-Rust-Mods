@@ -4,9 +4,9 @@
   "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
   "steamOverlayRecipeSha256": "7220b810fa25b84bc43a5c9ae94ba611bc9b6da951e7e53fb7f2145c18af2b98",
   "mixinsRevision": "e59da9094f0c2fdda6c627fe9eff22dec6a906f0",
-  "mixinsSha256": "40fca1d211eb3aafa9cec13d8c759af95db604a7a2ee5b1458d259bb3bafbd42",
+  "mixinsSha256": "617776b67c7fdb9096fa46fb75588d017e3b297cada38c7bd2642336ecc95487",
   "conflictDecisionsSha256": "cd97f092d9e0a56cee3d71f22b1d99e3feec2c7ca969d76437566eac66b72be9",
-  "buildRecipeSha256": "c5d5c94c7faade9c470a89518058c72456bd2549f130ceaf142d3baa25509d20",
+  "buildRecipeSha256": "354311fbc28d5e293f591e9b6d25c4d36a576a08779238ef8d32aae1dc1a813d",
   "rust": "1.99.1",
   "rustFlags": "-C target-feature=+crt-static",
   "ids": [
@@ -57,14 +57,14 @@
   },
   "mixins": {
     "injections": 269,
-    "modules": 73,
+    "modules": 75,
     "crates": 3,
     "bridges": 0,
     "states": 0
   },
   "cargoLockSha256": "dc92391c7d29908d86a6cbbec1bf17444149e4cd542ab31238caad16df0863e7",
-  "compiledNativeTreeSha256": "d1ac3a7a78762237be459a73733bd30fec86920256e61413ab5b0e8b929eba7a",
+  "compiledNativeTreeSha256": "c6293916b58f8168c8f6c0e052ec94e763e158aa35c948fed6e2cf914c111cb3",
   "multiplayerMenuActionSha256": "cd37c4c2718696f595f1efe4459a1cb85276cb8310d38cc05bc88939e022a20b",
   "compileCheck": true,
-  "clientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17"
+  "clientSha256": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3"
 }

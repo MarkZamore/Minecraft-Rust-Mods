@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "receiptSha256": "1b383b050570e90ebcb2d751f452db4b74821216a17676e7644a3caa9acdaa70",
+  "receiptSha256": "ee236d1fca44dfd13c5a456ba2c67eb86d1c2b21cf00592fabebf9387775b9b2",
   "files": {
     "configureddefaults/options.txt": {
       "sizeBytes": 13,
@@ -423,8 +423,8 @@
       "sha256": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6"
     },
     "native/horizon-client.exe": {
-      "sizeBytes": 176681472,
-      "sha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17"
+      "sizeBytes": 176749568,
+      "sha256": "5d0305943b57e4bdbc6efc85ee79ad9de77ac9dcd55b780388cfa0de3618d5b3"
     },
     "native/horizon-mods/orbital.hmod": {
       "sizeBytes": 63880128,
@@ -4079,8 +4079,8 @@
       "sha256": "dde716cfdff39c13259ec5b37c669ff6de957f7bcb89147ac929b7c8647e0d44"
     },
     "native/horizon-native-mods/orbital/src/lib.rs": {
-      "sizeBytes": 1878,
-      "sha256": "47f87d3ff73100601c5d3c4d4a9a2827437b46ef2612108a083d393098590249"
+      "sizeBytes": 2013,
+      "sha256": "487b11bad68f8f00b6707783fe68e6303a9cf6bebe04732b33a4613f1e35dfce"
     },
     "native/horizon-native-mods/skins_3d/Cargo.toml": {
       "sizeBytes": 186,
@@ -5980,7 +5980,7 @@
     },
     "portable-pack.json": {
       "sizeBytes": 250,
-      "sha256": "54ff9d248ffe34c06ed1dc611795385608ed08f5d66626d3d9e823186c4daa7c"
+      "sha256": "d1350a1a32cb230026e7e4f72a48f0c95a66468c47bd8fabd9454a20f7464f02"
     }
   },
   "bootstrapLockSha256": "592846fc2ee78d7d01ef096f03f50e413031d8a2a49669a175d25a3c65cf3acf",
@@ -5994,12 +5994,12 @@
       "sha256": "68b3e34901dbce7ba2707af83e8998c171965cd1c4fb85973019eb93d9fb63a5"
     },
     "loaded-mods.json": {
-      "sizeBytes": 238390,
-      "sha256": "566e6999bcd923ba004289b368f33b040e676f77d9773304c1993cad891bc59e"
+      "sizeBytes": 240118,
+      "sha256": "c87b3db81c9bc7bb16bdf66e9db8e961f814ec100272ea56b6b9848363518127"
     },
     "preview.jpg": {
-      "sizeBytes": 1887071,
-      "sha256": "4e52b80beb323f0eee5abbf4ba90894c7898930bf88f181b38c3f0da2703d91d"
+      "sizeBytes": 1848550,
+      "sha256": "d9fc25c44542c902b582b1d95bdcf254374c619911200bdfdb9e6346869c86e7"
     }
   }
 }
