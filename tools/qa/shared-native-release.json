@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "clientSha256": "5bc739ad57d615d1009eff6f2c47413a7305eb49c43ae0a764960bca56b7d60a",
+  "sharedCompositionSha256": "5cf7863d3d316481a107ae91ec5ed3da861d0d8d7ce6c8dcba9f76b490508ac2",
+  "sharedPayloadSha256": "6e8e49945110f6432e6ba1a5d9bf66d1d689f6b9d9c23142fb53f50f326f6589",
+  "staticApproval": {
+    "revision": "a236dacd3ea1bbf2bd291dc5d1d2fe9cbdd0af12",
+    "distributionLockSha256": "b0e7beb7927047002c8cd9b7e8c34201d389f257da8907df5a5e8d74de51bad4",
+    "composedFromDistributionLockSha256": "e7e30aaf932466c655c0cabd80b9f30a5fa0ee31a7b1785c133800cc344e292e"
+  },
+  "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
+  "inputLockSha256": "f3ae29d211e4f7582ad06b635e9d12f520938d0dafe8d520014c869e8c4217e3",
+  "abiBuildId": "32726d86f6e44d1a2096b964afbe9eee28288d79",
+  "sidecarReceiptSha256": "56891f11898a46cba6f125d80f4e991ea433ae20903ec6b91f4ae69890638cd6",
+  "sharedRuntimeArchiveSha256": "84ceb9ff7ead347990bd747e0a19aaaf3aa38ba4cd2083380422f6ad3d0f64a1",
+  "modCount": 37,
+  "fileCount": 1517,
+  "reports": {
+    "solo": {
+      "sha256": "1d69289b7661004308e960c27ad53876096d7cc444981ab7993a79c22d8d947d",
+      "compositionEvidence": "merged-first-migration-preflight"
+    },
+    "network": {
+      "sha256": "a0ba76f9bc0e2edfd5fd5b53436aa2fd5ed21187bb5741b6c792c3e1fa6d1816",
+      "compositionEvidence": "first-migration-preflight"
+    },
+    "scaled": {
+      "sha256": "b3a68e6568dd25d5564f9840c4e0a567a27ae866517b2399f46e7ca3e56a2757",
+      "compositionEvidence": "report"
+    },
+    "vegetation": {
+      "sha256": "34f6df84e66eb59d4d41f95afc1b65f2273fdd7825e8684334cab47a6333c302",
+      "compositionEvidence": "report"
+    },
+    "hud": {
+      "sha256": "a7214b1a734c848a334e77084b8e082136cc8cea806befd8c4e4442b4d64c9c4",
+      "compositionEvidence": "first-migration-preflight"
+    }
+  },
+  "firstMigrationPreflightSha256": "cf829e1037fcc2421aba6667955bd636fca908f3485ad4466d9f29d468f8cfbb",
+  "abilityCount": 21,
+  "abilities": [
+    {
+      "id": "plasma",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "godly",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "blackhole",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "meteor",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "mothership",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "downfall",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "planetkiller",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "crystalbloom",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "sinkhole",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "payload",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "nuke",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "rod",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "supercell",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "hurricane",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "tsunami",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "supervolcano",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "skybreak",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "carpetbomb",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "worldeater",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "convergence",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    },
+    {
+      "id": "sixstars",
+      "solo": "PASS",
+      "networkTerrainOff": "PASS",
+      "networkTerrainOn": "PASS"
+    }
+  ],
+  "networkTransport": "local TCP, two rendered clients",
+  "twoAccountSteam": "NOT RUN",
+  "loadedMods": {
+    "status": "PASS",
+    "count": 37,
+    "reportSha256": "b37f1458539056d067bcf349df8946e59d28ece3df73de9e38a4aa717029c1c2",
+    "previewSha256": "a22e124be3b4e5114f372b604397ee4aa302d2432e859592d978d1f6ec41dd52"
+  },
+  "publicRuntime": {
+    "tagCommit": "802e351fcb553f51e3df56633aa5d51c4b2cb4ba",
+    "sha256": "84ceb9ff7ead347990bd747e0a19aaaf3aa38ba4cd2083380422f6ad3d0f64a1"
+  }
+}
