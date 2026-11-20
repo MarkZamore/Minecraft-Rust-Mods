@@ -58,11 +58,20 @@ def verify(candidate, base_repo):
            lambda value: value["orbitalLaser"]["modHud"]["checks"]["topLeftHud"].update(brightNeutralPixels=0))
     reject("Orbital pixel evidence belongs to a different frame", game_check, gameplay,
            lambda value: value["orbitalLaser"]["modHud"]["frames"]["wheelOpen"].update(sha256="0" * 64))
+    reject("Orbital terrain sampled before the strike completed", game_check, gameplay,
+           lambda value: value["orbitalLaser"].update(terrainOnNaturalCompletion=False))
     network_check = lambda report: release.verify_multiplayer_acceptance(report, build)
     ability_network = release.load(qa / "orbital-abilities-network.json")
     ability_network_check = lambda report: release.verify_orbital_abilities(report, build, guest=True)
     reject("Missing active Orbital ability", ability_network_check, ability_network,
            lambda value: value["abilities"].pop("sixstars"))
+
+    def mark_diagnostic_frames(value):
+        for frame in value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]["frames"]:
+            frame["diagnostic"] = True
+
+    reject("Only diagnostic frames recorded the Orbital ability", ability_network_check, ability_network,
+           mark_diagnostic_frames)
     reject("Observer did not render the Orbital shader", ability_network_check, ability_network,
            lambda value: value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]
            ["render"]["observer"].update(remoteShaderGenerations=[]))

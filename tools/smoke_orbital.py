@@ -81,6 +81,61 @@ def wait_for_crater(control, points, before, timeout=120):
     raise ValueError(f"Terrain-on Plasma did not carve both sampled layers within {timeout} seconds: {after!r}")
 
 
+def await_plasma_finish(control, log, offset, target, timeout=180):
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        with log.open("rb") as source:
+            source.seek(offset)
+            raw = source.read(1024 * 1024 + 1)
+        if len(raw) > 1024 * 1024:
+            raise ValueError("Orbital emitted over 1 MiB while waiting for Plasma to finish")
+        events = raw.decode("utf-8", errors="replace")
+        strike = STRIKE.search(events)
+        if strike:
+            if strike[1] != "plasma" or tuple(map(int, strike.groups()[1:])) != target:
+                raise ValueError(f"Unexpected Orbital strike while waiting for Plasma: {strike[0]}")
+            tail = events[strike.end():]
+            if "left the world mid-strike" in tail or "[mod orbital] strike stopped" in tail:
+                raise ValueError("Terrain-on Plasma stopped before its natural completion")
+            if "[mod orbital] memory: strike's peak" in tail:
+                return
+        state = control("state", timeout=15)
+        if state["screen"] != "playing":
+            raise ValueError(f"The test world closed while Plasma was active: {state['screen']}")
+        time.sleep(0.25)
+    raise TimeoutError("Terrain-on Plasma did not finish naturally")
+
+
+def server_condition(control, condition):
+    reply = control("command", f"execute if {condition}", timeout=15)
+    return any("Test passed" in line for line in reply["chat"])
+
+
+def settled_crater(control, points, before, timeout=60):
+    coordinates = [" ".join(map(str, point)) for point in points]
+    deadline = time.monotonic() + timeout
+    stable = None
+    latest = None
+    first_tick = 0
+    while time.monotonic() < deadline:
+        samples = [control("block", *map(str, point), timeout=15) for point in points]
+        # An all-air section can be absent from the rendered client's cache.
+        # Air is only a candidate until the server confirms the exact block.
+        latest = [row["block"] if row["loaded"] else "minecraft:air" for row in samples]
+        if (all(old != new for old, new in zip(before, latest, strict=True))
+                and all(server_condition(control, f"block {at} {block}")
+                        for at, block in zip(coordinates, latest, strict=True))):
+            ticks = control("state", timeout=15)["ticks"]
+            if latest != stable:
+                stable, first_tick = latest, ticks
+            elif ticks - first_tick >= 8:
+                return latest
+        else:
+            stable = None
+        time.sleep(0.2)
+    raise ValueError(f"Completed Plasma did not leave both layers changed and stable on the server: {latest!r}")
+
+
 def wait_for_world_ticks(control, count, timeout=90):
     # Initial material pipelines may spend over ten seconds without ticking
     # after the controller's loaded condition becomes true.
@@ -226,12 +281,17 @@ def exercise(control, qa):
     control("command", "/orbital plasma")
     command(control, "/orbital terrain on", "Terrain damage on")
     camera(control, target)
+    log = qa / "client-1.log"
+    offset = log.stat().st_size
     hold_designator(control)
-    changed = wait_for_crater(control, points, fixture_blocks)
+    wait_for_crater(control, points, fixture_blocks)
     frames["crater"] = photograph(control, qa, "crater")
+    await_plasma_finish(control, log, offset, target)
+    changed = settled_crater(control, points, fixture_blocks)
     command(control, "/orbital terrain off", "Terrain damage off")
     return {"target": list(target), "fixture": [list(point) for point in points],
             "blocksBefore": fixture_blocks, "blocksAfter": changed, "terrainOffUnchanged": True,
+            "terrainOnNaturalCompletion": True,
             "controls": {"orbitalWheel": WHEEL_KEY, "horizonmaticaMoveMode": "n", "rotation": "r"},
             "renderer": {name: renderer[name] for name in ("gpu", "backend", "size")},
             "frames": frames}
@@ -239,9 +299,14 @@ def exercise(control, qa):
 
 def verify_reopened(control, game, evidence):
     item_present(control)
-    # An all-air section can be absent from the client's chunk cache on reopen.
-    for point, block in zip(evidence["fixture"], evidence["blocksAfter"], strict=True):
-        command(control, f"execute if block {' '.join(map(str, point))} {block}", "Test passed")
+    coordinates = [" ".join(map(str, point)) for point in evidence["fixture"]]
+    deadline = time.monotonic() + 60
+    while not all(server_condition(control, f"loaded {at}") for at in coordinates):
+        if time.monotonic() >= deadline:
+            raise TimeoutError(f"The reopened server did not load the Orbital terrain fixture: {coordinates!r}")
+        time.sleep(0.25)
+    for at, block in zip(coordinates, evidence["blocksAfter"], strict=True):
+        command(control, f"execute if block {at} {block}", "Test passed")
     command(control, "/orbital seed", "Seed: held at 7")
     settings = dict(line.split("=", 1) for line in (game / SETTINGS).read_text(encoding="utf-8").splitlines()
                     if "=" in line)

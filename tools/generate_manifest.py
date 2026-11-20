@@ -161,7 +161,8 @@ def verify_orbital_abilities(report, build, *, guest=False, resolution_scale=Non
             if ((mode == "off" and after != before) or (mode == "on" and changed < ability.changed_count)):
                 raise ValueError(f"Terrain disagreed with the selected mode for Orbital {ability.title}")
             for role, view in render.items():
-                frames = [frame.get("clients", {}).get(role, {}) for frame in evidence.get("frames", [])]
+                frames = [frame.get("clients", {}).get(role, {}) for frame in evidence.get("frames", [])
+                          if frame.get("diagnostic") is False]
                 visible = any(frame.get("pixelChange") == view.get("peakPixelChange")
                               and re.fullmatch(r"[0-9a-f]{64}", frame.get("frame", {}).get("sha256", ""))
                               for frame in frames)
@@ -212,6 +213,7 @@ def verify_gameplay_acceptance(report, build, preset):
     orbital = report["orbitalLaser"]
     if (orbital["controls"] != {"orbitalWheel": "insert", "horizonmaticaMoveMode": "n", "rotation": "r"} or
             orbital.get("terrainOffUnchanged") is not True or orbital.get("shaderErrors") != [] or
+            orbital.get("terrainOnNaturalCompletion") is not True or
             not all_fixture_blocks_changed(orbital) or
             orbital["reopened"]["terrain"] != orbital["blocksAfter"]):
         raise ValueError("Release needs verified Insert/R controls, Orbital rendering and persistent terrain edits")
