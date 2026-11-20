@@ -473,6 +473,22 @@ def jei(guest):
                 raise AssertionError("JEI click-give test setting was not restored")
 
 
+def clear_plasma_aim(host, camera, target):
+    # Cut small boxes along the standing eye's ray, including the last box
+    # around the marker. The fixture places the marker and platform afterward.
+    x, y, z = camera
+    eye = (x, y + 1.62, z)
+    center = tuple(axis + 0.5 for axis in target)
+    previous = tuple(map(floor, eye))
+    for step in range(1, 9):
+        point = tuple(floor(start + (end - start) * step / 8)
+                      for start, end in zip(eye, center, strict=True))
+        low = tuple(map(min, previous, point))
+        high = tuple(map(max, previous, point))
+        host("command", f"fill {' '.join(map(str, low + high))} minecraft:air")
+        previous = point
+
+
 def orbital(host, guest, concurrent_effects=False):
     guest.typed_command("/orbital give")
     until(lambda: guest("inventory")["counts"].get(smoke_orbital.DESIGNATOR) == 1,
@@ -485,17 +501,20 @@ def orbital(host, guest, concurrent_effects=False):
     target = (x, y, z)
     points = [target, (x + 1, y - 3, z)]
     expected = ["minecraft:gold_block", "minecraft:stone"]
-    for point, block in zip(points, expected, strict=True):
-        host("command", f"setblock {' '.join(map(str, point))} {block}")
     cy, cz = y + 38, z + 72
-    # Its block is suspended above surrounding hills so the second long ray
-    # cannot hit intervening natural terrain. No line-of-sight corridor is cut.
+    host_camera = (x + 1.5, cy, cz + 0.5)
+    guest_camera = (x + 0.5, cy, cz + 0.5)
     second_target = (x + 64, cy + 16, z)
+    clear_plasma_aim(host, guest_camera, target)
     if concurrent_effects:
         # Outside Plasma's authored crater/scorch footprint (max radius 46),
-        # within its authored Designator range 200. The first fixture stays
-        # unchanged; only its guest strike is allowed to mutate that terrain.
-        host("command", f"setblock {' '.join(map(str, second_target))} minecraft:gold_block")
+        # within its authored Designator range 200.
+        clear_plasma_aim(host, host_camera, second_target)
+    fixture_points = [*points, second_target] if concurrent_effects else points
+    fixture_blocks = [*expected, "minecraft:gold_block"] if concurrent_effects else expected
+    for point, block in zip(fixture_points, fixture_blocks, strict=True):
+        host("command", f"setblock {' '.join(map(str, point))} {block}")
+    if concurrent_effects:
         for cmd in ("/orbital give", "/orbital seed 11", "/orbital knockback off",
                     "/orbital plasma", "/orbital terrain off"):
             host.typed_command(cmd)
@@ -505,14 +524,17 @@ def orbital(host, guest, concurrent_effects=False):
     # Match the proven single-player fixture: a wider platform intercepts
     # the descending Designator ray before it leaves the platform's edge.
     host("command", f"fill {x - 2} {cy - 1} {cz - 2} {x + 2} {cy - 1} {cz + 2} smooth_stone")
-    host("tp", x + 1.5, cy, cz + 0.5)
+    host("tp", *host_camera)
     # Teleport issued by the guest follows its real server command path.
-    guest.typed_command(f"/tp {x + 0.5} {cy} {cz + 0.5}")
-    for client in (host, guest):
+    guest.typed_command(f"/tp {' '.join(map(str, guest_camera))}")
+    for client, camera in ((host, host_camera), (guest, guest_camera)):
+        until(lambda: all(abs(actual - expected_axis) < 0.05 for actual, expected_axis in zip(
+            client("state")["player"]["position"], camera, strict=True)),
+            f"{client.root.name} did not reach the Plasma firing platform")
         client("wait-for", "loaded", "--timeout", "90")
         smoke_orbital.camera(client, target)
-    until(lambda: smoke_orbital.sample(guest, points) == expected,
-          "Fixture did not reach guest", 30)
+    until(lambda: all(smoke_orbital.sample(client, fixture_points) == fixture_blocks
+                      for client in (host, guest)), "Fixture did not reach both clients", 30)
     before = {"host": frame(host, "before"), "guest": frame(guest, "before")}
     log_offset = host.log.stat().st_size
     guest_offset = guest.log.stat().st_size
