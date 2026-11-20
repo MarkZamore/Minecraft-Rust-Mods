@@ -10,6 +10,7 @@ pub const WORK: &str = "orbital:work";
 pub const ANSWER: &str = "orbital:answer";
 pub const VISUAL: &str = "orbital:visual";
 pub const MAX_BYTES: usize = 30_000;
+const ANSWER_VERSION: &str = "1";
 
 pub struct OrbitalPayloads;
 
@@ -41,7 +42,8 @@ impl Hooks for OrbitalPayloads {
         let server: Arc<dyn IPayloadHandler> = Arc::new(Receiver(PayloadDirection::ToServer));
         let client: Arc<dyn IPayloadHandler> = Arc::new(Receiver(PayloadDirection::ToClient));
         registrar.play_to_server(PayloadId(WORK.into()), server.clone());
-        registrar.play_to_client(PayloadId(ANSWER.into()), Some(client.clone()));
+        let mut answers = event.registrar(ANSWER_VERSION);
+        answers.play_to_client(PayloadId(ANSWER.into()), Some(client.clone()));
         let mut visual = event.registrar("2");
         visual.play_bidirectional(PayloadId(VISUAL.into()), server, Some(client));
     }

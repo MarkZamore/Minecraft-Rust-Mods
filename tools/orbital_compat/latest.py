@@ -117,6 +117,12 @@ id = "chunk_tickets"
 file = "crates/horizon-client/src/game.rs"
 name = "orbital_chunk_tickets"
 source = "chunk_tickets.rs"
+
+[[module]]
+id = "column_reply"
+file = "crates/horizon-client/src/game.rs"
+name = "orbital_column_reply"
+source = "column_reply.rs"
 ''')
     glue = (bundle / "glue.rs").read_text(encoding="utf-8")
     glue = worldeater_port.transform_glue(glue)
@@ -142,6 +148,7 @@ source = "chunk_tickets.rs"
     write(bundle / "post.rs", post)
     write(bundle / "latest_world.rs", read("latest_world.rs"))
     write(bundle / "chunk_tickets.rs", read("chunk_tickets.rs"))
+    write(bundle / "column_reply.rs", read("column_reply.rs"))
     write(bundle / "wire.rs", read("wire.rs") + "\n" + read("sequenced_wire.rs"))
     write(bundle / "visual.rs", adapt_visual(read("visual.rs")))
     write(bundle / "visual_wire.rs", replace(read("visual_wire.rs"), "SHADERS: u8 = 10", "SHADERS: u8 = 19"))
@@ -194,11 +201,10 @@ def adapt_work(glue: str) -> str:
         ("super::orbital_visual::from_server(game, channel, data)",
          "super::orbital_visual::from_server(game, &session, channel, data)"),
         ("        let (tag, offset, total) =", "        if kind == 12 {\n"
-         "            if let Some((first, _)) = c.unacked.front() {\n"
+         "            if let Some(&first) = c.unacked.front() {\n"
          "                let gone = wire::acknowledged(data, c.epoch, *first, c.unacked.len())?;\n"
          "                if gone > 0 {\n"
          "                    c.unacked.drain(..gone);\n"
-         "                    c.resend = c.resend.min(c.unacked.len());\n"
          "                    c.progress = Some(std::time::Instant::now());\n"
          "                }\n"
          "            }\n"
@@ -215,7 +221,50 @@ def adapt_work(glue: str) -> str:
         ("/// The `perform_command` hook:", "/// The `perform_console_command` hook:"),
     ):
         glue = replace(glue, before, after)
-    return adapt_requests(adapt_ticket_tracking(glue))
+    return adapt_work_transport(adapt_requests(adapt_ticket_tracking(glue)))
+
+
+def adapt_work_transport(glue: str) -> str:
+    glue = section(glue, "/// Batches of world work out at once", "\nthread_local!", '''/// Batches already accepted by the reliable play stream but not yet applied.
+const WINDOW: usize = 30;
+/// Report stalled acknowledgements without submitting duplicate packets.
+const WORK_DIAGNOSTIC_AFTER: std::time::Duration = std::time::Duration::from_secs(4);
+''')
+    glue = section(glue, "    /// Batches sent and not yet acknowledged", "    next_seq: u32,",
+                   "    /// Accepted batch numbers in order; only unsent work retains its bytes.\n"
+                   "    unacked: VecDeque<u32>,\n")
+    glue = replace(glue, "            c.resend = 0;\n", "")
+    glue = replace(glue, "            c.unacked.push_back((c.next_seq, batch));",
+                   "            c.unacked.push_back(c.next_seq);")
+    glue = section(glue, "/// The client half: the work waiting", "fn flush_work(game:",
+                   "/// Submit queued work in order, with no more than WINDOW accepted batches.\n")
+    glue = section(glue, "        if c.unacked.is_empty() {", "        // (how far the world work", '''        if let Some((first, _)) = c.unacked.front() {
+            if c.progress.is_some_and(|t| now.duration_since(t) > WORK_DIAGNOSTIC_AFTER) {
+                log::info!("[mod {ID}] world work: no ACK progress for {} s, batches {}..{} outstanding, {} requests waiting",
+                    WORK_DIAGNOSTIC_AFTER.as_secs(), first, c.next_seq, c.out.len());
+                c.progress = Some(now);
+            }
+        } else {
+            c.progress = Some(now);
+        }
+''')
+    glue = replace(glue, "        if let Some((first, _)) = c.unacked.front() {", "        if let Some(&first) = c.unacked.front() {")
+    glue = replace(glue, "    let mut r = Reader(data);\n    let done = CLIENT.with", '''    let unpacked;
+    let data = if data.first() == Some(&super::orbital_column_reply::COMPRESSED_COLUMNS) {
+        let Some(decoded) = super::orbital_column_reply::unpack(data) else {
+            log::warn!("[mod {ID}] a bad compressed column answer from the server half");
+            return;
+        };
+        unpacked = decoded;
+        &unpacked
+    } else {
+        data
+    };
+    let mut r = Reader(data);
+    let done = CLIENT.with''')
+    glue = section(glue, "            let palette_bytes: usize = read.palette", "\n        }\n        4 =>",
+                   "            answer_columns(session, tag, offset, total, span, &read, columns.len());")
+    return glue.rstrip() + "\n\nuse super::orbital_column_reply;\n\n" + read("column_replies_host.rs")
 
 
 def adapt_ticket_tracking(glue: str) -> str:
@@ -365,7 +414,7 @@ def route_render_and_motion(manifest: str) -> str:
 def latest_queues() -> str:
     queues = read("payload_queues.rs")
     queues = replace(queues, "            client.out.clear();", "            client.out.clear();\n"
-                     "            client.unacked.clear();\n            client.resend = 0;\n"
+                     "            client.unacked.clear();\n"
                      "            client.next_seq = 0;\n            client.epoch = new_epoch();\n"
                      "            client.progress = None;\n            client.backlog = (0, None);\n"
                      "            client.fly_sent = None;")

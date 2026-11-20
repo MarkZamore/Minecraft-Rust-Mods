@@ -79,20 +79,29 @@ pub(crate) fn entries() -> (Vec<mod_api::ModEntry>, &'static [BuiltMod]) {{
 '''
     changed = {GAME + ".rs": game, ROOT_ENTRY: entry, HOST: host,
                EXTRAS + "/builtin_mods.rs": registry}
-    if any(id == "orbital" for id, _, _, _ in records):
-        add_orbital_delivery(changed, originals)
+    orbital_version = next((version for id, version, _, _ in records if id == "orbital"), None)
+    if orbital_version is not None:
+        add_orbital_delivery(changed, originals, orbital_version)
     for name, text in changed.items():
         path = stage / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(text, encoding="utf-8", newline="\n")
 
 
-def add_orbital_delivery(changed, originals) -> None:
+def orbital_payload_source(version: str) -> str:
+    source = (TOOLS / "orbital_compat/declared_payloads.rs").read_text(encoding="utf-8")
+    if version == "0.5.17":
+        source = replace_once(source, 'const ANSWER_VERSION: &str = "1";',
+                              'const ANSWER_VERSION: &str = "2";')
+    return source
+
+
+def add_orbital_delivery(changed, originals, version: str) -> None:
     game = GAME + ".rs"
     changed[game] = replace_once(changed[game], "pub(crate) mod lanminecraft_builtin_mods;",
         'pub(crate) mod lanminecraft_builtin_mods;\n#[path = "lanminecraft_ext/orbital_payloads.rs"]'
         '\nmod orbital_payloads;\n#[path = "lanminecraft_ext/legacy_payload_commit.rs"]\nmod legacy_payload_commit;')
-    changed[EXTRAS + "/orbital_payloads.rs"] = (TOOLS / "orbital_compat/declared_payloads.rs").read_text(encoding="utf-8")
+    changed[EXTRAS + "/orbital_payloads.rs"] = orbital_payload_source(version)
     changed[EXTRAS + "/legacy_payload_commit.rs"] = (TOOLS / "legacy_payload_commit.rs").read_text(encoding="utf-8")
     transport = replace_once(originals[TRANSPORT], "    fn queue_payload(", "    pub(in crate::game) fn queue_payload(")
     changed[TRANSPORT] = replace_once(transport,
@@ -126,7 +135,7 @@ def stage_packages(work: Path, selected: list[dict], mixins_revision: str) -> No
         (path / "src").mkdir(parents=True)
         if id == "orbital":
             manifest = copy_orbital_assets(work / "content/orbital.hmod", path, row)
-            code = (TOOLS / "orbital_compat/declared_payloads.rs").read_text(encoding="utf-8")
+            code = orbital_payload_source(row["version"])
             code += "\npub fn hooks() -> Box<dyn mod_api::Hooks> { Box::new(OrbitalPayloads) }\n"
         else:
             manifest = "\n".join((
