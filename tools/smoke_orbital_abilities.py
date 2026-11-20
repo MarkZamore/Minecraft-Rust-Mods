@@ -62,6 +62,7 @@ class Ability:
     terrain: str
     probes: tuple[Probe, ...] = CENTER
     changed_count: int = 2
+    camera_height: int = 38
 
 
 # Seconds since firing, sampled during sustained parts of the effects. See upstream
@@ -108,8 +109,8 @@ ABILITIES = {
     "supervolcano": Ability("Supervolcano", 88, (6, 23, 38, 58), 188, 11,
                               "satellite beam, plume, volcanic lightning and ash front",
                               "shifted vent, caldera and volcanic deposits"),
-    "skybreak": Ability("The Sky Breaks", 49.5, (7, 10.5, 18), 69, 13, "cracked sky, impact fist and falling panes",
-                         "impact bowl and lodged panes"),
+    "skybreak": Ability("The Sky Breaks", 49.5, (7, 10.5, 18), 274, 13, "cracked sky, impact fist and falling panes",
+                         "impact bowl and lodged panes", camera_height=128),
     "carpetbomb": Ability("Carpet Bomb", 37.5, (8.5, 15, 23), 28, 14, "bomb line and sequential blasts",
                             "overlapping craters along the line",
                             (*CENTER, Probe((0, 0, -22), GOLD), Probe((0, 0, 22), GOLD))),
@@ -229,7 +230,9 @@ def terrain_fixture(host, clients, key, ability):
     y = min(y + 5, 252)
     distance = 96 if key in ("plasma", "godly", "blackhole", "meteor") else 112
     target = (x, y, z)
-    camera = (x + 0.5, y + 38, z + distance + 0.5)
+    # Sky Breaks needs a view above this seed's ridge. Its shader's sky pane
+    # is 560 blocks above the strike and behind opaque terrain.
+    camera = (x + 0.5, min(y + ability.camera_height, 316), z + distance + 0.5)
     # The author displaces the vent along the horizontal aiming ray, even
     # though the Designator must still strike a real loaded block nearby.
     strike = (x, y, z + distance - 1000) if key == "supervolcano" else target
@@ -604,6 +607,9 @@ def run(args):
         raise ValueError("--resolution-scale must be a Horizon graphics percentage in 50..200")
     for field in ("candidate", "controller", "resources"):
         setattr(args, field, getattr(args, field).resolve(strict=True))
+    resource_index = args.resources / "horizon-resources.json"
+    if not resource_index.is_file():
+        raise ValueError(f"--resources must point to the prepared game files containing {resource_index.name}: {args.resources}")
     qa = capture_root(args.qa)
     client_sha = sha(args.candidate / "native/horizon-client.exe")
     receipt = load(args.candidate / "build-receipt.json")
