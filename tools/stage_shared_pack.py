@@ -11,7 +11,9 @@ import stat
 import sys
 import tempfile
 import tomllib
+import zipfile
 
+from inspect_mods import validate_members
 from native_build import ROOT, module_at, write
 
 
@@ -150,7 +152,7 @@ def sidecar_inputs(sidecars, common, versions, release):
     packages = tuple(f"{CODE_PACKAGE}{mod}/" for mod in libraries if mod in compiled)
     require(all(path == PROFILE or path in libraries.values() or path in assets or path.startswith(packages)
                 for path in files), "The SDK sidecars include a file outside their pack-owned scope")
-    return payload, receipt, files
+    return payload, receipt, files, libraries
 
 
 def abi_manifest_only(original, replacement, before, after, release):
@@ -176,6 +178,55 @@ def overlay_sources(candidate, static, payload, sidecars, common, bootstrap, hor
                     f"Sidecar would change already approved pack data: {name}")
         sources[name] = (payload / name, row)
     return sources
+
+
+def folded_content_companions(sources, compiled_mods, libraries, abi, release):
+    folded = []
+    for mod in compiled_mods:
+        id, version = mod["id"], mod["version"]
+        archive_name = f"{CONTENT_PACKAGE}{id}.hmod"
+        if id not in libraries or archive_name not in sources:
+            continue
+        package = f"{CODE_PACKAGE}{id}"
+        manifest_source, manifest_identity = sources[f"{package}/horizon-mod.toml"]
+        manifest = release.file_access_path(ordinary(manifest_source, release))
+        require(release.identity(manifest) == manifest_identity, f"Native manifest changed: {id}")
+        native = tomllib.loads(manifest.read_text(encoding="utf-8"))
+        binding = native.pop("native", None)
+        require(isinstance(binding, dict) and binding.get("horizon") == abi, f"Wrong native package ABI: {id}")
+        archive_source, archive_identity = sources[archive_name]
+        path = release.file_access_path(ordinary(archive_source, release))
+        hashes = {}
+        with path.open("rb") as stream:
+            require({"sizeBytes": os.fstat(stream.fileno()).st_size,
+                     "sha256": hashlib.file_digest(stream, "sha256").hexdigest()} == archive_identity,
+                    f"Content companion changed: {id}")
+            stream.seek(0)
+            with zipfile.ZipFile(stream) as archive:
+                validate_members(archive)
+                info = archive.getinfo("horizon-mod.toml")
+                require(info.file_size <= (32 << 20), f"Content companion manifest is too large: {id}")
+                authored = tomllib.loads(archive.read(info).decode("utf-8"))
+                require(authored == native and authored.get("id") == id and authored.get("version") == version
+                        and "wasm" not in authored and "native" not in authored,
+                        f"Content companion differs from its native manifest: {id}")
+                for member in archive.infolist():
+                    if member.is_dir() or member.filename == info.filename:
+                        continue
+                    relative = release.safe_path(member.filename).as_posix()
+                    require(relative.startswith(("assets/", "data/")), f"Content companion contains a non-resource: {relative}")
+                    with archive.open(member) as resource:
+                        digest = hashlib.file_digest(resource, "sha256").hexdigest()
+                    expected = {"sizeBytes": member.file_size, "sha256": digest}
+                    actual = sources.get(f"{package}/{relative}")
+                    require(actual is not None and actual[1] == expected, f"Missing or changed native companion resource: {id}/{relative}")
+                    hashes[relative] = digest
+        del sources[archive_name]
+        folded.append({"id": id, "version": version, "archive": archive_name,
+                       "archiveSha256": archive_identity["sha256"], "archiveSizeBytes": archive_identity["sizeBytes"],
+                       "nativePackage": package, "resourceCount": len(hashes),
+                       "resourcesTreeSha256": hashlib.sha256(json.dumps(hashes, sort_keys=True).encode("ascii")).hexdigest()})
+    return folded
 
 
 def copy_exact(source, destination, row, release, *, linked=False):
@@ -215,9 +266,10 @@ def stage(args, release):
     require({CLIENT, "native/horizon-prepare.exe", "native/research-lock.json"} <= common.keys(),
             "The shared archive must supply the game client and pinned resource preparer")
     require({PRESENTATION, PROFILE, CLIENT, bootstrap} <= static.keys(), "Incomplete accepted static native payload")
-    payload, receipt, sidecars = sidecar_inputs(args.sidecars, common, versions, release)
+    payload, receipt, sidecars, libraries = sidecar_inputs(args.sidecars, common, versions, release)
     sources = overlay_sources(args.static_candidate, static, payload, sidecars, common, bootstrap,
                               build["horizonRevision"], receipt["abiBuildId"], release)
+    folded = folded_content_companions(sources, receipt["compiledMods"], libraries, receipt["abiBuildId"], release)
 
     with tempfile.TemporaryDirectory(prefix="stage-mod-overlay-", dir=run) as temporary:
         staged = Path(temporary) / "overlay"
@@ -235,7 +287,8 @@ def stage(args, release):
                   "sidecarReceiptSha256": release.identity(args.sidecars / "mod-sidecar-receipt.json")["sha256"],
                   "sharedRuntimeArchiveSha256": spec["archive"]["sha256"], "abiBuildId": receipt["abiBuildId"],
                   "bootstrapSha256": common[bootstrap]["sha256"], "clientSha256": receipt["clientSha256"],
-                  "compiledMods": receipt["compiledMods"], "overlayFiles": dict(sorted(files.items())),
+                  "compiledMods": receipt["compiledMods"], "foldedContentCompanions": folded,
+                  "overlayFiles": dict(sorted(files.items())),
                   "files": dict(sorted((common | files).items()))}
         write(release.file_access_path(staged / COMPOSITION), report)
         if args.qa_view is not None:
@@ -267,7 +320,7 @@ def main():
     sys.path.insert(0, str(release_tool.parent))
     try:
         print(stage(args, module_at(release_tool)))
-    except (KeyError, OSError, ValueError) as error:
+    except (KeyError, OSError, ValueError, zipfile.BadZipFile) as error:
         parser.exit(1, f"Shared Mods staging: {error}\n")
     finally:
         sys.path.pop(0)

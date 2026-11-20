@@ -1,4 +1,5 @@
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -6,6 +7,7 @@ import sys
 import tempfile
 from types import SimpleNamespace
 import unittest
+import zipfile
 
 import stage_shared_pack as staging
 from native_build import ROOT
@@ -19,6 +21,9 @@ RUNTIME = {"executable": "native/launch-rust-edition.exe", "platform": "windows-
 HORIZON, ABI = "a" * 40, "b" * 40
 VERSIONS = {"legacy": "1", "registrar": "2", "zoom": "3"}
 WASM = "native/horizon-mods/zoom.hmod"
+COMPANION = "native/horizon-mods/registrar.hmod"
+SHADER = "assets/registrar/shaders/post/example.wgsl"
+NATIVE_SHADER = "native/horizon-native-mods/registrar/" + SHADER
 REGISTRAR = "native/registrar.dll"
 PATCH = "native/horizon_patch.dll"
 PACKAGE = "native/horizon-native-mods/registrar/horizon-mod.toml"
@@ -86,6 +91,26 @@ def fixture(root):
                            overlay=shared / "overlay", qa_view=shared / "qa-view", common_candidate=common)
 
 
+def add_companion(args, *, native_shader=b"verified shader"):
+    data = io.BytesIO()
+    with zipfile.ZipFile(data, "w") as archive:
+        archive.writestr("horizon-mod.toml", 'id = "registrar"\nversion = "2"\n')
+        archive.writestr(SHADER, b"verified shader")
+    contents = {COMPANION: data.getvalue(), NATIVE_SHADER: native_shader}
+    lock = release.read(args.static_lock)
+    lock["files"].update(populate(args.static_candidate, contents))
+    release.write(args.static_lock, lock)
+    payload = args.sidecars / "pack"
+    records = populate(payload, contents)
+    receipt_path = args.sidecars / "mod-sidecar-receipt.json"
+    receipt = release.read(receipt_path)
+    hashes = {name.removeprefix("native/"): row["sha256"]
+              for name, row in staging.collect(payload, payload / "native", release)}
+    receipt["nativeTreeSha256"] = hashlib.sha256(json.dumps(hashes, sort_keys=True).encode("ascii")).hexdigest()
+    release.write(receipt_path, receipt)
+    return records[COMPANION]
+
+
 class StageSharedPackTests(unittest.TestCase):
     def setUp(self):
         temporary = tempfile.TemporaryDirectory()
@@ -112,6 +137,33 @@ class StageSharedPackTests(unittest.TestCase):
     def test_rejects_mutated_sidecar_without_publishing_an_overlay(self):
         (self.args.sidecars / "pack" / REGISTRAR).write_bytes(b"modified")
         with self.assertRaisesRegex(ValueError, "sidecar bytes differ"):
+            staging.stage(self.args, release)
+        self.assertFalse(self.args.overlay.exists())
+        self.assertFalse(self.args.qa_view.exists())
+
+    def test_folds_same_id_companion_when_every_resource_matches(self):
+        args = self.args
+        original = add_companion(args)
+        sidecar_receipt = release.identity(args.sidecars / "mod-sidecar-receipt.json")
+        proof = release.read(staging.stage(args, release))
+        files = proof["overlayFiles"]
+        self.assertNotIn(COMPANION, files)
+        self.assertFalse((args.qa_view / COMPANION).exists())
+        self.assertEqual((args.overlay / WASM).read_bytes(), b"wasm payload")
+        self.assertEqual((args.qa_view / NATIVE_SHADER).read_bytes(), b"verified shader")
+        self.assertEqual(release.identity(args.sidecars / "pack" / COMPANION), original)
+        self.assertEqual(release.identity(args.sidecars / "mod-sidecar-receipt.json"), sidecar_receipt)
+        hashes = {SHADER: hashlib.sha256(b"verified shader").hexdigest()}
+        self.assertEqual(proof["foldedContentCompanions"], [{
+            "id": "registrar", "version": "2", "archive": COMPANION,
+            "archiveSha256": original["sha256"], "archiveSizeBytes": original["sizeBytes"],
+            "nativePackage": "native/horizon-native-mods/registrar", "resourceCount": 1,
+            "resourcesTreeSha256": hashlib.sha256(json.dumps(hashes, sort_keys=True).encode("ascii")).hexdigest(),
+        }])
+
+    def test_rejects_different_native_shader_in_a_same_id_companion(self):
+        add_companion(self.args, native_shader=b"different shader")
+        with self.assertRaisesRegex(ValueError, "Missing or changed native companion resource"):
             staging.stage(self.args, release)
         self.assertFalse(self.args.overlay.exists())
         self.assertFalse(self.args.qa_view.exists())
