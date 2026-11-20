@@ -36,7 +36,13 @@ source = "negotiated_payload.rs"
         helper = replace(source.read_text(encoding="utf-8"), "data: &[u8])", f"data: &[u8], epoch: &{EPOCH_TYPE})")
         helper = replace(helper, "channel, data);", "channel, data, epoch);")
         source.write_text(helper, encoding="utf-8", newline="\n")
-    (bundle / "negotiated_payload.rs").write_bytes((RECIPE / "negotiated_payload.rs").read_bytes())
+    # Keep the pure flow state independently testable, then inline it as a
+    # child module so the mixin owns one self-contained Rust source file.
+    payload = (RECIPE / "negotiated_payload.rs").read_text(encoding="utf-8")
+    flow = (RECIPE / "visual_flow.rs").read_text(encoding="utf-8")
+    host = (RECIPE / "visual_flow_host.rs").read_text(encoding="utf-8")
+    (bundle / "negotiated_payload.rs").write_text(
+        f"{payload}\nmod visual_flow {{\n{flow}\n}}\n{host}", encoding="utf-8", newline="\n")
     return manifest
 
 
@@ -52,11 +58,12 @@ def adapt_glue(glue: str) -> str:
         ('world work waiting: {e}', 'world work waiting: {e:?}'),
         ("pub(super) fn from_server(game: &mut Game<'_>, channel: &str, data: &[u8]) {",
          '''pub(super) fn from_server(game: &mut Game<'_>, channel: &str, data: &[u8], epoch: &Arc<Epoch>) {
-    if data.len() > wire::MESSAGE_LIMIT
-        || !sync_payload_session(game).is_some_and(|session| session.matches_epoch(epoch))
-    {
+    if data.len() > wire::MESSAGE_LIMIT { return; }
+    let Some(session) = sync_payload_session(game).filter(|session| session.matches_epoch(epoch)) else {
         return;
-    }'''),
+    };'''),
+        ("super::orbital_visual::from_server(game, channel, data)",
+         "super::orbital_visual::from_server(game, &session, channel, data)"),
         ("    work: BTreeMap<u128, VecDeque<Vec<u8>>>,", "    work: PendingPayloads,"),
         ("    answers: BTreeMap<u128, VecDeque<Vec<u8>>>,", "    answers: PendingPayloads,"),
         ("    warn_no_content(game);\n    let heard:",
@@ -89,16 +96,35 @@ def adapt_visual(visual: str) -> str:
         ("    peers: BTreeMap<u128, (Receive, u64, String)>,\n",
          "    peers: BTreeMap<u128, (Receive, u64, String)>,\n"
          "    sessions: BTreeMap<u128, payload::Session>,\n"),
-        ("pub(super) fn tick_client(game: &mut Game<'_>) {", "pub(super) fn tick_client(game: &mut Game<'_>, session: &payload::Session) {"),
+        ("pub(super) fn tick_client(game: &mut Game<'_>) {\n"
+         "    if !game.native_window() || !game.native_on(ID) || game.native_player().is_none() { return; }",
+         "pub(super) fn tick_client(game: &mut Game<'_>, session: &payload::Session) {\n"
+         "    if !game.native_window() || !game.native_on(ID) || game.native_player().is_none() { return; }\n"
+         "    payload::flush_visual_ack(game, session);"),
+        ("            let (packet, after) = c.retry.take().unwrap_or_else(|| {",
+         "            let retry = c.retry.take().filter(|(packet, _)| !matches!(packet, Packet::State(_)));\n"
+         "            let (packet, after) = retry.unwrap_or_else(|| {"),
         ("game.native_net_send_to_server(wire::CHANNEL, bytes)", "payload::send_to_server(game, session, wire::CHANNEL, bytes)"),
         ("game.native_net_send_to_server(wire::CHANNEL, &packet.encode())", "payload::send_to_server(game, session, wire::CHANNEL, &packet.encode())"),
         ("pub(super) fn from_client(game: &mut Game<'_>, player: u128, channel: &str, bytes: &[u8]) -> bool {",
          "pub(super) fn from_client(game: &mut Game<'_>, sender: &payload::Peer, channel: &str, bytes: &[u8]) -> bool {"),
         ("    let players = game.native_server_players();\n"
          "    let Some(actor) = players.iter().find(|p| p.uuid == player && p.permission >= 2) else { return true; };",
+         "    let Some(bytes) = payload::visual_from_guest(&sender.session, bytes) else { return true; };\n"
          "    let players = payload::server_players(game);\n"
          "    let Some(actor) = players.iter().find(|p| p.session == sender.session && p.permission >= 2) else { return true; };\n"
          "    let player = actor.uuid;"),
+        ("pub(super) fn from_server(game: &mut Game<'_>, channel: &str, bytes: &[u8]) -> bool {",
+         "pub(super) fn from_server(game: &mut Game<'_>, session: &payload::Session, channel: &str, bytes: &[u8]) -> bool {"),
+        ("    let Some((owner, bytes)) = bytes.split_at_checked(16) else { return true; };",
+         "    let Some(bytes) = payload::visual_from_host(session, bytes) else { return true; };\n"
+         "    let Some((owner, bytes)) = bytes.split_at_checked(16) else { return true; };"),
+        ("        for recipient in players.iter().filter(|p| p.dimension == dimension) {\n            let to = recipient.uuid;",
+         "        for recipient in players.iter().filter(|p| p.dimension == dimension) {\n"
+         "            payload::flush_visual_ack(game, &recipient.session);\n"
+         "            let to = recipient.uuid;"),
+        ("} else { s.retry.remove(&key).unwrap_or_else(|| {",
+         "} else { s.retry.remove(&key).filter(|(bytes, _)| bytes.get(16) != Some(&0)).unwrap_or_else(|| {"),
         ("        match &packet {\n", "        sync_server_sessions(&mut s, &players);\n        match &packet {\n"),
         ("    let players = game.native_server_players();\n    SERVER.with(|cell| {\n        let mut s = cell.borrow_mut();\n",
          "    let players = payload::server_players(game);\n    SERVER.with(|cell| {\n        let mut s = cell.borrow_mut();\n"

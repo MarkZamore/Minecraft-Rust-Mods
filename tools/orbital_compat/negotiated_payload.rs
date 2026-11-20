@@ -130,13 +130,20 @@ pub(super) fn send_to_server(
     channel: &str,
     bytes: &[u8],
 ) -> Result<(), PayloadSendError> {
-    let endpoint = game
+    let endpoint = client_endpoint(game)?;
+    if channel == orbital_visual_wire::CHANNEL {
+        return send_visual(game, session, endpoint, Some(bytes));
+    }
+    send(game, session, endpoint, channel, bytes)
+}
+
+fn client_endpoint(game: &Game<'_>) -> Result<Endpoint, PayloadSendError> {
+    Ok(game
         .remote
         .as_ref()
         .ok_or(PayloadSendError::Disconnected)?
         .session
-        .payload_endpoint();
-    send(game, session, endpoint, channel, bytes)
+        .payload_endpoint())
 }
 
 pub(super) fn send_to_player(
@@ -145,11 +152,18 @@ pub(super) fn send_to_player(
     channel: &str,
     bytes: &[u8],
 ) -> Result<(), PayloadSendError> {
+    let endpoint = server_endpoint(game, session)?;
+    if channel == orbital_visual_wire::CHANNEL {
+        return send_visual(game, session, endpoint, Some(bytes));
+    }
+    send(game, session, endpoint, channel, bytes)
+}
+
+fn server_endpoint(game: &Game<'_>, session: &Session) -> Result<Endpoint, PayloadSendError> {
     let guest = game
         .online_player_record(session.player)
         .ok_or(PayloadSendError::StaleEpoch)?;
-    let endpoint = Endpoint::server(guest.sender.clone());
-    send(game, session, endpoint, channel, bytes)
+    Ok(Endpoint::server(guest.sender.clone()))
 }
 
 fn send(

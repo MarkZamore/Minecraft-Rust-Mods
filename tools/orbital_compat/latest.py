@@ -3,7 +3,7 @@
 import hashlib
 from pathlib import Path
 
-from . import worldeater_port
+from . import atlas_latest, tsunami_terrain, worldeater_port
 from . import (
     RECIPE, adapt_engine, adapt_hint_glue, adapt_post, adapt_typed_commands,
     adapt_visual_glue, add_wire_modules, replace, section,
@@ -111,6 +111,12 @@ id = "world"
 file = "crates/horizon-client/src/game.rs"
 name = "orbital_world"
 source = "latest_world.rs"
+
+[[module]]
+id = "chunk_tickets"
+file = "crates/horizon-client/src/game.rs"
+name = "orbital_chunk_tickets"
+source = "chunk_tickets.rs"
 ''')
     glue = (bundle / "glue.rs").read_text(encoding="utf-8")
     glue = worldeater_port.transform_glue(glue)
@@ -123,15 +129,19 @@ source = "latest_world.rs"
     write(carry, replace(carry.read_text(encoding="utf-8"), "    world.move_self(delta)?;",
                          "    let mut gate = horizon_world::move_gate::MoveGate::new();\n"
                          "    world.move_self(&mut gate, delta)?;"))
-    post = adapt_post(worldeater_port.transform_post((bundle / "post.rs").read_text(encoding="utf-8")))
+    post = adapt_post(worldeater_port.transform_post((bundle / "post.rs").read_text(encoding="utf-8")),
+                      native_0517=True)
     post = replace(post, "/// HEAD of `Renderer::render`:", "/// HEAD of `Renderer::draw_frame`:")
     adapt_engine(bundle, engine_source=worldeater.pop(worldeater_port.ENGINE))
     for name, content in worldeater.items():
         write(bundle / name, content)
+    atlas_latest.apply(bundle)
+    tsunami_terrain.apply(bundle)
     write(bundle / "horizon-mixin.toml", manifest)
     write(bundle / "glue.rs", glue)
     write(bundle / "post.rs", post)
     write(bundle / "latest_world.rs", read("latest_world.rs"))
+    write(bundle / "chunk_tickets.rs", read("chunk_tickets.rs"))
     write(bundle / "wire.rs", read("wire.rs") + "\n" + read("sequenced_wire.rs"))
     write(bundle / "visual.rs", adapt_visual(read("visual.rs")))
     write(bundle / "visual_wire.rs", replace(read("visual_wire.rs"), "SHADERS: u8 = 10", "SHADERS: u8 = 19"))
@@ -172,10 +182,6 @@ def adapt_work(glue: str) -> str:
         ("game.native_chunk_is_loaded(dimension, [cx + dx, cz + dz])", "world_adapter::chunk_loaded(game, dimension, [cx + dx, cz + dz])"),
         ("game.native_edit_blocks(dimension, &edit)", "world_adapter::edit_blocks(game, dimension, &edit)"),
         ("game.native_edit_blocks(dimension, e)", "world_adapter::edit_blocks(game, dimension, e)"),
-        ("game.native_force_chunk_in(TICKET, dimension, [key.1, key.2], false)",
-         "world_adapter::force_chunk(game, TICKET, dimension, [key.1, key.2], false)"),
-        ("game.native_force_chunk_in(TICKET, dim, [cx, cz], hold)",
-         "world_adapter::force_chunk(game, TICKET, dim, [cx, cz], hold)"),
         ("            for e in &w.edits {", "            for (session, e) in &w.edits {\n"
          "                if payload::operator_connection(game, session, dimension).is_none() { continue; }"),
         ("fn flush_work(game: &mut Game<'_>) {", "fn flush_work(game: &mut Game<'_>, session: &payload::Session) {"),
@@ -184,7 +190,9 @@ def adapt_work(glue: str) -> str:
         ("world work waiting: {e}", "world work waiting: {e:?}"),
         ("pub(super) fn from_server(game: &mut Game<'_>, channel: &str, data: &[u8]) {",
          "pub(super) fn from_server(game: &mut Game<'_>, channel: &str, data: &[u8], epoch: &Arc<Epoch>) {\n"
-         "    if !sync_payload_session(game).is_some_and(|session| session.matches_epoch(epoch)) { return; }"),
+         "    let Some(session) = sync_payload_session(game).filter(|session| session.matches_epoch(epoch)) else { return; };"),
+        ("super::orbital_visual::from_server(game, channel, data)",
+         "super::orbital_visual::from_server(game, &session, channel, data)"),
         ("        let (tag, offset, total) =", "        if kind == 12 {\n"
          "            if let Some((first, _)) = c.unacked.front() {\n"
          "                let gone = wire::acknowledged(data, c.epoch, *first, c.unacked.len())?;\n"
@@ -207,7 +215,56 @@ def adapt_work(glue: str) -> str:
         ("/// The `perform_command` hook:", "/// The `perform_console_command` hook:"),
     ):
         glue = replace(glue, before, after)
-    return adapt_requests(glue)
+    return adapt_requests(adapt_ticket_tracking(glue))
+
+
+def adapt_ticket_tracking(glue: str) -> str:
+    for before, after in (
+        ("use super::{Game, orbital_payload as payload};",
+         "use super::{Game, orbital_payload as payload, orbital_chunk_tickets::{ChunkKey, ChunkTickets}};"),
+        ("    waiting: BTreeMap<(String, i32, i32), Waiting>,",
+         "    waiting: BTreeMap<ChunkKey, Waiting>,\n    tickets: ChunkTickets<payload::Session>,"),
+        ("/// A chunk's edits waiting for it, since when, and whether its ticket goes once they are in.",
+         "/// A chunk's queued edits and how long they have waited."),
+        ("    release: bool,\n", ""),
+        ("edits: Vec::new(), release: false", "edits: Vec::new()"),
+        ("fn edits_waiting(game: &mut Game<'_>, dimension: &str) {", '''fn edits_waiting(game: &mut Game<'_>, dimension: &str, players: &[payload::Peer]) {
+    let live = |session: &payload::Session| players.iter().any(|peer| {
+        peer.permission >= 2 && peer.dimension == dimension && peer.session == *session
+    });
+    let released = SERVER.with(|server| {
+        let Server { tickets, waiting, .. } = &mut *server.borrow_mut();
+        waiting.retain(|key, queued| {
+            if key.0 != dimension { return true; }
+            queued.edits.retain(|(session, _)| live(session));
+            !queued.edits.is_empty()
+        });
+        tickets.prune(dimension, live, |key| waiting.contains_key(key))
+    });
+    for chunk in released {
+        world_adapter::force_chunk(game, TICKET, dimension, chunk, false);
+    }'''),
+        ("        if w.release {\n            game.native_force_chunk_in(TICKET, dimension, [key.1, key.2], false);",
+         "        if SERVER.with(|server| server.borrow_mut().tickets.finish_waiting(&key)) {\n"
+         "            world_adapter::force_chunk(game, TICKET, dimension, [key.1, key.2], false);"),
+        ("fn force_load(game: &mut Game<'_>, dimension: &str, line: &str) -> bool {",
+         "fn force_load(game: &mut Game<'_>, session: &payload::Session, dimension: &str, line: &str) -> bool {"),
+        ("if force_load(game, dimension, line) {", "if force_load(game, session, dimension, line) {"),
+    ):
+        glue = replace(glue, before, after)
+    return section(glue, "            // (a chunk whose edits still wait for it", "\n        }\n    }\n    true",
+                   '''            let key = (dim.to_owned(), cx, cz);
+            let changed = SERVER.with(|server| {
+                let Server { tickets, waiting, .. } = &mut *server.borrow_mut();
+                if hold {
+                    tickets.acquire(key, session)
+                } else {
+                    tickets.release(&key, session, waiting.contains_key(&key))
+                }
+            });
+            if changed {
+                world_adapter::force_chunk(game, TICKET, dim, [cx, cz], hold);
+            }''')
 
 
 def adapt_client(glue: str) -> str:
@@ -312,7 +369,8 @@ def latest_queues() -> str:
                      "            client.next_seq = 0;\n            client.epoch = new_epoch();\n"
                      "            client.progress = None;\n            client.backlog = (0, None);\n"
                      "            client.fly_sent = None;")
-    queues = replace(queues, "    let players = payload::server_players(game);", "    edits_waiting(game, dimension);\n    let players = payload::server_players(game);")
+    queues = replace(queues, "    let players = payload::server_players(game);",
+                     "    let players = payload::server_players(game);\n    edits_waiting(game, dimension, &players);")
     queues = replace(queues, "        server.answers.retain(|_, (session, _)| live(session));",
                      "        server.answers.retain(|_, (session, _)| live(session));\n"
                      "        server.sequence.retain(|_, (session, _, _)| {\n"

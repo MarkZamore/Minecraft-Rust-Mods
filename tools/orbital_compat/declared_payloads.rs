@@ -42,6 +42,7 @@ impl Hooks for OrbitalPayloads {
         let client: Arc<dyn IPayloadHandler> = Arc::new(Receiver(PayloadDirection::ToClient));
         registrar.play_to_server(PayloadId(WORK.into()), server.clone());
         registrar.play_to_client(PayloadId(ANSWER.into()), Some(client.clone()));
-        registrar.play_bidirectional(PayloadId(VISUAL.into()), server, Some(client));
+        let mut visual = event.registrar("2");
+        visual.play_bidirectional(PayloadId(VISUAL.into()), server, Some(client));
     }
 }

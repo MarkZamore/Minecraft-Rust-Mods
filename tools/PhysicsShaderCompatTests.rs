@@ -40,6 +40,7 @@ fn main() {
         assert_eq!(patched.matches(expected).count(), 1, "{name}: gamma output wrapped once");
         assert!(patched.contains("horizon_line_in(albedo.rgb)"), "{name}: author's input retained");
         assert!(patched.contains("horizon_physics_sway(position + origin"), "{name}: waves retained");
+        /* SWAY_PHASE */
         if /* CHECK_GAMMA */ {
             assert!(patched.contains("vec3<f32>(2.2)"));
             assert!(patched.contains("vec3<f32>(1.0 / 2.2)"));

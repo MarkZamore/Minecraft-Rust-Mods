@@ -180,6 +180,13 @@ def adapt_0_20_7_sway(source: str) -> str:
 '''
     result = source[:start] + patch + source[end:]
     result = replace_once(result, 'api = \\"0.1\\"', 'api = \\"0.2\\"')
+    # Flutter's phase was elapsed time multiplied by the instantaneous gust
+    # rate. A small gust change then advanced the phase by many cycles after
+    # a few minutes. Keep the base rate and apply the gust as a phase offset.
+    result = replace_once(result, "horizon_physics_flutter(root, t, 1.1 + 0.6 * w)",
+                          "horizon_physics_flutter(root, t + (0.6 / 1.1) * w, 1.1)")
+    result = replace_once(result, "horizon_physics_flutter(world * 1.7, t, 1.4 + w * 0.8)",
+                          "horizon_physics_flutter(world * 1.7, t + (0.8 / 1.4) * w, 1.4)")
     return port_snow_dimension(result)
 
 

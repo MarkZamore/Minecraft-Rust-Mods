@@ -121,7 +121,9 @@ def transform_engine(source: str) -> str:
         """            let mut visible_params = s.params;
             // (the warp on for its span only: before and after it the frame keeps its culling)""")
     source = replace_once(source, "                render::warp_on(on && !nowarp, 0.0, 0.0, 0.0, 0, 0.0);",
-        """                if !on || nowarp {
+        """                // The old warp used the actor's camera to avoid redrawing terrain.
+                // The depth pass clips the cracks to each viewer's own frame instead.
+                if nowarp {
                     visible_params[10] = 0.0;
                 }""")
     return replace_once(source, """            if s.key == "earthquake" {

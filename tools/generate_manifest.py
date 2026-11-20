@@ -24,6 +24,7 @@ FILE_SEGMENT = re.compile(r"[A-Za-z0-9_.$-]+")
 ORBITAL_CONTENT = "native/horizon-mods/orbital.hmod"
 NATIVE_WITHOUT_MODS_ROW = {"dynamic_fps_for_rust", "veinminer"}
 PACK_OVERLAY_MODS = {"horizon_physics", "orbital", "jei"}
+VEGETATION_REFERENCE_SHA256 = "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17"
 
 
 def file_info(path):
@@ -97,6 +98,11 @@ def verify_release_startup(candidate, build, bootstrap_sha, *, base_repo=None):
     verify_environment_evidence(backup, policy_sha, ("direct-client",) * 2)
     verify_environment_evidence(servers, policy_sha, ("direct-client",) * 6)
     verify_multiplayer_acceptance(multiplayer, build)
+    qa = ROOT / "tools/qa"
+    verify_orbital_abilities(load(qa / "orbital-abilities-solo.json"), build)
+    verify_orbital_abilities(load(qa / "orbital-abilities-network.json"), build, guest=True)
+    verify_orbital_abilities(load(qa / "orbital-abilities-scaled.json"), build, resolution_scale=75)
+    verify_vegetation_motion(load(qa / "vegetation-motion.json"), build)
     verify_backup_acceptance(backup, build)
     verify_server_policy_acceptance(servers, build, base_repo=base_repo)
     if base_repo is None:
@@ -104,6 +110,84 @@ def verify_release_startup(candidate, build, bootstrap_sha, *, base_repo=None):
     from native_notice_acceptance import verify_launcher_support, verify_native_notices
     verify_launcher_support(load(ROOT / "tools/qa/launcher-notices-support.json"))
     verify_native_notices(load(ROOT / "tools/qa/native-notices.json"), candidate, build, base_repo)
+
+
+def verify_orbital_abilities(report, build, *, guest=False, resolution_scale=None):
+    from smoke_orbital_abilities import ABILITIES, SOURCE, WIP
+
+    roster = set(ABILITIES) if resolution_scale is None else {"plasma"}
+    caster = "guest" if guest else "host"
+    modes = {"off", "on"} if guest else ({"on"} if resolution_scale is None else {"off"})
+    roles = {"actor", "observer"} if guest else {"actor"}
+    orbital_pin = load(ROOT / "tools/orbital_compat/upstream-0.5.17.json")
+    rows = report.get("abilities", {})
+    if (report.get("result") != "PASS" or report.get("clientSha256") != build["clientSha256"]
+            or report.get("horizonRevision") != build["horizonRevision"]
+            or report.get("orbitalVersion") != orbital_pin["version"]
+            or report.get("orbitalContentSha256") != orbital_pin["contentCompanion"]["sha256"]
+            or report.get("authorSource") != SOURCE or report.get("observer") is not guest
+            or report.get("castFrom") != caster or report.get("requestedResolutionScale") != resolution_scale
+            or report.get("unavailableNative") != WIP or set(rows) != roster):
+        raise ValueError("Run the complete Orbital ability check for this exact candidate and mode")
+    for key, row in rows.items():
+        ability = ABILITIES[key]
+        cast = row.get("casts", {}).get(caster, {})
+        observations = cast.get("terrainModes", {})
+        if (row.get("status") != "PASS" or cast.get("status") != "PASS"
+                or cast.get("disposableWorldsRemoved") is not True or set(observations) != modes):
+            raise ValueError(f"Missing a complete {caster} test for Orbital {ability.title}")
+        renderer = cast.get("renderer", {})
+        if (set(renderer) != roles or any(not view.get("backend") for view in renderer.values())
+                or (resolution_scale is not None and any(view.get("resolution_scale") != resolution_scale
+                    or view.get("dynamic_resolution") is not False for view in renderer.values()))):
+            raise ValueError(f"Missing the actual renderer state for Orbital {ability.title}")
+        for mode, evidence in observations.items():
+            terrain = evidence.get("terrain", {})
+            render = evidence.get("render", {})
+            if (evidence.get("status") != "PASS" or evidence.get("strike", {}).get("ability") != key
+                    or evidence.get("observedStrikeSeconds", 0) < ability.seconds
+                    or set(terrain.get("after", {})) != roles or set(render) != roles
+                    or terrain.get("serverBlockChecks", 0) != len(ability.probes)):
+                raise ValueError(f"Missing completed effect or authoritative terrain for Orbital {ability.title}")
+            if key == "tsunami" and mode == "on" and evidence.get("terrainTail", {}).get("status") != "PASS":
+                raise ValueError("Tsunami terrain must finish and release its tickets after the visual effect")
+            after = terrain["after"]["actor"]
+            before = [probe.before for probe in ability.probes]
+            if (terrain.get("before") != before or len(after) != len(before)
+                    or (guest and after != terrain["after"]["observer"])):
+                raise ValueError(f"The clients disagreed on Orbital {ability.title} terrain")
+            changed = sum(block != probe.before and (not probe.after or block in probe.after)
+                          for block, probe in zip(after, ability.probes, strict=True))
+            if ((mode == "off" and after != before) or (mode == "on" and changed < ability.changed_count)):
+                raise ValueError(f"Terrain disagreed with the selected mode for Orbital {ability.title}")
+            for role, view in render.items():
+                frames = [frame.get("clients", {}).get(role, {}) for frame in evidence.get("frames", [])]
+                visible = any(frame.get("pixelChange") == view.get("peakPixelChange")
+                              and re.fullmatch(r"[0-9a-f]{64}", frame.get("frame", {}).get("sha256", ""))
+                              for frame in frames)
+                if (view.get("shaderErrors") != []
+                        or not visible or not 0 < view.get("threshold", 1) <= view.get("peakPixelChange", 0) <= 1):
+                    raise ValueError(f"A client did not render a visible clean Orbital {ability.title} effect")
+            if guest and not any(shader == ability.shader for shader, _ in render["observer"].get("remoteShaderGenerations", [])):
+                raise ValueError(f"Missing the remote rendered Orbital {ability.title} effect")
+
+
+def verify_vegetation_motion(report, build):
+    expected_checks = {"stationaryBlock", "swayDisabled", "leaves", "grass"}
+    checks = report.get("checks", {})
+    if (report.get("schemaVersion") != 1 or report.get("result") != "PASS"
+            or report.get("clientSha256") != build["clientSha256"]
+            or report.get("baselineClientSha256") != VEGETATION_REFERENCE_SHA256
+            or report.get("shaderClockHz") != 60 or report.get("windowStartSeconds") != [4, 60, 300, 600]
+            or report.get("samplesPerWindow", 0) < 3 or set(checks) != expected_checks
+            or any(value is not True for value in checks.values())):
+        raise ValueError("Run the scripted vegetation comparison for this exact candidate")
+    for name in ("leaves", "grass"):
+        plant = report.get("plants", {}).get(name, {})
+        if (plant.get("retainsMotion") is not True
+                or not 0 <= plant.get("afterLateMedian", 1) <= plant.get("beforeLateMedian", 0) / 2
+                or plant.get("beforeLateMedian", 0) <= 0):
+            raise ValueError(f"Vegetation {name} lost motion or became unstable late in the session")
 
 
 def verify_gameplay_acceptance(report, build, preset):

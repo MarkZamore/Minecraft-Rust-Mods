@@ -49,8 +49,8 @@ pub(super) fn from_client(
     let Some(peer) = payload::authenticated_peer(game, player, epoch) else {
         return;
     };
-    if peer.permission < 2
-        || super::orbital_visual::from_client(game, &peer, channel, data)
+    if super::orbital_visual::from_client(game, &peer, channel, data)
+        || peer.permission < 2
         || channel != WORK
     {
         return;

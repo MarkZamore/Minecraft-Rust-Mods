@@ -304,13 +304,14 @@ pub(super) fn refresh(game: &mut Game<'_>) {
                     s.meta.shader, s.meta.generation, s.meta.revision, s.data.len());
                 c.logged.insert(owner, s.meta.generation);
             }
-            let atlas_version = if s.meta.shader == 9 { orbital_laser::network_atlas_version() } else { 0 };
+            let uses_atlas = orbital_laser::network_uses_atlas(s.meta.shader);
+            let atlas_version = if uses_atlas { orbital_laser::network_atlas_version() } else { 0 };
             let key = (s.meta.key(), atlas_version);
             if c.upload.get(&owner).is_none_or(|(old, _, _)| *old != key) {
                 c.next_upload = c.next_upload.wrapping_add(1);
                 let token = c.next_upload;
                 let mut data = s.data.clone();
-                if s.meta.shader == 9 { orbital_laser::network_repack(s.meta.shader, Arc::make_mut(&mut data)); }
+                if uses_atlas { orbital_laser::network_repack(s.meta.shader, Arc::make_mut(&mut data)); }
                 c.upload.insert(owner, (key, token, data));
             }
             let data_version = c.upload[&owner].1;

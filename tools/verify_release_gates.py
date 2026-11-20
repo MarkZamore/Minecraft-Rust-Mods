@@ -59,6 +59,16 @@ def verify(candidate, base_repo):
     reject("Orbital pixel evidence belongs to a different frame", game_check, gameplay,
            lambda value: value["orbitalLaser"]["modHud"]["frames"]["wheelOpen"].update(sha256="0" * 64))
     network_check = lambda report: release.verify_multiplayer_acceptance(report, build)
+    ability_network = release.load(qa / "orbital-abilities-network.json")
+    ability_network_check = lambda report: release.verify_orbital_abilities(report, build, guest=True)
+    reject("Missing active Orbital ability", ability_network_check, ability_network,
+           lambda value: value["abilities"].pop("sixstars"))
+    reject("Observer did not render the Orbital shader", ability_network_check, ability_network,
+           lambda value: value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]
+           ["render"]["observer"].update(remoteShaderGenerations=[]))
+    reject("Observer's Orbital terrain contradicts the server", ability_network_check, ability_network,
+           lambda value: value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]
+           ["terrain"]["after"].update(observer=["minecraft:barrier"]))
     backup_check = lambda report: release.verify_backup_acceptance(report, build)
     server_check = lambda report: release.verify_server_policy_acceptance(report, build, base_repo=base_repo)
     notice_check = lambda report: verify_native_notices(report, candidate, build, base_repo)

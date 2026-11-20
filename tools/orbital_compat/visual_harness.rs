@@ -7,6 +7,7 @@ extern crate self as log;
 #[macro_export]
 macro_rules! info { ($($a:tt)*) => { let _ = format_args!($($a)*); }; }
 pub fn network_atlas_version() -> u64 { 1 }
+pub fn network_uses_atlas(shader: u8) -> bool { shader == 9 }
 pub fn network_repack(_: u8, _: &mut [u32]) {}
 pub fn network_pass_index(_: &str) -> Option<u8> { Some(0) }
 pub fn network_pass(index: u8) -> Option<(std::sync::Arc<str>, u64)> {

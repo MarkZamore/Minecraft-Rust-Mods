@@ -316,7 +316,7 @@ def adapt_hint_glue(source: str) -> str:
     return source
 
 
-def adapt_post(source: str) -> str:
+def adapt_post(source: str, *, native_0517: bool = False) -> str:
     source = replace(source, 'use std::sync::{Arc, Mutex};', '''use std::sync::{Arc, Mutex};
 use std::collections::BTreeMap;''')
     source = replace(source, 'static PASS: Mutex<Option<Pass>> = Mutex::new(None);',
@@ -358,7 +358,40 @@ pub fn set_remote(passes: Vec<(u128, Pass)>) {
 
 fn draw_one(world: &mut crate::gfx::native_render::WorldDrawn<'_>, pass: &Pass, frame: Captured, drawer: &mut Drawer) {
 ''')
-    return source
+    if not native_0517:
+        return source
+
+    source = replace(source, '    drawers.retain(|owner, _| passes.contains_key(owner));', '''    // The local warm-up clears its pass after one frame, while its pipeline
+    // may still be compiling. Keep that drawer for the subsequent strike.
+    drawers.retain(|owner, _| *owner == 0 || passes.contains_key(owner));''')
+    source = replace(source, '        draw_one(world, &pass, frame, drawer);',
+                     '        draw_one(world, &pass, frame, drawer, owner == 0);')
+    source = replace(source, "fn draw_one(world: &mut crate::gfx::native_render::WorldDrawn<'_>, pass: &Pass, frame: Captured, drawer: &mut Drawer) {", '''fn draw_one(
+    world: &mut crate::gfx::native_render::WorldDrawn<'_>,
+    pass: &Pass,
+    frame: Captured,
+    drawer: &mut Drawer,
+    local: bool,
+) {''')
+    source = replace(source, '''    // (a strike's frame waits for its pass; the frame that builds it ahead, its parameters all nothing, doesn't)
+    let strike = pass.params.iter().any(|&p| p != 0.0);
+    if !drawer.post.prepare(world.device, pass.version, &pass.source, true, strike) {
+''', '''    // Preserve the local strike timing. A remote snapshot can arrive with a
+    // cold shader, so keep ticking and rendering while its worker compiles it.
+    let wait = local && pass.params.iter().any(|&p| p != 0.0);
+    if !drawer.post.prepare(world.device, pass.version, &pass.source, true, wait) {
+''')
+    # Horizon passes world depth and window color separately. The author's
+    # sampler uses normalized coordinates, so each texture uses its own size.
+    if source.count("return textureSampleLevel(scene_depth, nearest_sampler, uv, 0.0).r;") != 1:
+        raise ValueError("Orbital's depth sampler no longer uses normalized viewport coordinates")
+    return replace(source, '''    if world.depth_size != size {
+        // (the pass reads the depth at the picture's pixels: a world drawn smaller than the window isn't handled yet)
+        static WARNED: std::sync::Once = std::sync::Once::new();
+        WARNED.call_once(|| log::warn!("[mod orbital] the world draws smaller than the window: no post pass"));
+        return;
+    }
+''', "")
 
 
 def apply(bundle: Path, *, revision: str | None = None) -> None:
@@ -469,6 +502,7 @@ pub fn network_pass(index: u8) -> Option<(std::sync::Arc<str>, u64)> {
 '''
     updated_engine += """
 pub fn network_atlas_version() -> u64 { sdk::atlas::resources_version() }
+pub fn network_uses_atlas(shader: u8) -> bool { shader == 9 }
 pub fn network_repack(shader: u8, words: &mut [u32]) {
     if shader == 9 { strike::hu_repack(words); }
 }
@@ -477,7 +511,27 @@ pub fn network_repack(shader: u8, words: &mut [u32]) {
     sdk_source = sdk.read_text(encoding="utf-8")
     # Native SDK aliasing must not resolve back into the test doubles themselves.
     sdk_source = sdk_source.replace("horizon_mod_sdk::", "crate::horizon_sdk::")
-    sdk_source = replace(sdk_source, '        pub fn resources_version() -> u64 {\n            1\n        }', '        thread_local! { static NETWORK_TEST_VERSION: std::cell::Cell<u64> = const { std::cell::Cell::new(1) }; }\n        pub fn resources_version() -> u64 { NETWORK_TEST_VERSION.with(|v| v.get()) }\n        pub fn network_test_atlas(layer: u32) {\n            let face = Face { sprite: Sprite { array: 0, layer, animated: false, cutout: false },\n                rect: (0.0, 0.0, 1.0, 1.0), inset: 0.0, uv: (0.0, 0.0, 1.0, 0.0, 0.0, 1.0),\n                tint: Tint::Grass, translucent: false };\n            let mut table = HashMap::new();\n            table.insert("minecraft:grass_block".to_owned(), BlockFaces { sides: vec![vec![face]; 6], particle: None, cube: true });\n            TABLE.with(|t| *t.borrow_mut() = Some(table));\n            NETWORK_TEST_VERSION.with(|v| v.set(v.get() + 1));\n        }')
+    sdk_source = replace(sdk_source, '''        pub fn resources_version() -> u64 {
+            1
+        }''', '''        thread_local! {
+            static NETWORK_TEST_VERSION: std::cell::Cell<u64> = const { std::cell::Cell::new(1) };
+        }
+        pub fn resources_version() -> u64 {
+            NETWORK_TEST_VERSION.with(|v| v.get())
+        }
+        pub fn network_test_atlas(layer: u32, names: &[&str]) {
+            let face = Face { sprite: Sprite { array: 0, layer, animated: false, cutout: false },
+                rect: (0.0, 0.0, 1.0, 1.0), inset: 0.0, uv: (0.0, 0.0, 1.0, 0.0, 0.0, 1.0),
+                tint: Tint::Grass, translucent: false };
+            let mut table = HashMap::new();
+            for name in names {
+                table.insert((*name).to_owned(), BlockFaces {
+                    sides: vec![vec![face.clone()]; 6], particle: None, cube: true,
+                });
+            }
+            TABLE.with(|t| *t.borrow_mut() = Some(table));
+            NETWORK_TEST_VERSION.with(|v| v.set(v.get() + 1));
+        }''')
     sdk.write_text(sdk_source, encoding="utf-8", newline="\n")
     hurricane = bundle / "engine/src/strike/hurricane.rs"
     hurricane.write_text(hurricane.read_text(encoding="utf-8") + "\n" + (RECIPE / "atlas_test.rs").read_text(encoding="utf-8"), encoding="utf-8", newline="\n")

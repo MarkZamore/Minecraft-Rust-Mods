@@ -127,6 +127,17 @@ def main():
             "PATCH_COLOR": "",
         }
     if version == "0.20.7":
+        fixture["SWAY_PHASE"] = '''for (source, position, rate, gust) in [
+            ("horizon_physics_flutter(root, t, 1.1 + 0.6 * w)", "root", "1.1", "0.6"),
+            ("horizon_physics_flutter(world * 1.7, t, 1.4 + w * 0.8)", "world * 1.7", "1.4", "0.8"),
+        ] {
+            let expected = format!("horizon_physics_flutter({position}, t + ({gust} / {rate}) * w, {rate})");
+            assert_eq!(patched.matches(&expected).count(), 1, "{name}: gust is a bounded phase offset");
+            assert!(!patched.contains(source), "{name}: gust is still multiplied by elapsed time");
+        }
+        assert!(patched.contains("horizon_physics_flutter(root, t * 0.45, 1.2)"),
+            "{name}: underwater plants retain their clock");
+        println!("API {name}: elapsed-time-independent foliage gust phase PASS");'''
         fixture["HOOK"] = '''let std::ops::ControlFlow::Break(Ok(module)) =
             horizon_physics_shader((&material, &stage.file), &[], &[], flags, color) else {
             panic!("Physics hook did not parse the patched terrain");
@@ -138,6 +149,7 @@ def main():
         assert!(tentative.contains("water_open"), "{name}: authored side-face water styling missing");
         let patched = tentative;'''
     else:
+        fixture["SWAY_PHASE"] = ""
         fixture["HOOK"] = '''let std::ops::ControlFlow::Break(patched) = horizon_physics_shader(&material, &[], &[], flags, color) else {
             panic!("Physics hook did not return the patched terrain");
         };'''
