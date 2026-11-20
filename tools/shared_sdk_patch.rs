@@ -8,6 +8,9 @@ use serde::Deserialize;
 use serde_json::{Value, json};
 use std::{collections::BTreeMap, env, fs, path::Path};
 
+#[path = "lanminecraft_shared_sdk_extensions/mod.rs"]
+mod game_extensions;
+
 #[derive(Deserialize)]
 struct Inputs {
     #[serde(rename = "schemaVersion")]
@@ -139,19 +142,24 @@ fn run(
 
 fn main() {
     let args: Vec<_> = env::args_os().skip(1).collect();
-    assert_eq!(
-        args.len(),
-        6,
-        "expected MOD_INPUT MOD_DIRECTORY SOURCE SDK_INDEX ABI OUTPUT"
-    );
-    if let Err(error) = run(
-        Path::new(&args[0]),
-        Path::new(&args[1]),
-        Path::new(&args[2]),
-        Path::new(&args[3]),
-        args[4].to_str().expect("ASCII ABI identity"),
-        Path::new(&args[5]),
-    ) {
+    let result = match args.as_slice() {
+        [operation, input, output] if operation == "--adapt-game-source" => {
+            fs::read_to_string(input)
+                .map_err(|error| error.to_string())
+                .and_then(|source| game_extensions::adapt_game(&source))
+                .and_then(|source| fs::write(output, source).map_err(|error| error.to_string()))
+        }
+        [input, root, source, index, abi, output] => run(
+            Path::new(input),
+            Path::new(root),
+            Path::new(source),
+            Path::new(index),
+            abi.to_str().expect("ASCII ABI identity"),
+            Path::new(output),
+        ),
+        _ => Err("Expected MOD_INPUT MOD_DIRECTORY SOURCE SDK_INDEX ABI OUTPUT or --adapt-game-source INPUT OUTPUT".into()),
+    };
+    if let Err(error) = result {
         eprintln!("{error}");
         std::process::exit(1);
     }

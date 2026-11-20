@@ -17,6 +17,7 @@ from modern_native_stage import toml_value
 from native_build import DECISIONS, INPUT_LOCK, build_recipe_sha, load, sha, tree_hash
 from shared_sdk_mod_inputs import MIXINS, inspect_mixins, local_file
 from shared_sdk_pack import REVISION, ordinary, replace_once
+from shared_sdk_render import adapt_render
 
 
 TOOLS = Path(__file__).resolve().parent
@@ -209,12 +210,16 @@ def generate_copies(args, plan, abi, *, release=True):
     # The build's staging source is idle once the SDK is produced. Restore the
     # compiler bytes and remove the temporary Cargo example on every exit.
     tool = generator / "examples/lanminecraft_shared_sdk_patch.rs"
+    extension = tool.parent / "lanminecraft_shared_sdk_extensions/mod.rs"
     environment = {**tool_environment(args.mingw_bin), "RUSTUP_TOOLCHAIN": TOOLCHAIN,
                    "CARGO_TARGET_DIR": str(args.host_target), "CARGO_NET_OFFLINE": "true"}
     environment.pop("RUSTFLAGS", None)
     environment.pop("CARGO_ENCODED_RUSTFLAGS", None)
     write(tool, (TOOLS / "shared_sdk_patch.rs").read_text(encoding="utf-8"))
+    extension_created = False
     try:
+        write(extension, (TOOLS / "shared_sdk_extensions.rs").read_text(encoding="utf-8"))
+        extension_created = True
         upstream_patch.write_bytes(fixed.encode("utf-8"))
         command = ["cargo", "run", "--locked", "--offline", *(["--release"] if release else []),
                    "-p", "horizon-mod-api-gen", "--example",
@@ -224,7 +229,12 @@ def generate_copies(args, plan, abi, *, release=True):
     finally:
         upstream_patch.write_bytes(original)
         tool.unlink()
-    return generated, load(generated / "patch.json")
+        if extension_created:
+            extension.unlink()
+            extension.parent.rmdir()
+    tool_binary = args.host_target / ("release" if release else "debug") / "examples" / (tool.stem + ".exe")
+    ordinary(tool_binary)
+    return generated, load(generated / "patch.json"), tool_binary
 
 
 def apply_mixins(args, plan, generated, patch):
@@ -297,7 +307,32 @@ def module_routes(plan, index):
     return routes
 
 
-def patch_sources(args, plan, stage, names, index):
+def adapt_tectonic_world(text, source):
+    generator = local_file(source, "crates/horizon-world/src/worldgen/generator.rs")
+    # Preserve the copied caller's pure error constructor and imports of
+    # public SDK items from modules without replacements in this mirror.
+    body = re.findall(r"(?m)^fn resource\(message: impl Into<String>\) -> GeneratorError \{\n"
+                      r"    GeneratorError::Resource\(message.into\(\)\)\n\}",
+                      generator.read_text(encoding="utf-8"))
+    if len(body) != 1 or "pub use ::horizon_world::worldgen::generator::resource;" in text:
+        raise ValueError("Tectonic's private generator error helper changed")
+    world = "    pub use ::horizon_world::worldgen::decode_noise;\n"
+    module = "    pub mod generator {\n"
+    structure = "    pub mod structure {\n"
+    for before, after in (
+        (world, world + "    pub use ::horizon_world::worldgen::generator_structures;\n"),
+        (module, module + textwrap.indent(body[0], "        ") + "\n"
+                       + "        pub use ::horizon_world::worldgen::generator::{queries, WorkerState};\n"),
+        (structure, structure + "        pub use ::horizon_world::worldgen::structure::{BlockInfo, StructureTemplate};\n"),
+        ("        use super::{DecodeError, Object, number_text, optional, required};\n", ""),
+        ("            biome_chunks::BiomeChunks,\n", ""),
+        ("decode_noise, density::DensityRegistry, generator_structures::Starts,", "decode_noise, density::DensityRegistry,"),
+    ):
+        text = replace_once(text, before, after)
+    return text
+
+
+def patch_sources(args, plan, stage, names, index, *, game_adapter=None):
     # Old helpers used added modules through their original game crate names.
     # Point only those added modules at the replacement crate that owns their
     # state. All engine types and stock modules continue using the shared SDK.
@@ -317,19 +352,16 @@ def patch_sources(args, plan, stage, names, index):
             return f"::{patch}::{path}"
 
         text = (stage / name / "src/lib.rs").read_text(encoding="utf-8")
+        if name == "horizon_patched_client_render":
+            text = adapt_render(text)
         if name == "horizon_patched_world" and any(mod["id"] == "tectonic_horizon" for mod in plan["mods"]):
-            generator = local_file(args.patch_source, "crates/horizon-world/src/worldgen/generator.rs")
-            # Tectonic's existing error helper is pure. Its original module is
-            # private to the SDK; keep the verified implementation in the copy.
-            body = re.findall(r"(?m)^fn resource\(message: impl Into<String>\) -> GeneratorError \{\n"
-                              r"    GeneratorError::Resource\(message.into\(\)\)\n\}",
-                              generator.read_text(encoding="utf-8"))
-            if len(body) != 1 or "pub use ::horizon_world::worldgen::generator::resource;" in text:
-                raise ValueError("Tectonic's private generator error helper changed")
-            anchor = "    pub mod generator {\n"
-            text = replace_once(text, anchor, anchor + textwrap.indent(body[0], "        ") + "\n")
+            text = adapt_tectonic_world(text, args.patch_source)
         source = args.out / "link-sources" / f"{name}.rs"
         write(source, qualified.sub(bind, text) if qualified else text)
+        if name == "horizon_patched" and game_adapter is not None:
+            adapted = source.with_suffix(".adapted.rs")
+            subprocess.run([str(game_adapter), "--adapt-game-source", str(source), str(adapted)], check=True)
+            adapted.replace(source)
         pending[name] = (source, required)
     complete = set()
     while pending:
@@ -343,7 +375,7 @@ def patch_sources(args, plan, stage, names, index):
     return ordered
 
 
-def build_libraries(args, plan, sdk, stage, names, installs):
+def build_libraries(args, plan, sdk, stage, names, installs, game_adapter):
     abi = sdk["commit"]
     rust_release = re.search(r"(?m)^release: (\S+)$", sdk["rustc"]).group(1)
     entry_template = local_file(args.patch_source, REGISTRAR_TEMPLATE)
@@ -398,7 +430,8 @@ def build_libraries(args, plan, sdk, stage, names, installs):
         libraries.append(library)
         externs[name] = library
     patches = {}
-    for name, source, required in patch_sources(args, plan, stage, names, load(args.sdk / "functions.json")):
+    for name, source, required in patch_sources(args, plan, stage, names, load(args.sdk / "functions.json"),
+                                                game_adapter=game_adapter):
         patch_deps = {owner: patches[owner] for owner in required}
         patches[name] = rustc(args.sdk, output, source, name, {**externs, **patch_deps},
                               features=sdk.get("game_features", []), environment=environment)
@@ -453,9 +486,9 @@ def main():
     plan = verify_pack_inputs(args.inputs, args.selection)
     sdk = verify_sdk(args.sdk, receipt)
     verify_mixins_tool(args.mixins)
-    generated, patch = generate_copies(args, plan, sdk["commit"])
+    generated, patch, game_adapter = generate_copies(args, plan, sdk["commit"])
     stage, names, installs = apply_mixins(args, plan, generated, patch)
-    payload, libraries = build_libraries(args, plan, sdk, stage, names, installs)
+    payload, libraries = build_libraries(args, plan, sdk, stage, names, installs, game_adapter)
     profile = args.edition / "integration/shared-native/profile.py"
     command = [sys.executable, "-B", str(profile), "--sdk", str(args.sdk), "--sdk-receipt", str(args.receipt),
                "--pack-root", str(payload.parent)]
