@@ -22,6 +22,9 @@ from orbital_controls import SETTINGS
 from orbital_world_guard import BACKUP_SOURCE, WORLD_SOURCE
 import physics_title_compat
 import server_seed_compat
+from shared_sdk_client_lib import PATCH_EXPORTS as CLIENT_LIB_EXPORTS
+from shared_sdk_game_exports import PATCH_EXPORTS as GAME_EXPORTS
+from shared_sdk_render import PATCH_EXPORTS as RENDER_EXPORTS
 import spider_compat
 import tectonic_compat
 
@@ -93,6 +96,14 @@ pub fn legacy_mod_active(id: &str) -> bool {
 '''
 PROFILE_CHECK = "horizon_mod_package::runtime::native_paths::legacy_mod_active"
 DELIVERY = EXTRAS + "/legacy_payload_commit.rs"
+NATIVE_HOOKS = GAME + "/native_hooks/mod.rs"
+PATCH_EXPORTS = {
+    "crates/horizon-world/src/worldgen/block_feature.rs": (
+        "b04711c08b73355b240e3d96bc73f4c3d4b547ea872d5409325815ca9e82545d",
+        (("    pub(crate) fn tree_blocks(&self) -> Result<Arc<super::tree_blocks::TreeBlocks>, DecodeError> {",
+          "    pub fn tree_blocks(&self) -> Result<Arc<super::tree_blocks::TreeBlocks>, DecodeError> {"),),
+    ),
+}
 
 
 def ordinary(path, *, directory=False):
@@ -172,6 +183,23 @@ def neutral_delivery(game, base, version):
     return changed
 
 
+def patch_exports(base, prepared):
+    changed = {}
+    for exports in (PATCH_EXPORTS, CLIENT_LIB_EXPORTS, RENDER_EXPORTS, GAME_EXPORTS):
+        for name, (expected, declarations) in exports.items():
+            file = base / name
+            ordinary(file)
+            if sha(file) != expected:
+                raise ValueError(f"Shared SDK patch dependency changed: {name}")
+            text = changed.get(name, prepared.get(name))
+            if text is None:
+                text = file.read_text(encoding="utf-8")
+            for anchor, public in declarations:
+                text = replace_once(text, anchor, public)
+            changed[name] = text
+    return changed
+
+
 def plan_seams(base, prepared, edition, version):
     ordinary(base, directory=True)
     ordinary(prepared, directory=True)
@@ -183,6 +211,9 @@ def plan_seams(base, prepared, edition, version):
         ordinary(file)
         changed[name] = file.read_text(encoding="utf-8")
     changed[BRIDGE] = gated_settings(changed[BRIDGE])
+    changed[BRIDGE] = replace_once(changed[BRIDGE], "pub(in crate::game) struct NativeMod {", "pub struct NativeMod {")
+    changed[NATIVE_HOOKS] = replace_once(changed[NATIVE_HOOKS], "pub(in crate::game) use legacy::NativeMod;",
+                                        "pub use legacy::NativeMod;")
     # These old play settings and the one-time Orbital world migration are
     # observable. Reuse the exact implementation only in selecting profiles.
     changed[SETTINGS] = replace_once(changed[SETTINGS], "    for (prefix, id, action, _) in PACK_MOD_BINDINGS {",
@@ -199,6 +230,7 @@ def plan_seams(base, prepared, edition, version):
     # Edition source when the two recipes differ only by its comment.
     changed[TITLE] = replace_once(changed[TITLE], SET_MODE_ACTION, SET_MODE_EDITION_ACTION.decode("utf-8"))
     changed.update(neutral_delivery(changed[GAME + ".rs"], base, version))
+    changed.update(patch_exports(base, changed))
     recipe = edition_recipe(edition)
     originals = {name: (base / name).read_bytes() for name in recipe.SOURCE_SHA256}
     scoped = recipe.changes(originals)
