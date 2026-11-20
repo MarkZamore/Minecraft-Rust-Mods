@@ -86,7 +86,7 @@ ABILITIES = {
     "crystalbloom": Ability("Crystal Bloom", 60, (15, 22.5, 32, 45), 78, 3, "rising spires and colored shards",
                               "geode crater, crystal remnants and shards"),
     "sinkhole": Ability("Sinkhole", 40, (6.8, 10, 14), 6, 4, "dust and collapsing slabs",
-                          "deep open pit and rubble"),
+                          "deep open pit and rubble", camera_height=128),
     "payload": Ability("Payload", 70, (8.5, 15, 25), 45, 5, "falling charge, smoke and dust front",
                          "terraced pit and scorched ground"),
     "nuke": Ability("Nuke", 90, (6, 13, 25), 58, 6, "falling bomb and mushroom cloud",
@@ -230,8 +230,8 @@ def terrain_fixture(host, clients, key, ability):
     y = min(y + 5, 252)
     distance = 96 if key in ("plasma", "godly", "blackhole", "meteor") else 112
     target = (x, y, z)
-    # Sky Breaks needs a view above this seed's ridge. Its shader's sky pane
-    # is 560 blocks above the strike and behind opaque terrain.
+    # Raised viewpoints clear the ridge between the fixture and the two
+    # cameras. The actor's narrow aiming corridor only serves the designator.
     camera = (x + 0.5, min(y + ability.camera_height, 316), z + distance + 0.5)
     # The author displaces the vent along the horizontal aiming ray, even
     # though the Designator must still strike a real loaded block nearby.
@@ -274,7 +274,10 @@ def terrain_fixture(host, clients, key, ability):
 
     move_clients(host, clients, camera)
     cy, cz = floor(camera[1]), floor(camera[2])
-    host("command", f"fill {x - 2} {cy - 1} {cz - 2} {x + 12} {cy - 1} {cz + 2} minecraft:smooth_stone")
+    # Sinkhole looks steeply downward from the ridge. Keep the platform
+    # edge beneath the players so it cannot hide the actual pit.
+    platform_front = cz if key == "sinkhole" else cz - 2
+    host("command", f"fill {x - 2} {cy - 1} {platform_front} {x + 12} {cy - 1} {cz + 2} minecraft:smooth_stone")
     host("command", f"fill {x - 2} {cy} {cz - 2} {x + 12} {cy + 3} {cz + 2} minecraft:air")
     host("command", f"fill {x} {y + 1} {z} {x} {cy + 2} {cz - 1} minecraft:air")
     host("command", f"fill {x} {y} {z + 1} {x} {y} {z + 3} minecraft:air")
@@ -426,6 +429,13 @@ def cast(executor, host, clients, key, ability, mode, fixture, args, evidence):
     for client in clients.values():
         look(client, site, ability.aim_height)
     orbital.wait_for_world_ticks(actor, 24)
+    if key == "sinkhole" and "observer" in clients:
+        near_target = clients["observer"]("looking-at")
+        evidence["observerNearTarget"] = near_target
+        if near_target is None:
+            raise FixtureError("Sinkhole observer camera is unavailable before baseline")
+        if near_target["block"] is not None:
+            raise FixtureError(f"Sinkhole observer camera blocked within interaction reach: {near_target!r}")
     reference, idle, idle_change = stabilize_baseline(executor, clients, mode, options, evidence)
 
     evidence["phase"] = "designator"
