@@ -132,6 +132,30 @@ class StageSharedPackTests(unittest.TestCase):
         self.assertFalse(observed.samefile(alias))
         self.assertEqual(observed.read_bytes(), alias.read_bytes())
 
+    @unittest.skipUnless(os.name == "nt", "Windows path namespace")
+    def test_checks_and_links_extended_windows_paths(self):
+        name = "native/" + ("long-component-" * 9) + "/" + ("nested-name-" * 9) + "/engine.dll"
+        source = self.args.common_candidate / name
+        target = self.args.overlay / name
+        self.assertGreaterEqual(len(str(source)), 260)
+        self.assertGreaterEqual(len(str(target)), 260)
+        access = release.file_access_path(source)
+        access.parent.mkdir(parents=True)
+        access.write_bytes(b"long-path fixture")
+        expected = release.identity(source)
+        try:
+            staging.copy_exact(source, target, expected, release, linked=True)
+            self.assertEqual(dict(staging.collect(self.args.overlay, self.args.overlay / "native", release)),
+                             {name: expected})
+            self.assertTrue(access.samefile(release.file_access_path(target)))
+        finally:
+            for file in (target, source):
+                release.file_access_path(file).unlink(missing_ok=True)
+                for parent in (file.parent, file.parent.parent):
+                    directory = release.file_access_path(parent)
+                    if directory.is_dir():
+                        directory.rmdir()
+
 
 if __name__ == "__main__":
     unittest.main()

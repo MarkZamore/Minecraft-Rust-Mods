@@ -32,34 +32,48 @@ def require(condition, reason):
         raise ValueError(reason)
 
 
-def ordinary(path, *, directory=False):
-    info = path.lstat()
-    check = stat.S_ISDIR if directory else stat.S_ISREG
-    require(check(info.st_mode) and not getattr(info, "st_file_attributes", 0) & stat.FILE_ATTRIBUTE_REPARSE_POINT
-            and path.resolve() == path, f"Expected an ordinary {'directory' if directory else 'file'}: {path}")
+def normalized(path):
+    text = str(path)
+    if os.name == "nt":
+        if text.startswith("\\\\?\\UNC\\"):
+            return Path("\\\\" + text[8:])
+        if text.startswith("\\\\?\\"):
+            return Path(text[4:])
     return path
 
 
-def registered(path):
+def ordinary(path, release=None, *, directory=False):
+    access = path if release is None else release.file_access_path(path)
+    info = access.lstat()
+    check = stat.S_ISDIR if directory else stat.S_ISREG
+    require(check(info.st_mode) and not getattr(info, "st_file_attributes", 0) & stat.FILE_ATTRIBUTE_REPARSE_POINT
+            and normalized(access.resolve(strict=True)) == normalized(path),
+            f"Expected an ordinary {'directory' if directory else 'file'}: {path}")
+    return path
+
+
+def registered(path, release):
     for root in (path, *path.parents):
         if root.parent.name == "agent-runs" and root.parent.parent.name == "artifacts":
-            ordinary(root, directory=True)
-            run = read(root / "RUN.json")
+            ordinary(root, release, directory=True)
+            run = read(root / "RUN.json", release)
             require(run.get("status") == "active" and run.get("owner"), f"Inactive registered run: {root}")
             return root
     raise ValueError(f"Use a registered LANMinecraft run: {path}")
 
 
-def read(path):
-    return json.loads(ordinary(path).read_bytes())
+def read(path, release):
+    return json.loads(release.file_access_path(ordinary(path, release)).read_bytes())
 
 
 def collect(root, folder, release):
-    for child in ordinary(folder, directory=True).iterdir():
-        if child.is_dir() and not child.is_symlink() and not child.is_junction():
+    for entry in release.file_access_path(ordinary(folder, release, directory=True)).iterdir():
+        child = folder / entry.name
+        access = release.file_access_path(child)
+        if access.is_dir() and not access.is_symlink() and not access.is_junction():
             yield from collect(root, child, release)
         else:
-            relative = release.safe_path(ordinary(child).relative_to(root).as_posix()).as_posix()
+            relative = release.safe_path(ordinary(child, release).relative_to(root).as_posix()).as_posix()
             yield relative, release.identity(child)
 
 
@@ -69,15 +83,15 @@ def exact_files(mapping, expected, label):
 
 
 def static_inputs(candidate, lock_file, release):
-    ordinary(candidate, directory=True)
-    lock = read(lock_file)
-    build_file = ordinary(candidate / "build-receipt.json")
-    build = read(build_file)
+    ordinary(candidate, release, directory=True)
+    lock = read(lock_file, release)
+    build_file = ordinary(candidate / "build-receipt.json", release)
+    build = read(build_file, release)
     require(lock["schemaVersion"] == 1 and build["schemaVersion"] == 1
             and release.identity(build_file)["sha256"] == lock["receiptSha256"],
             "The static candidate must match its accepted build receipt")
     files = release.file_map(release.rows(lock["files"]))
-    managed = {DESCRIPTOR: release.identity(ordinary(candidate / DESCRIPTOR))}
+    managed = {DESCRIPTOR: release.identity(ordinary(candidate / DESCRIPTOR, release))}
     for folder in MANAGED_DIRECTORIES:
         managed.update(collect(candidate, candidate / folder, release))
     exact_files(managed, files, "Static payload")
@@ -85,7 +99,7 @@ def static_inputs(candidate, lock_file, release):
     library = dict(collect(candidate / "library", candidate / "library", release))
     require(set(library) == set(LIBRARY), "Expected the four approved Mods library files")
     exact_files(library, lock["library"], "Static library")
-    loaded = read(candidate / "library/loaded-mods.json")
+    loaded = read(candidate / "library/loaded-mods.json", release)
     versions = {row["id"]: row["version"] for row in loaded["mods"]}
     require(len(versions) == len(loaded["mods"]) == len(build["ids"]) and set(versions) == set(build["ids"]),
             "Static receipt and approved mod membership disagree")
@@ -94,10 +108,10 @@ def static_inputs(candidate, lock_file, release):
 
 def sidecar_inputs(sidecars, common, versions, release):
     receipt_file = sidecars / "mod-sidecar-receipt.json"
-    receipt = read(receipt_file)
+    receipt = read(receipt_file, release)
     payload = sidecars / "pack"
     files = release.file_map(release.rows(dict(collect(payload, payload / "native", release))))
-    profile = read(payload / PROFILE)
+    profile = read(payload / PROFILE, release)
     hashes = {path.removeprefix("native/"): row["sha256"] for path, row in files.items()}
     tree_hash = hashlib.sha256(json.dumps(hashes, sort_keys=True).encode("ascii")).hexdigest()
     require(receipt["schemaVersion"] == 1 and files[PROFILE]["sha256"] == receipt["nativeProfileSha256"]
@@ -139,16 +153,16 @@ def sidecar_inputs(sidecars, common, versions, release):
     return payload, receipt, files
 
 
-def abi_manifest_only(original, replacement, before, after):
-    expected = tomllib.loads(original.read_text(encoding="utf-8"))
-    descriptor = tomllib.loads(replacement.read_text(encoding="utf-8"))
+def abi_manifest_only(original, replacement, before, after, release):
+    expected = tomllib.loads(release.file_access_path(ordinary(original, release)).read_text(encoding="utf-8"))
+    descriptor = tomllib.loads(release.file_access_path(ordinary(replacement, release)).read_text(encoding="utf-8"))
     if expected.get("native", {}).get("horizon") != before:
         return False
     expected["native"]["horizon"] = after
     return expected == descriptor
 
 
-def overlay_sources(candidate, static, payload, sidecars, common, bootstrap, horizon, abi):
+def overlay_sources(candidate, static, payload, sidecars, common, bootstrap, horizon, abi, release):
     allowed = {CLIENT, bootstrap}
     require(all(name in allowed or static[name] == common[name] for name in static.keys() & common.keys()),
             "The shared runtime would replace unrelated static bytes")
@@ -158,14 +172,15 @@ def overlay_sources(candidate, static, payload, sidecars, common, bootstrap, hor
         require(name not in common, f"Sidecar collides with the shared runtime: {name}")
         if name in sources and sources[name][1] != row:
             require(name.startswith(CODE_PACKAGE) and name.endswith("/horizon-mod.toml")
-                    and abi_manifest_only(sources[name][0], payload / name, horizon, abi),
+                    and abi_manifest_only(sources[name][0], payload / name, horizon, abi, release),
                     f"Sidecar would change already approved pack data: {name}")
         sources[name] = (payload / name, row)
     return sources
 
 
 def copy_exact(source, destination, row, release, *, linked=False):
-    ordinary(source)
+    source = release.file_access_path(ordinary(source, release))
+    destination = release.file_access_path(destination)
     destination.parent.mkdir(parents=True, exist_ok=True)
     # A pre-existing alias may have owners outside the two registered runs.
     if linked and source.stat().st_nlink == 1:
@@ -179,29 +194,30 @@ def stage(args, release):
     inputs = (args.static_candidate, args.sidecars, args.runtime, args.common_candidate)
     for directory in (args.overlay, args.qa_view):
         if directory is not None:
-            ordinary(directory.parent, directory=True)
-            require(not directory.exists() and not directory.is_symlink() and not directory.is_junction(),
+            ordinary(directory.parent, release, directory=True)
+            target = release.file_access_path(directory)
+            require(not target.exists() and not target.is_symlink() and not target.is_junction(),
                     f"Use a fresh output: {directory}")
             require(not any(source is not None and directory.is_relative_to(source) for source in inputs),
                     f"An output cannot modify an input tree: {directory}")
-    run = registered(args.overlay)
+    run = registered(args.overlay, release)
     require((args.qa_view is None) == (args.common_candidate is None), "Supply --qa-view and --common-candidate together")
     if args.qa_view is not None:
-        require(args.qa_view != args.overlay and registered(args.qa_view) == registered(args.common_candidate) == run,
+        require(args.qa_view != args.overlay and registered(args.qa_view, release) == registered(args.common_candidate, release) == run,
                 "The QA view, common candidate and overlay must belong to the same active run")
-        require(registered(args.static_candidate).parent == run.parent and registered(args.sidecars) == run,
+        require(registered(args.static_candidate, release).parent == run.parent and registered(args.sidecars, release) == run,
                 "QA sources must come from the two registered project runs")
     lock, build, static, versions = static_inputs(args.static_candidate, args.static_lock, release)
-    ordinary(args.runtime, directory=True)
+    ordinary(args.runtime, release, directory=True)
     spec, common, minecraft = release.read_runtime(args.runtime)
-    descriptor = release.bind_descriptor(read(args.static_candidate / DESCRIPTOR), spec, common, minecraft)
+    descriptor = release.bind_descriptor(read(args.static_candidate / DESCRIPTOR, release), spec, common, minecraft)
     bootstrap = descriptor["nativeRuntime"]["executable"]
     require({CLIENT, "native/horizon-prepare.exe", "native/research-lock.json"} <= common.keys(),
             "The shared archive must supply the game client and pinned resource preparer")
     require({PRESENTATION, PROFILE, CLIENT, bootstrap} <= static.keys(), "Incomplete accepted static native payload")
     payload, receipt, sidecars = sidecar_inputs(args.sidecars, common, versions, release)
     sources = overlay_sources(args.static_candidate, static, payload, sidecars, common, bootstrap,
-                              build["horizonRevision"], receipt["abiBuildId"])
+                              build["horizonRevision"], receipt["abiBuildId"], release)
 
     with tempfile.TemporaryDirectory(prefix="stage-mod-overlay-", dir=run) as temporary:
         staged = Path(temporary) / "overlay"
@@ -210,17 +226,18 @@ def stage(args, release):
             copy_exact(source, staged / name, row, release)
         for name, row in lock["library"].items():
             copy_exact(args.static_candidate / "library" / name, staged / "library" / name, row, release)
-        write(staged / DESCRIPTOR, descriptor)
+        write(release.file_access_path(staged / DESCRIPTOR), descriptor)
         files = {**{name: row for name, (_, row) in sources.items()}, DESCRIPTOR: release.identity(staged / DESCRIPTOR)}
         release.assert_disjoint(common, files)
         report = {"schemaVersion": 1, "staticBuildReceiptSha256": lock["receiptSha256"],
+                  "staticFileLockStatus": "provisional-file-verification" if lock.get("provisional") else "approved",
                   "staticDistributionLockSha256": release.identity(args.static_lock)["sha256"],
                   "sidecarReceiptSha256": release.identity(args.sidecars / "mod-sidecar-receipt.json")["sha256"],
                   "sharedRuntimeArchiveSha256": spec["archive"]["sha256"], "abiBuildId": receipt["abiBuildId"],
                   "bootstrapSha256": common[bootstrap]["sha256"], "clientSha256": receipt["clientSha256"],
                   "compiledMods": receipt["compiledMods"], "overlayFiles": dict(sorted(files.items())),
                   "files": dict(sorted((common | files).items()))}
-        write(staged / COMPOSITION, report)
+        write(release.file_access_path(staged / COMPOSITION), report)
         if args.qa_view is not None:
             view = Path(temporary) / "qa-view"
             view.mkdir()
@@ -228,13 +245,14 @@ def stage(args, release):
                 for name, row in inventory.items():
                     link = name.startswith("native/") and Path(name).suffix.lower() in LINK_FORMATS
                     copy_exact(source_root / name, view / name, row, release, linked=link)
-            shutil.copytree(staged / "library", view / "library")
-            shutil.copyfile(staged / COMPOSITION, view / COMPOSITION)
-            write(view / "build-receipt.json", {"schemaVersion": 1, "clientSha256": receipt["clientSha256"],
+            for name, row in lock["library"].items():
+                copy_exact(staged / "library" / name, view / "library" / name, row, release)
+            copy_exact(staged / COMPOSITION, view / COMPOSITION, release.identity(staged / COMPOSITION), release)
+            write(release.file_access_path(view / "build-receipt.json"), {"schemaVersion": 1, "clientSha256": receipt["clientSha256"],
                   "horizonRevision": build["horizonRevision"], "inputLockSha256": build["inputLockSha256"],
                   "ids": build["ids"], "sharedCompositionSha256": release.identity(view / COMPOSITION)["sha256"]})
-            view.rename(args.qa_view)
-        staged.rename(args.overlay)
+            release.file_access_path(view).rename(release.file_access_path(args.qa_view))
+        release.file_access_path(staged).rename(release.file_access_path(args.overlay))
     return args.overlay / COMPOSITION
 
 
