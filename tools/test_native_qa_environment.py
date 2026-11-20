@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from native_qa_environment import (
-    direct_client_environment, environment_policy, prepare_client_environment, validate_environment_defaults,
+    PACK_ROOT, direct_client_environment, environment_policy, prepare_client_environment, validate_environment_defaults,
 )
 
 
@@ -76,6 +76,22 @@ class EnvironmentDefaultsTests(unittest.TestCase):
                 self.assertEqual(os.environ[name], "")
                 self.assertEqual(evidence["environmentDefaultOrigins"][name], "inherited")
             self.assertEqual(os.environ[name], "")
+
+    def test_shared_pack_uses_exact_profile_for_direct_probes(self):
+        candidate = self.candidate({"QA_PROCESS_FLAG": "on"})
+        (candidate / "portable-pack.json").write_text(
+            '{"nativeRuntime":{"sharedRuntime":{}}}', encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "staged local native profile"):
+            prepare_client_environment(candidate, {})
+        (candidate / "native/native-mods.json").write_text("{}", encoding="utf-8")
+        root = str(candidate.resolve())
+        with patch.dict(os.environ, clear=True):
+            with direct_client_environment(candidate) as evidence:
+                self.assertEqual(os.environ[PACK_ROOT], root)
+                self.assertEqual(evidence["sharedNativePackRoot"], root)
+            self.assertNotIn(PACK_ROOT, os.environ)
+        with self.assertRaisesRegex(ValueError, "Inherited native pack root differs"):
+            prepare_client_environment(candidate, {PACK_ROOT.lower(): str(candidate.parent)})
 
     def test_invalid_defaults_rejected_before_spawn(self):
         invalid = [None, [], {"": "x"}, {"A=B": "x"}, {"QA_FLAG": True}, {"QA_FLAG": "x\x00"},

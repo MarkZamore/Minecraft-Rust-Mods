@@ -16,6 +16,7 @@ import unicodedata
 
 
 POLICY = "pack-presentation-defaults-v1"
+PACK_ROOT = "LANMINECRAFT_NATIVE_PACK_ROOT"
 NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,63}\Z")
 
 
@@ -59,6 +60,22 @@ def environment_policy(candidate):
             "presentationSha256": hashlib.sha256(raw).hexdigest()}
 
 
+def shared_pack_root(candidate):
+    candidate = Path(candidate)
+    descriptor = candidate / "portable-pack.json"
+    if not descriptor.is_file():
+        return None
+    native = json.loads(descriptor.read_bytes(), object_pairs_hook=unique_object).get("nativeRuntime", {})
+    if "sharedRuntime" not in native:
+        return None
+    root = candidate.resolve(strict=True)
+    profile = root / "native/native-mods.json"
+    if (not isinstance(native["sharedRuntime"], dict) or not profile.is_file()
+            or profile.resolve(strict=True) != profile or profile.is_symlink()):
+        raise ValueError("Direct shared-runtime QA needs the staged local native profile")
+    return str(root)
+
+
 def prepare_client_environment(candidate, inherited=None):
     """Return a new environment and source/effective-policy evidence only.
 
@@ -70,6 +87,16 @@ def prepare_client_environment(candidate, inherited=None):
     evidence = environment_policy(candidate)
     environment = dict(os.environ if inherited is None else inherited)
     existing = {name.casefold(): name for name in environment}
+    root = shared_pack_root(candidate)
+    if root is not None:
+        inherited_name = existing.get(PACK_ROOT.casefold())
+        if inherited_name is None:
+            environment[PACK_ROOT] = root
+            existing[PACK_ROOT.casefold()] = PACK_ROOT
+        elif environment[inherited_name] != root:
+            raise ValueError("Inherited native pack root differs from the exact QA profile")
+        evidence["sharedNativePackRoot"] = root
+
     effective, origins = {}, {}
     for name, setting in evidence["environmentDefaults"].items():
         inherited_name = existing.get(name.casefold())
@@ -92,6 +119,8 @@ def direct_client_environment(candidate):
     """
     environment, evidence = prepare_client_environment(candidate)
     added = [name for name, origin in evidence["environmentDefaultOrigins"].items() if origin == "default"]
+    if "sharedNativePackRoot" in evidence and not any(name.casefold() == PACK_ROOT.casefold() for name in os.environ):
+        added.append(PACK_ROOT)
     try:
         for name in added:
             os.environ[name] = environment[name]
