@@ -12,6 +12,7 @@ import time
 from PIL import Image, ImageChops
 
 from native_build import sha
+from shared_qa_identity import shared_identity
 from smoke_mod_hud import capture_root
 from smoke_multiplayer import Client, cleanup_game, until
 from smoke_orbital import wait_for_world_ticks
@@ -153,7 +154,7 @@ def run(args):
         raise ValueError("The tested client differs from the expected SHA-256")
     result = {"schemaVersion": 1, "clientSha256": client_sha, "origin": list(args.origin),
               "clock": "scripted" if args.scripted else "wall",
-              "controllerSha256": sha(controller), "cases": {}}
+              "controllerSha256": sha(controller), "cases": {}, **shared_identity(candidate, client_sha)}
     qa.mkdir(parents=True)
     try:
         for label in args.cases:
@@ -255,6 +256,7 @@ def compare_reports(before, after, before_sha256, after_sha256):
         plants[name] = {"retainsMotion": retains_motion, "beforeLateMedian": before_peak, "afterLateMedian": after_peak}
     return {"schemaVersion": 1, "result": "PASS" if all(checks.values()) else "FAIL",
             "baselineClientSha256": before_sha256, "clientSha256": after_sha256,
+            **{key: after[key] for key in ("sharedCompositionSha256", "sharedPayloadSha256") if key in after},
             "origin": before["origin"], "camera": camera, "resolution": first["size"], "renderer": renderer,
             "shaderClockHz": 60, "windowStartSeconds": list(SHADER_CLOCKS), "samplesPerWindow": count,
             "checks": checks, "plants": plants, "windows": {label: case["windows"] for label, case in cases.items()}}

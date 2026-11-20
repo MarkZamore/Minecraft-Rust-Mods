@@ -8,7 +8,9 @@ import re
 
 from generate_manifest import verify_orbital_abilities
 from native_build import ROOT, load, sha
-from smoke_orbital_abilities import ABILITIES, DESIGNATOR_SEED, SEED, SOURCE, WIP
+from shared_qa_identity import shared_identity
+from smoke_orbital_abilities import ABILITIES, DESIGNATOR_SEED, SEED, SOURCE, WIP, verify_orbital_content
+from verify_shared_release import legacy_preflight
 
 
 REPORT_FIELDS = {"requested", "abilities", "result"}
@@ -24,21 +26,26 @@ def report_identity(candidate, mode):
     build = load(candidate / "build-receipt.json")
     client = sha(candidate / "native/horizon-client.exe")
     pin = load(ROOT / "tools/orbital_compat/upstream-0.5.17.json")
-    companion = pin["contentCompanion"]
-    asset = candidate / "native/horizon-mods/orbital.hmod"
-    if (client != build["clientSha256"] or "orbital" not in build["ids"]
-            or asset.stat().st_size != companion["size"] or sha(asset) != companion["sha256"]):
-        raise ValueError("Candidate bytes differ from the built client or the pinned Orbital companion")
+    if client != build["clientSha256"]:
+        raise ValueError("Candidate bytes differ from the built client")
+    companion = verify_orbital_content(candidate, build, pin)
     caster, terrain = MODES[mode]
     return build, {"schemaVersion": 1, "clientSha256": client, "horizonRevision": build["horizonRevision"],
                    "orbitalVersion": pin["version"], "authorSource": SOURCE, "seed": SEED,
                    "designatorSeed": DESIGNATOR_SEED, "observer": caster == "guest",
                    "terrainModes": terrain, "castFrom": caster, "requestedResolutionScale": None,
-                   "orbitalContentSha256": companion["sha256"], "unavailableNative": WIP}
+                   "orbitalContentSha256": companion["sha256"], "unavailableNative": WIP,
+                   **shared_identity(candidate, client)}
 
 
-def merge(candidate, mode, paths):
+def merge(candidate, mode, paths, *, first_migration_preflight=None):
+    candidate = candidate.resolve(strict=True)
     build, expected = report_identity(candidate, mode)
+    binding = {key: expected[key] for key in ("sharedCompositionSha256", "sharedPayloadSha256") if key in expected}
+    preflight = None
+    if first_migration_preflight is not None:
+        preflight = legacy_preflight(first_migration_preflight, binding, load(candidate / "shared-composition.json"))
+    expected_without_binding = {key: value for key, value in expected.items() if key not in binding}
     controller = None
     accepted, origins = {}, {}
     source_reports = []
@@ -55,7 +62,8 @@ def merge(candidate, mode, paths):
             raise ValueError(f"Expected an Orbital ability report object: {name}")
         identity = {key: value for key, value in report.items() if key not in REPORT_FIELDS}
         digest = identity.pop("controllerSha256", "")
-        if (identity != expected or type(report["schemaVersion"]) is not int
+        historical = preflight is not None and identity == expected_without_binding
+        if ((identity != expected and not historical) or type(report["schemaVersion"]) is not int
                 or report["observer"] is not expected["observer"]
                 or re.fullmatch(r"[0-9a-f]{64}", digest) is None or controller not in (None, digest)):
             raise ValueError(f"Candidate, controller, author or test configuration differs: {name}")
@@ -82,15 +90,20 @@ def merge(candidate, mode, paths):
             accepted[key] = rows[key]
             origins[key] = name
             copied.append(key)
-        source_reports.append({"path": name, "sha256": sha256(data).hexdigest(), "result": actual_result,
-                               "acceptedAbilities": copied,
-                               "otherAttempts": {key: status for key, status in states.items() if status != "PASS"}})
+        source_report = {"path": name, "sha256": sha256(data).hexdigest(), "result": actual_result,
+                         "acceptedAbilities": copied,
+                         "otherAttempts": {key: status for key, status in states.items() if status != "PASS"}}
+        if historical:
+            source_report["firstMigrationPreflightSha256"] = preflight
+        source_reports.append(source_report)
     missing = [key for key in ABILITIES if key not in accepted]
     if missing:
         raise ValueError("Missing complete PASS evidence for: " + ", ".join(missing))
     combined = {**expected, "controllerSha256": controller, "requested": list(ABILITIES),
                 "result": "PASS", "abilities": {key: accepted[key] for key in ABILITIES},
                 "sourceReports": source_reports}
+    if any("firstMigrationPreflightSha256" in source for source in source_reports):
+        combined["firstMigrationPreflightSha256"] = preflight
     verify_orbital_abilities(combined, build, guest=mode == "network")
     return combined
 
@@ -100,10 +113,12 @@ def main():
     parser.add_argument("--candidate", required=True, type=Path)
     parser.add_argument("--mode", required=True, choices=MODES)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--first-migration-preflight", type=Path)
     parser.add_argument("reports", nargs="+", type=Path)
     args = parser.parse_args()
     try:
-        combined = merge(args.candidate.resolve(strict=True), args.mode, args.reports)
+        combined = merge(args.candidate, args.mode, args.reports,
+                         first_migration_preflight=args.first_migration_preflight)
         with args.output.open("x", encoding="utf-8", newline="\n") as target:
             json.dump(combined, target, ensure_ascii=False, indent=2)
             target.write("\n")

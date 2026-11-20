@@ -5,6 +5,31 @@
 рантайма из `LANMinecraft/tools/native_runtime_release.py stage-runtime`.
 Оба кандидата размещаются в зарегистрированных активных стендах LANMinecraft.
 
+## Независимый статический вход
+
+Для первой миграции используйте принятый статический коммит
+`a236dacd3ea1bbf2bd291dc5d1d2fe9cbdd0af12`. Его неизменяемые архивы и SHA-256
+сохранены в [квитанции публичной поставки](qa/public-delivery-a236dac.json).
+Точный статический `tools/distribution-lock.json`, `tools/qa/final-build.json`
+и четыре файла `library/` берите из дерева этого коммита. Обособленный
+Git-worktree статического входа размещайте в `LocalSources`. Если прежний
+кандидат убран, восстановите управляемые файлы из архивов по именам и SHA-256
+квитанции и сверьте каждый файл со статическим lock. Копируйте библиотеку и
+`build-receipt.json` только с теми переводами строк, которые дают размеры и
+SHA-256 принятого lock. Точный статический lock для staging удобно сохранить
+командой `git cat-file blob <commit>:tools/distribution-lock.json`, записав
+вывод как байты. При публикации общего рантайма `pack-latest/pack-manifest.json`
+и канонический lock переходят на новую раскладку.
+
+Для авторского обновления перенесите проверенные рецепты совместимости и пины
+на отдельную ветку статического входа, пересоберите и примите точный состав по
+обычной процедуре Rust Mods. Сохраните новый принятый статический коммит и lock
+отдельно от канонической общей поставки. Примените те же входы и проверяемые
+замены к общему Horizon по [рецепту SDK](SHARED-SDK.md), затем подготовьте
+overlay и QA-раскладку.
+
+## Раскладка для приёмки
+
 ```powershell
 python -B tools/stage_shared_pack.py `
     --static-candidate $acceptedStaticCandidate --static-lock $acceptedStaticLock `
@@ -41,3 +66,41 @@ python -B tools/stage_shared_pack.py `
 мода в новой раскладке. После игровой приёмки используйте его для обновления
 библиотечных метаданных и lock выпуска, затем подготовьте архивы по
 `LANMinecraft/tools/NATIVE-RUNTIME-RELEASE.md`.
+
+Сверьте наблюдаемые пары ID и версии с `compiledMods`. В библиотеке сохраняйте
+проверенные названия и ссылки, а `source` берите из `compiledMods`. Заполните
+`nativeFiles` по полному списку нативных путей и `nativeRuntime` по
+`portable-pack.json` этой же раскладки. Обновите lock по её файлам, build
+receipt и SHA-256 библиотеки. Сохраните актуальный игровой снимок как JPEG.
+`migrate-pack` сверяет байты кандидата с полным lock и библиотекой коммита.
+
+## Проверка перед упаковкой
+
+На полной `$newFullQaView` выполните `smoke_orbital_abilities.py` для одиночной
+игры, гостя с обоими режимами разрушения и Plasma на 75%,
+`smoke_vegetation.py --scripted` с исходной и новой контрольными сериями и
+`smoke_mod_hud.py capture`. Сценарии и режимы описаны в [README](../README.md).
+При раздельных наборах способностей используйте
+`merge_orbital_ability_reports.py` для одной точной композиции. Общий EXE
+одинаков для Edition и Mods, поэтому отчёты также фиксируют SHA-256
+`shared-composition.json` и проверенного набора файлов с DLL выбранной сборки.
+
+```powershell
+python -B tools/verify_shared_release.py --candidate $newFullQaView `
+    --static-revision $approvedStaticRevision --solo $soloReport `
+    --network $networkReport --scaled $scaledReport --vegetation $vegetationReport `
+    --hud $hudReport > "$Run/shared-mods-acceptance.json"
+```
+
+Сохраните итоговую квитанцию в исходниках выпуска. Она связывает отдельные
+отчёты с точным клиентом, ABI, статическим входом и всеми файлами QA-профиля.
+Передавайте ту же раскладку в `migrate-pack` из закреплённого checkout
+LANMinecraft `b2ad23fefc3b9e140e1b3a8f86f492be9d000668`.
+Проверки запуска, фактического состава и уведомлений выполняются отдельно на
+той же раскладке. Для уже проведённых прогонов первой миграции можно передать
+исходную квитанцию подготовки через `--first-migration-preflight` и исходный
+временный lock через `--provisional-lock`. Сохраняйте оригиналы отчётов.
+Для объединения старых отчётов первой миграции с повторными прогонами можно
+передать ту же квитанцию в `merge_orbital_ability_reports.py`.
+Этот режим привязан к точной композиции первой миграции, а проверка отдельно
+сравнивает её временный статический lock с принятыми данными a236dac.

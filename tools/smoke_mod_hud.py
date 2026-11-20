@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 from native_build import sha
+from shared_qa_identity import shared_identity
 import smoke_orbital
 
 
@@ -173,7 +174,7 @@ def capture(args):
     if client_sha != args.client_sha256.lower():
         raise ValueError("The tested client differs from the expected SHA-256")
     report = {"schemaVersion": 1, "result": "FAIL", "clientSha256": client_sha,
-              "controllerSha256": sha(controller)}
+              "controllerSha256": sha(controller), **shared_identity(candidate, client_sha)}
     qa.mkdir(parents=True)
     try:
         with Client(candidate, controller, resources, qa, "HudQA") as client:

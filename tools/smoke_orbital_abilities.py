@@ -15,6 +15,7 @@ import time
 from PIL import Image, ImageChops
 
 from native_build import load, sha, write
+from shared_qa_identity import shared_identity
 import smoke_orbital as orbital
 from smoke_mod_hud import capture_root
 from smoke_multiplayer import Client, GUEST, cleanup_game, guest_modes, join, open_from_menu, until
@@ -688,6 +689,7 @@ def run(args):
               "requested": keys, "terrainModes": args.terrain, "castFrom": args.cast_from,
               "requestedResolutionScale": args.resolution_scale,
               "orbitalContentSha256": pack["sha256"], "unavailableNative": WIP,
+              **shared_identity(args.candidate, client_sha),
               "result": "FAIL", "abilities": {key: {"status": "NOT RUN"} for key in keys}}
     qa.mkdir(parents=True)
     path = qa / "report.json"
