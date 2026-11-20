@@ -4,6 +4,7 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import ExitStack
 from dataclasses import dataclass
+import hashlib
 import json
 from math import floor
 from pathlib import Path
@@ -610,6 +611,43 @@ def update_report(path, report):
         pending.unlink(missing_ok=True)
 
 
+def verify_orbital_content(candidate, receipt, pin):
+    asset = candidate / "native/horizon-mods/orbital.hmod"
+    pack = pin["contentCompanion"]
+    if "orbital" not in receipt["ids"]:
+        raise ValueError("Client does not contain the pinned Orbital Laser build")
+    if "sharedCompositionSha256" not in receipt:
+        if asset.stat().st_size != pack["size"] or sha(asset) != pack["sha256"]:
+            raise ValueError("Client does not contain the pinned Orbital Laser content companion")
+        return pack
+
+    proof = candidate / "shared-composition.json"
+    if asset.exists() or sha(proof) != receipt["sharedCompositionSha256"]:
+        raise ValueError("Shared Orbital QA requires the exact composed profile and one content package")
+    composition = load(proof)
+    entries = [row for row in composition["foldedContentCompanions"] if row["id"] == "orbital"]
+    prefix = "native/horizon-native-mods/orbital/"
+    expected = {"id": "orbital", "version": pin["version"], "archive": "native/horizon-mods/orbital.hmod",
+                "archiveSha256": pack["sha256"], "archiveSizeBytes": pack["size"],
+                "nativePackage": prefix.rstrip("/")}
+    if (composition["clientSha256"] != receipt["clientSha256"] or len(entries) != 1
+            or any(entries[0].get(key) != value for key, value in expected.items())):
+        raise ValueError("The shared profile does not carry the pinned Orbital content")
+    fold = entries[0]
+    resources = {}
+    for name, file in composition["overlayFiles"].items():
+        if not name.startswith((prefix + "assets/", prefix + "data/")):
+            continue
+        path = candidate / name
+        if path.resolve(strict=True) != path or path.stat().st_size != file["sizeBytes"] or sha(path) != file["sha256"]:
+            raise ValueError(f"Composed Orbital resource differs from the exact contents: {name}")
+        resources[name.removeprefix(prefix)] = file["sha256"]
+    tree = hashlib.sha256(json.dumps(resources, sort_keys=True).encode("ascii")).hexdigest()
+    if len(resources) != fold["resourceCount"] or tree != fold["resourcesTreeSha256"]:
+        raise ValueError("Composed Orbital resource tree differs from the pinned companion")
+    return pack
+
+
 def run(args):
     if args.actor_only and args.cast_from != "host":
         raise ValueError("--actor-only requires --cast-from host")
@@ -626,10 +664,7 @@ def run(args):
     if client_sha != args.client_sha256.lower() or receipt["clientSha256"] != client_sha:
         raise ValueError("Client SHA-256 does not match its build receipt and expected tested build")
     pin = load(Path(__file__).with_name("orbital_compat") / "upstream-0.5.17.json")
-    asset = args.candidate / "native/horizon-mods/orbital.hmod"
-    pack = pin["contentCompanion"]
-    if "orbital" not in receipt["ids"] or asset.stat().st_size != pack["size"] or sha(asset) != pack["sha256"]:
-        raise ValueError("Client does not contain the pinned Orbital Laser build and content companion")
+    pack = verify_orbital_content(args.candidate, receipt, pin)
     keys = list(dict.fromkeys(args.ability or ABILITIES))
     report = {"schemaVersion": 1, "clientSha256": client_sha, "controllerSha256": sha(args.controller),
               "horizonRevision": receipt["horizonRevision"], "orbitalVersion": "0.5.17", "authorSource": SOURCE,
