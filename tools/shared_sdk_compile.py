@@ -413,6 +413,26 @@ def build_libraries(args, plan, sdk, stage, names, installs):
     return payload, [*libraries, library]
 
 
+def compiled_inventory(plan, native, record):
+    libraries = {row["mod"]: row for row in record["libraries"]}
+    hashes = {}
+    mods = []
+    for mod in plan["mods"]:
+        id = mod["id"]
+        library = libraries.get(id)
+        if library is not None:
+            path = library["file"]
+        elif mod.get("injections"):
+            path = libraries["horizon_patch"]["file"]
+        else:
+            path = "horizon-mods/" + Path(mod["content"]).name
+        if path not in hashes:
+            hashes[path] = sha(local_file(native, path))
+        mods.append({"id": id, "version": mod["version"], "source": "native/" + path,
+                     "sha256": hashes[path]})
+    return mods
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("edition", "inputs", "sdk", "receipt", "sdk-stage", "patch-source", "host-target", "mixins",
@@ -446,6 +466,12 @@ def main():
     record = load(marker)
     record["legacyModIds"] = sorted(mod["id"] for mod in plan["mods"] if mod.get("legacy"))
     marker.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8", newline="\n")
+    proof = {"schemaVersion": 1, "abiBuildId": sdk["commit"], "sdkIdentitySha256": receipt["sdkIdentitySha256"],
+             "clientSha256": receipt["clientSha256"], "nativeProfileSha256": sha(marker),
+             "nativeTreeSha256": tree_hash(payload), "packInputsSha256": sha(args.inputs / "mods.json"),
+             "injections": sum(len(mod.get("injections", ())) for mod in plan["mods"]),
+             "functionReplacements": len(installs), "compiledMods": compiled_inventory(plan, payload, record)}
+    write(args.out / "mod-sidecar-receipt.json", json.dumps(proof, indent=2) + "\n")
     print(marker)
 
 
