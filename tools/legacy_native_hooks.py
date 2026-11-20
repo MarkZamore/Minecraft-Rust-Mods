@@ -15,6 +15,7 @@ REVISION = "f00125f61f794aaa3d4e950d301f353b35b6ee3d"
 HOOKS = "crates/horizon-client/src/game/native_hooks/"
 BRIDGE = HOOKS + "lanminecraft/legacy.rs"
 EXTRAS = "crates/horizon-client/src/game/interface/extras.rs"
+SCREEN_BACKGROUNDS = "crates/horizon-client/src/game/interface/screen_backgrounds.rs"
 GAME = "crates/horizon-client/src/game.rs"
 INPUT = "crates/horizon-client/src/game/interface/play_input.rs"
 CHAT = "crates/horizon-client/src/game/interface/chat.rs"
@@ -61,6 +62,7 @@ HOST_SHA256 = {
     HOOKS + "shared.rs": "4ed5d6ca044769cc965e0022297bc9ad8d994a9f7776b36c6863a2716d199582",
     HOOKS + "base.rs": "474aba738795f5a7dba47c87a0acb4d887e6d72a58571e2634b0ea871554680b",
     EXTRAS: "eb0ca00dd278856404e3aace4e381c74f2ab6d124c9df6822d699e278d5d5167",
+    SCREEN_BACKGROUNDS: "8c1146cf2a5bc4d3ff42c90fc50510a4eab0b71aa040daf357eb6a8c716db737",
     REMOTE: (
         "61302806122979e67484cf5d216444ebc2d8d108f67815a6b1a5939c02a3d665",
         "f0c3f66800b550603766156e91901dd18535f0a17aca6df70ea5cf8c5e7e2e52",
@@ -130,6 +132,10 @@ def prepare_source(workspace: Path, setting_owners: list[str]) -> None:
         "        self.native_frame(elapsed);\n        let (world_partial_tick, partial_tick)")
     originals[EXTRAS] = replace_once(extras, "        self.native_render_gui_post(batch, &mut corners);",
         "        self.native_hud(batch, &mut corners);\n        self.native_render_gui_post(batch, &mut corners);")
+    originals[SCREEN_BACKGROUNDS] = replace_once(originals[SCREEN_BACKGROUNDS],
+        "            || self.book.is_some()\n            || !self.screen_render_listened()",
+        "            || self.book.is_some()\n"
+        "            || !(self.screen_render_listened() || self.legacy_mod_screen_open())")
     originals[REMOTE] = replace_once(originals[REMOTE], "        // Far tiles the samplers asked for (`lod_net`).",
         "        self.native_tick();\n        // Far tiles the samplers asked for (`lod_net`).")
     originals[LEVELS] = replace_once(originals[LEVELS],
@@ -282,7 +288,11 @@ def route_source_paths(text: str) -> str:
 def route_bundle_source(text: str) -> str:
     # Both Horizon revisions use the same GUI atlas measurement. The new typed
     # host takes an additional (unused) HudBatch; old source has no draw handle.
-    text = route_source(route_source_paths(text)).replace(".native_text_width(", ".legacy_text_width(")
+    text = route_source(route_source_paths(text))
+    text = text.replace(".native_text_width(", ".legacy_text_width(")
+    # The old helper accepted RGB and made it opaque. Typed SDK drawing is
+    # kept out of this translation and still honors explicit alpha.
+    text = text.replace(".native_text(", ".legacy_text(")
     for name in ("mod_screen", "mod_screen_open", "mod_screen_close"):
         text = text.replace(f".native_{name}(", f".{name}(")
     text = text.replace("Game::native_config_dir()?", "Game::native_config_dir().map_err(|error| error.to_string())?")

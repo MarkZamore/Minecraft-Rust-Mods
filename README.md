@@ -99,6 +99,8 @@ python tools/stage_mod_pack.py --base-repo $baseRepo --base-candidate $baseCandi
 
 У предыдущего выпуска с Orbital Laser приёмка была ограничена запуском и меню Windows по выбору игрока; его `--startup-only` и отметки непроверенных механик сохранены как историческое свидетельство. Текущий выпуск требует полного игрового прогона и сетевых проверок ниже. После прогона перенесите `smoke.json`, сетевой `report.json` и `backup-guard.json` в указанные выше файлы `tools/qa/`.
 
+Полная проверка использует Pillow 12+ для чтения кадра из игры. Она проверяет цветные ободки колеса Orbital Laser, подпись в центре и текст HUD в левом верхнем углу. Для адресного прогона меню и панели JEI используйте `python tools/smoke_mod_hud.py capture --help`. Режим `inspect` проверяет сохранённые PNG без запуска игры.
+
 ```powershell
 python tools/smoke_runtime.py --base-repo $baseRepo --candidate $candidate `
     --controller $controller --qa $qa --bootstrap --cache $cache

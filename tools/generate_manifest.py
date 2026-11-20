@@ -13,6 +13,7 @@ import zipfile
 from inspect_mods import content_file
 from multiplayer_warning import expected_action_sha256
 from native_build import DECISIONS, INPUT_LOCK, ROOT, build_recipe_sha, load, module_at, sha, write
+from smoke_mod_hud import verify_gameplay_frame
 from stage_mod_pack import CONTROLS_PRESET, OPTIONS_TEMPLATE, presentation, verify_environment_evidence
 
 
@@ -130,6 +131,7 @@ def verify_gameplay_acceptance(report, build, preset):
             not all_fixture_blocks_changed(orbital) or
             orbital["reopened"]["terrain"] != orbital["blocksAfter"]):
         raise ValueError("Release needs verified Insert/R controls, Orbital rendering and persistent terrain edits")
+    verify_gameplay_frame(orbital.get("modHud", {}), orbital.get("frames", {}).get("wheel", {}))
 
 
 def all_fixture_blocks_changed(evidence):

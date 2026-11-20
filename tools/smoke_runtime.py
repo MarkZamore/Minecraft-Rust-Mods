@@ -11,6 +11,7 @@ import time
 from inspect_mods import content_file
 from native_build import INPUT_LOCK, load, module_at, sha, write
 from native_qa_environment import direct_client_environment, environment_policy
+from smoke_mod_hud import inspect_frames
 import smoke_orbital
 import smoke_previous_world
 import smoke_startup
@@ -195,6 +196,11 @@ def smoke(args):
         if smoke_orbital.ID in expected_native:
             original_position = control("state")["player"]["position"]
             orbital_evidence = smoke_orbital.exercise(control, args.qa)
+            wheel = orbital_evidence["frames"]["wheel"]
+            hud = inspect_frames(args.qa / wheel["file"])
+            if hud["result"] != "PASS":
+                raise ValueError(f"The rendered Orbital wheel or HUD text is missing: {hud['checks']}")
+            orbital_evidence["modHud"] = hud
             control("tp", *map(str, original_position))
         photograph(control)
         control("save")

@@ -157,6 +157,19 @@ impl Game<'_> {
         HudBatch::text_width(&self.gui.atlas, text)
     }
 
+    // Source mixins draw through the original callback without subscribing to
+    // the typed render events. Request a view while one owns the active screen.
+    pub(in crate::game) fn legacy_mod_screen_open(&self) -> bool {
+        self.mod_screen()
+            .is_some_and(|id| LEGACY_SETTINGS_OWNERS.binary_search(&id).is_ok())
+    }
+
+    pub(in crate::game) fn legacy_text(
+        &self, batch: &mut HudBatch, text: &str, at: [f32; 2], rgb: u32, shadow: bool,
+    ) {
+        self.native_text(batch, text, at, rgb | 0xff00_0000, shadow);
+    }
+
     pub(in crate::game) fn native_mod_key(&self, mod_id: &str, key: &str, default: &str) -> String {
         self.settings
             .mods
