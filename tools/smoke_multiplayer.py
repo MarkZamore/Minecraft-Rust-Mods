@@ -639,7 +639,21 @@ def cleanup_game(game, qa, resources):
             links.append(path)
     for link in links:
         link.rmdir()
-    shutil.rmtree("\\\\?\\" + str(game))
+
+    def retry_sharing_violation(remove, path, error):
+        # A Windows handle can outlive the client process briefly.
+        for delay in (0.25, 0.5, 1, 2):
+            if getattr(error, "winerror", None) != 32:
+                raise error
+            time.sleep(delay)
+            try:
+                remove(path)
+                return
+            except OSError as retry_error:
+                error = retry_error
+        raise error
+
+    shutil.rmtree("\\\\?\\" + str(game), onexc=retry_sharing_violation)
 
 
 def run(args):

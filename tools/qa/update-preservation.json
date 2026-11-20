@@ -1,20 +1,30 @@
 {
   "schemaVersion": 1,
   "status": "PASS",
-  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
+  "clientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
   "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
   "realFinalBaseline": "PASS",
-  "gateSourceSha256": "45a5c504ded237cadb2f6c550d0fc95f343bf93ad893306d377d872b8f2a80dc",
-  "verificationSourceSha256": "1f56fb3bf3096ddfafe7cc47b10d7cd1ccc9d663e53c82ac8ec3b1b38c1de650",
+  "gateSourceSha256": "8bbcfe225a1208b8660db5d43a04cd19287364dbab9500a3fff2144b589b0649",
+  "verificationSourceSha256": "1f40df5ef55175a15ca7fc2ffbbc7f29393753809b348d5863e5298d5fcce7fd",
   "sourceReceipts": {
-    "orbital-startup.json": "55cbc3275c2b720f76fb939b782bc5ccaa966b22fca2c2208dbd7b04bb792f01",
-    "multiplayer.json": "86b6bc5d3d9238015b90f51083fb6f4e68c6ea302d1c7ba2022166fead7ca410",
-    "backup-guard.json": "5b41d4df7849566d5623013cb74b6a71af3d82c4a5f843d2cdc17b7e57c7bf1f",
-    "server-policy.json": "e0c3fe66afba715e1e3af1e51204f05cd9a2db41f62d7b3a39184a8ff784f602",
-    "native-notices.json": "43712de1ded2c92fdca1c036604b2265ac55207d94de59313a46ba5fb4e9f5ef",
+    "orbital-startup.json": "7b64ef326ab596c154000f5a79993520660e931aea918b69daa87bad0bde8daf",
+    "multiplayer.json": "ec77eb058307e8ae96e0df8607e61872d38c484299b9ef463082c58068695b8f",
+    "backup-guard.json": "39142bab75fe6e606ceb4760eec69520c6ea9d87898f5177c8437a6208bb209f",
+    "server-policy.json": "4c3c2b044628770d3993bf30e5be9789c1c9888211cca0f14c5c68788f2d5f6d",
+    "native-notices.json": "c48c240f671ca2b693269cc4a103ae5c8858b40ead65ab3434b656a59ac8aef3",
     "launcher-notices-support.json": "f6865aef0c9c32dc08598e4a93a0761519cd98313dd8550a09b7ec8593f1ba59"
   },
   "rejectionChecks": [
+    {
+      "case": "Orbital screenshot with no HUD text",
+      "status": "PASS",
+      "rejectedWith": "Release needs visible Orbital wheel rims, center label and top-left HUD text"
+    },
+    {
+      "case": "Orbital pixel evidence belongs to a different frame",
+      "status": "PASS",
+      "rejectedWith": "The gameplay smoke report must verify pixels in its exact Orbital wheel frame"
+    },
     {
       "case": "Same-core gameplay predates the mandatory presentation policy",
       "status": "PASS",

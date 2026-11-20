@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
+  "clientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
     "DISABLE_VULKAN_OW_OVERLAY_LAYER": "1"
@@ -44,8 +44,8 @@
   "mode": "gameplay",
   "reusedQaDirectory": false,
   "gameplay": "PASS",
-  "previousWorldMigration": "PASS",
-  "previewSha256": "c3c7f4a69e4298ae6ac2a6e99c80137a5e41fab902b7f877dc1acb2173b37c02",
+  "previousWorldMigration": "NOT RUN",
+  "previewSha256": "00b7444bff23911d49a6ebee1063765a667ff729a487c06bdb33de32e243de8f",
   "loadedContent": [
     [
       "orbital",
@@ -107,16 +107,16 @@
     "veinminer"
   ],
   "modsPage": {
-    "frame": 416,
+    "frame": 348,
     "gui_size": [
-      480.0,
-      270.0
+      427.0,
+      240.0
     ],
     "screen": "title",
     "widgets": [
       {
         "bounds": [
-          141.0,
+          115.0,
           6.0,
           50.0,
           20.0
@@ -128,8 +128,8 @@
       },
       {
         "bounds": [
-          188.0,
-          212.0,
+          162.0,
+          182.0,
           82.0,
           20.0
         ],
@@ -140,8 +140,8 @@
       },
       {
         "bounds": [
-          272.0,
-          212.0,
+          246.0,
+          182.0,
           82.0,
           20.0
         ],
@@ -152,8 +152,8 @@
       },
       {
         "bounds": [
-          356.0,
-          212.0,
+          330.0,
+          182.0,
           82.0,
           20.0
         ],
@@ -164,8 +164,8 @@
       },
       {
         "bounds": [
-          88.0,
-          243.0,
+          61.0,
+          213.0,
           150.0,
           20.0
         ],
@@ -176,8 +176,8 @@
       },
       {
         "bounds": [
-          242.0,
-          243.0,
+          215.0,
+          213.0,
           150.0,
           20.0
         ],
@@ -188,7 +188,7 @@
       },
       {
         "bounds": [
-          41.0,
+          15.0,
           6.0,
           96.0,
           20.0
@@ -205,7 +205,7 @@
         "commands": true,
         "corrupted": false,
         "folder": "RustModsSmoke",
-        "last_played": 1795127531932,
+        "last_played": 1795172693626,
         "mode": "survival",
         "name": "RustModsSmoke",
         "version": "26.3"
@@ -249,30 +249,30 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        9,
+        -2,
         137,
-        19
+        -6
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        9.5,
+        -1.5,
         138.62000000476837,
-        19.69999998807907
+        -5.300000011920929
       ],
       "fall_flying": false,
       "flying": true,
       "food": 20,
-      "fov_modifier": 1.0999999046325684,
+      "fov_modifier": 1.0999939441680908,
       "health": 20.0,
       "hurt_time": 0,
       "on_ground": false,
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        9.5,
+        -1.5,
         137.0,
-        19.69999998807907
+        -5.300000011920929
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
@@ -296,11 +296,11 @@
     "selected": 1,
     "sleeping": null,
     "swings": 0,
-    "ticks": 1433,
+    "ticks": 1289,
     "time": {
       "day": 1,
-      "day_time": 30022,
-      "time_of_day": 6022
+      "day_time": 30014,
+      "time_of_day": 6014
     },
     "using": null,
     "weather": {
@@ -346,30 +346,30 @@
       "absorption": 0.0,
       "air": 300,
       "block_pos": [
-        9,
+        -2,
         137,
-        19
+        -6
       ],
       "death_time": null,
       "effects": [],
       "eye": [
-        9.5,
+        -1.5,
         138.62000000476837,
-        19.69999998807907
+        -5.300000011920929
       ],
       "fall_flying": false,
       "flying": true,
       "food": 20,
-      "fov_modifier": 1.0980713367462158,
+      "fov_modifier": 1.0726486444473269,
       "health": 20.0,
       "hurt_time": 0,
       "on_ground": false,
       "pitch": 28.0,
       "portal_effect": 0.0,
       "position": [
-        9.5,
+        -1.5,
         137.0,
-        19.69999998807907
+        -5.300000011920929
       ],
       "saturation": 5.0,
       "shield_cooldown": 0,
@@ -393,11 +393,11 @@
     "selected": 1,
     "sleeping": null,
     "swings": 0,
-    "ticks": 24,
+    "ticks": 17,
     "time": {
       "day": 1,
-      "day_time": 30037,
-      "time_of_day": 6037
+      "day_time": 30023,
+      "time_of_day": 6023
     },
     "using": null,
     "weather": {
@@ -417,9 +417,9 @@
     "after": "Player Reporting",
     "returnedToGame": true,
     "loopback": "PASS",
-    "localPort": 56810,
+    "localPort": 53141,
     "publicationChat": [
-      "This world is now open to LAN. The port number is 56810"
+      "This world is now open to LAN. The port number is 53141"
     ],
     "liveSteamPublication": "NOT RUN"
   },
@@ -429,25 +429,25 @@
     "runtimeRoundTrip": "PASS"
   },
   "timeToTitleSeconds": [
-    48.42,
-    18.06
+    15.5,
+    8.25
   ],
   "orbitalLaser": {
     "target": [
-      1,
+      -10,
       116,
-      31
+      6
     ],
     "fixture": [
       [
-        1,
+        -10,
         116,
-        31
+        6
       ],
       [
-        2,
+        -9,
         113,
-        31
+        6
       ]
     ],
     "blocksBefore": [
@@ -468,51 +468,83 @@
       "gpu": "Intel(R) Arc(TM) B390 GPU",
       "backend": "Vulkan",
       "size": [
-        1920,
-        1080
+        2560,
+        1440
       ]
     },
     "frames": {
       "wheel": {
         "file": "orbital-wheel.png",
-        "sha256": "4689373881b96b44ea394289618402d710b48d54e5279ecaa9cd9778d9cd222d",
+        "sha256": "8ca88b3d0e8df2dda28a5aef204584340c2acf2dda9af1943300c30fc7bc0e76",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       },
       "baseline": {
         "file": "orbital-baseline.png",
-        "sha256": "e27d1d13c2e6b4615ba729772f1c1c8cf649e04f8507a610701de253f259a508",
+        "sha256": "b32c9605d190dd965b88c808c4077fdb590ca45a45e542f2bbb75c12b85a566a",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       },
       "plasma": {
         "file": "orbital-plasma.png",
-        "sha256": "9951aa3133297a163fc46ce90cbdfec4eabf74e72f122a7f1a3c8f170cb26c43",
+        "sha256": "085990248840413c55af1d06556a39b96545d5bd2550e1cd2ee8258b7ef8162e",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       },
       "hurricane": {
         "file": "orbital-hurricane.png",
-        "sha256": "e019d054d92299ab6bd6eb3526b1b004a03d7d0bf93b904961cf0d100fb896d0",
+        "sha256": "ecd553e623ea9777848154fb135064d19e1d769ea627dd9f35db5a4d1c9d7603",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       },
       "crater": {
         "file": "orbital-crater.png",
-        "sha256": "69a581176501d8e7629d4c8c81a116ee09652d9bc291d8bd23f78b073b22e421",
+        "sha256": "b02716cd7447c6a03f137d8b4c0e63d119002f19516f315bfae9e598812120ff",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       }
+    },
+    "modHud": {
+      "schemaVersion": 1,
+      "frames": {
+        "wheelOpen": {
+          "file": "orbital-wheel.png",
+          "size": [
+            2560,
+            1440
+          ],
+          "sha256": "8ca88b3d0e8df2dda28a5aef204584340c2acf2dda9af1943300c30fc7bc0e76"
+        }
+      },
+      "checks": {
+        "orbitalWheel": {
+          "pass": true,
+          "rimPixels": {
+            "plasma": 14118,
+            "godly": 4048,
+            "blackhole": 4055,
+            "meteor": 4055,
+            "mothership": 4048
+          },
+          "visibleRims": 5,
+          "centerLabelPixels": 3960
+        },
+        "topLeftHud": {
+          "pass": true,
+          "brightNeutralPixels": 8652
+        }
+      },
+      "result": "PASS"
     },
     "reopened": {
       "inventory": "orbital:laser_designator",
@@ -531,25 +563,25 @@
       {
         "laser": "plasma",
         "target": [
-          1,
+          -10,
           116,
-          31
+          6
         ]
       },
       {
         "laser": "hurricane",
         "target": [
-          1,
+          -10,
           116,
-          31
+          6
         ]
       },
       {
         "laser": "plasma",
         "target": [
-          1,
+          -10,
           116,
-          31
+          6
         ]
       }
     ],
@@ -583,7 +615,7 @@
     ],
     "physicsQuickSetup": {
       "action": "Skip Setup",
-      "frameSha256": "35752fd8881122ed9e320d402ff9da267e29c8cd9e62828465f10afca972e38e"
+      "frameSha256": "14e597c4cee4ac7e2bd4941dbe3df784eadaaf2edd98c397d7a42a7e094bb69d"
     },
     "titleMouse": [
       "language",
@@ -615,7 +647,7 @@
     "baselineFov": 1.0,
     "zoomFov": 0.16666671633720398,
     "wheelFov": 0.13333335518836975,
-    "releasedFov": 0.9999999403953552,
+    "releasedFov": 0.9999997615814208,
     "hotbarUnchanged": true,
     "settingsRoundTrip": {
       "level": "6",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "receiptSha256": "f3bc3f7b6a9d8f618cf9c8d618a5440c1e0eeac7e1d77ddba1c561a8b230c4ea",
+  "receiptSha256": "1b383b050570e90ebcb2d751f452db4b74821216a17676e7644a3caa9acdaa70",
   "files": {
     "configureddefaults/options.txt": {
       "sizeBytes": 13,
@@ -423,8 +423,8 @@
       "sha256": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6"
     },
     "native/horizon-client.exe": {
-      "sizeBytes": 176675840,
-      "sha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a"
+      "sizeBytes": 176681472,
+      "sha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17"
     },
     "native/horizon-mods/orbital.hmod": {
       "sizeBytes": 63880128,
@@ -5995,11 +5995,11 @@
     },
     "loaded-mods.json": {
       "sizeBytes": 238390,
-      "sha256": "245359a87589e1577783b291c697f51a5608ea98ed1885e4693ecd7e5c39be94"
+      "sha256": "566e6999bcd923ba004289b368f33b040e676f77d9773304c1993cad891bc59e"
     },
     "preview.jpg": {
-      "sizeBytes": 785667,
-      "sha256": "3d165663a7f675b9a46829ca5c0a10f8e41b225cbd90226ba67773e9461629d3"
+      "sizeBytes": 1887071,
+      "sha256": "4e52b80beb323f0eee5abbf4ba90894c7898930bf88f181b38c3f0da2703d91d"
     }
   }
 }

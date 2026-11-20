@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "result": "PASS",
+  "clientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
+  "controllerSha256": "35bc740d190b475e5187584db5c111b6d44e25a5709a8e27ac1bd0fc54d1d4ed",
+  "renderer": {
+    "arena_bytes": 178257920,
+    "backend": "Vulkan",
+    "culled_sections": [
+      [
+        0,
+        64
+      ],
+      0.0
+    ],
+    "device_type": "integrated",
+    "drawn_sections": 214,
+    "driver": "Intel Corporation 101.8724",
+    "dynamic_resolution": false,
+    "gpu": "Intel(R) Arc(TM) B390 GPU",
+    "gpu_allocated_bytes": 555813120,
+    "gpu_culling": false,
+    "gpu_culling_auto": "watching",
+    "gpu_culling_mode": "off",
+    "gpu_culling_offer": "Offered",
+    "gpu_fading": null,
+    "gpu_frame": false,
+    "gpu_occluding": false,
+    "gpu_reserved_bytes": 699990080,
+    "packed_layout": [
+      true,
+      true
+    ],
+    "present_mode": "Fifo",
+    "resident_sections": 4668,
+    "resolution_scale": 100,
+    "section_draw_calls": 2,
+    "section_draws": 425,
+    "section_vertex_bytes": 90824928,
+    "size": [
+      2560,
+      1440
+    ],
+    "stats_lag": 0,
+    "uploaded_bytes": 90824928,
+    "vendor": "intel",
+    "vertex_bytes_split": [
+      90824928,
+      0
+    ]
+  },
+  "waypointsFrame": {
+    "file": "orbital-waypoints.png",
+    "sha256": "70bacfdde517c33c2537709240cd53b56c3e63f352162f78a22838492acb2993",
+    "size": [
+      2560,
+      1440
+    ]
+  },
+  "jeiWidgetCount": 50,
+  "frames": {
+    "wheelOpen": {
+      "file": "orbital-open.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "f1c45611996cc8a78cb5769fcb4b5540fcb15ec4f481f2401e9d7c66d0fb29b7"
+    },
+    "wheelClosed": {
+      "file": "orbital-closed.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "f5f3bc1805defc0e15e6a87bb3f2247fb2eafc7c1f32a6553cc523b21b2ab0a3"
+    },
+    "creative": {
+      "file": "orbital-creative.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "36667393fe3b3700e642de3a0432a74ede8556a7d5b47a08355503c9d8e19412"
+    }
+  },
+  "checks": {
+    "orbitalWheel": {
+      "pass": true,
+      "rimPixels": {
+        "plasma": 14118,
+        "godly": 4048,
+        "blackhole": 4055,
+        "meteor": 4055,
+        "mothership": 4048
+      },
+      "visibleRims": 5,
+      "centerLabelPixels": 3960
+    },
+    "topLeftHud": {
+      "pass": true,
+      "brightNeutralPixels": 8724
+    },
+    "jeiCreative": {
+      "pass": true,
+      "newBrightColoredPixels": 64246
+    }
+  },
+  "disposableWorldRemoved": true
+}

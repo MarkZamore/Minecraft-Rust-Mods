@@ -54,6 +54,10 @@ def verify(candidate, base_repo):
             raise ValueError(f"The release gate incorrectly accepted: {name}")
 
     game_check = lambda report: release.verify_gameplay_acceptance(report, build, preset)
+    reject("Orbital screenshot with no HUD text", game_check, gameplay,
+           lambda value: value["orbitalLaser"]["modHud"]["checks"]["topLeftHud"].update(brightNeutralPixels=0))
+    reject("Orbital pixel evidence belongs to a different frame", game_check, gameplay,
+           lambda value: value["orbitalLaser"]["modHud"]["frames"]["wheelOpen"].update(sha256="0" * 64))
     network_check = lambda report: release.verify_multiplayer_acceptance(report, build)
     backup_check = lambda report: release.verify_backup_acceptance(report, build)
     server_check = lambda report: release.verify_server_policy_acceptance(report, build, base_repo=base_repo)

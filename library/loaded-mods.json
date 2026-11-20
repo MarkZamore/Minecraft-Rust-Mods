@@ -111,7 +111,7 @@
     "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle$World.class": "104984ef0c6ab5b42b40c661642fae7cdc45bd8224e4975856abad0b1d349d50",
     "native/exporters/server/dev/horizonlab/parity/VanillaSimpleBlockOracle.class": "280a14b3bd55f856e3c235ac755435917f6c02bfbeef1496f505f0c0760654ad",
     "native/exporters/server/dev/horizonlab/parity/VanillaStructureBlockExporter.class": "d2cc6c600e0e25428b3cdc1249abbb935792798c929a222de121a8e3727504d6",
-    "native/horizon-client.exe": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
+    "native/horizon-client.exe": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
     "native/horizon-mods/orbital.hmod": "a752c3423cf547b45fee43bb59963ee3807c32cd7b9e2dcb5f61eb7b6dc9db14",
     "native/horizon-mods/zoom.hmod": "53935d0af3307bbe8fa5057103a62b13a8cb6a69431b3058f3981b9c1313d348",
     "native/horizon-native-mods/elytratrails/Cargo.toml": "6574d0db1dfc41018ae104503eb7d71acaab000b022771b2fd945ef26ee47e56",

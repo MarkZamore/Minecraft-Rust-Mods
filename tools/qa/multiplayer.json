@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "clientSha256": "2d7501cdf2714f8836ef2bc4ede6170fbbb18873bdd290ba91d130a8e1f49d3a",
+  "clientSha256": "249fd2dacf8f27d0ea9031282d86020479de9eb8da6b583b6d9e0fb595967a17",
   "horizonRevision": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
   "environmentPolicy": "pack-presentation-defaults-v1",
   "environmentDefaults": {
@@ -84,19 +84,19 @@
   ],
   "publishMenu": {
     "returnedToGame": true,
-    "port": 52959,
+    "port": 57988,
     "numericPortNotice": {
-      "chatPort": 52959,
-      "statusPort": 52959,
+      "chatPort": 57988,
+      "statusPort": 57988,
       "matchesStatus": true,
       "translationKey": "menu.multiplayerOptions.publish.started.lan",
       "component": {
         "translate": "menu.multiplayerOptions.publish.started.lan",
         "with": [
-          52959
+          57988
         ]
       },
-      "renderedLine": "This world is now open to LAN. The port number is 52959"
+      "renderedLine": "This world is now open to LAN. The port number is 57988"
     }
   },
   "guestCommands": [
@@ -111,21 +111,21 @@
   ],
   "jei": {
     "about": "JEI 0.2.1 (alpha) on hook points version 313: 1659 items, 2025 recipes",
-    "itemButtons": 66,
+    "itemButtons": 50,
     "frame": {
       "file": "orbital-jei-inventory.png",
-      "sha256": "a7d592d90c8fb1fa4af9ddd57868a4da2b2017bd85f35f183c8cd7546853ce54",
+      "sha256": "0cdde793803ce245c24899388683a187fc2907b806f6a8d06e10c6cc9d74026b",
       "size": [
-        1920,
-        1080
+        2560,
+        1440
       ]
     },
     "gamemode": "creative",
     "inventoryScreen": "creative",
     "creativeInventory": true,
     "guiSize": [
-      480.0,
-      270.0
+      427.0,
+      240.0
     ],
     "search": "minecraft:stone",
     "shortcuts": {
@@ -137,10 +137,10 @@
         ],
         "frame": {
           "file": "orbital-jei-recipes.png",
-          "sha256": "81e2a8fcc4fdda7e4fe1d8a4da224719c98082449fa23830e69f1dee00b8cd64",
+          "sha256": "6cea95417925e5385c82363c6f104b83276efb1f20040fdb4f6484b1abc0cbd7",
           "size": [
-            1920,
-            1080
+            2560,
+            1440
           ]
         }
       },
@@ -154,26 +154,19 @@
           "Stone",
           "Stone",
           "Stone",
-          "Redstone Comparator",
           "Redstone Torch",
           "Redstone Dust",
           "Redstone Torch",
           "Stone",
           "Stone",
-          "Stone",
-          "Redstone Repeater",
-          "Stone",
-          "Stone",
-          "Stone",
-          "Stone",
-          "Stone Bricks"
+          "Stone"
         ],
         "frame": {
           "file": "orbital-jei-uses.png",
-          "sha256": "cbc1dcb6c60bb411a155a99f200e12925d80659353deddf2d70dd418d078aa52",
+          "sha256": "50fcbeee7c652ba7348ca68fe72c757ba3789fdac760166c240b55c68d3ea806",
           "size": [
-            1920,
-            1080
+            2560,
+            1440
           ]
         }
       }
@@ -181,13 +174,13 @@
     "survival": {
       "gamemode": "survival",
       "inventoryScreen": "inventory",
-      "itemButtons": 77,
+      "itemButtons": 60,
       "frame": {
         "file": "orbital-jei-survival-inventory.png",
-        "sha256": "60f48c35ac2ec6c7f80f065495982f8cce954ea3d38c97ff0711c87197d6bd90",
+        "sha256": "c9d1e3af218f1ce6995dcd0a2e9755e5aca4310ce3f73465c46d3f9cf378c59a",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       }
     },
@@ -220,10 +213,10 @@
       "restoredSearch": "minecraft:stone",
       "frame": {
         "file": "orbital-jei-creative-search.png",
-        "sha256": "e2653d4416345d5eadc8f26f095d65284f39d0d023e2b0d3913321789283b583",
+        "sha256": "5ce204e65548dd0e48b227b5d37f39af1b321e0ed6e68fd1b27496107481c870",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       }
     },
@@ -232,20 +225,20 @@
       "insideReverseRestoresPanelPage": true,
       "outsideKeepsPanelPage": true,
       "firstPageFirstItem": "Abandoned Camp Map",
-      "secondPageFirstItem": "Bedrock"
+      "secondPageFirstItem": "Bamboo Mosaic Slab"
     }
   },
   "orbital": {
     "fixture": [
       [
-        5,
-        117,
-        -1
+        -1,
+        121,
+        5
       ],
       [
-        6,
-        114,
-        -1
+        0,
+        118,
+        5
       ]
     ],
     "blocksBefore": [
@@ -263,36 +256,36 @@
     "framesBefore": {
       "host": {
         "file": "orbital-before.png",
-        "sha256": "c2452427da2d0749e71068b9eb0c29a97b66f147835dad1aca6a09a6df73363c",
+        "sha256": "4d273635cc1f832bf5aef8fbdf21d5fc5eedde0401dedc924716cc6647c8b088",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       },
       "guest": {
         "file": "orbital-before.png",
-        "sha256": "75021a8fdee453fd25f45caa424f7b671f32e24731fb56541b7dc7c17f9aa24e",
+        "sha256": "ba8e3a33c07715b4176ab02f2b9c58fae726731990751bf1c293bb677b878e75",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       }
     },
     "framesDuring": {
       "host": {
         "file": "orbital-strike.png",
-        "sha256": "bc09a1bbb236910b6c6da9a5aa8c497c7fea0939d28a9b57ea7c64a0a4e154a0",
+        "sha256": "392280eb1f23cd13bef2c955d31173ff0ecbe3e5c7e84e9115e80fe5ac21a561",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       },
       "guest": {
         "file": "orbital-strike.png",
-        "sha256": "c96b605a9a000a4f48e42fe0d4bb458a3154d4c1b96bb5198e626e9b000f631d",
+        "sha256": "0086e6ae22ceac0b058513322971da465db6396ea20d71a8aff2e357ef7cbbec",
         "size": [
-          1920,
-          1080
+          2560,
+          1440
         ]
       }
     },
@@ -301,23 +294,23 @@
     ],
     "concurrentEffects": {
       "hostTarget": [
-        69,
-        171,
-        -1
+        63,
+        175,
+        5
       ],
       "guestTarget": [
-        5,
-        117,
-        -1
+        -1,
+        121,
+        5
       ],
       "hostTerrain": "off",
       "guestTerrain": "on",
       "authorPlasmaSeconds": 26,
       "authorBeamStartsAtSeconds": 4,
       "cameraTargetDuringCapture": [
-        37,
-        144.0,
-        -1
+        31,
+        148.0,
+        5
       ],
       "hostReceivedGuest": [
         "[mod orbital] remote visual applied owner=b0cd36a08b0f3cb6a44b7439e428be80 shader=0 generation=2 data_revision=1 words=0"
@@ -333,18 +326,18 @@
       "framesOwnAndRemote": {
         "host": {
           "file": "orbital-strike.png",
-          "sha256": "bc09a1bbb236910b6c6da9a5aa8c497c7fea0939d28a9b57ea7c64a0a4e154a0",
+          "sha256": "392280eb1f23cd13bef2c955d31173ff0ecbe3e5c7e84e9115e80fe5ac21a561",
           "size": [
-            1920,
-            1080
+            2560,
+            1440
           ]
         },
         "guest": {
           "file": "orbital-strike.png",
-          "sha256": "c96b605a9a000a4f48e42fe0d4bb458a3154d4c1b96bb5198e626e9b000f631d",
+          "sha256": "0086e6ae22ceac0b058513322971da465db6396ea20d71a8aff2e357ef7cbbec",
           "size": [
-            1920,
-            1080
+            2560,
+            1440
           ]
         }
       }
