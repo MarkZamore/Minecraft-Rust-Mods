@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "scope": "shared-bootstrap-java-version-diagnostics",
+  "baseline": {
+    "revision": "84f7d7e174a6aed274f85051aa8850c30c0f8a3f",
+    "manifestSha256": "932cb701b3a05e3709bc0277b0ef89622f82bf23cc5c6a1c575b74268ca398d3",
+    "sharedArchiveSha256": "84ceb9ff7ead347990bd747e0a19aaaf3aa38ba4cd2083380422f6ad3d0f64a1",
+    "historicalGameplayReceipt": "tools/qa/shared-native-release.json",
+    "historicalGameplayReceiptSha256": "7aac33710deebdc7f2234ed4451dc77aada4dd215a16e28fd4d7abb0cf19f017"
+  },
+  "runtime": {
+    "archive": {
+      "name": "native-runtime-7a7aab05774b7df30338092228fb51e131709fa2a117621622e0e376b2629996.zip",
+      "sizeBytes": 117944246,
+      "sha256": "7a7aab05774b7df30338092228fb51e131709fa2a117621622e0e376b2629996"
+    },
+    "bootstrap": {
+      "sizeBytes": 2996224,
+      "sha256": "7e6859fd39ef296482e532c775dead8d1212eff813a3289cf41dcd0f4d7a8688"
+    },
+    "client": {
+      "sizeBytes": 53116,
+      "sha256": "5bc739ad57d615d1009eff6f2c47413a7305eb49c43ae0a764960bca56b7d60a"
+    },
+    "abiBuildId": "32726d86f6e44d1a2096b964afbe9eee28288d79",
+    "sharedRuntimeContractSha256": "520ccd97d62223803079a81f4f07dcf7981a241fadcc2ed5fccba9d7c6b83851",
+    "bootstrapSourceCommit": "3e16312a099c80879b79ef20e9f8b5db5465d947"
+  },
+  "exactFileVerification": {
+    "sharedFiles": 545,
+    "overlayFiles": 972,
+    "unchangedSharedFiles": 544,
+    "unchangedOverlayFiles": 971,
+    "changedCommonFiles": {
+      "native/launch-rust-edition.exe": {
+        "sizeBytes": 2996224,
+        "sha256": "7e6859fd39ef296482e532c775dead8d1212eff813a3289cf41dcd0f4d7a8688"
+      }
+    },
+    "changedOverlayFiles": {
+      "portable-pack.json": {
+        "sizeBytes": 130878,
+        "sha256": "7761bdba2933be557a8528c92803002bd54618147a9757cccd2061a711e35116"
+      }
+    },
+    "compositionSha256": "bdf1c3394a73f49a543544a38b1dccfa8fa8b6f8fd7f81ffde7c46aefc945487",
+    "payloadSha256": "94c170d3cddbdfed64816d1950e86af38e6619dadf46c2572b54b9222f0ab3d3",
+    "buildReceiptSha256": "ecb13120886f087ca43da875ba85166bf326245e18b24241a383a246457b8f79",
+    "modSelectionCount": 37,
+    "distributionLockSha256": "59450f9403bd7831ef44492b073e292725634205e3f1da5b1e07c91912460a73",
+    "bootstrapLockSha256": "c6a775125eb3d02f4dda2401fc716773be1c6b6d29ae540531972e3d64b5c542"
+  },
+  "javaDiagnostics": {
+    "status": "PASS",
+    "reportSha256": "3472b97e1f966e8753bfa97c6d03fafed87e2a99621e2036ebcb8e8765422663",
+    "observedWin32Error": 216,
+    "cases": [
+      "invalid-windows-image",
+      "java-exit-7"
+    ]
+  },
+  "bootstrapStartup": {
+    "status": "PASS",
+    "reportSha256": "ac84df813058d769f28a64fdd2384918cc0858562459f84a2abb10c618f85fcc",
+    "profiles": [
+      "edition",
+      "mods"
+    ],
+    "validatedSeparateGameDirectories": true,
+    "reusedPreparationBy": 1,
+    "preparedResourceCount": 28182,
+    "preparedResourceIndexSha256": "98ec55a0d2c6f70a9d5580fd200cbb57ba00503d278285d4220b9c934dfbe10c",
+    "modsNativeRegistrySha256": "04a60e6e45b8fc2a460246795d761d8146cb4426350fe8a080e60ff2082a76a2",
+    "modsSteamVariant": "nightly-2026-11-19-f00125f-mods-r2",
+    "savedCodeMods": {
+      "elytratrails": "0.1.2",
+      "orbital": "0.5.17",
+      "skins_3d": "2.0.0",
+      "spider_man": "0.2.5",
+      "zoom": "3.0.3"
+    },
+    "savedContentMods": {
+      "zoom": "3.0.3"
+    },
+    "disposableProfilesRemoved": true
+  },
+  "fullOrbitalAbilityMatrix": "NOT RUN"
+}
