@@ -11,7 +11,7 @@
       "source": {
         "owner": "MarkZamore",
         "repo": "Minecraft-Rust-Edition",
-        "tag": "shared-runtime-f00125f-r1"
+        "tag": "shared-runtime-f00125f-r2"
       },
       "id": "horizon-windows-x64",
       "version": "nightly-2026-11-19-f00125f-sdk-r1",
@@ -604,8 +604,8 @@
         },
         {
           "path": "native/launch-rust-edition.exe",
-          "sizeBytes": 2987008,
-          "sha256": "809fc2706f779246c621220cfe5f8c27d9d9532b7247c89efe242298a6c15e67"
+          "sizeBytes": 2996224,
+          "sha256": "7e6859fd39ef296482e532c775dead8d1212eff813a3289cf41dcd0f4d7a8688"
         },
         {
           "path": "native/libgcc_s_seh-1.dll",
@@ -2744,9 +2744,9 @@
         }
       ],
       "archive": {
-        "name": "native-runtime-84ceb9ff7ead347990bd747e0a19aaaf3aa38ba4cd2083380422f6ad3d0f64a1.zip",
-        "sizeBytes": 117941328,
-        "sha256": "84ceb9ff7ead347990bd747e0a19aaaf3aa38ba4cd2083380422f6ad3d0f64a1"
+        "name": "native-runtime-7a7aab05774b7df30338092228fb51e131709fa2a117621622e0e376b2629996.zip",
+        "sizeBytes": 117944246,
+        "sha256": "7a7aab05774b7df30338092228fb51e131709fa2a117621622e0e376b2629996"
       }
     }
   },
@@ -3794,7 +3794,7 @@
     "native/horizon_mod_runtime.dll": "fa703bbde12bdd8107d7a941e7c7e12f27de0bb835eb62a313c13b8ae1b54b16",
     "native/horizon_mod_wasm.dll": "4e96134902f8126e6f6bbdfb842b181bf13eba7d3f50c83ca9e069e8a00f349e",
     "native/horizon_patch.dll": "697c62349771ec7e1b449f4fee9e5293662345cc998f302b3399dd911f577c8a",
-    "native/launch-rust-edition.exe": "809fc2706f779246c621220cfe5f8c27d9d9532b7247c89efe242298a6c15e67",
+    "native/launch-rust-edition.exe": "7e6859fd39ef296482e532c775dead8d1212eff813a3289cf41dcd0f4d7a8688",
     "native/libgcc_s_seh-1.dll": "368488a9089e3d89b32a3609816fa40dd02fa4cdf480a2bc86e19c7bebdc8bda",
     "native/libwinpthread-1.dll": "1b801c9280f6cad8cb2a026bfa48be8c4bea07a0dc78a820d1591f900ee76f0b",
     "native/mod_api.dll": "d5b934a78ede61a84e2479e1dd1c3b19418eb278e1be0fbd1dedf9357dcbaa0f",

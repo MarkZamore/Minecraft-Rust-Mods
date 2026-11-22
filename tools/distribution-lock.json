@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "receiptSha256": "2f6037c287c3fb6b3ff8dffcad2fe0e3e54fc68673d9cdd9039bb09703d268c2",
+  "receiptSha256": "ecb13120886f087ca43da875ba85166bf326245e18b24241a383a246457b8f79",
   "files": {
     "configureddefaults/options.txt": {
       "sizeBytes": 13,
@@ -4183,8 +4183,8 @@
       "sha256": "697c62349771ec7e1b449f4fee9e5293662345cc998f302b3399dd911f577c8a"
     },
     "native/launch-rust-edition.exe": {
-      "sizeBytes": 2987008,
-      "sha256": "809fc2706f779246c621220cfe5f8c27d9d9532b7247c89efe242298a6c15e67"
+      "sizeBytes": 2996224,
+      "sha256": "7e6859fd39ef296482e532c775dead8d1212eff813a3289cf41dcd0f4d7a8688"
     },
     "native/libgcc_s_seh-1.dll": {
       "sizeBytes": 927027,
@@ -6068,10 +6068,10 @@
     },
     "portable-pack.json": {
       "sizeBytes": 130878,
-      "sha256": "4a6e5b9fe8e46ac45aaf4f9e3ff82a6938fa28a8bb47d90f01ea0651b4a63b96"
+      "sha256": "7761bdba2933be557a8528c92803002bd54618147a9757cccd2061a711e35116"
     }
   },
-  "bootstrapLockSha256": "97f15eb8145843abac1e043d8c3eabbdc1d0b4a4a6dcb186c20d9058b60341dc",
+  "bootstrapLockSha256": "c6a775125eb3d02f4dda2401fc716773be1c6b6d29ae540531972e3d64b5c542",
   "library": {
     "content.json": {
       "sizeBytes": 1376,
@@ -6079,7 +6079,7 @@
     },
     "loaded-mods.json": {
       "sizeBytes": 371237,
-      "sha256": "0817aab848d23fa6f24c8c50d7bf24daf604a8b29495f6cf6c8bdefcf1784b6d"
+      "sha256": "ebb20f249fc9c59147a1a96ef447865088ee23178deae0f9d2fe98bec6a58e0c"
     },
     "mod-pages.json": {
       "sizeBytes": 2542,
