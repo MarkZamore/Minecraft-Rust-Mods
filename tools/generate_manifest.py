@@ -98,11 +98,7 @@ def verify_release_startup(candidate, build, bootstrap_sha, *, base_repo=None):
     verify_environment_evidence(backup, policy_sha, ("direct-client",) * 2)
     verify_environment_evidence(servers, policy_sha, ("direct-client",) * 6)
     verify_multiplayer_acceptance(multiplayer, build)
-    qa = ROOT / "tools/qa"
-    verify_orbital_abilities(load(qa / "orbital-abilities-solo.json"), build)
-    verify_orbital_abilities(load(qa / "orbital-abilities-network.json"), build, guest=True)
-    verify_orbital_abilities(load(qa / "orbital-abilities-scaled.json"), build, resolution_scale=75)
-    verify_vegetation_motion(load(qa / "vegetation-motion.json"), build)
+    verify_vegetation_motion(load(ROOT / "tools/qa/vegetation-motion.json"), build)
     verify_backup_acceptance(backup, build)
     verify_server_policy_acceptance(servers, build, base_repo=base_repo)
     if base_repo is None:

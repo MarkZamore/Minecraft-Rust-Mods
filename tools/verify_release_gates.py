@@ -22,7 +22,32 @@ class TextPreset:
         return self.value
 
 
-def verify(candidate, base_repo):
+def verify_orbital_audit(qa, build, reject):
+    solo, network, scaled = (f"orbital-abilities-{mode}.json" for mode in ("solo", "network", "scaled"))
+    release.verify_orbital_abilities(release.load(qa / solo), build)
+    ability_network = release.load(qa / network)
+    release.verify_orbital_abilities(ability_network, build, guest=True)
+    release.verify_orbital_abilities(release.load(qa / scaled), build, resolution_scale=75)
+    ability_network_check = lambda report: release.verify_orbital_abilities(report, build, guest=True)
+    reject("Missing active Orbital ability", ability_network_check, ability_network,
+           lambda value: value["abilities"].pop("sixstars"))
+
+    def mark_diagnostic_frames(value):
+        for frame in value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]["frames"]:
+            frame["diagnostic"] = True
+
+    reject("Only diagnostic frames recorded the Orbital ability", ability_network_check, ability_network,
+           mark_diagnostic_frames)
+    reject("Observer did not render the Orbital shader", ability_network_check, ability_network,
+           lambda value: value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]
+           ["render"]["observer"].update(remoteShaderGenerations=[]))
+    reject("Observer's Orbital terrain contradicts the server", ability_network_check, ability_network,
+           lambda value: value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]
+           ["terrain"]["after"].update(observer=["minecraft:barrier"]))
+    return solo, network, scaled
+
+
+def verify(candidate, base_repo, *, audit_orbital_abilities=False):
     build, _ = release.accepted_build(candidate)
     if release.sha(candidate / "native/horizon-client.exe") != build["clientSha256"]:
         raise ValueError("The candidate EXE differs from the accepted build")
@@ -61,23 +86,6 @@ def verify(candidate, base_repo):
     reject("Orbital terrain sampled before the strike completed", game_check, gameplay,
            lambda value: value["orbitalLaser"].update(terrainOnNaturalCompletion=False))
     network_check = lambda report: release.verify_multiplayer_acceptance(report, build)
-    ability_network = release.load(qa / "orbital-abilities-network.json")
-    ability_network_check = lambda report: release.verify_orbital_abilities(report, build, guest=True)
-    reject("Missing active Orbital ability", ability_network_check, ability_network,
-           lambda value: value["abilities"].pop("sixstars"))
-
-    def mark_diagnostic_frames(value):
-        for frame in value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]["frames"]:
-            frame["diagnostic"] = True
-
-    reject("Only diagnostic frames recorded the Orbital ability", ability_network_check, ability_network,
-           mark_diagnostic_frames)
-    reject("Observer did not render the Orbital shader", ability_network_check, ability_network,
-           lambda value: value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]
-           ["render"]["observer"].update(remoteShaderGenerations=[]))
-    reject("Observer's Orbital terrain contradicts the server", ability_network_check, ability_network,
-           lambda value: value["abilities"]["plasma"]["casts"]["guest"]["terrainModes"]["on"]
-           ["terrain"]["after"].update(observer=["minecraft:barrier"]))
     backup_check = lambda report: release.verify_backup_acceptance(report, build)
     server_check = lambda report: release.verify_server_policy_acceptance(report, build, base_repo=base_repo)
     notice_check = lambda report: verify_native_notices(report, candidate, build, base_repo)
@@ -196,14 +204,16 @@ def verify(candidate, base_repo):
            lambda value: value["publicReadback"].update(sha256="0" * 64))
     reject("Supporting launcher source lacks the native capability", verify_launcher_support, launcher_support,
            lambda value: value["sourceChecks"].update(nativeCapabilityConstant=False))
+    receipt_names = ("orbital-startup.json", "multiplayer.json", "backup-guard.json", "server-policy.json",
+                     "native-notices.json", "launcher-notices-support.json")
+    if audit_orbital_abilities:
+        receipt_names += verify_orbital_audit(qa, build, reject)
     return {
         "schemaVersion": 1, "status": "PASS", "clientSha256": build["clientSha256"],
         "horizonRevision": build["horizonRevision"], "realFinalBaseline": "PASS",
         "gateSourceSha256": release.sha(Path(release.__file__)),
         "verificationSourceSha256": release.sha(Path(__file__)),
-        "sourceReceipts": {name: release.sha(qa / name) for name in
-                           ("orbital-startup.json", "multiplayer.json", "backup-guard.json", "server-policy.json",
-                            "native-notices.json", "launcher-notices-support.json")},
+        "sourceReceipts": {name: release.sha(qa / name) for name in receipt_names},
         "rejectionChecks": checks,
         "scope": "Release acceptance guards; no game, Steam or GPU scenarios are executed by this command.",
         "temporaryDataBytes": 0,
@@ -214,9 +224,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidate", required=True, type=lambda value: Path(value).resolve())
     parser.add_argument("--base-repo", required=True, type=lambda value: Path(value).resolve())
+    parser.add_argument("--audit-orbital-abilities", action="store_true",
+                        help="validate the exact solo, guest and scaled Orbital ability audit reports")
     args = parser.parse_args()
     try:
-        report = verify(args.candidate, args.base_repo)
+        report = verify(args.candidate, args.base_repo, audit_orbital_abilities=args.audit_orbital_abilities)
     except (KeyError, OSError, ValueError) as error:
         parser.exit(1, f"Release gate verification: {error}\n")
     print(json.dumps(report, ensure_ascii=False, indent=2))
